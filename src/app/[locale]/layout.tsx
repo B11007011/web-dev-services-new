@@ -4,6 +4,7 @@ import { NavigationBar } from "@/components/ui/navigation-wrapper";
 import { TranslationsProvider } from "@/providers/TranslationsProvider";
 import ViewportHandler from "@/components/ViewportHandler";
 import LanguageHandler from "@/components/LanguageHandler";
+import { ReactNode } from "react";
 
 const locales = ['en', 'vi', 'zh-TW'];
 
@@ -25,13 +26,15 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   };
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: string };
 }) {
+  const { locale } = params;
+  
   // Validate locale
   if (!locales.includes(locale)) {
     return null;
