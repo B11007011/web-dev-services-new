@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "title": "Chúng Tôi Xây Dựng Website Tuyệt Vời",
+    "subtitle": "Chuyển đổi doanh nghiệp của bạn với giải pháp web hiện đại",
+    "cta": "Bắt Đầu Ngay"
+  },
+  "nav": {
+    "home": "Trang Chủ",
+    "stats": "Thống Kê",
+    "services": "Dịch Vụ",
+    "features": "Tính Năng",
+    "process": "Quy Trình",
+    "technologies": "Công Nghệ",
+    "portfolio": "Dự Án",
+    "caseStudies": "Nghiên Cứu",
+    "team": "Đội Ngũ",
+    "blog": "Blog",
+    "testimonials": "Đánh Giá",
+    "pricing": "Bảng Giá",
+    "faq": "Hỏi Đáp",
+    "contact": "Liên Hệ"
+  }
+} 

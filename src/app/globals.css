@@ -3,19 +3,230 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --vh: 1vh;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+  height: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  height: 100%;
+}
+
+/* Mobile viewport height fix */
+@supports (-webkit-touch-callout: none) {
+  .h-\[100vh\] {
+    height: calc(var(--vh) * 100);
+  }
+  
+  body {
+    min-height: -webkit-fill-available;
   }
 }
 
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem)) !important;
+  }
+
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top, 1rem), 1rem) !important;
+  }
+}
+
+/* Mobile menu styles */
+@media (max-width: 767px) {
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* Improve touch targets */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Menu button positioning */
+  .menu-button {
+    margin-top: env(safe-area-inset-top, 16px);
+  }
+}
+
+/* Prevent pull-to-refresh and overscroll behavior */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Ensure touch targets are large enough */
+button, a, input, select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Improve touch scrolling */
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Better button handling on mobile */
+  button {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Menu animation improvements */
+  .menu-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .menu-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms, transform 200ms;
+  }
+
+  .menu-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .menu-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 200ms, transform 200ms;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 217 100% 98%;
+    --foreground: 223 71% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 223 71% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 223 71% 20%;
+    --primary: 217 100% 41%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 223 67% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 20% 90%;
+    --muted-foreground: 217 20% 50%;
+    --accent: 217 100% 41%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 20% 90%;
+    --input: 217 20% 90%;
+    --ring: 217 100% 41%;
+    --chart-1: 217 100% 54%;
+    --chart-2: 291 100% 64%;
+    --chart-3: 199 100% 70%;
+    --chart-4: 223 100% 70%;
+    --chart-5: 223 100% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 223 67% 20%;
+    --foreground: 210 40% 98%;
+    --card: 223 67% 20%;
+    --card-foreground: 210 40% 98%;
+    --popover: 223 67% 20%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 100% 41%;
+    --primary-foreground: 223 67% 20%;
+    --secondary: 223 67% 33%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 67% 33%;
+    --muted-foreground: 217 20% 80%;
+    --accent: 217 100% 41%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 223 67% 33%;
+    --input: 223 67% 33%;
+    --ring: 217 100% 41%;
+    --chart-1: 217 100% 54%;
+    --chart-2: 291 100% 64%;
+    --chart-3: 199 100% 70%;
+    --chart-4: 223 100% 70%;
+    --chart-5: 223 100% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom gradient backgrounds */
+.bg-hero-gradient {
+  background: linear-gradient(to bottom, rgb(0, 87, 209), rgb(17, 23, 84));
+}
+
+.bg-button-gradient {
+  background: linear-gradient(to right, rgb(0, 87, 209), rgb(17, 23, 84));
+}
+
+.hover-gradient:hover {
+  background: linear-gradient(to right, rgb(18, 113, 255), rgb(17, 23, 84));
+}
+
+/* Animation gradients */
+.gradient-1 {
+  background: radial-gradient(circle at center, rgb(18, 113, 255) 0%, rgba(18, 113, 255, 0) 70%);
+}
+
+.gradient-2 {
+  background: radial-gradient(circle at center, rgb(221, 74, 255) 0%, rgba(221, 74, 255, 0) 70%);
+}
+
+.gradient-3 {
+  background: radial-gradient(circle at center, rgb(100, 220, 255) 0%, rgba(100, 220, 255, 0) 70%);
+}
+
+.gradient-4 {
+  background: radial-gradient(circle at center, rgb(100, 120, 255) 0%, rgba(100, 120, 255, 0) 70%);
+}
+
+.gradient-5 {
+  background: radial-gradient(circle at center, rgb(88, 130, 255) 0%, rgba(88, 130, 255, 0) 70%);
 }

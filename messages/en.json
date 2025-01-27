@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "title": "We Build Amazing Websites",
+    "subtitle": "Transform your business with modern web solutions",
+    "cta": "Get Started"
+  },
+  "nav": {
+    "home": "Home",
+    "stats": "Stats",
+    "services": "Services",
+    "features": "Features",
+    "process": "Process",
+    "technologies": "Technologies",
+    "portfolio": "Portfolio",
+    "caseStudies": "Case Studies",
+    "team": "Team",
+    "blog": "Blog",
+    "testimonials": "Testimonials",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact"
+  }
+} 
