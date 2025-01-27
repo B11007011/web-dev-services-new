@@ -19,5 +19,139 @@
     "pricing": "Bảng Giá",
     "faq": "Hỏi Đáp",
     "contact": "Liên Hệ"
+  },
+  "stats": {
+    "projects": {
+      "number": "100+",
+      "label": "Dự Án Hoàn Thành"
+    },
+    "clients": {
+      "number": "50+",
+      "label": "Khách Hàng Hài Lòng"
+    },
+    "experience": {
+      "number": "5+",
+      "label": "Năm Kinh Nghiệm"
+    },
+    "support": {
+      "number": "24/7",
+      "label": "Hỗ Trợ"
+    }
+  },
+  "services": {
+    "title": "Dịch Vụ Của Chúng Tôi",
+    "subtitle": "Giải pháp số toàn diện giúp doanh nghiệp của bạn phát triển",
+    "items": [
+      {
+        "title": "Phát Triển Web",
+        "description": "Website hiện đại, tương thích di động được xây dựng bằng Next.js và React",
+        "features": [
+          "Ứng dụng Web Tùy Chỉnh",
+          "Giải Pháp Thương Mại Điện Tử",
+          "Ứng Dụng Web Tiến Bộ",
+          "Tích Hợp API"
+        ]
+      },
+      {
+        "title": "Phát Triển Ứng Dụng Di Động",
+        "description": "Ứng dụng di động đa nền tảng cho iOS và Android",
+        "features": [
+          "Ứng Dụng React Native",
+          "iOS/Android Gốc",
+          "Xuất Bản App Store",
+          "Thiết Kế UI/UX Di Động"
+        ]
+      },
+      {
+        "title": "Thiết Kế UI/UX",
+        "description": "Thiết kế đẹp, trực quan mà người dùng yêu thích",
+        "features": [
+          "Thiết Kế Giao Diện",
+          "Thiết Kế Trải Nghiệm",
+          "Wireframing & Prototype",
+          "Hệ Thống Thiết Kế"
+        ]
+      },
+      {
+        "title": "Digital Marketing",
+        "description": "Phát triển sự hiện diện và tiếp cận trực tuyến",
+        "features": [
+          "Tối Ưu Hóa SEO",
+          "Marketing Mạng Xã Hội",
+          "Chiến Lược Nội Dung",
+          "Phân Tích & Theo Dõi"
+        ]
+      },
+      {
+        "title": "Giải Pháp Thương Mại Điện Tử",
+        "description": "Phát triển cửa hàng trực tuyến toàn diện",
+        "features": [
+          "Tích Hợp Giỏ Hàng",
+          "Thiết Lập Cổng Thanh Toán",
+          "Quản Lý Kho Hàng",
+          "Xử Lý Đơn Hàng"
+        ]
+      },
+      {
+        "title": "Dịch Vụ Đám Mây",
+        "description": "Giải pháp đám mây và lưu trữ có khả năng mở rộng",
+        "features": [
+          "Tích Hợp AWS/Azure",
+          "Kiến Trúc Đám Mây",
+          "Quản Lý Máy Chủ",
+          "Giải Pháp Cơ Sở Dữ Liệu"
+        ]
+      }
+    ]
+  },
+  "features": {
+    "title": "Tính Năng Nổi Bật",
+    "subtitle": "Những điểm mạnh của chúng tôi"
+  },
+  "process": {
+    "title": "Quy Trình Làm Việc",
+    "subtitle": "Cách chúng tôi thực hiện dự án"
+  },
+  "contact": {
+    "title": "Liên Hệ Với Chúng Tôi",
+    "subtitle": "Hãy cho chúng tôi biết về dự án của bạn",
+    "form": {
+      "name": "Họ và tên",
+      "email": "Email",
+      "message": "Tin nhắn",
+      "submit": "Gửi"
+    }
+  },
+  "faq": {
+    "title": "Câu Hỏi Thường Gặp",
+    "subtitle": "Tìm câu trả lời cho các câu hỏi phổ biến về dịch vụ và quy trình của chúng tôi",
+    "contactText": "Bạn còn câu hỏi nào khác?",
+    "contactLink": "Liên hệ với đội ngũ hỗ trợ",
+    "items": [
+      {
+        "question": "Bạn sử dụng những công nghệ nào để phát triển web?",
+        "answer": "Chúng tôi sử dụng các công nghệ hiện đại như React, Next.js, TypeScript và Tailwind CSS cho phát triển frontend. Đối với backend, chúng tôi sử dụng Node.js, Python và các dịch vụ đám mây. Công nghệ của chúng tôi luôn được cập nhật theo tiêu chuẩn ngành."
+      },
+      {
+        "question": "Làm thế nào để đảm bảo bảo mật website?",
+        "answer": "Chúng tôi triển khai nhiều lớp bảo mật bao gồm:\n\n• Chứng chỉ SSL và HTTPS\n• Hệ thống xác thực an toàn\n• Mã hóa dữ liệu khi lưu trữ và truyền tải\n• Kiểm tra bảo mật định kỳ\n• Bảo vệ chống XSS, CSRF, SQL injection\n• Giám sát bảo mật liên tục\n• Cập nhật bảo mật thường xuyên"
+      },
+      {
+        "question": "Quy trình phát triển của bạn như thế nào?",
+        "answer": "Quy trình phát triển Agile của chúng tôi bao gồm:\n\n1. Thu thập và phân tích yêu cầu\n2. Thiết kế UI/UX và tạo prototype\n3. Phát triển lặp với phản hồi thường xuyên từ khách hàng\n4. Kiểm thử và đảm bảo chất lượng\n5. Triển khai và tối ưu hóa\n6. Hỗ trợ sau khi ra mắt"
+      },
+      {
+        "question": "Bạn có cung cấp dịch vụ tối ưu hóa SEO không?",
+        "answer": "Có, chúng tôi triển khai chiến lược SEO toàn diện bao gồm:\n\n• Tối ưu hóa SEO kỹ thuật\n• Thẻ meta và schema markup\n• Tối ưu hiệu suất\n• Tương thích mobile\n• Tối ưu nội dung\n• Báo cáo và kiểm tra SEO định kỳ"
+      },
+      {
+        "question": "Bạn cung cấp những hỗ trợ gì sau khi ra mắt?",
+        "answer": "Chúng tôi cung cấp các gói hỗ trợ linh hoạt bao gồm:\n\n• Hỗ trợ kỹ thuật 24/7\n• Cập nhật bảo trì thường xuyên\n• Giám sát hiệu suất\n• Vá lỗi bảo mật\n• Cập nhật nội dung\n• Nâng cấp tính năng\n\nCác gói hỗ trợ có thể tùy chỉnh theo nhu cầu của bạn."
+      },
+      {
+        "question": "Bạn xử lý giá dự án như thế nào?",
+        "answer": "Chúng tôi cung cấp báo giá minh bạch dựa trên phạm vi và yêu cầu dự án. Mỗi dự án là duy nhất, vì vậy chúng tôi cung cấp báo giá chi tiết sau khi hiểu rõ nhu cầu cụ thể của bạn. Chúng tôi cũng cung cấp:\n\n• Kế hoạch thanh toán linh hoạt\n• Thanh toán theo cột mốc\n• Lộ trình dự án rõ ràng\n• Không có chi phí ẩn"
+      }
+    ]
   }
 } 

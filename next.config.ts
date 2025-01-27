@@ -5,9 +5,18 @@ const config: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  i18n: {
-    locales: ['en', 'vi'],
-    defaultLocale: 'en'
+  // Configure webpack for JSON
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.json$/,
+      type: 'json',
+      resolve: {
+        alias: {
+          '@': '.',
+        },
+      },
+    });
+    return config;
   }
 };
 

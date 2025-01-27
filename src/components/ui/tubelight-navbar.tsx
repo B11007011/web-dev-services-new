@@ -49,6 +49,7 @@ export function NavBar({ items, className, onItemClick, activeSection, isMenuOpe
       className={cn(
         "fixed top-0 left-0 right-0 z-50",
         "px-4 py-3 md:py-3",
+        "bg-gray-900/80 backdrop-blur-md",
         className
       )}
       style={{
@@ -63,8 +64,8 @@ export function NavBar({ items, className, onItemClick, activeSection, isMenuOpe
           className={cn(
             "md:hidden fixed top-0 right-4 z-50",
             "w-10 h-10 flex items-center justify-center",
-            "rounded-full bg-white/10 backdrop-blur-md",
-            "border border-white/20",
+            "rounded-full bg-gray-800/90 backdrop-blur-md",
+            "border border-gray-700/50",
             "safe-top",
             "active:scale-95 transition-transform"
           )}
@@ -75,7 +76,7 @@ export function NavBar({ items, className, onItemClick, activeSection, isMenuOpe
         {/* Desktop Navigation */}
         <div className={cn(
           "hidden md:flex items-center justify-start gap-1",
-          "bg-white/10 border border-white/20 backdrop-blur-md",
+          "bg-gray-800/90 border border-gray-700/50 backdrop-blur-md",
           "py-2 px-3 rounded-full shadow-lg"
         )}>
           {items.map((item) => {
@@ -93,7 +94,7 @@ export function NavBar({ items, className, onItemClick, activeSection, isMenuOpe
                   "text-gray-300 hover:text-white",
                   "transition-all duration-200",
                   "active:scale-95",
-                  isActive && "text-white bg-white/10"
+                  isActive && "text-white bg-gray-700/80"
                 )}
               >
                 {item.name}
@@ -129,7 +130,7 @@ export function NavBar({ items, className, onItemClick, activeSection, isMenuOpe
               exit={{ opacity: 0, y: -20 }}
               className={cn(
                 "fixed inset-0 z-40",
-                "bg-gradient-to-b from-gray-900/95 to-black/95",
+                "bg-gradient-to-b from-gray-900/95 to-gray-800/95",
                 "backdrop-blur-md",
                 "flex flex-col items-center justify-center",
                 "safe-top safe-bottom",
@@ -154,7 +155,7 @@ export function NavBar({ items, className, onItemClick, activeSection, isMenuOpe
                         "transition-all duration-200",
                         "active:scale-95",
                         "relative overflow-hidden",
-                        isActive ? "bg-white/15" : "hover:bg-white/10"
+                        isActive ? "bg-gray-700/80" : "hover:bg-gray-800/60"
                       )}
                     >
                       <item.icon size={24} className="shrink-0" />

@@ -1,0 +1,157 @@
+{
+  "hero": {
+    "title": "我們打造令人驚嘆的網站",
+    "subtitle": "以現代網路解決方案轉型您的企業",
+    "cta": "立即開始"
+  },
+  "nav": {
+    "home": "首頁",
+    "stats": "統計",
+    "services": "服務",
+    "features": "特色",
+    "process": "流程",
+    "technologies": "技術",
+    "portfolio": "作品集",
+    "caseStudies": "案例研究",
+    "team": "團隊",
+    "blog": "部落格",
+    "testimonials": "客戶評價",
+    "pricing": "價格方案",
+    "faq": "常見問題",
+    "contact": "聯絡我們"
+  },
+  "stats": {
+    "projects": {
+      "number": "100+",
+      "label": "完成專案"
+    },
+    "clients": {
+      "number": "50+",
+      "label": "滿意客戶"
+    },
+    "experience": {
+      "number": "5+",
+      "label": "年經驗"
+    },
+    "support": {
+      "number": "24/7",
+      "label": "全天候支援"
+    }
+  },
+  "services": {
+    "title": "我們的服務",
+    "subtitle": "全方位數位解決方案助您企業成長",
+    "items": [
+      {
+        "title": "網站開發",
+        "description": "使用 Next.js 和 React 打造現代化響應式網站",
+        "features": [
+          "客製化網頁應用",
+          "電子商務解決方案",
+          "漸進式網頁應用",
+          "API 整合"
+        ]
+      },
+      {
+        "title": "行動應用開發",
+        "description": "跨平台 iOS 和 Android 行動應用程式",
+        "features": [
+          "React Native 應用",
+          "原生 iOS/Android",
+          "應用商店發布",
+          "行動 UI/UX 設計"
+        ]
+      },
+      {
+        "title": "UI/UX 設計",
+        "description": "美觀直覺的設計，讓用戶愛不釋手",
+        "features": [
+          "使用者介面設計",
+          "使用者體驗設計",
+          "線框圖與原型",
+          "設計系統"
+        ]
+      },
+      {
+        "title": "數位行銷",
+        "description": "提升您的線上知名度與觸及率",
+        "features": [
+          "搜尋引擎最佳化",
+          "社群媒體行銷",
+          "內容策略",
+          "數據分析追蹤"
+        ]
+      },
+      {
+        "title": "電子商務解決方案",
+        "description": "完整的線上商店開發服務",
+        "features": [
+          "購物車整合",
+          "金流系統設置",
+          "庫存管理",
+          "訂單處理"
+        ]
+      },
+      {
+        "title": "雲端服務",
+        "description": "可擴展的雲端解決方案與託管服務",
+        "features": [
+          "AWS/Azure 整合",
+          "雲端架構",
+          "伺服器管理",
+          "資料庫解決方案"
+        ]
+      }
+    ]
+  },
+  "features": {
+    "title": "特色功能",
+    "subtitle": "我們的優勢"
+  },
+  "process": {
+    "title": "工作流程",
+    "subtitle": "我們如何執行專案"
+  },
+  "contact": {
+    "title": "聯絡我們",
+    "subtitle": "告訴我們您的專案需求",
+    "form": {
+      "name": "姓名",
+      "email": "電子郵件",
+      "message": "訊息",
+      "submit": "送出"
+    }
+  },
+  "faq": {
+    "title": "常見問題",
+    "subtitle": "了解我們的服務和流程相關問題",
+    "contactText": "還有其他問題？",
+    "contactLink": "聯繫我們的支援團隊",
+    "items": [
+      {
+        "question": "您使用哪些網站開發技術？",
+        "answer": "我們使用現代化技術，前端開發採用 React、Next.js、TypeScript 和 Tailwind CSS。後端則使用 Node.js、Python 和各種雲端服務。我們的技術堆疊始終保持產業標準的最新狀態。"
+      },
+      {
+        "question": "如何確保網站安全？",
+        "answer": "我們實施多層次的安全措施，包括：\n\n• SSL 憑證和 HTTPS\n• 安全認證系統\n• 資料儲存和傳輸加密\n• 定期安全稽核\n• 防範 XSS、CSRF、SQL 注入等攻擊\n• 持續安全監控\n• 定期安全更新"
+      },
+      {
+        "question": "您的開發流程是什麼？",
+        "answer": "我們採用敏捷開發流程，包括：\n\n1. 需求收集與分析\n2. UI/UX 設計和原型製作\n3. 迭代開發並定期獲取客戶回饋\n4. 全面測試和品質保證\n5. 部署和效能優化\n6. 上線後的持續支援"
+      },
+      {
+        "question": "您是否提供 SEO 優化服務？",
+        "answer": "是的，我們提供全方位的 SEO 策略，包括：\n\n• 技術性 SEO 優化\n• Meta 標籤和結構化資料標記\n• 效能優化\n• 行動裝置相容性\n• 內容優化\n• 定期 SEO 審核和報告"
+      },
+      {
+        "question": "上線後提供什麼支援服務？",
+        "answer": "我們提供靈活的支援方案，包括：\n\n• 24/7 技術支援\n• 定期維護更新\n• 效能監控\n• 安全性修補\n• 內容更新\n• 功能強化\n\n支援方案可根據您的需求客製化。"
+      },
+      {
+        "question": "專案報價如何處理？",
+        "answer": "我們根據專案範圍和需求提供透明的報價。每個專案都是獨特的，我們會在充分了解您的具體需求後提供詳細報價。我們還提供：\n\n• 靈活的付款方案\n• 階段性付款\n• 清晰的專案時程\n• 無隱藏費用"
+      }
+    ]
+  }
+} 

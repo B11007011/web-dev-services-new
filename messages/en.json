@@ -19,5 +19,139 @@
     "pricing": "Pricing",
     "faq": "FAQ",
     "contact": "Contact"
+  },
+  "stats": {
+    "projects": {
+      "number": "100+",
+      "label": "Projects Completed"
+    },
+    "clients": {
+      "number": "50+",
+      "label": "Happy Clients"
+    },
+    "experience": {
+      "number": "5+",
+      "label": "Years Experience"
+    },
+    "support": {
+      "number": "24/7",
+      "label": "Support"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive digital solutions to help your business grow",
+    "items": [
+      {
+        "title": "Web Development",
+        "description": "Modern, responsive websites built with Next.js and React",
+        "features": [
+          "Custom Web Applications",
+          "E-commerce Solutions",
+          "Progressive Web Apps",
+          "API Integration"
+        ]
+      },
+      {
+        "title": "Mobile Development",
+        "description": "Cross-platform mobile apps for iOS and Android",
+        "features": [
+          "React Native Apps",
+          "Native iOS/Android",
+          "App Store Publishing",
+          "Mobile UI/UX Design"
+        ]
+      },
+      {
+        "title": "UI/UX Design",
+        "description": "Beautiful, intuitive designs that users love",
+        "features": [
+          "Interface Design",
+          "User Experience",
+          "Wireframing & Prototypes",
+          "Design Systems"
+        ]
+      },
+      {
+        "title": "Digital Marketing",
+        "description": "Grow your online presence and reach",
+        "features": [
+          "SEO Optimization",
+          "Social Media Marketing",
+          "Content Strategy",
+          "Analytics & Tracking"
+        ]
+      },
+      {
+        "title": "E-commerce Solutions",
+        "description": "Complete online store development",
+        "features": [
+          "Shopping Cart Integration",
+          "Payment Gateway Setup",
+          "Inventory Management",
+          "Order Processing"
+        ]
+      },
+      {
+        "title": "Cloud Services",
+        "description": "Scalable cloud solutions and hosting",
+        "features": [
+          "AWS/Azure Integration",
+          "Cloud Architecture",
+          "Server Management",
+          "Database Solutions"
+        ]
+      }
+    ]
+  },
+  "features": {
+    "title": "Key Features",
+    "subtitle": "What sets us apart"
+  },
+  "process": {
+    "title": "Our Process",
+    "subtitle": "How we execute projects"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Tell us about your project",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Submit"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our services and process",
+    "contactText": "Still have questions?",
+    "contactLink": "Contact our support team",
+    "items": [
+      {
+        "question": "What technologies do you use for web development?",
+        "answer": "We use modern technologies like React, Next.js, TypeScript, and Tailwind CSS for frontend development. For backend, we utilize Node.js, Python, and various cloud services. Our tech stack is always up-to-date with industry standards."
+      },
+      {
+        "question": "How do you ensure website security?",
+        "answer": "We implement multiple layers of security including:\n\n• SSL certificates and HTTPS\n• Secure authentication systems\n• Data encryption at rest and in transit\n• Regular security audits\n• Protection against XSS, CSRF, SQL injection\n• Continuous security monitoring\n• Regular security updates"
+      },
+      {
+        "question": "What is your development process?",
+        "answer": "Our agile development process includes:\n\n1. Requirements gathering and analysis\n2. UI/UX design and prototyping\n3. Iterative development with regular client feedback\n4. Thorough testing and QA\n5. Deployment and optimization\n6. Post-launch support and maintenance"
+      },
+      {
+        "question": "Do you provide SEO optimization?",
+        "answer": "Yes, we implement comprehensive SEO strategies including:\n\n• Technical SEO optimization\n• Meta tags and schema markup\n• Performance optimization\n• Mobile responsiveness\n• Content optimization\n• Regular SEO audits and reports"
+      },
+      {
+        "question": "What kind of support do you offer after launch?",
+        "answer": "We offer flexible support packages including:\n\n• 24/7 technical support\n• Regular maintenance updates\n• Performance monitoring\n• Security patches\n• Content updates\n• Feature enhancements\n\nSupport plans can be customized based on your needs."
+      },
+      {
+        "question": "How do you handle project pricing?",
+        "answer": "We offer transparent pricing based on project scope and requirements. Each project is unique, so we provide detailed quotes after understanding your specific needs. We also offer:\n\n• Flexible payment plans\n• Milestone-based payments\n• Clear project timelines\n• No hidden costs"
+      }
+    ]
   }
 } 

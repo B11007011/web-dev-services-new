@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useCallback } from 'react'
-import { Home, Laptop, Users, Phone, Newspaper, Code, Lightbulb } from 'lucide-react'
+import { Home, Laptop, Users, Phone, Newspaper, Code, Lightbulb, HelpCircle } from 'lucide-react'
 import { NavBar } from "./tubelight-navbar"
 import LanguageSwitcher from '../LanguageSwitcher'
 import { usePathname } from 'next/navigation'
@@ -17,13 +17,13 @@ export function NavigationBar() {
       home: 'Home',
     //  stats: 'Stats',
       services: 'Services',
-      features: 'Features',
+     // features: 'Features',
       process: 'Process',
-      technologies: 'Technologies',
+     // technologies: 'Technologies',
       portfolio: 'Portfolio',
     //  caseStudies: 'Case Studies',
     //  team: 'Team',
-      blog: 'Blog',
+     // blog: 'Blog',
     //  testimonials: 'Testimonials',
       pricing: 'Pricing',
     //  faq: 'FAQ',
@@ -103,15 +103,16 @@ export function NavigationBar() {
     { name: translations.nav.home, url: '#hero', icon: Home },
    // { name: translations.nav.stats, url: '#stats', icon: Laptop },
     { name: translations.nav.services, url: '#services', icon: Laptop },
-    { name: translations.nav.features, url: '#features', icon: Code },
+   // { name: translations.nav.features, url: '#features', icon: Code },
     { name: translations.nav.process, url: '#process', icon: Lightbulb },
-    { name: translations.nav.technologies, url: '#technologies', icon: Code },
+   // { name: translations.nav.technologies, url: '#technologies', icon: Code },
     { name: translations.nav.portfolio, url: '#portfolio', icon: Laptop },
    // { name: translations.nav.caseStudies, url: '#case-studies', icon: Newspaper },
    // { name: translations.nav.team, url: '#team', icon: Users },
-    { name: translations.nav.blog, url: '#blog', icon: Newspaper },
+   // { name: translations.nav.blog, url: '#blog', icon: Newspaper },
  //   { name: translations.nav.testimonials, url: '#testimonials', icon: Users },
     { name: translations.nav.pricing, url: '#pricing', icon: Laptop },
+    { name: 'FAQ', url: '#faq', icon: HelpCircle },
   //  { name: translations.nav.faq, url: '#faq', icon: Lightbulb },
     { name: translations.nav.contact, url: '#contact', icon: Phone }
   ]
@@ -119,7 +120,7 @@ export function NavigationBar() {
   if (!mounted) return null
 
   return (
-    <div className="relative">
+    <div className="relative z-[100]">
       <NavBar 
         items={navItems} 
         className="bg-gray-900/60" 
