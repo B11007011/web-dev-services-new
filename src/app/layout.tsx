@@ -3,6 +3,7 @@ import "./globals.css";
 import { cn } from '@/lib/utils'
 import { Providers } from '@/providers/Providers'
 import ScrollToTop from '@/components/ScrollToTop'
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <ScrollToTop />
+          <Analytics />
         </Providers>
       </body>
     </html>

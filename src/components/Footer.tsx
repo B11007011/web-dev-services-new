@@ -144,16 +144,8 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} WebDev Services. All rights reserved.
+              © {new Date().getFullYear()} All rights reserved.
             </p>
-            <div className="flex flex-wrap justify-center gap-6">
-              <Link href="/privacy" className="text-sm text-gray-400 hover:text-white transition-colors duration-300">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-sm text-gray-400 hover:text-white transition-colors duration-300">
-                Terms of Service
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -33,4 +33,18 @@ export function Skeleton({
 // Usage example:
 // <Skeleton className="h-12 w-12" variant="circular" />
 // <Skeleton className="h-4 w-[250px]" />
-// <Skeleton className="h-[200px] w-full" variant="rectangular" /> 
+// <Skeleton className="h-[200px] w-full" variant="rectangular" />
+
+function Skeleton({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn("animate-pulse rounded-md bg-muted", className)}
+      {...props}
+    />
+  )
+}
+
+export { Skeleton } 
