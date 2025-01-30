@@ -4,6 +4,23 @@ import React, { useRef, useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
+
+type PortfolioTranslations = {
+  title: string;
+  subtitle: string;
+  viewProject: string;
+  projects: Array<{
+    title: string;
+    description: string;
+    image: string;
+    details: {
+      technologies: string[];
+      features: string[];
+      link: string;
+    };
+  }>;
+}
 
 // Custom hook for handling clicks outside of a component
 const useOutsideClick = (ref: React.RefObject<HTMLDivElement>, callback: Function) => {
@@ -29,38 +46,43 @@ const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(0)
   const [direction, setDirection] = useState(0)
 
-  const projects = [
-    {
-      title: 'Web Development',
-      description: 'Modern web applications built with Next.js and React',
-      image: '/placeholder.jpg',
-      details: {
-        technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-        features: ['Responsive Design', 'SEO Optimization', 'Performance Metrics', 'API Integration'],
-        link: 'https://example.com/project1'
+  const content = useTranslations<PortfolioTranslations>('portfolio') || {
+    title: 'Our Portfolio',
+    subtitle: 'Explore our latest projects and success stories',
+    viewProject: 'View Project',
+    projects: [
+      {
+        title: 'Web Development',
+        description: 'Modern web applications built with Next.js and React',
+        image: '/placeholder.jpg',
+        details: {
+          technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+          features: ['Responsive Design', 'SEO Optimization', 'Performance Metrics', 'API Integration'],
+          link: 'https://example.com/project1'
+        }
+      },
+      {
+        title: 'Mobile Apps',
+        description: 'Cross-platform solutions for iOS and Android',
+        image: '/placeholder.jpg',
+        details: {
+          technologies: ['React Native', 'TypeScript', 'Redux', 'Native APIs'],
+          features: ['Push Notifications', 'Offline Support', 'Analytics', 'App Store Optimization'],
+          link: 'https://example.com/project2'
+        }
+      },
+      {
+        title: 'UI/UX Design',
+        description: 'User-centered designs that deliver results',
+        image: '/placeholder.jpg',
+        details: {
+          technologies: ['Figma', 'Adobe XD', 'Sketch', 'Prototyping'],
+          features: ['User Research', 'Wireframing', 'Design Systems', 'Usability Testing'],
+          link: 'https://example.com/project3'
+        }
       }
-    },
-    {
-      title: 'Mobile Apps',
-      description: 'Cross-platform solutions for iOS and Android',
-      image: '/placeholder.jpg',
-      details: {
-        technologies: ['React Native', 'TypeScript', 'Redux', 'Native APIs'],
-        features: ['Push Notifications', 'Offline Support', 'Analytics', 'App Store Optimization'],
-        link: 'https://example.com/project2'
-      }
-    },
-    {
-      title: 'UI/UX Design',
-      description: 'User-centered designs that deliver results',
-      image: '/placeholder.jpg',
-      details: {
-        technologies: ['Figma', 'Adobe XD', 'Sketch', 'Prototyping'],
-        features: ['User Research', 'Wireframing', 'Design Systems', 'Usability Testing'],
-        link: 'https://example.com/project3'
-      }
-    }
-  ]
+    ]
+  }
 
   return (
     <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="portfolio">
@@ -78,7 +100,7 @@ const Portfolio = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            Our Portfolio
+            {content.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -87,7 +109,7 @@ const Portfolio = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            Explore our latest projects and success stories
+            {content.subtitle}
           </motion.p>
         </div>
 
@@ -108,8 +130,8 @@ const Portfolio = () => {
                 className="absolute inset-0"
               >
                 <Image
-                  src={projects[selectedProject].image}
-                  alt={projects[selectedProject].title}
+                  src={content.projects[selectedProject].image}
+                  alt={content.projects[selectedProject].title}
                   fill
                   className="object-cover"
                 />
@@ -122,7 +144,7 @@ const Portfolio = () => {
               <button
                 onClick={() => {
                   setDirection(-1)
-                  setSelectedProject((prev) => (prev - 1 + projects.length) % projects.length)
+                  setSelectedProject((prev) => (prev - 1 + content.projects.length) % content.projects.length)
                 }}
                 className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
               >
@@ -131,7 +153,7 @@ const Portfolio = () => {
               <button
                 onClick={() => {
                   setDirection(1)
-                  setSelectedProject((prev) => (prev + 1) % projects.length)
+                  setSelectedProject((prev) => (prev + 1) % content.projects.length)
                 }}
                 className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
               >
@@ -152,17 +174,17 @@ const Portfolio = () => {
                 className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20"
               >
                 <h3 className="text-2xl font-bold mb-4 text-white">
-                  {projects[selectedProject].title}
+                  {content.projects[selectedProject].title}
                 </h3>
                 <p className="text-white/70 mb-6">
-                  {projects[selectedProject].description}
+                  {content.projects[selectedProject].description}
                 </p>
 
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-lg font-semibold mb-2 text-white/90">Technologies</h4>
                     <div className="flex flex-wrap gap-2">
-                      {projects[selectedProject].details.technologies.map((tech, i) => (
+                      {content.projects[selectedProject].details.technologies.map((tech, i) => (
                         <span
                           key={i}
                           className="px-3 py-1 bg-white/10 text-white/80 rounded-full text-sm border border-white/20"
@@ -176,7 +198,7 @@ const Portfolio = () => {
                   <div>
                     <h4 className="text-lg font-semibold mb-2 text-white/90">Key Features</h4>
                     <ul className="space-y-2">
-                      {projects[selectedProject].details.features.map((feature, i) => (
+                      {content.projects[selectedProject].details.features.map((feature, i) => (
                         <motion.li 
                           key={i}
                           className="flex items-center text-white/60 group-hover:text-white/80 transition-colors"
@@ -190,14 +212,14 @@ const Portfolio = () => {
                   </div>
 
                   <motion.a
-                    href={projects[selectedProject].details.link}
+                    href={content.projects[selectedProject].details.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    View Project
+                    {content.viewProject}
                   </motion.a>
                 </div>
               </motion.div>

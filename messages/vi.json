@@ -2,7 +2,27 @@
   "hero": {
     "title": "Chúng Tôi Xây Dựng Website Tuyệt Vời",
     "subtitle": "Chuyển đổi doanh nghiệp của bạn với giải pháp web hiện đại",
-    "cta": "Bắt Đầu Ngay"
+    "cta": "Bắt Đầu Ngay",
+    "services": [
+      {
+        "title": "Phát Triển Web",
+        "description": "Website hiện đại, tương thích với tốc độ và khả năng mở rộng",
+        "color": "from-blue-600 to-purple-600",
+        "image": "/placeholder1.jpg"
+      },
+      {
+        "title": "Ứng Dụng Di Động",
+        "description": "Ứng dụng đa nền tảng thu hút người dùng iOS và Android",
+        "color": "from-purple-600 to-red-600",
+        "image": "/placeholder2.jpg"
+      },
+      {
+        "title": "Giải Pháp Đám Mây",
+        "description": "Cơ sở hạ tầng có thể mở rộng cho sự phát triển liền mạch",
+        "color": "from-red-600 to-orange-600",
+        "image": "/placeholder3.jpg"
+      }
+    ]
   },
   "nav": {
     "home": "Trang Chủ",
@@ -100,8 +120,58 @@
     "subtitle": "Những điểm mạnh của chúng tôi"
   },
   "process": {
-    "title": "Quy Trình Làm Việc",
-    "subtitle": "Cách chúng tôi thực hiện dự án"
+    "title": "Quy Trình Phát Triển",
+    "subtitle": "Phương pháp tiếp cận có hệ thống để mang lại kết quả xuất sắc",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Khám Phá & Lập Kế Hoạch",
+        "description": "Chúng tôi bắt đầu bằng việc tìm hiểu mục tiêu kinh doanh, đối tượng mục tiêu và yêu cầu kỹ thuật của bạn. Đội ngũ của chúng tôi tiến hành nghiên cứu kỹ lưỡng và tạo lộ trình dự án chi tiết.",
+        "details": [
+          "Phân Tích Yêu Cầu",
+          "Nghiên Cứu Thị Trường",
+          "Thông Số Kỹ Thuật",
+          "Lịch Trình Dự Án",
+          "Lập Kế Hoạch Ngân Sách"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Thiết Kế & Tạo Mẫu",
+        "description": "Các nhà thiết kế của chúng tôi tạo ra giao diện người dùng trực quan và trải nghiệm người dùng hấp dẫn. Chúng tôi tập trung vào tính thẩm mỹ hiện đại trong khi đảm bảo chức năng tối ưu.",
+        "details": [
+          "Thiết Kế UI/UX",
+          "Tạo Wireframe",
+          "Mẫu Tương Tác",
+          "Hệ Thống Thiết Kế",
+          "Kiểm Thử Người Dùng"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Phát Triển & Kiểm Thử",
+        "description": "Sử dụng công nghệ tiên tiến, chúng tôi xây dựng giải pháp mạnh mẽ và có thể mở rộng. Mọi tính năng đều được kiểm tra kỹ lưỡng để đảm bảo chất lượng và độ tin cậy.",
+        "details": [
+          "Phát Triển Frontend",
+          "Tích Hợp Backend",
+          "Đảm Bảo Chất Lượng",
+          "Kiểm Tra Hiệu Suất",
+          "Kiểm Tra Bảo Mật"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Triển Khai & Hỗ Trợ",
+        "description": "Chúng tôi đảm bảo triển khai suôn sẻ và cung cấp hỗ trợ liên tục. Đội ngũ của chúng tôi theo dõi hiệu suất và thực hiện cải tiến liên tục.",
+        "details": [
+          "Chiến Lược Triển Khai",
+          "Giám Sát Hiệu Suất",
+          "Tối Ưu Hóa SEO",
+          "Bảo Trì",
+          "Hỗ Trợ 24/7"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "Liên Hệ Với Chúng Tôi",
@@ -146,6 +216,170 @@
       {
         "question": "Bạn xử lý giá dự án như thế nào?",
         "answer": "Chúng tôi cung cấp báo giá minh bạch dựa trên phạm vi và yêu cầu dự án. Mỗi dự án là duy nhất, vì vậy chúng tôi cung cấp báo giá chi tiết sau khi hiểu rõ nhu cầu cụ thể của bạn. Chúng tôi cũng cung cấp:\n\n• Kế hoạch thanh toán linh hoạt\n• Thanh toán theo cột mốc\n• Lộ trình dự án rõ ràng\n• Không có chi phí ẩn"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "description": "Chuyển đổi ý tưởng thành trải nghiệm kỹ thuật số xuất sắc với công nghệ hiện đại."
+    },
+    "newsletter": {
+      "title": "Nhận Cập Nhật Phát Triển",
+      "subtitle": "Đăng ký để nhận thông tin và mẹo phát triển công nghệ mới nhất",
+      "placeholder": "Nhập email của bạn",
+      "button": "Đăng Ký",
+      "subscribing": "Đang đăng ký...",
+      "subscribed": "Đã đăng ký!",
+      "error": "Đăng ký thất bại. Vui lòng thử lại."
+    },
+    "sections": {
+      "services": {
+        "title": "Dịch Vụ",
+        "links": [
+          { "label": "Phát Triển Web", "href": "#services" },
+          { "label": "Thiết Kế UI/UX", "href": "#services" },
+          { "label": "Phát Triển Ứng Dụng Di Động", "href": "#services" }
+        ]
+      },
+      "company": {
+        "title": "Công Ty",
+        "links": [
+          { "label": "Quy Trình", "href": "#process" },
+          { "label": "Dự Án", "href": "#portfolio" },
+          { "label": "Bảng Giá", "href": "#pricing" },
+          { "label": "Câu Hỏi Thường Gặp", "href": "#faq" }
+        ]
+      },
+      "support": {
+        "title": "Hỗ Trợ",
+        "links": [
+          { "label": "Liên Hệ", "href": "#contact" },
+          { "label": "Tư Vấn Miễn Phí", "href": "#contact" }
+        ]
+      }
+    },
+    "copyright": "© {year} Đã đăng ký bản quyền."
+  },
+  "portfolio": {
+    "title": "Dự Án Của Chúng Tôi",
+    "subtitle": "Khám phá các dự án và câu chuyện thành công gần đây của chúng tôi",
+    "viewProject": "Xem Dự Án",
+    "projects": [
+      {
+        "title": "Phát Triển Web",
+        "description": "Ứng dụng web hiện đại được xây dựng bằng Next.js và React",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+          "features": ["Thiết Kế Responsive", "Tối Ưu SEO", "Đo Lường Hiệu Suất", "Tích Hợp API"],
+          "link": "https://example.com/project1"
+        }
+      },
+      {
+        "title": "Ứng Dụng Di Động",
+        "description": "Giải pháp đa nền tảng cho iOS và Android",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
+          "features": ["Thông Báo Đẩy", "Hỗ Trợ Offline", "Phân Tích", "Tối Ưu App Store"],
+          "link": "https://example.com/project2"
+        }
+      },
+      {
+        "title": "Thiết Kế UI/UX",
+        "description": "Thiết kế lấy người dùng làm trung tâm mang lại kết quả",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+          "features": ["Nghiên Cứu Người Dùng", "Wireframing", "Hệ Thống Thiết Kế", "Kiểm Tra Khả Năng Sử Dụng"],
+          "link": "https://example.com/project3"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "Đội Ngũ Của Chúng Tôi",
+    "subtitle": "Các chuyên gia tận tâm mang đến thành công cho bạn",
+    "members": [
+      {
+        "name": "John Smith",
+        "role": "CEO & Trưởng Nhóm Phát Triển",
+        "image": "/placeholder-team1.jpg",
+        "bio": "Hơn 10 năm kinh nghiệm trong phát triển web và lãnh đạo nhóm",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "Chuyên Gia UI/UX",
+        "image": "/placeholder-team2.jpg",
+        "bio": "Chuyên gia trong việc tạo ra trải nghiệm người dùng đẹp và hiệu quả",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Lập Trình Viên Backend",
+        "image": "/placeholder-team3.jpg",
+        "bio": "Chuyên về kiến trúc đám mây có thể mở rộng và bảo mật",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Bảng Giá",
+    "subtitle": "Chọn gói phù hợp với nhu cầu của bạn",
+    "plans": [
+      {
+        "name": "Cơ Bản",
+        "price": "$999",
+        "description": "Hoàn hảo cho website doanh nghiệp nhỏ",
+        "features": [
+          "Thiết Kế Responsive",
+          "Tối Ưu SEO Cơ Bản",
+          "3 Trang",
+          "Form Liên Hệ",
+          "Hỗ Trợ 1 Tháng"
+        ],
+        "cta": "Bắt Đầu Ngay"
+      },
+      {
+        "name": "Chuyên Nghiệp",
+        "price": "$2499",
+        "description": "Lý tưởng cho doanh nghiệp đang phát triển",
+        "features": [
+          "Tất Cả Tính Năng Cơ Bản",
+          "SEO Nâng Cao",
+          "Tối Đa 10 Trang",
+          "Tích Hợp Blog",
+          "Tính Năng E-commerce",
+          "Hỗ Trợ 3 Tháng"
+        ],
+        "cta": "Bắt Đầu Ngay"
+      },
+      {
+        "name": "Doanh Nghiệp",
+        "price": "Tùy Chỉnh",
+        "description": "Dành cho ứng dụng quy mô lớn",
+        "features": [
+          "Tất Cả Tính Năng Chuyên Nghiệp",
+          "Tính Năng Tùy Chỉnh",
+          "Không Giới Hạn Trang",
+          "Phân Tích Nâng Cao",
+          "Hỗ Trợ Ưu Tiên",
+          "Hỗ Trợ 12 Tháng"
+        ],
+        "cta": "Liên Hệ"
       }
     ]
   }

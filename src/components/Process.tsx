@@ -1,63 +1,78 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Search, Palette, Code2, Rocket } from 'lucide-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
+
+type ProcessTranslations = {
+  title: string;
+  subtitle: string;
+  steps: Array<{
+    number: string;
+    title: string;
+    description: string;
+    details: string[];
+  }>;
+}
 
 const Process = () => {
-  const steps = [
-    {
-      number: '01',
-      title: 'Discovery & Planning',
-      description: 'We start by understanding your business goals, target audience, and technical requirements. Our team conducts thorough research and creates a detailed project roadmap.',
-      icon: Search,
-      details: [
-        'Requirements Analysis',
-        'Market Research',
-        'Technical Specifications',
-        'Project Timeline',
-        'Budget Planning'
-      ]
-    },
-    {
-      number: '02',
-      title: 'Design & Prototyping',
-      description: 'Our designers create intuitive user interfaces and engaging user experiences. We focus on modern aesthetics while ensuring optimal functionality.',
-      icon: Palette,
-      details: [
-        'UI/UX Design',
-        'Wireframing',
-        'Interactive Prototypes',
-        'Design System',
-        'User Testing'
-      ]
-    },
-    {
-      number: '03',
-      title: 'Development & Testing',
-      description: 'Using cutting-edge technologies, we build robust and scalable solutions. Every feature is thoroughly tested to ensure quality and reliability.',
-      icon: Code2,
-      details: [
-        'Frontend Development',
-        'Backend Integration',
-        'Quality Assurance',
-        'Performance Testing',
-        'Security Checks'
-      ]
-    },
-    {
-      number: '04',
-      title: 'Launch & Support',
-      description: 'We ensure a smooth deployment and provide ongoing support. Our team monitors performance and implements continuous improvements.',
-      icon: Rocket,
-      details: [
-        'Deployment Strategy',
-        'Performance Monitoring',
-        'SEO Optimization',
-        'Maintenance',
-        '24/7 Support'
-      ]
-    }
-  ]
+  const content = useTranslations<ProcessTranslations>('process') || {
+    title: 'Our Development Process',
+    subtitle: 'A systematic approach to delivering exceptional results',
+    steps: [
+      {
+        number: '01',
+        title: 'Discovery & Planning',
+        description: 'We start by understanding your business goals, target audience, and technical requirements. Our team conducts thorough research and creates a detailed project roadmap.',
+        details: [
+          'Requirements Analysis',
+          'Market Research',
+          'Technical Specifications',
+          'Project Timeline',
+          'Budget Planning'
+        ]
+      },
+      {
+        number: '02',
+        title: 'Design & Prototyping',
+        description: 'Our designers create intuitive user interfaces and engaging user experiences. We focus on modern aesthetics while ensuring optimal functionality.',
+        details: [
+          'UI/UX Design',
+          'Wireframing',
+          'Interactive Prototypes',
+          'Design System',
+          'User Testing'
+        ]
+      },
+      {
+        number: '03',
+        title: 'Development & Testing',
+        description: 'Using cutting-edge technologies, we build robust and scalable solutions. Every feature is thoroughly tested to ensure quality and reliability.',
+        details: [
+          'Frontend Development',
+          'Backend Integration',
+          'Quality Assurance',
+          'Performance Testing',
+          'Security Checks'
+        ]
+      },
+      {
+        number: '04',
+        title: 'Launch & Support',
+        description: 'We ensure a smooth deployment and provide ongoing support. Our team monitors performance and implements continuous improvements.',
+        details: [
+          'Deployment Strategy',
+          'Performance Monitoring',
+          'SEO Optimization',
+          'Maintenance',
+          '24/7 Support'
+        ]
+      }
+    ]
+  }
+
+  const icons = [Search, Palette, Code2, Rocket]
 
   return (
     <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="process">
@@ -75,7 +90,7 @@ const Process = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            Our Development Process
+            {content.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -84,7 +99,7 @@ const Process = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80"
           >
-            A systematic approach to delivering exceptional results
+            {content.subtitle}
           </motion.p>
         </div>
 
@@ -93,7 +108,7 @@ const Process = () => {
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
+            {content.steps.map((step, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -113,7 +128,7 @@ const Process = () => {
 
                   {/* Icon */}
                   <div className="mb-6">
-                    <step.icon className="w-8 h-8 text-blue-400" />
+                    {React.createElement(icons[index], { className: "w-8 h-8 text-blue-400" })}
                   </div>
 
                   {/* Content */}

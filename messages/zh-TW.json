@@ -2,7 +2,27 @@
   "hero": {
     "title": "我們打造令人驚嘆的網站",
     "subtitle": "以現代網路解決方案轉型您的企業",
-    "cta": "立即開始"
+    "cta": "立即開始",
+    "services": [
+      {
+        "title": "網站開發",
+        "description": "現代化、響應式網站，專注於速度和擴展性",
+        "color": "from-blue-600 to-purple-600",
+        "image": "/placeholder1.jpg"
+      },
+      {
+        "title": "移動應用",
+        "description": "吸引 iOS 和 Android 用戶的跨平台應用",
+        "color": "from-purple-600 to-red-600",
+        "image": "/placeholder2.jpg"
+      },
+      {
+        "title": "雲端解決方案",
+        "description": "實現無縫成長的可擴展基礎架構",
+        "color": "from-red-600 to-orange-600",
+        "image": "/placeholder3.jpg"
+      }
+    ]
   },
   "nav": {
     "home": "首頁",
@@ -100,8 +120,58 @@
     "subtitle": "我們的優勢"
   },
   "process": {
-    "title": "工作流程",
-    "subtitle": "我們如何執行專案"
+    "title": "開發流程",
+    "subtitle": "系統化的方法以實現卓越成果",
+    "steps": [
+      {
+        "number": "01",
+        "title": "探索與規劃",
+        "description": "我們首先了解您的業務目標、目標受眾和技術需求。我們的團隊進行深入研究並制定詳細的項目路線圖。",
+        "details": [
+          "需求分析",
+          "市場研究",
+          "技術規格",
+          "項目時間表",
+          "預算規劃"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "設計與原型",
+        "description": "我們的設計師創建直觀的用戶界面和引人入勝的用戶體驗。我們專注於現代美學，同時確保最佳功能。",
+        "details": [
+          "UI/UX設計",
+          "線框圖設計",
+          "互動原型",
+          "設計系統",
+          "用戶測試"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "開發與測試",
+        "description": "使用尖端技術，我們構建強大且可擴展的解決方案。每個功能都經過徹底測試以確保質量和可靠性。",
+        "details": [
+          "前端開發",
+          "後端整合",
+          "質量保證",
+          "性能測試",
+          "安全測試"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "部署與支持",
+        "description": "我們確保順利部署並提供持續支持。我們的團隊監控性能並實施持續改進。",
+        "details": [
+          "部署策略",
+          "性能監控",
+          "SEO優化",
+          "維護",
+          "24/7支持"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "聯絡我們",
@@ -146,6 +216,170 @@
       {
         "question": "專案報價如何處理？",
         "answer": "我們根據專案範圍和需求提供透明的報價。每個專案都是獨特的，我們會在充分了解您的具體需求後提供詳細報價。我們還提供：\n\n• 靈活的付款方案\n• 階段性付款\n• 清晰的專案時程\n• 無隱藏費用"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "價格方案",
+    "subtitle": "選擇最適合您需求的方案",
+    "plans": [
+      {
+        "name": "基本版",
+        "price": "$999",
+        "description": "適合小型企業網站",
+        "features": [
+          "響應式設計",
+          "基礎 SEO 優化",
+          "3 個頁面",
+          "聯絡表單",
+          "1 個月支援"
+        ],
+        "cta": "立即開始"
+      },
+      {
+        "name": "專業版",
+        "price": "$2499",
+        "description": "適合成長中的企業",
+        "features": [
+          "包含基本版全部功能",
+          "進階 SEO",
+          "最多 10 個頁面",
+          "部落格整合",
+          "電子商務功能",
+          "3 個月支援"
+        ],
+        "cta": "立即開始"
+      },
+      {
+        "name": "企業版",
+        "price": "客製化",
+        "description": "適合大規模應用",
+        "features": [
+          "包含專業版全部功能",
+          "客製化功能",
+          "無限頁面",
+          "進階分析",
+          "優先支援",
+          "12 個月支援"
+        ],
+        "cta": "聯絡我們"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "description": "以現代科技將創意轉化為卓越的數位體驗。"
+    },
+    "newsletter": {
+      "title": "獲取開發更新",
+      "subtitle": "訂閱以接收最新的技術見解和開發技巧",
+      "placeholder": "輸入您的電子郵件",
+      "button": "訂閱",
+      "subscribing": "訂閱中...",
+      "subscribed": "已訂閱！",
+      "error": "訂閱失敗。請重試。"
+    },
+    "sections": {
+      "services": {
+        "title": "服務",
+        "links": [
+          { "label": "網站開發", "href": "#services" },
+          { "label": "UI/UX設計", "href": "#services" },
+          { "label": "移動應用開發", "href": "#services" }
+        ]
+      },
+      "company": {
+        "title": "公司",
+        "links": [
+          { "label": "開發流程", "href": "#process" },
+          { "label": "作品集", "href": "#portfolio" },
+          { "label": "價格方案", "href": "#pricing" },
+          { "label": "常見問題", "href": "#faq" }
+        ]
+      },
+      "support": {
+        "title": "支援",
+        "links": [
+          { "label": "聯絡我們", "href": "#contact" },
+          { "label": "免費諮詢", "href": "#contact" }
+        ]
+      }
+    },
+    "copyright": "© {year} 版權所有。"
+  },
+  "portfolio": {
+    "title": "我們的項目",
+    "subtitle": "探索我們最近的項目和成功案例",
+    "viewProject": "查看項目",
+    "projects": [
+      {
+        "title": "網站開發",
+        "description": "使用Next.js和React構建的現代網絡應用",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+          "features": ["響應式設計", "SEO優化", "性能指標", "API整合"],
+          "link": "https://example.com/project1"
+        }
+      },
+      {
+        "title": "移動應用",
+        "description": "iOS和Android的跨平台解決方案",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
+          "features": ["推送通知", "離線支持", "數據分析", "應用商店優化"],
+          "link": "https://example.com/project2"
+        }
+      },
+      {
+        "title": "UI/UX設計",
+        "description": "以用戶為中心的設計帶來成果",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+          "features": ["用戶研究", "線框圖", "設計系統", "可用性測試"],
+          "link": "https://example.com/project3"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "認識我們的團隊",
+    "subtitle": "專業團隊致力於您的成功",
+    "members": [
+      {
+        "name": "John Smith",
+        "role": "執行長 & 首席開發者",
+        "image": "/placeholder-team1.jpg",
+        "bio": "擁有超過10年的網站開發和團隊領導經驗",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "UI/UX 設計師",
+        "image": "/placeholder-team2.jpg",
+        "bio": "專精於創造美觀且實用的用戶體驗",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Michael Chen",
+        "role": "後端開發工程師",
+        "image": "/placeholder-team3.jpg",
+        "bio": "專注於可擴展的雲端架構和安全性",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
       }
     ]
   }

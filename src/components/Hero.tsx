@@ -9,31 +9,41 @@ type HeroContent = {
   title: string;
   subtitle: string;
   cta: string;
+  services: Array<{
+    title: string;
+    description: string;
+    color: string;
+    image: string;
+  }>;
 }
 
-const services = [
-  {
-    title: "Web Development",
-    description: "Modern, responsive websites built for speed and scalability",
-    color: "from-blue-600 to-purple-600",
-    image: "/placeholder1.jpg" // Replace with your image
-  },
-  {
-    title: "Mobile Apps",
-    description: "Cross-platform apps that captivate iOS and Android users",
-    color: "from-purple-600 to-red-600",
-    image: "/placeholder2.jpg" // Replace with your image
-  },
-  {
-    title: "Cloud Solutions",
-    description: "Scalable infrastructure for seamless growth",
-    color: "from-red-600 to-orange-600",
-    image: "/placeholder3.jpg" // Replace with your image
-  }
-];
-
 export function Hero() {
-  const content = useTranslations<HeroContent>('hero')
+  const content = useTranslations<HeroContent>('hero') || {
+    title: "We Build Amazing Websites",
+    subtitle: "Transform your business with modern web solutions",
+    cta: "Get Started",
+    services: [
+      {
+        title: "Web Development",
+        description: "Modern, responsive websites built for speed and scalability",
+        color: "from-blue-600 to-purple-600",
+        image: "/placeholder1.jpg"
+      },
+      {
+        title: "Mobile Apps",
+        description: "Cross-platform apps that captivate iOS and Android users",
+        color: "from-purple-600 to-red-600",
+        image: "/placeholder2.jpg"
+      },
+      {
+        title: "Cloud Solutions",
+        description: "Scalable infrastructure for seamless growth",
+        color: "from-red-600 to-orange-600",
+        image: "/placeholder3.jpg"
+      }
+    ]
+  }
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const mouseX = useMotionValue(0);
@@ -46,10 +56,10 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % services.length);
+      setCurrentIndex((prev) => (prev + 1) % content.services.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [content.services.length]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -73,7 +83,7 @@ export function Hero() {
           <div className="text-left max-w-2xl md:flex-1">
             {/* Interactive Squares */}
             <div className="flex gap-2 mb-6">
-              {services.map((_, idx) => (
+              {content.services.map((_, idx) => (
                 <motion.button
                   key={idx}
                   initial={{ opacity: 0 }}
@@ -93,7 +103,7 @@ export function Hero() {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-serif"
             >
-              {content?.title || "We Build Amazing Websites"}
+              {content.title}
             </motion.h1>
             
             <motion.p 
@@ -102,7 +112,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mt-4 text-lg md:text-xl text-white/80 max-w-xl"
             >
-              {content?.subtitle || "Transform your business with modern web solutions"}
+              {content.subtitle}
             </motion.p>
             
             <motion.div 
@@ -115,13 +125,13 @@ export function Hero() {
                 href="#contact"
                 className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-black bg-white hover:bg-white/90 transition-colors select-none"
               >
-                {content?.cta || "Get Started"}
+                {content.cta}
               </Link>
               <Link
                 href="#services"
                 className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors select-none"
               >
-                Our Services
+                {content.services[0].title}
               </Link>
             </motion.div>
           </div>
@@ -132,7 +142,7 @@ export function Hero() {
             onMouseMove={handleMouseMove}
           >
             <AnimatePresence initial={false} custom={direction} mode="popLayout">
-              {services.map((service, idx) => {
+              {content.services.map((service, idx) => {
                 const isActive = idx === currentIndex;
                 const offset = (idx - currentIndex) * 30;
                 

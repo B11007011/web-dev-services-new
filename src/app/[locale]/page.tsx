@@ -11,6 +11,14 @@ import Team from '@/components/Team'
 //import { WhyChooseUs } from '@/components/WhyChooseUs'
 // ... import other components
 
+export function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'vi' },
+    { locale: 'zh-TW' }
+  ]
+}
+
 export default function LocalePage() {
   return (
     <main className="min-h-screen bg-white">

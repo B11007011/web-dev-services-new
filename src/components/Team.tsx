@@ -1,49 +1,70 @@
 'use client'
 
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { useState } from 'react'
 import { IconBrandLinkedin, IconBrandGithub, IconBrandTwitter } from '@tabler/icons-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
 
-const team = [
-  {
-    name: 'John Smith',
-    role: 'CEO & Lead Developer',
-    image: '/placeholder-team1.jpg',
-    bio: '10+ years of experience in web development and team leadership',
+type TeamTranslations = {
+  title: string;
+  subtitle: string;
+  members: Array<{
+    name: string;
+    role: string;
+    image: string;
+    bio: string;
     social: {
-      linkedin: 'https://linkedin.com',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
+      linkedin: string;
+      github: string;
+      twitter: string;
     }
-  },
-  {
-    name: 'Sarah Johnson',
-    role: 'UI/UX Designer',
-    image: '/placeholder-team2.jpg',
-    bio: 'Expert in creating beautiful and functional user experiences',
-    social: {
-      linkedin: 'https://linkedin.com',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
-    }
-  },
-  {
-    name: 'Michael Chen',
-    role: 'Backend Developer',
-    image: '/placeholder-team3.jpg',
-    bio: 'Specialized in scalable cloud architecture and security',
-    social: {
-      linkedin: 'https://linkedin.com',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
-    }
-  }
-];
+  }>;
+}
 
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState(0);
   const [direction, setDirection] = useState(0);
+
+  const content = useTranslations<TeamTranslations>('team') || {
+    title: 'Meet Our Team',
+    subtitle: 'Passionate experts dedicated to your success',
+    members: [
+      {
+        name: 'John Smith',
+        role: 'CEO & Lead Developer',
+        image: '/placeholder-team1.jpg',
+        bio: '10+ years of experience in web development and team leadership',
+        social: {
+          linkedin: 'https://linkedin.com',
+          github: 'https://github.com',
+          twitter: 'https://twitter.com'
+        }
+      },
+      {
+        name: 'Sarah Johnson',
+        role: 'UI/UX Designer',
+        image: '/placeholder-team2.jpg',
+        bio: 'Expert in creating beautiful and functional user experiences',
+        social: {
+          linkedin: 'https://linkedin.com',
+          github: 'https://github.com',
+          twitter: 'https://twitter.com'
+        }
+      },
+      {
+        name: 'Michael Chen',
+        role: 'Backend Developer',
+        image: '/placeholder-team3.jpg',
+        bio: 'Specialized in scalable cloud architecture and security',
+        social: {
+          linkedin: 'https://linkedin.com',
+          github: 'https://github.com',
+          twitter: 'https://twitter.com'
+        }
+      }
+    ]
+  }
 
   return (
     <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="team">
@@ -61,7 +82,7 @@ export default function Team() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            Meet Our Team
+            {content.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +91,7 @@ export default function Team() {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            Passionate experts dedicated to your success
+            {content.subtitle}
           </motion.p>
         </div>
 
@@ -91,8 +112,8 @@ export default function Team() {
                 className="absolute inset-0"
               >
                 <Image
-                  src={team[selectedMember].image}
-                  alt={team[selectedMember].name}
+                  src={content.members[selectedMember].image}
+                  alt={content.members[selectedMember].name}
                   fill
                   className="object-cover"
                 />
@@ -105,7 +126,7 @@ export default function Team() {
               <button
                 onClick={() => {
                   setDirection(-1)
-                  setSelectedMember((prev) => (prev - 1 + team.length) % team.length)
+                  setSelectedMember((prev) => (prev - 1 + content.members.length) % content.members.length)
                 }}
                 className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
               >
@@ -114,7 +135,7 @@ export default function Team() {
               <button
                 onClick={() => {
                   setDirection(1)
-                  setSelectedMember((prev) => (prev + 1) % team.length)
+                  setSelectedMember((prev) => (prev + 1) % content.members.length)
                 }}
                 className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
               >
@@ -138,24 +159,24 @@ export default function Team() {
                   className="text-3xl font-bold mb-2 text-white"
                   layoutId="memberName"
                 >
-                  {team[selectedMember].name}
+                  {content.members[selectedMember].name}
                 </motion.h3>
                 <motion.p 
                   className="text-xl text-blue-400 mb-6"
                   layoutId="memberRole"
                 >
-                  {team[selectedMember].role}
+                  {content.members[selectedMember].role}
                 </motion.p>
                 <motion.p 
                   className="text-white/70 mb-8 text-lg"
                   layoutId="memberBio"
                 >
-                  {team[selectedMember].bio}
+                  {content.members[selectedMember].bio}
                 </motion.p>
 
                 <div className="flex gap-4">
                   <motion.a
-                    href={team[selectedMember].social.linkedin}
+                    href={content.members[selectedMember].social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -165,7 +186,7 @@ export default function Team() {
                     <IconBrandLinkedin className="w-6 h-6 text-white" />
                   </motion.a>
                   <motion.a
-                    href={team[selectedMember].social.github}
+                    href={content.members[selectedMember].social.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -175,7 +196,7 @@ export default function Team() {
                     <IconBrandGithub className="w-6 h-6 text-white" />
                   </motion.a>
                   <motion.a
-                    href={team[selectedMember].social.twitter}
+                    href={content.members[selectedMember].social.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -190,7 +211,7 @@ export default function Team() {
 
             {/* Team Navigation Dots */}
             <div className="flex justify-center mt-8 gap-3">
-              {team.map((_, idx) => (
+              {content.members.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => {
@@ -200,7 +221,7 @@ export default function Team() {
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     idx === selectedMember ? 'w-8 bg-blue-500' : 'bg-white/20'
                   }`}
-                  aria-label={`View ${team[idx].name}'s profile`}
+                  aria-label={`View ${content.members[idx].name}'s profile`}
                 />
               ))}
             </div>

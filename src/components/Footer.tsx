@@ -3,8 +3,95 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Linkedin, Github, Mail, Send } from 'lucide-react'
+import { useState } from 'react'
+import { useTranslations } from '@/providers/TranslationsProvider'
+
+type FooterTranslations = {
+  company: {
+    description: string;
+  };
+  newsletter: {
+    title: string;
+    subtitle: string;
+    placeholder: string;
+    button: string;
+    subscribing: string;
+    subscribed: string;
+    error: string;
+  };
+  sections: {
+    services: {
+      title: string;
+      links: Array<{
+        label: string;
+        href: string;
+      }>;
+    };
+    company: {
+      title: string;
+      links: Array<{
+        label: string;
+        href: string;
+      }>;
+    };
+    support: {
+      title: string;
+      links: Array<{
+        label: string;
+        href: string;
+      }>;
+    };
+  };
+  copyright: string;
+}
 
 const Footer = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [email, setEmail] = useState('')
+  
+  const content = useTranslations<FooterTranslations>('footer') || {
+    company: {
+      description: 'Transforming ideas into exceptional digital experiences with modern technology.'
+    },
+    newsletter: {
+      title: 'Get Development Updates',
+      subtitle: 'Subscribe to receive the latest tech insights and development tips',
+      placeholder: 'Enter your email',
+      button: 'Subscribe',
+      subscribing: 'Subscribing...',
+      subscribed: 'Subscribed!',
+      error: 'Failed to subscribe. Please try again.'
+    },
+    sections: {
+      services: {
+        title: 'Services',
+        links: [
+          { label: 'Web Development', href: '#services' },
+          { label: 'UI/UX Design', href: '#services' },
+          { label: 'Mobile Development', href: '#services' }
+        ]
+      },
+      company: {
+        title: 'Company',
+        links: [
+          { label: 'Our Process', href: '#process' },
+          { label: 'Portfolio', href: '#portfolio' },
+          { label: 'Pricing', href: '#pricing' },
+          { label: 'FAQ', href: '#faq' }
+        ]
+      },
+      support: {
+        title: 'Support',
+        links: [
+          { label: 'Contact Us', href: '#contact' },
+          { label: 'Free Consultation', href: '#contact' }
+        ]
+      }
+    },
+    copyright: '© {year} All rights reserved.'
+  }
+
   const footerSections = {
     services: {
       title: 'Services',
@@ -47,9 +134,43 @@ const Footer = () => {
     }
   ]
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Add newsletter subscription logic here
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('https://formspree.io/f/xnnjvnlq', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: "New Newsletter Subscription",
+          email: email,
+          subscription: "newsletter"
+        })
+      })
+
+      const responseData = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setEmail('')
+        setTimeout(() => {
+          setSubmitStatus('idle')
+        }, 3000)
+      } else {
+        console.error('Newsletter subscription error:', responseData)
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -68,7 +189,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-base text-gray-400">
-              Transforming ideas into exceptional digital experiences with modern technology.
+              {content.company.description}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -87,7 +208,7 @@ const Footer = () => {
           </div>
 
           {/* Links Sections */}
-          {Object.entries(footerSections).map(([key, section]) => (
+          {Object.entries(content.sections).map(([key, section]) => (
             <div key={key} className="col-span-1">
               <h3 className="text-lg font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400">
                 {section.title}
@@ -114,10 +235,10 @@ const Footer = () => {
           <div className="max-w-xl mx-auto">
             <div className="text-center mb-8">
               <h3 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400">
-                Get Development Updates
+                {content.newsletter.title}
               </h3>
               <p className="text-base text-gray-400">
-                Subscribe to receive the latest tech insights and development tips
+                {content.newsletter.subtitle}
               </p>
             </div>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
@@ -125,18 +246,44 @@ const Footer = () => {
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={content.newsletter.placeholder}
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
                 />
               </div>
               <button
                 type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-lg hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/20"
+                disabled={isSubmitting}
+                className="px-6 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white rounded-lg hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-5 h-5" />
-                <span>Subscribe</span>
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>{content.newsletter.subscribing}</span>
+                  </>
+                ) : submitStatus === 'success' ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{content.newsletter.subscribed}</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    <span>{content.newsletter.button}</span>
+                  </>
+                )}
               </button>
             </form>
+            {submitStatus === 'error' && (
+              <p className="text-red-500 text-sm text-center mt-3">
+                {content.newsletter.error}
+              </p>
+            )}
           </div>
         </div>
 
@@ -144,7 +291,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} All rights reserved.
+              {content.copyright.replace('{year}', new Date().getFullYear().toString())}
             </p>
           </div>
         </div>

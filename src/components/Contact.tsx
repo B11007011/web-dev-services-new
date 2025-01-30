@@ -37,18 +37,52 @@ const defaultContent: ContactTranslations = {
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const translations = useTranslations<ContactTranslations>('contact')
   const content = translations || defaultContent
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Add your form submission logic here
-    
-    setTimeout(() => {
+    setSubmitStatus('idle')
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const data = {
+      _subject: "New Contact Form Submission",
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message')
+    }
+
+    try {
+      const response = await fetch('https://formspree.io/f/xnnjvnlq', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      const responseData = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        form.reset()
+        setTimeout(() => {
+          setSubmitStatus('idle')
+        }, 3000)
+      } else {
+        console.error('Form submission error:', responseData)
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
       setIsSubmitting(false)
-    }, 2000)
+    }
   }
 
   return (
@@ -136,6 +170,7 @@ const Contact = () => {
                     id="name"
                     name="name"
                     required
+                    minLength={2}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
                   />
                 </div>
@@ -148,6 +183,7 @@ const Contact = () => {
                     id="email"
                     name="email"
                     required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
                   />
                 </div>
@@ -160,6 +196,7 @@ const Contact = () => {
                     name="message"
                     rows={4}
                     required
+                    minLength={10}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all resize-none"
                   />
                 </div>
@@ -175,6 +212,13 @@ const Contact = () => {
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       <span>Sending...</span>
                     </>
+                  ) : submitStatus === 'success' ? (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Message Sent!</span>
+                    </>
                   ) : (
                     <>
                       <MessageSquare className="w-5 h-5" />
@@ -182,6 +226,12 @@ const Contact = () => {
                     </>
                   )}
                 </motion.button>
+
+                {submitStatus === 'error' && (
+                  <p className="text-red-500 text-sm text-center mt-2">
+                    Failed to send message. Please try again.
+                  </p>
+                )}
               </div>
             </form>
           </motion.div>

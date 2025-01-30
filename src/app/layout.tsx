@@ -21,6 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="alternate" href="/en" hrefLang="en" />
+        <link rel="alternate" href="/vi" hrefLang="vi" />
+        <link rel="alternate" href="/zh-TW" hrefLang="zh-TW" />
+      </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <Providers>
           {children}

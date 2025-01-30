@@ -2,7 +2,27 @@
   "hero": {
     "title": "We Build Amazing Websites",
     "subtitle": "Transform your business with modern web solutions",
-    "cta": "Get Started"
+    "cta": "Get Started",
+    "services": [
+      {
+        "title": "Web Development",
+        "description": "Modern, responsive websites built for speed and scalability",
+        "color": "from-blue-600 to-purple-600",
+        "image": "/placeholder1.jpg"
+      },
+      {
+        "title": "Mobile Apps",
+        "description": "Cross-platform apps that captivate iOS and Android users",
+        "color": "from-purple-600 to-red-600",
+        "image": "/placeholder2.jpg"
+      },
+      {
+        "title": "Cloud Solutions",
+        "description": "Scalable infrastructure for seamless growth",
+        "color": "from-red-600 to-orange-600",
+        "image": "/placeholder3.jpg"
+      }
+    ]
   },
   "nav": {
     "home": "Home",
@@ -100,8 +120,58 @@
     "subtitle": "What sets us apart"
   },
   "process": {
-    "title": "Our Process",
-    "subtitle": "How we execute projects"
+    "title": "Development Process",
+    "subtitle": "A systematic approach to delivering exceptional results",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery & Planning",
+        "description": "We begin by understanding your business goals, target audience, and technical requirements. Our team conducts thorough research and creates a detailed project roadmap.",
+        "details": [
+          "Requirements Analysis",
+          "Market Research",
+          "Technical Specifications",
+          "Project Timeline",
+          "Budget Planning"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Design & Prototyping",
+        "description": "Our designers create intuitive user interfaces and engaging user experiences. We focus on modern aesthetics while ensuring optimal functionality.",
+        "details": [
+          "UI/UX Design",
+          "Wireframing",
+          "Interactive Prototypes",
+          "Design Systems",
+          "User Testing"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Development & Testing",
+        "description": "Using cutting-edge technology, we build robust and scalable solutions. Every feature is thoroughly tested to ensure quality and reliability.",
+        "details": [
+          "Frontend Development",
+          "Backend Integration",
+          "Quality Assurance",
+          "Performance Testing",
+          "Security Testing"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Deployment & Support",
+        "description": "We ensure smooth deployment and provide continuous support. Our team monitors performance and implements continuous improvements.",
+        "details": [
+          "Deployment Strategy",
+          "Performance Monitoring",
+          "SEO Optimization",
+          "Maintenance",
+          "24/7 Support"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "Contact Us",
@@ -146,6 +216,170 @@
       {
         "question": "How do you handle project pricing?",
         "answer": "We offer transparent pricing based on project scope and requirements. Each project is unique, so we provide detailed quotes after understanding your specific needs. We also offer:\n\n• Flexible payment plans\n• Milestone-based payments\n• Clear project timelines\n• No hidden costs"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "description": "Transforming ideas into exceptional digital experiences with modern technology."
+    },
+    "newsletter": {
+      "title": "Get Development Updates",
+      "subtitle": "Subscribe to receive the latest tech insights and development tips",
+      "placeholder": "Enter your email",
+      "button": "Subscribe",
+      "subscribing": "Subscribing...",
+      "subscribed": "Subscribed!",
+      "error": "Failed to subscribe. Please try again."
+    },
+    "sections": {
+      "services": {
+        "title": "Services",
+        "links": [
+          { "label": "Web Development", "href": "#services" },
+          { "label": "UI/UX Design", "href": "#services" },
+          { "label": "Mobile Development", "href": "#services" }
+        ]
+      },
+      "company": {
+        "title": "Company",
+        "links": [
+          { "label": "Our Process", "href": "#process" },
+          { "label": "Portfolio", "href": "#portfolio" },
+          { "label": "Pricing", "href": "#pricing" },
+          { "label": "FAQ", "href": "#faq" }
+        ]
+      },
+      "support": {
+        "title": "Support",
+        "links": [
+          { "label": "Contact Us", "href": "#contact" },
+          { "label": "Free Consultation", "href": "#contact" }
+        ]
+      }
+    },
+    "copyright": "© {year} All rights reserved."
+  },
+  "portfolio": {
+    "title": "Our Projects",
+    "subtitle": "Explore our recent projects and success stories",
+    "viewProject": "View Project",
+    "projects": [
+      {
+        "title": "Web Development",
+        "description": "Modern web application built with Next.js and React",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+          "features": ["Responsive Design", "SEO Optimization", "Performance Metrics", "API Integration"],
+          "link": "https://example.com/project1"
+        }
+      },
+      {
+        "title": "Mobile Application",
+        "description": "Cross-platform solution for iOS and Android",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
+          "features": ["Push Notifications", "Offline Support", "Analytics", "App Store Optimization"],
+          "link": "https://example.com/project2"
+        }
+      },
+      {
+        "title": "UI/UX Design",
+        "description": "User-centered design that delivers results",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+          "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],
+          "link": "https://example.com/project3"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "subtitle": "Passionate experts dedicated to your success",
+    "members": [
+      {
+        "name": "John Smith",
+        "role": "CEO & Lead Developer",
+        "image": "/placeholder-team1.jpg",
+        "bio": "10+ years of experience in web development and team leadership",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "UI/UX Designer",
+        "image": "/placeholder-team2.jpg",
+        "bio": "Expert in creating beautiful and functional user experiences",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Backend Developer",
+        "image": "/placeholder-team3.jpg",
+        "bio": "Specialized in scalable cloud architecture and security",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "subtitle": "Choose the perfect plan for your needs",
+    "plans": [
+      {
+        "name": "Basic",
+        "price": "$999",
+        "description": "Perfect for small business websites",
+        "features": [
+          "Responsive Design",
+          "Basic SEO Optimization",
+          "3 Pages",
+          "Contact Form",
+          "1 Month Support"
+        ],
+        "cta": "Get Started"
+      },
+      {
+        "name": "Professional",
+        "price": "$2499",
+        "description": "Ideal for growing businesses",
+        "features": [
+          "Everything in Basic",
+          "Advanced SEO",
+          "Up to 10 Pages",
+          "Blog Integration",
+          "E-commerce Features",
+          "3 Months Support"
+        ],
+        "cta": "Get Started"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "description": "For large scale applications",
+        "features": [
+          "Everything in Professional",
+          "Custom Features",
+          "Unlimited Pages",
+          "Advanced Analytics",
+          "Priority Support",
+          "12 Months Support"
+        ],
+        "cta": "Contact Us"
       }
     ]
   }
