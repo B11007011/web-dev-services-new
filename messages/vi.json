@@ -39,67 +39,58 @@
     }
   },
   "services": {
-    "title": "Dịch Vụ Của Chúng Tôi",
-    "subtitle": "Giải pháp số toàn diện giúp doanh nghiệp của bạn phát triển",
+    "title": "🚀 Dịch Vụ Của Chúng Tôi",
+    "subtitle": "Giải pháp ảo toàn diện để thúc đẩy tăng trưởng doanh nghiệp của bạn",
     "items": [
       {
-        "title": "Phát Triển Web",
-        "description": "Website hiện đại, tương thích di động được xây dựng bằng Next.js và React",
+        "title": "🌐 Phát Triển Web",
+        "description": "Trang web hiện đại, tương thích với tốc độ và khả năng mở rộng",
         "features": [
+          "Kiến trúc Neu.js & React",
           "Ứng dụng Web Tùy Chỉnh",
-          "Giải Pháp Thương Mại Điện Tử",
-          "Ứng Dụng Web Tiến Bộ",
-          "Tích Hợp API"
+          "Cửa hàng Thương mại điện tử"
         ]
       },
       {
-        "title": "Phát Triển Ứng Dụng Di Động",
-        "description": "Ứng dụng di động đa nền tảng cho iOS và Android",
+        "title": "📱 Phát Triển Ứng Dụng Di Động",
+        "description": "Ứng dụng đa nền tảng thu hút người dùng iOS và Android",
         "features": [
-          "Ứng Dụng React Native",
-          "iOS/Android Gốc",
-          "Xuất Bản App Store",
-          "Thiết Kế UI/UX Di Động"
+          "Phát triển React Native",
+          "Tích hợp IoT"
         ]
       },
       {
-        "title": "Thiết Kế UI/UX",
-        "description": "Thiết kế đẹp, trực quan mà người dùng yêu thích",
+        "title": "🛒 Giải Pháp Thương Mại Điện Tử",
+        "description": "Cửa hàng trực tuyến toàn diện được thiết kế để tăng doanh số",
         "features": [
-          "Thiết Kế Giao Diện",
-          "Thiết Kế Trải Nghiệm",
-          "Wireframing & Prototype",
-          "Hệ Thống Thiết Kế"
+          "Tích hợp Giỏ hàng + Chat",
+          "Thiết lập Cổng thanh toán An toàn",
+          "Quản lý Kho tự động"
         ]
       },
       {
-        "title": "Digital Marketing",
-        "description": "Phát triển sự hiện diện và tiếp cận trực tuyến",
+        "title": "🎯 Digital Marketing",
+        "description": "Chiến lược dựa trên dữ liệu để thống trị thị trường của bạn",
         "features": [
-          "Tối Ưu Hóa SEO",
-          "Marketing Mạng Xã Hội",
-          "Chiến Lược Nội Dung",
-          "Phân Tích & Theo Dõi"
+          "Tối ưu hóa SEO & Tỷ lệ chuyển đổi",
+          "Chiến dịch Mạng xã hội",
+          "Phân tích & Đào tạo ROI"
         ]
       },
       {
-        "title": "Giải Pháp Thương Mại Điện Tử",
-        "description": "Phát triển cửa hàng trực tuyến toàn diện",
+        "title": "✨ Thiết Kế UI/UX",
+        "description": "Giao diện trực quan mà người dùng yêu thích ngay từ cái nhìn đầu tiên",
         "features": [
-          "Tích Hợp Giỏ Hàng",
-          "Thiết Lập Cổng Thanh Toán",
-          "Quản Lý Kho Hàng",
-          "Xử Lý Đơn Hàng"
+          "Wireframing & Tạo mẫu",
+          "Đánh giá Trải nghiệm Người dùng"
         ]
       },
       {
-        "title": "Dịch Vụ Đám Mây",
-        "description": "Giải pháp đám mây và lưu trữ có khả năng mở rộng",
+        "title": "☁️ Giải Pháp Đám Mây",
+        "description": "Cơ sở hạ tầng có thể mở rộng cho sự phát triển liền mạch",
         "features": [
-          "Tích Hợp AWS/Azure",
-          "Kiến Trúc Đám Mây",
-          "Quản Lý Máy Chủ",
-          "Giải Pháp Cơ Sở Dữ Liệu"
+          "Tích hợp API/Stream",
+          "Quản lý Máy chủ & Cơ sở dữ liệu"
         ]
       }
     ]

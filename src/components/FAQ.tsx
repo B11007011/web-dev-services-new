@@ -55,14 +55,14 @@ const FAQ = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black relative" id="faq">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-30" />
+    <section className="py-20 relative" id="faq">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
       <div className="container mx-auto px-4 relative">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
             {content.title}
           </h2>
-          <p className="text-xl text-gray-300">
+          <p className="text-xl text-gray-600">
             {content.subtitle}
           </p>
         </div>
@@ -72,18 +72,18 @@ const FAQ = () => {
             {content.items.map((faq, index) => (
               <div
                 key={index}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg overflow-hidden hover:border-purple-500/50 transition-all duration-300"
+                className="bg-white shadow-lg border border-gray-100 rounded-lg overflow-hidden hover:border-blue-200 transition-all duration-300"
               >
                 <button
                   className="w-full px-6 py-4 text-left flex justify-between items-center gap-4 focus:outline-none"
                   onClick={() => toggleFAQ(index)}
                 >
                   <div className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                    <span className="font-medium text-gray-100">{faq.question}</span>
+                    <HelpCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <span className="font-medium text-gray-900">{faq.question}</span>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 text-purple-400 transform transition-transform duration-300 flex-shrink-0 ${
+                    className={`w-5 h-5 text-blue-600 transform transition-transform duration-300 flex-shrink-0 ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}
                   />
@@ -94,7 +94,7 @@ const FAQ = () => {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="p-6 pt-0 text-gray-300">
+                    <div className="p-6 pt-0 text-gray-600">
                       {faq.answer.split('\\n\\n').map((paragraph, i) => (
                         <p key={i} className="mb-4 last:mb-0 whitespace-pre-line">
                           {paragraph}
@@ -109,10 +109,10 @@ const FAQ = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-400 mb-4">{content.contactText}</p>
+          <p className="text-gray-600 mb-4">{content.contactText}</p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 hover:opacity-80 transition-opacity font-medium"
+            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
           >
             {content.contactLink}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

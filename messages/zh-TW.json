@@ -39,67 +39,58 @@
     }
   },
   "services": {
-    "title": "我們的服務",
-    "subtitle": "全方位數位解決方案助您企業成長",
+    "title": "🚀 我們的服務",
+    "subtitle": "全方位虛擬解決方案，加速您的業務成長",
     "items": [
       {
-        "title": "網站開發",
-        "description": "使用 Next.js 和 React 打造現代化響應式網站",
+        "title": "🌐 網站開發",
+        "description": "現代化、響應式網站，專注於速度和擴展性",
         "features": [
+          "Neu.js & React 架構",
           "客製化網頁應用",
-          "電子商務解決方案",
-          "漸進式網頁應用",
-          "API 整合"
+          "電子商務店面"
         ]
       },
       {
-        "title": "行動應用開發",
-        "description": "跨平台 iOS 和 Android 行動應用程式",
+        "title": "📱 移動應用開發",
+        "description": "吸引 iOS 和 Android 用戶的跨平台應用",
         "features": [
-          "React Native 應用",
-          "原生 iOS/Android",
-          "應用商店發布",
-          "行動 UI/UX 設計"
+          "React Native 開發",
+          "IoT 整合"
         ]
       },
       {
-        "title": "UI/UX 設計",
-        "description": "美觀直覺的設計，讓用戶愛不釋手",
+        "title": "🛒 電子商務解決方案",
+        "description": "專為提升銷售而設計的端對端線上商店",
         "features": [
-          "使用者介面設計",
-          "使用者體驗設計",
-          "線框圖與原型",
-          "設計系統"
+          "購物車 + 聊天整合",
+          "安全支付閘道設置",
+          "自動化庫存管理"
         ]
       },
       {
-        "title": "數位行銷",
-        "description": "提升您的線上知名度與觸及率",
+        "title": "🎯 數位行銷",
+        "description": "以數據驅動的策略主導您的市場",
         "features": [
-          "搜尋引擎最佳化",
+          "SEO 和轉換率優化",
           "社群媒體行銷",
-          "內容策略",
-          "數據分析追蹤"
+          "ROI 分析與培訓"
         ]
       },
       {
-        "title": "電子商務解決方案",
-        "description": "完整的線上商店開發服務",
+        "title": "✨ UI/UX 設計",
+        "description": "用戶一見鍾情的直覺界面",
         "features": [
-          "購物車整合",
-          "金流系統設置",
-          "庫存管理",
-          "訂單處理"
+          "線框圖與原型設計",
+          "用戶體驗審核"
         ]
       },
       {
-        "title": "雲端服務",
-        "description": "可擴展的雲端解決方案與託管服務",
+        "title": "☁️ 雲端解決方案",
+        "description": "實現無縫成長的可擴展基礎架構",
         "features": [
-          "AWS/Azure 整合",
-          "雲端架構",
-          "伺服器管理",
-          "資料庫解決方案"
+          "API/Stream 整合",
+          "伺服器與資料庫管理"
         ]
       }
     ]

@@ -59,7 +59,7 @@ const Portfolio = () => {
         features: ['User Research', 'Wireframing', 'Design Systems', 'Usability Testing'],
         link: 'https://example.com/project3'
       }
-    },
+    }
   ]
 
   const closeModal = useCallback(() => {
@@ -69,12 +69,13 @@ const Portfolio = () => {
   useOutsideClick(modalRef, closeModal)
 
   return (
-    <section id="portfolio" className="py-20 bg-black">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
+    <section id="portfolio" className="py-20 relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
+      <div className="container mx-auto px-4 relative">
+        <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
           Our Work
         </h2>
-        <p className="text-xl text-gray-400 text-center mb-12">
+        <p className="text-xl text-gray-600 text-center mb-12">
           Explore our latest projects and success stories
         </p>
         
@@ -88,7 +89,7 @@ const Portfolio = () => {
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
               onClick={() => setSelectedProject(index)}
-              className="bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-blue-500/20 hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-gray-800"
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-blue-500/20 hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-gray-100 hover:border-blue-200"
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
@@ -100,10 +101,10 @@ const Portfolio = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors duration-300">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-400">{project.description}</p>
+                <p className="text-gray-600">{project.description}</p>
               </div>
             </motion.div>
           ))}
@@ -115,20 +116,20 @@ const Portfolio = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+              className="fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
             >
               <motion.div
                 ref={modalRef}
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
-                className="bg-gray-900 rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative border border-gray-800"
+                className="bg-white rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative border border-blue-200 shadow-xl"
               >
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 transition-colors duration-300"
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-blue-50 transition-colors duration-300"
                 >
-                  <X className="w-6 h-6 text-gray-400" />
+                  <X className="w-6 h-6 text-gray-600" />
                 </button>
 
                 <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
@@ -140,21 +141,21 @@ const Portfolio = () => {
                   />
                 </div>
 
-                <h3 className="text-2xl font-bold mb-2 text-white">
+                <h3 className="text-2xl font-bold mb-2 text-gray-900">
                   {projects[selectedProject].title}
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-gray-600 mb-6">
                   {projects[selectedProject].description}
                 </p>
 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold mb-2 text-white">Technologies</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-gray-900">Technologies</h4>
                     <div className="flex flex-wrap gap-2">
                       {projects[selectedProject].details.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm border border-blue-800"
+                          className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm border border-blue-100"
                         >
                           {tech}
                         </span>
@@ -163,8 +164,8 @@ const Portfolio = () => {
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-2 text-white">Key Features</h4>
-                    <ul className="list-disc list-inside text-gray-400 space-y-1">
+                    <h4 className="text-lg font-semibold mb-2 text-gray-900">Key Features</h4>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
                       {projects[selectedProject].details.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                       ))}

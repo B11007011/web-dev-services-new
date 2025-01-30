@@ -13,7 +13,7 @@ const languages = {
 
 export default function LanguageSwitcher() {
   const pathname = usePathname();
-  const currentLocale = pathname.split('/')[1] || 'en';
+  const currentLocale = pathname?.split('/')[1] || 'en';
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -32,24 +32,26 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-white bg-gray-800/90 border border-gray-700/50 rounded-full hover:bg-gray-700/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 backdrop-blur-md transition-all duration-200"
       >
         <span>{languages[currentLocale as keyof typeof languages].flag}</span>
         <span>{languages[currentLocale as keyof typeof languages].shortName}</span>
-        <ChevronDown className="w-4 h-4" />
+        <ChevronDown className="w-3.5 h-3.5" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+        <div className="absolute right-0 mt-2 w-40 rounded-xl shadow-lg bg-gray-800/90 ring-1 ring-gray-700/50 backdrop-blur-md z-50">
           <div className="py-1" role="menu" aria-orientation="vertical">
             {Object.entries(languages).map(([code, { name, flag }]) => (
               <Link
                 key={code}
-                href={`/${code}${pathname.replace(/^\/[a-z-]{2,5}/, '') || '/'}`}
-                className={`flex items-center gap-3 px-4 py-2 text-sm ${
+                href={`/${code}${pathname?.replace(/^\/[a-z-]{2,5}/, '') || '/'}`}
+                className={`flex items-center gap-3 px-4 py-2 text-sm transition-colors duration-200 ${
                   currentLocale === code
-                    ? 'bg-gray-100 text-gray-900'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-gray-700/80 text-white'
+                    : 'text-gray-300 hover:bg-gray-700/50 hover:text-white'
+                } ${code === Object.keys(languages)[0] ? 'rounded-t-xl' : ''} ${
+                  code === Object.keys(languages)[Object.keys(languages).length - 1] ? 'rounded-b-xl' : ''
                 }`}
                 onClick={() => setIsOpen(false)}
                 role="menuitem"

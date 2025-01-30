@@ -39,67 +39,58 @@
     }
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Comprehensive digital solutions to help your business grow",
+    "title": "🚀 Our Services",
+    "subtitle": "Comprehensive virtual solutions to accelerate your business growth",
     "items": [
       {
-        "title": "Web Development",
-        "description": "Modern, responsive websites built with Next.js and React",
+        "title": "🌐 Web Development",
+        "description": "Modern, responsive websites built for speed and scalability",
         "features": [
+          "Neu.js & React Architecture",
           "Custom Web Applications",
-          "E-commerce Solutions",
-          "Progressive Web Apps",
-          "API Integration"
+          "E-commerce Storefronts"
         ]
       },
       {
-        "title": "Mobile Development",
-        "description": "Cross-platform mobile apps for iOS and Android",
+        "title": "📱 Mobile Development",
+        "description": "Cross-platform apps that captivate iOS and Android users",
         "features": [
-          "React Native Apps",
-          "Native iOS/Android",
-          "App Store Publishing",
-          "Mobile UI/UX Design"
+          "React Native Development",
+          "IoT Integration"
         ]
       },
       {
-        "title": "UI/UX Design",
-        "description": "Beautiful, intuitive designs that users love",
+        "title": "🛒 E-commerce Solutions",
+        "description": "End-to-end online stores designed to boost sales",
         "features": [
-          "Interface Design",
-          "User Experience",
-          "Wireframing & Prototypes",
-          "Design Systems"
+          "Shopping Cart + Chat Integration",
+          "Secure Payment Gateway Setup",
+          "Automated Inventory Management"
         ]
       },
       {
-        "title": "Digital Marketing",
-        "description": "Grow your online presence and reach",
+        "title": "🎯 Digital Marketing",
+        "description": "Data-driven strategies to dominate your market",
         "features": [
-          "SEO Optimization",
-          "Social Media Marketing",
-          "Content Strategy",
-          "Analytics & Tracking"
+          "SEO & Conversion Rate Optimization",
+          "Social Media Campaigns",
+          "ROI Analytics & Training"
         ]
       },
       {
-        "title": "E-commerce Solutions",
-        "description": "Complete online store development",
+        "title": "✨ UI/UX Design",
+        "description": "Intuitive interfaces that users love at first click",
         "features": [
-          "Shopping Cart Integration",
-          "Payment Gateway Setup",
-          "Inventory Management",
-          "Order Processing"
+          "Wireframing & Prototyping",
+          "User Experience Audits"
         ]
       },
       {
-        "title": "Cloud Services",
-        "description": "Scalable cloud solutions and hosting",
+        "title": "☁️ Cloud Solutions",
+        "description": "Scalable infrastructure for seamless growth",
         "features": [
-          "AWS/Azure Integration",
-          "Cloud Architecture",
-          "Server Management",
-          "Database Solutions"
+          "API/Stream Integration",
+          "Server & Database Management"
         ]
       }
     ]

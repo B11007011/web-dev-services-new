@@ -88,179 +88,143 @@ const SocialIcon = ({ platform }: { platform: string }) => {
   return icons[platform as keyof typeof icons] || null
 }
 
-const Team = ({ autoplay = true }: { autoplay?: boolean }) => {
-  const [active, setActive] = useState(0)
-  const [mounted, setMounted] = useState(false)
+const Team = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
 
-  const handleNext = () => {
-    setActive((prev) => (prev + 1) % team.length)
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
   }
 
-  const handlePrev = () => {
-    setActive((prev) => (prev - 1 + team.length) % team.length)
+  const swipeConfidenceThreshold = 10000
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity
   }
 
-  const isActive = (index: number) => {
-    return index === active
-  }
-
-  useEffect(() => {
-    setMounted(true)
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000)
-      return () => clearInterval(interval)
-    }
-  }, [autoplay])
-
-  // Fixed rotation values for each card
-  const rotations = [0, 3, -3, 5]
-
-  if (!mounted) {
-    return null // Prevent server-side rendering
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection)
+    setCurrentIndex((prevIndex) => (prevIndex + newDirection + team.length) % team.length)
   }
 
   return (
-    <section className="py-20 bg-[#0B1120]" id="team">
+    <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-white">
-            Our Team
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+            Meet Our Team
           </h2>
-          <p className="text-xl text-gray-400">
-            Meet the experts behind our success
+          <p className="text-xl text-gray-600">
+            Passionate experts dedicated to your success
           </p>
         </div>
 
-        <div className="max-w-sm md:max-w-4xl mx-auto">
-          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div>
-              <div className="relative h-80 w-full">
-                <AnimatePresence>
-                  {team.map((member, index) => (
-                    <motion.div
-                      key={member.image}
-                      initial={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: -100,
-                        rotate: rotations[index],
-                      }}
-                      animate={{
-                        opacity: isActive(index) ? 1 : 0.7,
-                        scale: isActive(index) ? 1 : 0.95,
-                        z: isActive(index) ? 0 : -100,
-                        rotate: isActive(index) ? 0 : rotations[index],
-                        zIndex: isActive(index) ? 999 : team.length + 2 - index,
-                        y: isActive(index) ? [0, -80, 0] : 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: 100,
-                        rotate: rotations[index],
-                      }}
-                      transition={{
-                        duration: 0.4,
-                        ease: "easeInOut",
-                      }}
-                      className="absolute inset-0 origin-bottom"
-                    >
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={500}
-                        height={500}
-                        className="h-full w-full rounded-3xl object-cover object-center shadow-xl"
-                      />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
+        <div className="relative h-[600px] max-w-4xl mx-auto">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x)
 
-            <div className="flex justify-between flex-col py-4">
-              <motion.div
-                key={active}
-                initial={{
-                  y: 20,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{
-                  y: -20,
-                  opacity: 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: "easeInOut",
-                }}
-              >
-                <h3 className="text-2xl font-bold text-white">
-                  {team[active].name}
-                </h3>
-                <p className="text-blue-400 font-medium">
-                  {team[active].role}
-                </p>
-                <motion.p className="text-lg text-gray-400 mt-8">
-                  {team[active].bio.split(" ").map((word, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{
-                        filter: "blur(10px)",
-                        opacity: 0,
-                        y: 5,
-                      }}
-                      animate={{
-                        filter: "blur(0px)",
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                        delay: 0.02 * index,
-                      }}
-                      className="inline-block"
-                    >
-                      {word}&nbsp;
-                    </motion.span>
-                  ))}
-                </motion.p>
-
-                <div className="flex space-x-4 mt-6">
-                  {Object.entries(team[active].social).map(([platform, url]) => (
-                    <a
-                      key={platform}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-500 hover:text-blue-400 transition-colors duration-300"
-                    >
-                      <SocialIcon platform={platform} />
-                    </a>
-                  ))}
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1)
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1)
+                }
+              }}
+              className="absolute w-full"
+            >
+              <div className="bg-white shadow-lg rounded-2xl p-8 border border-gray-100">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="relative w-48 h-48 rounded-full overflow-hidden">
+                    <Image
+                      src={team[currentIndex].image}
+                      alt={team[currentIndex].name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      {team[currentIndex].name}
+                    </h3>
+                    <p className="text-blue-500 mb-4">{team[currentIndex].role}</p>
+                    <p className="text-gray-600 mb-6">{team[currentIndex].bio}</p>
+                    <div className="flex justify-center md:justify-start gap-4">
+                      {Object.entries(team[currentIndex].social).map(([platform, url]) => (
+                        <a
+                          key={platform}
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-500 hover:text-blue-500 transition-colors"
+                        >
+                          <span className="capitalize">{platform}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-
-              <div className="flex gap-4 pt-12 md:pt-0">
-                <button
-                  onClick={handlePrev}
-                  className="h-10 w-10 rounded-full bg-[#0F172A] hover:bg-blue-900/20 flex items-center justify-center group/button transition-colors duration-300"
-                >
-                  <IconArrowLeft className="h-5 w-5 text-blue-400 group-hover/button:rotate-12 transition-transform duration-300" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="h-10 w-10 rounded-full bg-[#0F172A] hover:bg-blue-900/20 flex items-center justify-center group/button transition-colors duration-300"
-                >
-                  <IconArrowRight className="h-5 w-5 text-blue-400 group-hover/button:-rotate-12 transition-transform duration-300" />
-                </button>
               </div>
-            </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between pointer-events-none">
+            <button
+              onClick={() => paginate(-1)}
+              className="p-2 rounded-full bg-white/80 text-gray-900 hover:bg-gray-100 transition-colors pointer-events-auto shadow-lg"
+              aria-label="Previous team member"
+            >
+              <IconArrowLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => paginate(1)}
+              className="p-2 rounded-full bg-white/80 text-gray-900 hover:bg-gray-100 transition-colors pointer-events-auto shadow-lg"
+              aria-label="Next team member"
+            >
+              <IconArrowRight className="w-6 h-6" />
+            </button>
           </div>
+        </div>
+
+        <div className="flex justify-center mt-8 gap-2">
+          {team.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setDirection(index > currentIndex ? 1 : -1)
+                setCurrentIndex(index)
+              }}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,58 +1,78 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { ArrowUp } from 'lucide-react'
 
-const ScrollToTop = () => {
+export default function ScrollToTop() {
+  const [mounted, setMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
+  const handleScroll = useCallback(() => {
+    if (typeof window === 'undefined') return
+    
+    // Use requestAnimationFrame for smooth performance
+    requestAnimationFrame(() => {
+      const scrolled = window.scrollY
+      setIsVisible(scrolled > 300)
+    })
+  }, [])
+
+  // Handle mounting
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
+    setMounted(true)
+    handleScroll() // Initial check
+  }, [handleScroll])
+
+  // Handle scroll with throttle
+  useEffect(() => {
+    if (!mounted) return
+
+    let ticking = false
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', toggleVisibility)
-
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    
     return () => {
-      window.removeEventListener('scroll', toggleVisibility)
+      window.removeEventListener('scroll', throttledScroll)
     }
+  }, [mounted, handleScroll])
+
+  const scrollToTop = useCallback(() => {
+    if (typeof window === 'undefined') return
+    
+    requestAnimationFrame(() => {
+      const c = document.documentElement.scrollTop || document.body.scrollTop
+      if (c > 0) {
+        window.requestAnimationFrame(scrollToTop)
+        window.scrollTo(0, c - c / 8)
+      }
+    })
   }, [])
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
+  if (!mounted) return null
 
   return (
-    <>
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-110"
-          aria-label="Scroll to top"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
-        </button>
-      )}
-    </>
+    <div 
+      className="fixed bottom-0 right-0 p-4 pointer-events-none z-[200] transform transition-transform duration-300 ease-in-out will-change-transform"
+      style={{
+        transform: isVisible ? 'translateY(0)' : 'translateY(100%)',
+      }}
+    >
+      <button
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+        className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl pointer-events-auto transform hover:scale-110 active:scale-95 transition-all duration-200 will-change-transform"
+      >
+        <ArrowUp className="h-6 w-6" />
+      </button>
+    </div>
   )
 }
-
-export default ScrollToTop 
