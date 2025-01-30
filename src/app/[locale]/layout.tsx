@@ -8,18 +8,19 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 
 const locales = ['en', 'vi', 'zh-TW'] as const;
-type Locale = typeof locales[number];
+type Locale = (typeof locales)[number];
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
 type Props = {
-  params: { locale: Locale }
+  children: ReactNode;
+  params: { locale: Locale };
 }
 
 export async function generateMetadata(
-  { params }: Props
+  { params }: Omit<Props, 'children'>
 ): Promise<Metadata> {
   // Wait for locale
   await new Promise(resolve => setTimeout(resolve, 0));
@@ -57,13 +58,7 @@ export async function generateMetadata(
 export default async function LocaleLayout({
   children,
   params,
-}: {
-  children: ReactNode;
-  params: { locale: Locale };
-}) {
-  // Wait for locale
-  await new Promise(resolve => setTimeout(resolve, 0));
-
+}: Props) {
   if (!locales.includes(params.locale)) {
     return null;
   }
