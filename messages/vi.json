@@ -111,6 +111,10 @@
       "email": "Email",
       "message": "Tin nhắn",
       "submit": "Gửi"
+    },
+    "contact": {
+      "email": "contact@example.com",
+      "phone": "+1 (555) 123-4567"
     }
   },
   "faq": {

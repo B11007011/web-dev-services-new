@@ -1,104 +1,205 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { HeroParallax } from './ui/hero-parallax'
+import { motion, AnimatePresence, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import Link from 'next/link'
+import { useTranslations } from '@/providers/TranslationsProvider'
+import { useState, useEffect } from 'react'
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
+type HeroContent = {
+  title: string;
+  subtitle: string;
+  cta: string;
 }
 
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
+const services = [
+  {
+    title: "Web Development",
+    description: "Modern, responsive websites built for speed and scalability",
+    color: "from-blue-600 to-purple-600",
+    image: "/placeholder1.jpg" // Replace with your image
+  },
+  {
+    title: "Mobile Apps",
+    description: "Cross-platform apps that captivate iOS and Android users",
+    color: "from-purple-600 to-red-600",
+    image: "/placeholder2.jpg" // Replace with your image
+  },
+  {
+    title: "Cloud Solutions",
+    description: "Scalable infrastructure for seamless growth",
+    color: "from-red-600 to-orange-600",
+    image: "/placeholder3.jpg" // Replace with your image
   }
-}
+];
 
 export function Hero() {
+  const content = useTranslations<HeroContent>('hero')
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { damping: 15, stiffness: 150 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % services.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
   return (
     <section 
       id="hero"
-      className="relative min-h-screen pt-20 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+      className="relative min-h-[80vh] overflow-hidden bg-gradient-to-br from-blue-950 to-black">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-32">
-        <motion.div
-          initial="initial"
-          animate="animate"
-          variants={stagger}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <motion.h1 
-            variants={fadeInUp}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-              Transform Your Vision
-            </span>
-            <br />
-            Into Digital Reality
-          </motion.h1>
-          
-          <motion.p 
-            variants={fadeInUp}
-            className="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
-          >
-            We craft beautiful, high-performance websites and applications that drive real business results. Our expert team brings your ideas to life with cutting-edge technology.
-          </motion.p>
-          
-          <motion.div 
-            variants={fadeInUp}
-            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link
-              href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10"
-            >
-              Get Started
-            </Link>
-            <Link
-              href="#portfolio"
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-xl text-blue-600 bg-blue-50 hover:bg-blue-100 md:py-4 md:text-lg md:px-10"
-            >
-              View Portfolio
-            </Link>
-          </motion.div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+          {/* Left Side - Text */}
+          <div className="text-left max-w-2xl pt-4">
+            {/* Interactive Squares */}
+            <div className="flex gap-2 mb-6">
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                onClick={() => setCurrentIndex(0)}
+                className={`w-6 h-6 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 ${
+                  currentIndex === 0 ? 'bg-white/30' : 'bg-white/10'
+                }`}
+              />
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                onClick={() => setCurrentIndex(1)}
+                className={`w-6 h-6 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 ${
+                  currentIndex === 1 ? 'bg-white/30' : 'bg-white/10'
+                }`}
+              />
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                onClick={() => setCurrentIndex(2)}
+                className={`w-6 h-6 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 ${
+                  currentIndex === 2 ? 'bg-white/30' : 'bg-white/10'
+                }`}
+              />
+            </div>
 
-          {/* Stats */}
-          <motion.div 
-            variants={fadeInUp}
-            className="mt-20 grid grid-cols-2 gap-8 md:grid-cols-4"
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-serif"
+            >
+              {content?.title || "We Build Amazing Websites"}
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-4 text-lg md:text-xl text-white/80 max-w-xl"
+            >
+              {content?.subtitle || "Transform your business with modern web solutions"}
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-4 flex gap-2"
+            >
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-lg text-black bg-white hover:bg-white/90 transition-colors select-none"
+              >
+                {content?.cta || "Get Started"}
+              </Link>
+              <Link
+                href="#services"
+                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors select-none"
+              >
+                Our Services
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right Side - Floating Cards */}
+          <div 
+            className="relative h-[450px] hidden lg:block"
+            onMouseMove={handleMouseMove}
           >
-            <div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">100+</div>
-              <div className="mt-2 text-gray-600">Projects Completed</div>
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              {services.map((service, idx) => {
+                const isActive = idx === currentIndex;
+                const offset = (idx - currentIndex) * 40; // Reduced offset
+                
+                return (
+                  <motion.div
+                    key={idx}
+                    style={{
+                      position: 'absolute',
+                      zIndex: isActive ? 2 : 1,
+                      rotateX: isActive ? rotateX : 0,
+                      rotateY: isActive ? rotateY : 0,
+                    }}
+                    initial={{ y: 40, opacity: 0, scale: 0.9 }}
+                    animate={{ 
+                      y: isActive ? 0 : offset,
+                      opacity: isActive ? 1 : 0.5,
+                      scale: isActive ? 1 : 0.9,
+                      transition: {
+                        duration: 0.6,
+                        ease: "easeInOut"
+                      }
+                    }}
+                    exit={{ y: -40, opacity: 0, scale: 0.9 }}
+                    onClick={() => {
+                      setDirection(idx > currentIndex ? 1 : -1);
+                      setCurrentIndex(idx);
+                    }}
+                    className="cursor-pointer absolute top-0 right-0 w-72 h-80"
+                  >
+                    <div className={`w-full h-full rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                      isActive ? 'border-white/30 shadow-2xl' : 'border-white/10'
+                    }`}>
+                      <div className={`w-full h-full bg-gradient-to-br ${service.color} p-6 flex flex-col justify-end`}>
+                        <h3 className="text-xl font-bold text-white mb-2">
+                          {service.title}
+                        </h3>
+                        <p className="text-sm text-white/80">
+                          {service.description}
+                        </p>
             </div>
-            <div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">95%</div>
-              <div className="mt-2 text-gray-600">Client Satisfaction</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">10+</div>
-              <div className="mt-2 text-gray-600">Years Experience</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">24/7</div>
-              <div className="mt-2 text-gray-600">Support Available</div>
             </div>
           </motion.div>
-        </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
 
-      {/* Decorative blob */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30 blur-3xl pointer-events-none">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 animate-blob" />
-      </div>
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
     </section>
   )
 } 

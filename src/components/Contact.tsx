@@ -1,166 +1,196 @@
 'use client'
 
+import { motion } from 'framer-motion'
+import { Mail, MessageSquare, Phone } from 'lucide-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Send } from 'lucide-react'
+
+type ContactTranslations = {
+  title: string;
+  subtitle: string;
+  form: {
+    name: string;
+    email: string;
+    message: string;
+    submit: string;
+  };
+  contact: {
+    email: string;
+    phone: string;
+  };
+}
+
+const defaultContent: ContactTranslations = {
+  title: 'Get in Touch',
+  subtitle: 'Have a project in mind? Let\'s discuss how we can help bring your vision to life.',
+  form: {
+    name: 'Your Name',
+    email: 'Your Email',
+    message: 'Your Message',
+    submit: 'Send Message'
+  },
+  contact: {
+    email: 'contact@example.com',
+    phone: '+1 (555) 123-4567'
+  }
+}
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    subject: '',
-    message: '',
-    service: 'web-development'
-  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const translations = useTranslations<ContactTranslations>('contact')
+  const content = translations || defaultContent
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    
     // Add your form submission logic here
-    console.log('Form submitted:', formData)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    
+    setTimeout(() => {
+      setIsSubmitting(false)
+    }, 2000)
   }
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
-      <div className="container mx-auto px-4 relative">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="contact">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-            Get in Touch
-          </h2>
-          <p className="text-xl text-gray-600">
-            Have a project in mind? Let's discuss how we can help you achieve your goals.
-          </p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
+          >
+            {content.title}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/80 max-w-2xl mx-auto"
+          >
+            {content.subtitle}
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-white shadow-lg p-6 rounded-lg border border-gray-100 hover:border-blue-200 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                Contact Information
-              </h3>
-              <div className="space-y-4 text-gray-600">
-                <p className="flex items-center">
-                  <MapPin className="w-5 h-5 mr-3 text-blue-600" />
-                  123 Business Street, Suite 100<br />
-                  New York, NY 10001
-                </p>
-                <p className="flex items-center">
-                  <Phone className="w-5 h-5 mr-3 text-blue-600" />
-                  +1 (555) 123-4567
-                </p>
-                <p className="flex items-center">
-                  <Mail className="w-5 h-5 mr-3 text-blue-600" />
-                  contact@example.com
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white shadow-lg p-6 rounded-lg border border-gray-100 hover:border-blue-200 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                Business Hours
-              </h3>
-              <div className="space-y-2 text-gray-600">
-                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                <p>Saturday: 10:00 AM - 4:00 PM</p>
-                <p>Sunday: Closed</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white shadow-lg p-8 rounded-lg border border-gray-100 hover:border-blue-200 transition-all duration-300">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-6">
+                <div className="flex items-center gap-4">
+                  <Mail className="w-6 h-6 text-blue-400" />
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent text-gray-900"
-                      required
-                      autoComplete="name"
-                      suppressHydrationWarning
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent text-gray-900"
-                      required
-                      autoComplete="email"
-                      suppressHydrationWarning
-                    />
+                    <h3 className="text-lg font-medium text-white">Email</h3>
+                    <a href={`mailto:${content.contact.email}`} className="text-white/70 hover:text-blue-400 transition-colors">
+                      {content.contact.email}
+                    </a>
                   </div>
                 </div>
+              </div>
+            </div>
 
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-6">
+                <div className="flex items-center gap-4">
+                  <Phone className="w-6 h-6 text-blue-400" />
+                  <div>
+                    <h3 className="text-lg font-medium text-white">Phone</h3>
+                    <a href={`tel:${content.contact.phone}`} className="text-white/70 hover:text-blue-400 transition-colors">
+                      {content.contact.phone}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="group relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <form onSubmit={handleSubmit} className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-8">
+              <div className="space-y-6">
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                    Subject *
+                  <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
+                    {content.form.name}
                   </label>
                   <input
                     type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent text-gray-900"
+                    id="name"
+                    name="name"
                     required
-                    suppressHydrationWarning
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message *
+                  <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                    {content.form.email}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
+                    {content.form.message}
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent text-gray-900"
+                    rows={4}
                     required
-                    suppressHydrationWarning
-                  ></textarea>
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all resize-none"
+                  />
                 </div>
-
-                <div>
-                  <button
-                    type="submit"
-                    className="w-full px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 hover:shadow-lg hover:shadow-blue-500/20"
-                  >
-                    <Send className="w-5 h-5 inline-block mr-2" />
-                    Send Message
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full py-3 px-6 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <MessageSquare className="w-5 h-5" />
+                      <span>{content.form.submit}</span>
+                    </>
+                  )}
+                </motion.button>
+              </div>
+            </form>
+          </motion.div>
         </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
     </section>
   )
 }

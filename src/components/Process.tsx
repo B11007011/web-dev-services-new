@@ -60,23 +60,37 @@ const Process = () => {
   ]
 
   return (
-    <section className="py-20 relative" id="process">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="process">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      </div>
       
-      <div className="container mx-auto px-4 relative">
+      <div className="relative z-10 container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
+          >
             Our Development Process
-          </h2>
-          <p className="text-xl text-gray-600">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/80"
+          >
             A systematic approach to delivering exceptional results
-          </p>
+          </motion.p>
         </div>
 
         <div className="relative">
           {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-blue-50 via-blue-600/30 to-blue-50 -translate-y-1/2" />
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
@@ -86,34 +100,41 @@ const Process = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="relative group"
               >
-                <div className="bg-white shadow-lg rounded-xl p-6 border border-gray-100 hover:border-blue-200 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300">
                   {/* Step Number */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg">
+                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
                     {step.number}
                   </div>
 
                   {/* Icon */}
                   <div className="mb-6">
-                    <step.icon className="w-8 h-8 text-blue-600" />
+                    <step.icon className="w-8 h-8 text-blue-400" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-white/70 mb-4">
                     {step.description}
                   </p>
 
                   {/* Details */}
                   <ul className="space-y-2">
                     {step.details.map((detail, i) => (
-                      <li key={i} className="flex items-center text-gray-600">
-                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2" />
+                      <motion.li 
+                        key={i} 
+                        className="flex items-center text-white/60 group-hover:text-white/80 transition-colors"
+                        whileHover={{ x: 5 }}
+                      >
+                        <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2" />
                         {detail}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
@@ -122,6 +143,10 @@ const Process = () => {
           </div>
         </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
     </section>
   )
 }

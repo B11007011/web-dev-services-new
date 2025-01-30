@@ -1,5 +1,6 @@
 'use client'
 
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { ChevronDown, HelpCircle } from 'lucide-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
@@ -55,72 +56,113 @@ const FAQ = () => {
   }
 
   return (
-    <section className="py-20 relative" id="faq">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
-      <div className="container mx-auto px-4 relative">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="faq">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
+          >
             {content.title}
-          </h2>
-          <p className="text-xl text-gray-600">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/80 max-w-2xl mx-auto"
+          >
             {content.subtitle}
-          </p>
+          </motion.p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <div className="grid gap-6">
             {content.items.map((faq, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white shadow-lg border border-gray-100 rounded-lg overflow-hidden hover:border-blue-200 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative"
               >
-                <button
-                  className="w-full px-6 py-4 text-left flex justify-between items-center gap-4 focus:outline-none"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  <div className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                    <span className="font-medium text-gray-900">{faq.question}</span>
-                  </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-blue-600 transform transition-transform duration-300 flex-shrink-0 ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    openIndex === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="p-6 pt-0 text-gray-600">
-                      {faq.answer.split('\\n\\n').map((paragraph, i) => (
-                        <p key={i} className="mb-4 last:mb-0 whitespace-pre-line">
-                          {paragraph}
-                        </p>
-                      ))}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 overflow-hidden">
+                  <button
+                    className="w-full px-6 py-4 text-left flex justify-between items-center gap-4 focus:outline-none"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <HelpCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                      <span className="font-medium text-white">{faq.question}</span>
                     </div>
-                  </div>
+                    <motion.div
+                      animate={{ rotate: openIndex === index ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ChevronDown className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-6 pt-0 text-white/70">
+                          {faq.answer.split('\\n\\n').map((paragraph, i) => (
+                            <p key={i} className="mb-4 last:mb-0 whitespace-pre-line">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">{content.contactText}</p>
-          <a
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <p className="text-white/60 mb-4">{content.contactText}</p>
+          <motion.a
             href="#contact"
-            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+            whileHover={{ x: 5 }}
           >
             {content.contactLink}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
     </section>
   )
 }

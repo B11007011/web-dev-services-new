@@ -66,6 +66,17 @@ export type TranslationType = {
     title: string;
     subtitle: string;
   };
+  pricing: {
+    title: string;
+    subtitle: string;
+    plans: Array<{
+      name: string;
+      price: string;
+      description: string;
+      features: string[];
+      cta: string;
+    }>;
+  };
   contact: {
     title: string;
     subtitle: string;
@@ -74,6 +85,10 @@ export type TranslationType = {
       email: string;
       message: string;
       submit: string;
+    };
+    contact: {
+      email: string;
+      phone: string;
     };
   };
   faq: {

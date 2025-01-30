@@ -1,140 +1,156 @@
 'use client'
 
-import { Check, Zap } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
 
-const Pricing = () => {
-  const plans = [
+type PricingTranslations = {
+  title: string;
+  subtitle: string;
+  plans: Array<{
+    name: string;
+    price: string;
+    description: string;
+    features: string[];
+    cta: string;
+  }>;
+}
+
+const defaultContent: PricingTranslations = {
+  title: 'Pricing Plans',
+  subtitle: 'Choose the perfect plan for your needs',
+  plans: [
     {
       name: 'Basic',
-      price: '999',
-      description: 'Perfect for small businesses and startups',
+      price: '$999',
+      description: 'Perfect for small business websites',
       features: [
-        'Custom Website Design',
-        'Mobile Responsive',
-        'Basic SEO Setup',
+        'Responsive Design',
+        'Basic SEO Optimization',
         '3 Pages',
-        '1 Month Support',
         'Contact Form',
-        'Basic Analytics',
-        'SSL Certificate'
+        '1 Month Support'
       ],
-      cta: 'Start Basic',
-      isPopular: false
+      cta: 'Get Started'
     },
     {
       name: 'Professional',
-      price: '1999',
+      price: '$2499',
       description: 'Ideal for growing businesses',
       features: [
         'Everything in Basic',
-        'E-commerce Integration',
         'Advanced SEO',
-        '10 Pages',
-        '3 Months Support',
-        'Analytics Integration',
-        'Social Media Integration',
-        'Performance Optimization',
-        'Content Management System',
-        'Payment Gateway Integration'
+        'Up to 10 Pages',
+        'Blog Integration',
+        'E-commerce Features',
+        '3 Months Support'
       ],
-      cta: 'Go Professional',
-      isPopular: true
+      cta: 'Get Started'
     },
     {
       name: 'Enterprise',
       price: 'Custom',
-      description: 'For large-scale applications',
+      description: 'For large scale applications',
       features: [
         'Everything in Professional',
         'Custom Features',
-        'Priority Support',
         'Unlimited Pages',
-        '12 Months Support',
-        'Performance Optimization',
-        'Security Hardening',
-        'Custom Integrations',
-        'Dedicated Project Manager',
-        'API Development'
+        'Advanced Analytics',
+        'Priority Support',
+        '12 Months Support'
       ],
-      cta: 'Contact Us',
-      isPopular: false
+      cta: 'Contact Us'
     }
   ]
+}
+
+const Pricing = () => {
+  const translations = useTranslations<PricingTranslations>('pricing')
+  const content = translations || defaultContent
 
   return (
-    <section className="py-20 relative" id="pricing">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-blue-50/50" />
-      <div className="container mx-auto px-4 relative">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-            Pricing Plans
-          </h2>
-          <p className="text-xl text-gray-600">
-            Choose the perfect plan for your business needs
-          </p>
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="pricing">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
+          >
+            {content.title}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/80 max-w-2xl mx-auto"
+          >
+            {content.subtitle}
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {plans.map((plan, index) => (
-            <div
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {content.plans.map((plan, index) => (
+            <motion.div
               key={index}
-              className={`relative bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300 border border-gray-100 hover:border-blue-200 ${
-                plan.isPopular ? 'ring-2 ring-blue-600' : ''
-              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative"
             >
-              {plan.isPopular && (
-                <div className="absolute top-0 right-0 bg-blue-600 text-white text-sm px-4 py-1 rounded-bl-lg flex items-center gap-1">
-                  <Zap className="w-4 h-4" />
-                  Most Popular
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative h-full bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 overflow-hidden p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                  <div className="text-4xl font-bold text-blue-400 mb-4">{plan.price}</div>
+                  <p className="text-white/70">{plan.description}</p>
                 </div>
-              )}
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
-                <div className="mb-8">
-                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">${plan.price}</span>
-                  {plan.price !== 'Custom' && (
-                    <span className="text-gray-600 ml-2">/project</span>
-                  )}
-                </div>
-                <ul className="space-y-4 mb-8 min-h-[320px]">
+
+                <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-600">
-                      <Check className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + i * 0.1 }}
+                      className="flex items-center gap-3 text-white/80"
+                    >
+                      <Check className="w-5 h-5 text-blue-400 flex-shrink-0" />
                       <span>{feature}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
-                <button 
-                  className={`w-full py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 ${
-                    plan.isPopular
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-                  }`}
-                  onClick={() => window.location.href = '#contact'}
-                >
-                  {plan.cta}
-                </button>
+
+                <div className="mt-auto">
+                  <motion.a
+                    href="#contact"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="block w-full py-3 px-6 text-center text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-colors duration-300"
+                  >
+                    {plan.cta}
+                  </motion.a>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-4">Need a custom solution?</p>
-          <a 
-            href="#contact" 
-            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
-          >
-            Contact us for custom pricing
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
     </section>
   )
 }
