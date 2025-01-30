@@ -146,7 +146,7 @@ export function QuoteForm({ isOpen, onClose }: QuoteFormProps) {
                 required
                 rows={3}
                 className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-100 placeholder-gray-500 text-sm"
-                placeholder="Tell us about your project..."
+                placeholder="Let&apos;s discuss your project requirements"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>

@@ -109,22 +109,45 @@ section {
 }
 
 /* Mobile menu styles */
-@media (max-width: 767px) {
-  body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
+@media (max-width: 1023px) {
+  body {
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Improve touch targets */
+  body.overflow-hidden {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom, 1rem), 1rem);
+  }
+
   .touch-manipulation {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Improved touch handling */
+@media (hover: none) and (pointer: coarse) {
+  .touch-manipulation {
+    touch-action: manipulation;
   }
 
-  /* Menu button positioning */
-  .menu-button {
-    margin-top: env(safe-area-inset-top, 16px);
+  button, 
+  a[role="button"] {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -366,4 +389,25 @@ button, a, input, select {
 
 .animate-blob {
   animation: blob 7s infinite;
+}
+
+/* Touch device optimizations */
+html.touch-device {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.touch-device * {
+  cursor: default !important;
+}
+
+/* Better scrolling for iOS */
+@supports (-webkit-touch-callout: none) {
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
 }

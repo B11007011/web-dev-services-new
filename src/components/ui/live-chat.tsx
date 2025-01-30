@@ -10,15 +10,7 @@ declare global {
 }
 
 export function LiveChat() {
-  const [isMounted, setIsMounted] = useState(false)
-
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!isMounted) return
-
     // Tawk.to integration script
     const s1 = document.createElement('script')
     s1.async = true
@@ -39,8 +31,7 @@ export function LiveChat() {
         delete window.Tawk_LoadStart
       }
     }
-  }, [isMounted])
+  }, [])
 
-  if (!isMounted) return null
   return null
 } 

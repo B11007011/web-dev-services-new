@@ -28,19 +28,40 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
   const [isMobile, setIsMobile] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false)
+  const [menuVisible, setMenuVisible] = useState(isMenuOpen)
 
   const handleResize = useCallback(() => {
-    setIsMobile(window.innerWidth < 768)
-  }, [])
+    const mobile = window.innerWidth < 1024
+    setIsMobile(mobile)
+    if (!mobile && menuVisible) {
+      onMenuToggle?.(false)
+      setMenuVisible(false)
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [menuVisible, onMenuToggle])
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 20)
   }, [])
 
+  const toggleMenu = useCallback(() => {
+    const newState = !menuVisible
+    setMenuVisible(newState)
+    onMenuToggle?.(newState)
+    if (newState) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [menuVisible, onMenuToggle])
+
   const handleItemClick = (e: React.MouseEvent<HTMLElement>, url: string) => {
     e.preventDefault()
     if (onItemClick) {
       onItemClick(e, url)
+    }
+    if (isMobile) {
+      toggleMenu()
     }
   }
 
@@ -48,29 +69,49 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
     setMounted(true)
     handleResize()
     handleScroll()
+    
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    if (isTouchDevice) {
+      document.documentElement.classList.add('touch-device')
+    }
+    
     window.addEventListener("resize", handleResize, { passive: true })
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => {
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("scroll", handleScroll)
+      document.body.classList.remove('overflow-hidden')
     }
   }, [handleResize, handleScroll])
+
+  useEffect(() => {
+    setMenuVisible(isMenuOpen)
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isMenuOpen])
 
   if (!mounted) return null
 
   return (
     <>
     <motion.nav
-      initial={{ y: -100 }}
+      initial={false}
       animate={{ y: 0 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50",
+        "fixed top-0 left-0 right-0 z-[100]",
         "transition-all duration-300",
+        "backdrop-saturate-150",
         isScrolled
           ? "bg-gray-900/90 backdrop-blur-md shadow-lg"
           : "bg-gray-800/95",
         className
       )}
+      style={{
+        WebkitBackdropFilter: "blur(8px)",
+      }}
     >
       {/* Integrated Navigation Bar */}
       <div className="h-16 max-w-7xl mx-auto px-4 relative flex items-center justify-between">
@@ -96,7 +137,7 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
 
         {/* Desktop Navigation */}
         <div className={cn(
-          "hidden md:flex items-center justify-center gap-1 flex-1 ml-8",
+          "hidden lg:flex items-center justify-center gap-1 flex-1 ml-8",
           "py-2 px-3 rounded-full"
         )}>
           {items.map((item) => {
@@ -114,6 +155,7 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
                   "text-gray-300 hover:text-white",
                   "transition-all duration-200",
                   "active:scale-95",
+                  "touch-device:hover:scale-95",
                   isActive && "text-white bg-gray-700/80"
                 )}
               >
@@ -147,12 +189,13 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
           <button
             onClick={() => setIsQuoteFormOpen(true)}
             className={cn(
-              "hidden md:flex items-center gap-2 px-4 py-1.5",
+              "hidden lg:flex items-center gap-2 px-4 py-1.5",
               "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500",
               "text-sm text-white font-medium rounded-full",
               "hover:shadow-lg hover:shadow-purple-500/20",
               "transition-all duration-200",
-              "active:scale-95"
+              "active:scale-95",
+              "touch-device:hover:scale-95"
             )}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -162,107 +205,149 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
           {/* Mobile Menu Button */}
           <button
             type="button"
-            onClick={() => onMenuToggle?.(!isMenuOpen)}
+            onClick={toggleMenu}
             className={cn(
-              "md:hidden flex items-center justify-center",
+              "lg:hidden flex items-center justify-center",
               "w-10 h-10 rounded-full",
               "bg-gray-800/90 backdrop-blur-md",
               "border border-gray-600/50",
-              "active:scale-95 transition-transform"
+              "active:scale-95 transition-transform",
+              "touch-device:hover:scale-95",
+              "z-[101]"
             )}
           >
-            {isMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
+            {menuVisible ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Dropdown Menu */}
-      <AnimatePresence>
-        {isMenuOpen && isMobile && (
+      <AnimatePresence mode="wait">
+        {menuVisible && isMobile && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ 
+              opacity: 1,
+              height: "calc(100vh - 64px)",
+              transition: {
+                height: {
+                  duration: 0.3,
+                  ease: "easeOut"
+                },
+                opacity: {
+                  duration: 0.2,
+                  ease: "easeOut"
+                }
+              }
+            }}
+            exit={{ 
+              opacity: 0,
+              height: 0,
+              transition: {
+                height: {
+                  duration: 0.3,
+                  ease: "easeIn"
+                },
+                opacity: {
+                  duration: 0.2,
+                  ease: "easeIn"
+                }
+              }
+            }}
             className={cn(
-              "fixed inset-x-0 top-[64px] bottom-0 z-40",
+              "fixed inset-x-0 top-[64px] z-[99]",
               "bg-gradient-to-b from-gray-900/95 to-gray-800/95",
               "backdrop-blur-md",
               "flex flex-col items-center",
-              "px-4 pt-4"
+              "px-4 pt-4 pb-safe",
+              "overflow-hidden"
             )}
+            style={{
+              WebkitBackdropFilter: "blur(8px)",
+            }}
           >
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
-              {items.map((item) => {
-                const itemId = item.url.replace('#', '')
-                const isActive = activeSection === itemId
+            <motion.div 
+              className="w-full h-full overflow-y-auto touch-manipulation"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { delay: 0.1 }
+              }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto pb-8">
+                {items.map((item) => {
+                  const itemId = item.url.replace('#', '')
+                  const isActive = activeSection === itemId
 
-                return (
-                  <button
-                    key={item.name}
-                    type="button"
-                    onClick={(e) => handleItemClick(e, item.url)}
-                    className={cn(
-                      "flex items-center gap-3",
-                      "px-6 py-4 rounded-2xl",
-                      "text-lg font-medium text-left",
-                      "text-gray-300 hover:text-white",
-                      "transition-all duration-200",
-                      "active:scale-95",
-                      "relative overflow-hidden",
-                      isActive ? "bg-gray-700/80" : "hover:bg-gray-800/60"
-                    )}
-                  >
-                    <item.icon size={24} className="shrink-0" />
-                    <span className="truncate">{item.name}</span>
-                    {isActive && (
-                      <motion.div
-                        layoutId="lamp-mobile"
-                        className="absolute inset-0 -z-10"
-                        initial={false}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                  </button>
-                )
-              })}
+                  return (
+                    <button
+                      key={item.name}
+                      type="button"
+                      onClick={(e) => handleItemClick(e, item.url)}
+                      className={cn(
+                        "flex items-center gap-3",
+                        "px-6 py-4 rounded-2xl",
+                        "text-lg font-medium text-left",
+                        "text-gray-300 hover:text-white",
+                        "transition-all duration-200",
+                        "active:scale-95",
+                        "touch-device:hover:scale-95",
+                        "relative overflow-hidden",
+                        isActive ? "bg-gray-700/80" : "hover:bg-gray-800/60"
+                      )}
+                    >
+                      <item.icon size={24} className="shrink-0" />
+                      <span className="truncate">{item.name}</span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="lamp-mobile"
+                          className="absolute inset-0 -z-10"
+                          initial={false}
+                          transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                    </button>
+                  )
+                })}
 
-              <div className="flex items-center justify-center mb-2">
-                <LanguageSwitcher />
+                <div className="flex items-center justify-center mb-2">
+                  <LanguageSwitcher />
+                </div>
+
+                {/* Mobile Quote Button */}
+                <button
+                  onClick={() => {
+                    setIsQuoteFormOpen(true)
+                    onMenuToggle?.(false)
+                  }}
+                  className={cn(
+                    "flex items-center gap-2",
+                    "px-5 py-3 rounded-xl",
+                    "text-base font-medium text-left text-white",
+                    "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500",
+                    "transition-all duration-200",
+                    "active:scale-95",
+                    "touch-device:hover:scale-95"
+                  )}
+                >
+                  <FileText className="w-5 h-5" />
+                  Request a Quote
+                </button>
               </div>
-
-              {/* Mobile Quote Button */}
-              <button
-                onClick={() => {
-                  setIsQuoteFormOpen(true)
-                  onMenuToggle?.(false)
-                }}
-                className={cn(
-                  "flex items-center gap-2",
-                  "px-5 py-3 rounded-xl",
-                  "text-base font-medium text-left text-white",
-                  "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500",
-                  "transition-all duration-200",
-                  "active:scale-95"
-                )}
-              >
-                <FileText size={20} className="shrink-0" />
-                Request a Quote
-              </button>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>
 
     {/* Quote Form Modal */}
-    <QuoteForm
-      isOpen={isQuoteFormOpen}
-      onClose={() => setIsQuoteFormOpen(false)}
-    />
+    <QuoteForm isOpen={isQuoteFormOpen} onClose={() => setIsQuoteFormOpen(false)} />
     </>
   )
 }

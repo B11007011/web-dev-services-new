@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, Send } from 'lucide-react'
+import { Linkedin, Github, Mail, Send } from 'lucide-react'
 
 const Footer = () => {
   const footerSections = {

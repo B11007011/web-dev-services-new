@@ -1,32 +1,28 @@
 import { MetadataRoute } from 'next';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-domain.com';
-const locales = ['en', 'vi', 'zh-TW'];
-
-// Add your dynamic routes here
-const routes = [
-  '',
-  '/services',
-  '/portfolio',
-  '/about',
-  '/contact',
-];
+export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = routes.flatMap(route => 
-    locales.map(locale => ({
-      url: `${baseUrl}/${locale}${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: route === '' ? 1 : 0.8,
-    }))
-  );
-
-  // Add any dynamic pages here
-  // const dynamicPages = ...
+  const baseUrl = 'https://example.com'; // Replace with your actual domain
 
   return [
-    ...staticPages,
-    // ...dynamicPages,
+    {
+      url: `${baseUrl}/en`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/vi`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/zh-TW`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
 } 

@@ -59,7 +59,7 @@ export function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-green-500/10 text-green-500 p-4 rounded-lg border border-green-500/20"
         >
-          Thank you for your message! We'll get back to you soon.
+          Thank you for your message! We&apos;ll get back to you soon.
         </motion.div>
       )}
 
@@ -104,7 +104,7 @@ export function ContactForm() {
           {...register('message')}
           rows={4}
           className="mt-1 block w-full rounded-lg bg-gray-800/50 border border-gray-700/50 py-2 px-3 text-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-colors resize-none"
-          placeholder="Your message..."
+          placeholder="We&apos;d love to hear about your project..."
         />
         {errors.message && (
           <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>

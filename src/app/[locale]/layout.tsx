@@ -6,7 +6,6 @@ import ViewportHandler from "@/components/ViewportHandler";
 import LanguageHandler from "@/components/LanguageHandler";
 import { ReactNode } from "react";
 import { Metadata } from "next";
-import dynamic from 'next/dynamic'
 
 const locales = ['en', 'vi', 'zh-TW'] as const;
 type Locale = typeof locales[number];
@@ -54,13 +53,6 @@ export async function generateMetadata(
     }
   };
 }
-
-const Process = dynamic(() => import('@/components/Process'))
-const Portfolio = dynamic(() => import('@/components/Portfolio'))
-const Pricing = dynamic(() => import('@/components/Pricing'))
-const Contact = dynamic(() => import('@/components/Contact'))
-const FAQ = dynamic(() => import('@/components/FAQ'))
-const Team = dynamic(() => import('@/components/Team'))
 
 export default async function LocaleLayout({
   children,
