@@ -68,9 +68,9 @@ export function Hero() {
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-12 md:gap-16">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-8">
           {/* Left Side - Text */}
-          <div className="text-left max-w-2xl">
+          <div className="text-left max-w-2xl md:flex-1">
             {/* Interactive Squares */}
             <div className="flex gap-2 mb-6">
               {services.map((_, idx) => (
@@ -128,7 +128,7 @@ export function Hero() {
 
           {/* Right Side - Floating Cards */}
           <div 
-            className="relative h-[400px] md:h-[450px] mx-auto w-full max-w-lg md:max-w-2xl"
+            className="relative h-[400px] md:h-[450px] mx-auto w-full max-w-lg md:max-w-md lg:max-w-lg"
             onMouseMove={handleMouseMove}
           >
             <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -160,7 +160,7 @@ export function Hero() {
                       setDirection(idx > currentIndex ? 1 : -1);
                       setCurrentIndex(idx);
                     }}
-                    className="cursor-pointer absolute inset-x-4 md:inset-x-0 mx-auto h-[300px] md:h-[400px]"
+                    className="cursor-pointer absolute inset-x-4 md:inset-x-0 mx-auto h-[300px] md:h-[350px]"
                   >
                     <div className={`w-full h-full rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
                       isActive ? 'border-white/30 shadow-2xl' : 'border-white/10'
