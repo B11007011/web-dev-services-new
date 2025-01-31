@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'tecxmate.com', 'en.tecxmate.com', 'vi.tecxmate.com', 'tw.tecxmate.com'],
+    domains: ['localhost', 'tecxmate.com', 'en.tecxmate.com', 'vi.tecxmate.com', 'tw.tecxmate.com', 'vercel.app'],
     unoptimized: false,
   },
   typescript: {
@@ -13,9 +13,7 @@ const nextConfig = {
   trailingSlash: true,
   output: 'standalone',
   experimental: {
-    serverActions: {
-      allowedOrigins: ['localhost:3000', 'tecxmate.com', '*.tecxmate.com'],
-    },
+    serverActions: true,
   },
   skipMiddlewareUrlNormalize: false,
   skipTrailingSlashRedirect: false,
