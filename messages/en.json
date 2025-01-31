@@ -2,7 +2,27 @@
   "hero": {
     "title": "We Build Amazing Websites",
     "subtitle": "Transform your business with modern web solutions",
-    "cta": "Get Started"
+    "cta": "Get Started",
+    "services": [
+      {
+        "title": "Web Development",
+        "description": "Modern, responsive websites built for speed and scalability",
+        "color": "from-blue-600 to-purple-600",
+        "image": "/placeholder1.jpg"
+      },
+      {
+        "title": "Mobile Apps",
+        "description": "Cross-platform apps that captivate iOS and Android users",
+        "color": "from-purple-600 to-red-600",
+        "image": "/placeholder2.jpg"
+      },
+      {
+        "title": "Cloud Solutions",
+        "description": "Scalable infrastructure for seamless growth",
+        "color": "from-red-600 to-orange-600",
+        "image": "/placeholder3.jpg"
+      }
+    ]
   },
   "nav": {
     "home": "Home",
@@ -39,67 +59,85 @@
     }
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Comprehensive digital solutions to help your business grow",
+    "title": "🚀 Our Professional Services",
+    "subtitle": "Comprehensive digital solutions to transform and scale your business",
     "items": [
       {
-        "title": "Web Development",
-        "description": "Modern, responsive websites built with Next.js and React",
+        "title": "🌐 Web Development",
+        "description": "Modern, high-performance websites and web applications built for scalability and success",
         "features": [
-          "Custom Web Applications",
-          "E-commerce Solutions",
-          "Progressive Web Apps",
-          "API Integration"
+          "Next.js & React Architecture",
+          "Progressive Web Apps (PWA)",
+          "Custom CMS Development",
+          "API Development & Integration",
+          "Database Design & Optimization",
+          "Web Performance Optimization",
+          "Security Implementation"
         ]
       },
       {
-        "title": "Mobile Development",
-        "description": "Cross-platform mobile apps for iOS and Android",
+        "title": "📱 Mobile Development",
+        "description": "Cross-platform mobile applications that deliver exceptional user experiences",
         "features": [
-          "React Native Apps",
-          "Native iOS/Android",
-          "App Store Publishing",
-          "Mobile UI/UX Design"
+          "React Native Development",
+          "Native iOS/Android Apps",
+          "Mobile UI/UX Design",
+          "Push Notifications",
+          "Offline Functionality",
+          "App Store Optimization",
+          "Mobile Analytics Integration"
         ]
       },
       {
-        "title": "UI/UX Design",
-        "description": "Beautiful, intuitive designs that users love",
+        "title": "🛒 E-commerce Solutions",
+        "description": "Complete e-commerce platforms designed to maximize sales and customer satisfaction",
         "features": [
-          "Interface Design",
-          "User Experience",
-          "Wireframing & Prototypes",
-          "Design Systems"
+          "Custom Shopping Cart",
+          "Payment Gateway Integration",
+          "Inventory Management",
+          "Order Processing System",
+          "Customer Account Portal",
+          "Product Recommendation Engine",
+          "Multi-currency Support"
         ]
       },
       {
-        "title": "Digital Marketing",
-        "description": "Grow your online presence and reach",
+        "title": "🎯 Digital Marketing",
+        "description": "Results-driven digital marketing strategies to boost your online presence",
         "features": [
           "SEO Optimization",
-          "Social Media Marketing",
-          "Content Strategy",
-          "Analytics & Tracking"
+          "Content Marketing",
+          "Social Media Management",
+          "Email Marketing Campaigns",
+          "PPC Advertising",
+          "Conversion Rate Optimization",
+          "Analytics & Reporting"
         ]
       },
       {
-        "title": "E-commerce Solutions",
-        "description": "Complete online store development",
+        "title": "✨ UI/UX Design",
+        "description": "User-centered design solutions that create engaging digital experiences",
         "features": [
-          "Shopping Cart Integration",
-          "Payment Gateway Setup",
-          "Inventory Management",
-          "Order Processing"
+          "User Research & Analysis",
+          "Information Architecture",
+          "Wireframing & Prototyping",
+          "Visual Design",
+          "Interaction Design",
+          "Usability Testing",
+          "Design System Creation"
         ]
       },
       {
-        "title": "Cloud Services",
-        "description": "Scalable cloud solutions and hosting",
+        "title": "☁️ Cloud Solutions",
+        "description": "Scalable cloud infrastructure and services for optimal performance",
         "features": [
-          "AWS/Azure Integration",
-          "Cloud Architecture",
-          "Server Management",
-          "Database Solutions"
+          "Cloud Architecture Design",
+          "AWS/Azure/GCP Setup",
+          "Database Migration",
+          "Auto-scaling Configuration",
+          "Backup & Recovery",
+          "Security & Compliance",
+          "24/7 Monitoring"
         ]
       }
     ]
@@ -109,17 +147,116 @@
     "subtitle": "What sets us apart"
   },
   "process": {
-    "title": "Our Process",
-    "subtitle": "How we execute projects"
+    "title": "Our Development Process",
+    "subtitle": "A systematic approach to delivering exceptional results with proven methodologies",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery & Strategy",
+        "description": "We begin with a deep dive into your business objectives, market analysis, and technical requirements to create a comprehensive strategy.",
+        "details": [
+          "Business Goals Analysis",
+          "Target Audience Research",
+          "Competitor Analysis",
+          "Technology Stack Selection",
+          "Project Scope Definition",
+          "Budget & Timeline Planning",
+          "Risk Assessment"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Design & UX",
+        "description": "Our design team creates stunning, user-centric interfaces that align with your brand and optimize user engagement.",
+        "details": [
+          "UI/UX Strategy",
+          "Brand Integration",
+          "Wireframing & Mockups",
+          "Interactive Prototypes",
+          "User Flow Optimization",
+          "Mobile-First Design",
+          "Accessibility Standards"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Development & QA",
+        "description": "Using modern technologies and best practices, we build robust, scalable solutions with comprehensive testing.",
+        "details": [
+          "Agile Development",
+          "Code Quality Standards",
+          "Performance Optimization",
+          "Security Implementation",
+          "Cross-browser Testing",
+          "Mobile Responsiveness",
+          "Integration Testing"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Launch & Growth",
+        "description": "We ensure a successful launch with continuous monitoring, optimization, and support for sustainable growth.",
+        "details": [
+          "Pre-launch Checklist",
+          "SEO Implementation",
+          "Performance Monitoring",
+          "Analytics Setup",
+          "Security Monitoring",
+          "Continuous Updates",
+          "24/7 Support System"
+        ]
+      }
+    ]
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Tell us about your project",
+    "title": "Get in Touch",
+    "subtitle": "Have a project in mind? Let's discuss how we can help bring your vision to life. Our team typically responds within 24 hours.",
     "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "submit": "Submit"
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Phone Number (Optional)",
+      "company": "Company Name (Optional)",
+      "subject": "Project Type",
+      "budget": "Estimated Budget",
+      "timeline": "Expected Timeline",
+      "message": "Project Details",
+      "submit": "Send Message",
+      "success": "Thank you! We will contact you soon.",
+      "error": "Failed to send message. Please try again or contact us directly.",
+      "placeholders": {
+        "subject": "Select Project Type...",
+        "budget": "Select Budget Range...",
+        "timeline": "Select Timeline...",
+        "message": "Please describe your project requirements, goals, and any specific features you need..."
+      },
+      "options": {
+        "subject": {
+          "standard": "Standard Multi-page Website",
+          "catalog": "Business Catalog Website",
+          "multilingual": "Multi-language Website",
+          "ecommerce": "E-commerce Website",
+          "custom": "Custom Development"
+        },
+        "budget": {
+          "40-50k": "$40,000 - $50,000",
+          "50-60k": "$50,000 - $60,000",
+          "60-70k": "$60,000 - $70,000",
+          "70-90k": "$70,000 - $90,000",
+          "90k+": "$90,000+"
+        },
+        "timeline": {
+          "1-2": "1-2 months",
+          "2-3": "2-3 months",
+          "3-4": "3-4 months",
+          "4+": "4+ months"
+        }
+      }
+    },
+    "contact": {
+      "email": "contact@example.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Business Street, Tech City, TC 12345",
+      "workingHours": "Mon - Fri: 9:00 AM - 6:00 PM"
     }
   },
   "faq": {
@@ -151,6 +288,219 @@
       {
         "question": "How do you handle project pricing?",
         "answer": "We offer transparent pricing based on project scope and requirements. Each project is unique, so we provide detailed quotes after understanding your specific needs. We also offer:\n\n• Flexible payment plans\n• Milestone-based payments\n• Clear project timelines\n• No hidden costs"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "description": "Transforming ideas into exceptional digital experiences with modern technology."
+    },
+    "newsletter": {
+      "title": "Get Development Updates",
+      "subtitle": "Subscribe to receive the latest tech insights and development tips",
+      "placeholder": "Enter your email",
+      "button": "Subscribe",
+      "subscribing": "Subscribing...",
+      "subscribed": "Subscribed!",
+      "error": "Failed to subscribe. Please try again."
+    },
+    "sections": {
+      "services": {
+        "title": "Services",
+        "links": [
+          { "label": "Web Development", "href": "#services" },
+          { "label": "UI/UX Design", "href": "#services" },
+          { "label": "Mobile Development", "href": "#services" }
+        ]
+      },
+      "company": {
+        "title": "Company",
+        "links": [
+          { "label": "Our Process", "href": "#process" },
+          { "label": "Portfolio", "href": "#portfolio" },
+          { "label": "Pricing", "href": "#pricing" },
+          { "label": "FAQ", "href": "#faq" }
+        ]
+      },
+      "support": {
+        "title": "Support",
+        "links": [
+          { "label": "Contact Us", "href": "#contact" },
+          { "label": "Free Consultation", "href": "#contact" }
+        ]
+      }
+    },
+    "copyright": "© {year} All rights reserved."
+  },
+  "portfolio": {
+    "title": "Our Projects",
+    "subtitle": "Explore our recent projects and success stories",
+    "viewProject": "View Project",
+    "projects": [
+      {
+        "title": "Web Development",
+        "description": "Modern web application built with Next.js and React",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+          "features": ["Responsive Design", "SEO Optimization", "Performance Metrics", "API Integration"],
+          "link": "https://example.com/project1"
+        }
+      },
+      {
+        "title": "Mobile Application",
+        "description": "Cross-platform solution for iOS and Android",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
+          "features": ["Push Notifications", "Offline Support", "Analytics", "App Store Optimization"],
+          "link": "https://example.com/project2"
+        }
+      },
+      {
+        "title": "UI/UX Design",
+        "description": "User-centered design that delivers results",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+          "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],
+          "link": "https://example.com/project3"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "subtitle": "Passionate experts dedicated to your success",
+    "members": [
+      {
+        "name": "John Smith",
+        "role": "CEO & Lead Developer",
+        "image": "/placeholder-team1.jpg",
+        "bio": "10+ years of experience in web development and team leadership",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "UI/UX Designer",
+        "image": "/placeholder-team2.jpg",
+        "bio": "Expert in creating beautiful and functional user experiences",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Backend Developer",
+        "image": "/placeholder-team3.jpg",
+        "bio": "Specialized in scalable cloud architecture and security",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Website Development Plans",
+    "subtitle": "Choose the perfect solution for your business growth",
+    "plans": [
+      {
+        "name": "Standard Multi-page",
+        "price": "$46,800",
+        "description": "Perfect for digital transformation",
+        "targetAudience": "Ideal for businesses, offices, consultants, and freelancers",
+        "features": [
+          "8 pages custom design",
+          "Responsive mobile-first design",
+          "Blog/News management system",
+          "Dynamic content effects",
+          "Contact form system",
+          "Flexible content blocks",
+          "Content management system",
+          "Basic SEO optimization",
+          "Google Analytics setup"
+        ],
+        "cta": "Get Started"
+      },
+      {
+        "name": "Business Catalog",
+        "price": "$55,800",
+        "description": "Professional catalog solution for products/services",
+        "targetAudience": "Perfect for listed companies, electronics, and tech industries",
+        "features": [
+          "Product catalog system",
+          "Product page templates",
+          "Full-site dynamic effects",
+          "File download system",
+          "Floating action buttons",
+          "Flexible content management",
+          "Advanced CMS features",
+          "Advanced SEO features",
+          "Multi-department contact forms"
+        ],
+        "cta": "Get Started"
+      },
+      {
+        "name": "Multi-language",
+        "price": "$62,800",
+        "description": "International business solution",
+        "targetAudience": "Ideal for multinational companies and export businesses",
+        "features": [
+          "Custom language switcher",
+          "Multi-language content system",
+          "Product catalog system",
+          "Dynamic content effects",
+          "Floating action menu",
+          "Content management system",
+          "International SEO setup",
+          "Multi-region optimization",
+          "Global audience analytics"
+        ],
+        "cta": "Go Global"
+      },
+      {
+        "name": "E-commerce",
+        "price": "$88,000",
+        "description": "Complete online store solution",
+        "targetAudience": "Perfect for retail and online businesses",
+        "features": [
+          "Product management system",
+          "Order management system",
+          "Discount system",
+          "Payment gateway integration",
+          "Shipping integration",
+          "Customer accounts",
+          "Inventory tracking",
+          "Advanced analytics",
+          "Marketing tools integration"
+        ],
+        "cta": "Start Selling"
+      },
+      {
+        "name": "Custom Development",
+        "price": "Contact Us",
+        "description": "Tailored digital solutions",
+        "targetAudience": "For web design projects and digital branding with flexible budget",
+        "features": [
+          "Interactive animations",
+          "Custom UI/UX design",
+          "Advanced development",
+          "Custom backend systems",
+          "Enterprise CMS",
+          "API integrations",
+          "Custom features",
+          "Performance optimization",
+          "Dedicated support team"
+        ],
+        "cta": "Get Quote"
       }
     ]
   }

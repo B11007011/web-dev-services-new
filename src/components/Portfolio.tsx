@@ -4,6 +4,23 @@ import React, { useRef, useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
+
+type PortfolioTranslations = {
+  title: string;
+  subtitle: string;
+  viewProject: string;
+  projects: Array<{
+    title: string;
+    description: string;
+    image: string;
+    details: {
+      technologies: string[];
+      features: string[];
+      link: string;
+    };
+  }>;
+}
 
 // Custom hook for handling clicks outside of a component
 const useOutsideClick = (ref: React.RefObject<HTMLDivElement>, callback: Function) => {
@@ -26,135 +43,151 @@ const useOutsideClick = (ref: React.RefObject<HTMLDivElement>, callback: Functio
 }
 
 const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null)
-  const modalRef = useRef<HTMLDivElement>(null)
+  const [selectedProject, setSelectedProject] = useState(0)
+  const [direction, setDirection] = useState(0)
 
-  const projects = [
-    {
-      title: 'Web Development',
-      description: 'Modern web applications built with Next.js and React',
-      image: '/placeholder.jpg',
-      details: {
-        technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-        features: ['Responsive Design', 'SEO Optimization', 'Performance Metrics', 'API Integration'],
-        link: 'https://example.com/project1'
+  const content = useTranslations<PortfolioTranslations>('portfolio') || {
+    title: 'Our Portfolio',
+    subtitle: 'Explore our latest projects and success stories',
+    viewProject: 'View Project',
+    projects: [
+      {
+        title: 'Web Development',
+        description: 'Modern web applications built with Next.js and React',
+        image: '/placeholder.jpg',
+        details: {
+          technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+          features: ['Responsive Design', 'SEO Optimization', 'Performance Metrics', 'API Integration'],
+          link: 'https://example.com/project1'
+        }
+      },
+      {
+        title: 'Mobile Apps',
+        description: 'Cross-platform solutions for iOS and Android',
+        image: '/placeholder.jpg',
+        details: {
+          technologies: ['React Native', 'TypeScript', 'Redux', 'Native APIs'],
+          features: ['Push Notifications', 'Offline Support', 'Analytics', 'App Store Optimization'],
+          link: 'https://example.com/project2'
+        }
+      },
+      {
+        title: 'UI/UX Design',
+        description: 'User-centered designs that deliver results',
+        image: '/placeholder.jpg',
+        details: {
+          technologies: ['Figma', 'Adobe XD', 'Sketch', 'Prototyping'],
+          features: ['User Research', 'Wireframing', 'Design Systems', 'Usability Testing'],
+          link: 'https://example.com/project3'
+        }
       }
-    },
-    {
-      title: 'Mobile Apps',
-      description: 'Cross-platform solutions for iOS and Android',
-      image: '/placeholder.jpg',
-      details: {
-        technologies: ['React Native', 'TypeScript', 'Redux', 'Native APIs'],
-        features: ['Push Notifications', 'Offline Support', 'Analytics', 'App Store Optimization'],
-        link: 'https://example.com/project2'
-      }
-    },
-    {
-      title: 'UI/UX Design',
-      description: 'User-centered designs that deliver results',
-      image: '/placeholder.jpg',
-      details: {
-        technologies: ['Figma', 'Adobe XD', 'Sketch', 'Prototyping'],
-        features: ['User Research', 'Wireframing', 'Design Systems', 'Usability Testing'],
-        link: 'https://example.com/project3'
-      }
-    },
-  ]
-
-  const closeModal = useCallback(() => {
-    setSelectedProject(null)
-  }, [])
-
-  useOutsideClick(modalRef, closeModal)
+    ]
+  }
 
   return (
-    <section id="portfolio" className="py-20 bg-black">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
-          Our Work
-        </h2>
-        <p className="text-xl text-gray-400 text-center mb-12">
-          Explore our latest projects and success stories
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => setSelectedProject(index)}
-              className="bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-blue-500/20 hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-gray-800"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400">{project.description}</p>
-              </div>
-            </motion.div>
-          ))}
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="portfolio">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
+          >
+            {content.title}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/80 max-w-2xl mx-auto"
+          >
+            {content.subtitle}
+          </motion.p>
         </div>
 
-        <AnimatePresence>
-          {selectedProject !== null && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
-            >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Project Preview */}
+          <motion.div 
+            className="relative aspect-video rounded-2xl overflow-hidden group"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AnimatePresence initial={false} mode="wait">
               <motion.div
-                ref={modalRef}
-                initial={{ scale: 0.9, y: 20 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.9, y: 20 }}
-                className="bg-gray-900 rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative border border-gray-800"
+                key={selectedProject}
+                initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
               >
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 transition-colors duration-300"
-                >
-                  <X className="w-6 h-6 text-gray-400" />
-                </button>
+                <Image
+                  src={content.projects[selectedProject].image}
+                  alt={content.projects[selectedProject].title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </motion.div>
+            </AnimatePresence>
 
-                <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
-                  <Image
-                    src={projects[selectedProject].image}
-                    alt={projects[selectedProject].title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+            {/* Navigation Arrows */}
+            <div className="absolute inset-x-0 bottom-0 p-6 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+              <button
+                onClick={() => {
+                  setDirection(-1)
+                  setSelectedProject((prev) => (prev - 1 + content.projects.length) % content.projects.length)
+                }}
+                className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => {
+                  setDirection(1)
+                  setSelectedProject((prev) => (prev + 1) % content.projects.length)
+                }}
+                className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                →
+              </button>
+            </div>
+          </motion.div>
 
-                <h3 className="text-2xl font-bold mb-2 text-white">
-                  {projects[selectedProject].title}
+          {/* Project Details */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedProject}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20"
+              >
+                <h3 className="text-2xl font-bold mb-4 text-white">
+                  {content.projects[selectedProject].title}
                 </h3>
-                <p className="text-gray-400 mb-6">
-                  {projects[selectedProject].description}
+                <p className="text-white/70 mb-6">
+                  {content.projects[selectedProject].description}
                 </p>
 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold mb-2 text-white">Technologies</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-white/90">Technologies</h4>
                     <div className="flex flex-wrap gap-2">
-                      {projects[selectedProject].details.technologies.map((tech, i) => (
+                      {content.projects[selectedProject].details.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm border border-blue-800"
+                          className="px-3 py-1 bg-white/10 text-white/80 rounded-full text-sm border border-white/20"
                         >
                           {tech}
                         </span>
@@ -163,28 +196,41 @@ const Portfolio = () => {
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-2 text-white">Key Features</h4>
-                    <ul className="list-disc list-inside text-gray-400 space-y-1">
-                      {projects[selectedProject].details.features.map((feature, i) => (
-                        <li key={i}>{feature}</li>
+                    <h4 className="text-lg font-semibold mb-2 text-white/90">Key Features</h4>
+                    <ul className="space-y-2">
+                      {content.projects[selectedProject].details.features.map((feature, i) => (
+                        <motion.li 
+                          key={i}
+                          className="flex items-center text-white/60 group-hover:text-white/80 transition-colors"
+                          whileHover={{ x: 5 }}
+                        >
+                          <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2" />
+                          {feature}
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
 
-                  <a
-                    href={projects[selectedProject].details.link}
+                  <motion.a
+                    href={content.projects[selectedProject].details.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    View Project
-                  </a>
+                    {content.viewProject}
+                  </motion.a>
                 </div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
     </section>
   )
 }

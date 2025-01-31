@@ -1,0 +1,83 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Web Services API",
+  "dateExported": "2024-03-20T10:00:00.000Z",
+  "version": "1.1",
+  "folders": [
+    {
+      "name": "Pages",
+      "containerId": "",
+      "created": "2024-03-20T10:00:00.000Z",
+      "sortNum": 10000
+    },
+    {
+      "name": "Contacts",
+      "containerId": "",
+      "created": "2024-03-20T10:00:00.000Z",
+      "sortNum": 20000
+    }
+  ],
+  "requests": [
+    {
+      "name": "List Pages",
+      "url": "http://localhost:3000/api/pages",
+      "method": "GET",
+      "containerId": "Pages",
+      "sortNum": 10000
+    },
+    {
+      "name": "Create Page",
+      "url": "http://localhost:3000/api/pages",
+      "method": "POST",
+      "containerId": "Pages",
+      "sortNum": 20000,
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Test Page\",\n  \"slug\": \"test-page\",\n  \"content\": \"This is a test page content.\",\n  \"locale\": \"en\"\n}"
+      }
+    },
+    {
+      "name": "Get Page",
+      "url": "http://localhost:3000/api/pages/test-page",
+      "method": "GET",
+      "containerId": "Pages",
+      "sortNum": 30000
+    },
+    {
+      "name": "Update Page",
+      "url": "http://localhost:3000/api/pages/test-page",
+      "method": "PATCH",
+      "containerId": "Pages",
+      "sortNum": 40000,
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Updated Test Page\",\n  \"content\": \"This content has been updated.\"\n}"
+      }
+    },
+    {
+      "name": "Delete Page",
+      "url": "http://localhost:3000/api/pages/test-page",
+      "method": "DELETE",
+      "containerId": "Pages",
+      "sortNum": 50000
+    },
+    {
+      "name": "List Contacts",
+      "url": "http://localhost:3000/api/contacts",
+      "method": "GET",
+      "containerId": "Contacts",
+      "sortNum": 10000
+    },
+    {
+      "name": "Submit Contact",
+      "url": "http://localhost:3000/api/contacts",
+      "method": "POST",
+      "containerId": "Contacts",
+      "sortNum": 20000,
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"message\": \"This is a test message\",\n  \"phone\": \"+1234567890\",\n  \"company\": \"Test Company\"\n}"
+      }
+    }
+  ]
+} 

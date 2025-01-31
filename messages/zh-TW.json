@@ -2,7 +2,27 @@
   "hero": {
     "title": "我們打造令人驚嘆的網站",
     "subtitle": "以現代網路解決方案轉型您的企業",
-    "cta": "立即開始"
+    "cta": "立即開始",
+    "services": [
+      {
+        "title": "網站開發",
+        "description": "現代化、響應式網站，專注於速度和擴展性",
+        "color": "from-blue-600 to-purple-600",
+        "image": "/placeholder1.jpg"
+      },
+      {
+        "title": "移動應用",
+        "description": "吸引 iOS 和 Android 用戶的跨平台應用",
+        "color": "from-purple-600 to-red-600",
+        "image": "/placeholder2.jpg"
+      },
+      {
+        "title": "雲端解決方案",
+        "description": "實現無縫成長的可擴展基礎架構",
+        "color": "from-red-600 to-orange-600",
+        "image": "/placeholder3.jpg"
+      }
+    ]
   },
   "nav": {
     "home": "首頁",
@@ -39,67 +59,85 @@
     }
   },
   "services": {
-    "title": "我們的服務",
-    "subtitle": "全方位數位解決方案助您企業成長",
+    "title": "🚀 專業服務",
+    "subtitle": "全方位數位解決方案，助您轉型和擴展業務",
     "items": [
       {
-        "title": "網站開發",
-        "description": "使用 Next.js 和 React 打造現代化響應式網站",
+        "title": "🌐 網站開發",
+        "description": "現代化、高性能的網站和網路應用程式，專為擴展和成功而建",
         "features": [
-          "客製化網頁應用",
-          "電子商務解決方案",
-          "漸進式網頁應用",
-          "API 整合"
+          "Next.js與React架構",
+          "漸進式網路應用(PWA)",
+          "客製化CMS開發",
+          "API開發與整合",
+          "資料庫設計與優化",
+          "網站性能優化",
+          "安全性實施"
         ]
       },
       {
-        "title": "行動應用開發",
-        "description": "跨平台 iOS 和 Android 行動應用程式",
+        "title": "📱 移動應用開發",
+        "description": "跨平台移動應用程式，提供卓越的用戶體驗",
         "features": [
-          "React Native 應用",
-          "原生 iOS/Android",
-          "應用商店發布",
-          "行動 UI/UX 設計"
+          "React Native開發",
+          "原生iOS/Android應用",
+          "移動UI/UX設計",
+          "推送通知",
+          "離線功能",
+          "應用商店優化",
+          "移動分析整合"
         ]
       },
       {
-        "title": "UI/UX 設計",
-        "description": "美觀直覺的設計，讓用戶愛不釋手",
+        "title": "🛒 電子商務解決方案",
+        "description": "完整的電子商務平台，專為最大化銷售額和客戶滿意度而設計",
         "features": [
-          "使用者介面設計",
-          "使用者體驗設計",
-          "線框圖與原型",
-          "設計系統"
-        ]
-      },
-      {
-        "title": "數位行銷",
-        "description": "提升您的線上知名度與觸及率",
-        "features": [
-          "搜尋引擎最佳化",
-          "社群媒體行銷",
-          "內容策略",
-          "數據分析追蹤"
-        ]
-      },
-      {
-        "title": "電子商務解決方案",
-        "description": "完整的線上商店開發服務",
-        "features": [
-          "購物車整合",
-          "金流系統設置",
+          "客製化購物車",
+          "支付閘道整合",
           "庫存管理",
-          "訂單處理"
+          "訂單處理系統",
+          "客戶帳戶門戶",
+          "產品推薦引擎",
+          "多幣種支持"
         ]
       },
       {
-        "title": "雲端服務",
-        "description": "可擴展的雲端解決方案與託管服務",
+        "title": "🎯 數位行銷",
+        "description": "以結果為導向的數位行銷策略，提升您的線上影響力",
         "features": [
-          "AWS/Azure 整合",
-          "雲端架構",
-          "伺服器管理",
-          "資料庫解決方案"
+          "SEO優化",
+          "內容行銷",
+          "社群媒體管理",
+          "電子郵件行銷活動",
+          "PPC廣告",
+          "轉換率優化",
+          "分析與報告"
+        ]
+      },
+      {
+        "title": "✨ UI/UX設計",
+        "description": "以用戶為中心的設計解決方案，創造引人入勝的數位體驗",
+        "features": [
+          "用戶研究與分析",
+          "信息架構",
+          "線框圖與原型",
+          "視覺設計",
+          "互動設計",
+          "可用性測試",
+          "設計系統建立"
+        ]
+      },
+      {
+        "title": "☁️ 雲端解決方案",
+        "description": "可擴展的雲端基礎設施和服務，實現最佳性能",
+        "features": [
+          "雲端架構設計",
+          "AWS/Azure/GCP設置",
+          "資料庫遷移",
+          "自動擴展配置",
+          "備份與恢復",
+          "安全與合規",
+          "24/7監控"
         ]
       }
     ]
@@ -109,48 +147,376 @@
     "subtitle": "我們的優勢"
   },
   "process": {
-    "title": "工作流程",
-    "subtitle": "我們如何執行專案"
+    "title": "開發流程",
+    "subtitle": "系統化的方法以實現卓越成果的成熟方法論",
+    "steps": [
+      {
+        "number": "01",
+        "title": "探索與策略",
+        "description": "我們深入分析您的業務目標、市場分析和技術需求，制定全面的策略。",
+        "details": [
+          "業務目標分析",
+          "目標受眾研究",
+          "競爭對手分析",
+          "技術棧選擇",
+          "項目範圍定義",
+          "預算與時間規劃",
+          "風險評估"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "設計與體驗",
+        "description": "我們的設計團隊創建令人驚嘆的用戶界面，與品牌一致並優化用戶參與度。",
+        "details": [
+          "UI/UX策略",
+          "品牌整合",
+          "線框圖與模型",
+          "互動原型",
+          "用戶流程優化",
+          "移動優先設計",
+          "無障礙標準"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "開發與品質",
+        "description": "使用現代技術和最佳實踐，我們構建強大、可擴展的解決方案，並進行全面測試。",
+        "details": [
+          "敏捷開發",
+          "代碼質量標準",
+          "性能優化",
+          "安全實施",
+          "跨瀏覽器測試",
+          "移動端響應",
+          "整合測試"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "上線與成長",
+        "description": "我們確保成功上線，持續監控、優化並提供支持以實現可持續增長。",
+        "details": [
+          "上線前檢查清單",
+          "SEO實施",
+          "性能監控",
+          "分析設置",
+          "安全監控",
+          "持續更新",
+          "24/7支持系統"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "聯絡我們",
-    "subtitle": "告訴我們您的專案需求",
+    "subtitle": "有專案想法嗎？讓我們討論如何幫助實現您的願景。我們的團隊通常會在24小時內回覆。",
     "form": {
       "name": "姓名",
       "email": "電子郵件",
-      "message": "訊息",
-      "submit": "送出"
+      "phone": "電話號碼（選填）",
+      "company": "公司名稱（選填）",
+      "subject": "專案類型",
+      "budget": "預算範圍",
+      "timeline": "預期時程",
+      "message": "專案細節",
+      "submit": "發送訊息",
+      "success": "感謝您！我們將盡快與您聯繫。",
+      "error": "訊息發送失敗。請重試或直接與我們聯繫。",
+      "placeholders": {
+        "subject": "選擇專案類型...",
+        "budget": "選擇預算範圍...",
+        "timeline": "選擇預期時程...",
+        "message": "請描述您的專案需求、目標和所需的具體功能..."
+      },
+      "options": {
+        "subject": {
+          "standard": "標準多頁網站",
+          "catalog": "企業目錄網站",
+          "multilingual": "多語言網站",
+          "ecommerce": "電子商務網站",
+          "custom": "客製化開發"
+        },
+        "budget": {
+          "40-50k": "40,000 - 50,000 美元",
+          "50-60k": "50,000 - 60,000 美元",
+          "60-70k": "60,000 - 70,000 美元",
+          "70-90k": "70,000 - 90,000 美元",
+          "90k+": "90,000+ 美元"
+        },
+        "timeline": {
+          "1-2": "1-2 個月",
+          "2-3": "2-3 個月",
+          "3-4": "3-4 個月",
+          "4+": "4個月以上"
+        }
+      }
+    },
+    "contact": {
+      "email": "contact@example.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Business Street, Tech City, TC 12345",
+      "workingHours": "週一至週五：上午9:00 - 下午6:00"
     }
   },
   "faq": {
     "title": "常見問題",
-    "subtitle": "了解我們的服務和流程相關問題",
+    "subtitle": "了解我們的服務、流程和解決方案相關問題",
     "contactText": "還有其他問題？",
     "contactLink": "聯繫我們的支援團隊",
     "items": [
       {
         "question": "您使用哪些網站開發技術？",
-        "answer": "我們使用現代化技術，前端開發採用 React、Next.js、TypeScript 和 Tailwind CSS。後端則使用 Node.js、Python 和各種雲端服務。我們的技術堆疊始終保持產業標準的最新狀態。"
+        "answer": "我們使用現代化技術和技術堆疊，包括：\n\n• 前端：React、Next.js、TypeScript、Tailwind CSS\n• 後端：Node.js、Python、Go\n• 資料庫：PostgreSQL、MongoDB、Redis\n• 雲端：AWS、Azure、GCP\n• CMS：無頭CMS解決方案\n• DevOps：Docker、Kubernetes、CI/CD\n\n我們的技術堆疊始終保持產業標準和最佳實踐的最新狀態。"
       },
       {
         "question": "如何確保網站安全？",
-        "answer": "我們實施多層次的安全措施，包括：\n\n• SSL 憑證和 HTTPS\n• 安全認證系統\n• 資料儲存和傳輸加密\n• 定期安全稽核\n• 防範 XSS、CSRF、SQL 注入等攻擊\n• 持續安全監控\n• 定期安全更新"
+        "answer": "我們實施多層次的安全措施，包括：\n\n• SSL憑證和HTTPS加密\n• 具備2FA的安全認證系統\n• 資料儲存和傳輸加密\n• 定期安全稽核和滲透測試\n• 防範XSS、CSRF、SQL注入\n• DDoS防護和WAF實施\n• 持續安全監控\n• 定期安全更新和修補\n• 安全支付閘道整合\n• 資料備份和災難恢復\n• 符合GDPR、CCPA等法規"
       },
       {
         "question": "您的開發流程是什麼？",
-        "answer": "我們採用敏捷開發流程，包括：\n\n1. 需求收集與分析\n2. UI/UX 設計和原型製作\n3. 迭代開發並定期獲取客戶回饋\n4. 全面測試和品質保證\n5. 部署和效能優化\n6. 上線後的持續支援"
+        "answer": "我們採用敏捷開發流程，包括：\n\n1. 探索與規劃\n   • 需求收集\n   • 技術分析\n   • 專案路線圖制定\n\n2. 設計與原型\n   • UI/UX設計\n   • 互動原型\n   • 客戶回饋整合\n\n3. 開發\n   • 敏捷衝刺\n   • 定期更新\n   • 持續整合\n\n4. 測試與品質保證\n   • 自動化測試\n   • 效能測試\n   • 安全測試\n\n5. 部署\n   • 分階段部署\n   • 效能優化\n   • 基礎設施建置\n\n6. 上線後\n   • 監控\n   • 維護\n   • 持續改進"
       },
       {
-        "question": "您是否提供 SEO 優化服務？",
-        "answer": "是的，我們提供全方位的 SEO 策略，包括：\n\n• 技術性 SEO 優化\n• Meta 標籤和結構化資料標記\n• 效能優化\n• 行動裝置相容性\n• 內容優化\n• 定期 SEO 審核和報告"
+        "question": "您是否提供SEO優化服務？",
+        "answer": "是的，我們提供全方位的SEO策略，包括：\n\n• 技術SEO\n  - Meta標籤和結構化資料標記\n  - 網站結構優化\n  - 行動裝置優化\n  - Core Web Vitals優化\n\n• 內容SEO\n  - 關鍵字研究和策略\n  - 內容優化\n  - 本地SEO設置\n\n• 外部SEO\n  - 反向連結策略\n  - 社群信號\n  - 品牌提及\n\n• 分析與監控\n  - Google Analytics設置\n  - Search Console整合\n  - 定期效能報告"
       },
       {
         "question": "上線後提供什麼支援服務？",
-        "answer": "我們提供靈活的支援方案，包括：\n\n• 24/7 技術支援\n• 定期維護更新\n• 效能監控\n• 安全性修補\n• 內容更新\n• 功能強化\n\n支援方案可根據您的需求客製化。"
+        "answer": "我們提供全面的支援套件，包括：\n\n• 技術支援\n  - 24/7緊急支援\n  - 錯誤修復和更新\n  - 安全監控\n\n• 維護\n  - 定期更新\n  - 效能優化\n  - 安全修補\n\n• 內容更新\n  - 內容管理\n  - 定期備份\n  - 資料庫維護\n\n• 監控\n  - 運行時間監控\n  - 效能追蹤\n  - 安全掃描\n\n支援套件可根據您的需求客製化。"
       },
       {
-        "question": "專案報價如何處理？",
-        "answer": "我們根據專案範圍和需求提供透明的報價。每個專案都是獨特的，我們會在充分了解您的具體需求後提供詳細報價。我們還提供：\n\n• 靈活的付款方案\n• 階段性付款\n• 清晰的專案時程\n• 無隱藏費用"
+        "question": "如何處理專案定價？",
+        "answer": "我們提供基於專案範圍和需求的透明定價：\n\n• 固定價格專案\n  - 明確交付項目\n  - 確定時程\n  - 里程碑付款\n\n• 時間與材料\n  - 靈活範圍\n  - 定期計費\n  - 資源分配\n\n• 維護模式\n  - 持續支援\n  - 專屬資源\n  - 優先服務\n\n所有價格包含：\n• 無隱藏費用\n• 明確付款時程\n• 詳細專案規劃"
+      },
+      {
+        "question": "是什麼讓您的網站開發服務與眾不同？",
+        "answer": "我們的服務通過以下方面脫穎而出：\n\n• 創新\n  - 最新技術\n  - 現代架構\n  - 進步解決方案\n\n• 品質\n  - 嚴格測試\n  - 最佳實踐\n  - 程式碼品質標準\n\n• 效能\n  - 速度優化\n  - 可擴展解決方案\n  - 高效程式碼\n\n• 支援\n  - 專屬團隊\n  - 快速回應\n  - 持續維護"
+      },
+      {
+        "question": "您如何處理網站維護和更新？",
+        "answer": "我們的維護和更新流程包括：\n\n• 定期維護\n  - 每週備份\n  - 安全更新\n  - 效能檢查\n\n• 內容更新\n  - CMS管理\n  - 內容優化\n  - 媒體管理\n\n• 技術更新\n  - 程式碼更新\n  - 外掛更新\n  - 框架更新\n\n• 監控\n  - 24/7運行監控\n  - 效能追蹤\n  - 安全掃描"
+      },
+      {
+        "question": "您對行動裝置相容性的方法是什麼？",
+        "answer": "我們通過以下方式確保行動裝置的卓越體驗：\n\n• 設計\n  - 行動優先方法\n  - 響應式布局\n  - 觸控友善介面\n\n• 開發\n  - 跨裝置測試\n  - 效能優化\n  - 漸進式增強\n\n• 測試\n  - 裝置測試\n  - 瀏覽器測試\n  - 使用者體驗驗證"
+      },
+      {
+        "question": "您如何處理專案時程和期限？",
+        "answer": "我們的專案管理方法包括：\n\n• 規劃\n  - 建立詳細時程\n  - 資源分配\n  - 里程碑定義\n\n• 執行\n  - 敏捷方法\n  - 定期更新\n  - 進度追蹤\n\n• 溝通\n  - 每週會議\n  - 狀態報告\n  - 即時更新\n\n• 風險管理\n  - 早期識別\n  - 緩解策略\n  - 應變計劃"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "網站開發方案",
+    "subtitle": "選擇最適合您企業成長的解決方案",
+    "plans": [
+      {
+        "name": "標準多頁式網站",
+        "price": "$46,800",
+        "description": "成功邁入數位轉型",
+        "targetAudience": "適合公司企業、事務所、顧問類服務、自營商等",
+        "features": [
+          "八項主選單頁面排版設計",
+          "RWD響應式架構",
+          "最新消息(部落格)文章系統",
+          "全站圖片、文字動態效果",
+          "線上聯繫表單系統",
+          "頁面區塊自由增減",
+          "後台內容管理系統",
+          "基礎SEO優化",
+          "Google分析整合"
+        ],
+        "cta": "立即開始"
+      },
+      {
+        "name": "品牌型錄式網站",
+        "price": "$55,800",
+        "description": "專業型錄方案，服務/產品皆適用",
+        "targetAudience": "適合上市櫃公司、電子業、科技業、產品展示需求等",
+        "features": [
+          "型錄分類管理系統",
+          "產品頁面模板設計",
+          "全站動態效果",
+          "檔案下載工具",
+          "右側浮動icon",
+          "區塊自由增減",
+          "進階CMS功能",
+          "進階SEO功能",
+          "多部門聯繫表單"
+        ],
+        "cta": "最受歡迎"
+      },
+      {
+        "name": "多語系跨國網站",
+        "price": "$62,800",
+        "description": "國際化首選方案",
+        "targetAudience": "適合跨國企業、外銷業務、跨國分公司等",
+        "features": [
+          "自訂語系切換系統",
+          "多語言內容管理",
+          "產品目錄系統",
+          "動態內容效果",
+          "浮動選單",
+          "內容管理系統",
+          "國際SEO設置",
+          "多區域最佳化",
+          "全球受眾分析"
+        ],
+        "cta": "邁向國際"
+      },
+      {
+        "name": "電商購物車網站",
+        "price": "$88,000",
+        "description": "高CP值開店推薦",
+        "targetAudience": "適合零售業、自營業等",
+        "features": [
+          "商品管理系統",
+          "訂單管理系統",
+          "優惠系統",
+          "金流串接",
+          "物流整合",
+          "會員系統",
+          "庫存管理",
+          "進階分析",
+          "行銷工具整合"
+        ],
+        "cta": "開始銷售"
+      },
+      {
+        "name": "客製開發形象網站",
+        "price": "需求另議",
+        "description": "品牌數位整合專用",
+        "targetAudience": "網站設計開發、整合數位形象企劃且預算充足的需求用戶",
+        "features": [
+          "互動動態特效",
+          "UIUX網站介面設計",
+          "進階開發",
+          "客製後端系統",
+          "企業級CMS",
+          "API整合",
+          "客製功能",
+          "效能最佳化",
+          "專屬支援團隊"
+        ],
+        "cta": "取得報價"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "description": "以現代科技將創意轉化為卓越的數位體驗。"
+    },
+    "newsletter": {
+      "title": "獲取開發更新",
+      "subtitle": "訂閱以接收最新的技術見解和開發技巧",
+      "placeholder": "輸入您的電子郵件",
+      "button": "訂閱",
+      "subscribing": "訂閱中...",
+      "subscribed": "已訂閱！",
+      "error": "訂閱失敗。請重試。"
+    },
+    "sections": {
+      "services": {
+        "title": "服務",
+        "links": [
+          { "label": "網站開發", "href": "#services" },
+          { "label": "UI/UX設計", "href": "#services" },
+          { "label": "移動應用開發", "href": "#services" }
+        ]
+      },
+      "company": {
+        "title": "公司",
+        "links": [
+          { "label": "開發流程", "href": "#process" },
+          { "label": "作品集", "href": "#portfolio" },
+          { "label": "價格方案", "href": "#pricing" },
+          { "label": "常見問題", "href": "#faq" }
+        ]
+      },
+      "support": {
+        "title": "支援",
+        "links": [
+          { "label": "聯絡我們", "href": "#contact" },
+          { "label": "免費諮詢", "href": "#contact" }
+        ]
+      }
+    },
+    "copyright": "© {year} 版權所有。"
+  },
+  "portfolio": {
+    "title": "我們的項目",
+    "subtitle": "探索我們最近的項目和成功案例",
+    "viewProject": "查看項目",
+    "projects": [
+      {
+        "title": "網站開發",
+        "description": "使用Next.js和React構建的現代網絡應用",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+          "features": ["響應式設計", "SEO優化", "性能指標", "API整合"],
+          "link": "https://example.com/project1"
+        }
+      },
+      {
+        "title": "移動應用",
+        "description": "iOS和Android的跨平台解決方案",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
+          "features": ["推送通知", "離線支持", "數據分析", "應用商店優化"],
+          "link": "https://example.com/project2"
+        }
+      },
+      {
+        "title": "UI/UX設計",
+        "description": "以用戶為中心的設計帶來成果",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+          "features": ["用戶研究", "線框圖", "設計系統", "可用性測試"],
+          "link": "https://example.com/project3"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "認識我們的團隊",
+    "subtitle": "專業團隊致力於您的成功",
+    "members": [
+      {
+        "name": "John Smith",
+        "role": "執行長 & 首席開發者",
+        "image": "/placeholder-team1.jpg",
+        "bio": "擁有超過10年的網站開發和團隊領導經驗",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "UI/UX 設計師",
+        "image": "/placeholder-team2.jpg",
+        "bio": "專精於創造美觀且實用的用戶體驗",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Michael Chen",
+        "role": "後端開發工程師",
+        "image": "/placeholder-team3.jpg",
+        "bio": "專注於可擴展的雲端架構和安全性",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
       }
     ]
   }

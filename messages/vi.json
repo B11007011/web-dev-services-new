@@ -2,7 +2,27 @@
   "hero": {
     "title": "Chúng Tôi Xây Dựng Website Tuyệt Vời",
     "subtitle": "Chuyển đổi doanh nghiệp của bạn với giải pháp web hiện đại",
-    "cta": "Bắt Đầu Ngay"
+    "cta": "Bắt Đầu Ngay",
+    "services": [
+      {
+        "title": "Phát Triển Web",
+        "description": "Website hiện đại, tương thích với tốc độ và khả năng mở rộng",
+        "color": "from-blue-600 to-purple-600",
+        "image": "/placeholder1.jpg"
+      },
+      {
+        "title": "Ứng Dụng Di Động",
+        "description": "Ứng dụng đa nền tảng thu hút người dùng iOS và Android",
+        "color": "from-purple-600 to-red-600",
+        "image": "/placeholder2.jpg"
+      },
+      {
+        "title": "Giải Pháp Đám Mây",
+        "description": "Cơ sở hạ tầng có thể mở rộng cho sự phát triển liền mạch",
+        "color": "from-red-600 to-orange-600",
+        "image": "/placeholder3.jpg"
+      }
+    ]
   },
   "nav": {
     "home": "Trang Chủ",
@@ -39,67 +59,85 @@
     }
   },
   "services": {
-    "title": "Dịch Vụ Của Chúng Tôi",
-    "subtitle": "Giải pháp số toàn diện giúp doanh nghiệp của bạn phát triển",
+    "title": "🚀 Dịch Vụ Chuyên Nghiệp",
+    "subtitle": "Giải pháp kỹ thuật số toàn diện để chuyển đổi và mở rộng doanh nghiệp của bạn",
     "items": [
       {
-        "title": "Phát Triển Web",
-        "description": "Website hiện đại, tương thích di động được xây dựng bằng Next.js và React",
+        "title": "🌐 Phát Triển Web",
+        "description": "Website và ứng dụng web hiện đại, hiệu suất cao được xây dựng để mở rộng và thành công",
         "features": [
-          "Ứng dụng Web Tùy Chỉnh",
-          "Giải Pháp Thương Mại Điện Tử",
-          "Ứng Dụng Web Tiến Bộ",
-          "Tích Hợp API"
+          "Kiến Trúc Next.js & React",
+          "Ứng Dụng Web Tiến Bộ (PWA)",
+          "Phát Triển CMS Tùy Chỉnh",
+          "Phát Triển & Tích Hợp API",
+          "Thiết Kế & Tối Ưu Cơ Sở Dữ Liệu",
+          "Tối Ưu Hiệu Suất Web",
+          "Triển Khai Bảo Mật"
         ]
       },
       {
-        "title": "Phát Triển Ứng Dụng Di Động",
-        "description": "Ứng dụng di động đa nền tảng cho iOS và Android",
+        "title": "📱 Phát Triển Ứng Dụng Di Động",
+        "description": "Ứng dụng di động đa nền tảng mang lại trải nghiệm người dùng xuất sắc",
         "features": [
-          "Ứng Dụng React Native",
-          "iOS/Android Gốc",
-          "Xuất Bản App Store",
-          "Thiết Kế UI/UX Di Động"
+          "Phát Triển React Native",
+          "Ứng Dụng iOS/Android Gốc",
+          "Thiết Kế UI/UX Mobile",
+          "Thông Báo Đẩy",
+          "Chức Năng Offline",
+          "Tối Ưu App Store",
+          "Tích Hợp Analytics Mobile"
         ]
       },
       {
-        "title": "Thiết Kế UI/UX",
-        "description": "Thiết kế đẹp, trực quan mà người dùng yêu thích",
+        "title": "🛒 Giải Pháp Thương Mại Điện Tử",
+        "description": "Nền tảng thương mại điện tử hoàn chỉnh được thiết kế để tối đa hóa doanh số và sự hài lòng của khách hàng",
         "features": [
-          "Thiết Kế Giao Diện",
-          "Thiết Kế Trải Nghiệm",
-          "Wireframing & Prototype",
-          "Hệ Thống Thiết Kế"
+          "Giỏ Hàng Tùy Chỉnh",
+          "Tích Hợp Cổng Thanh Toán",
+          "Quản Lý Kho Hàng",
+          "Hệ Thống Xử Lý Đơn Hàng",
+          "Cổng Thông Tin Khách Hàng",
+          "Công Cụ Đề Xuất Sản Phẩm",
+          "Hỗ Trợ Đa Tiền Tệ"
         ]
       },
       {
-        "title": "Digital Marketing",
-        "description": "Phát triển sự hiện diện và tiếp cận trực tuyến",
+        "title": "🎯 Digital Marketing",
+        "description": "Chiến lược marketing số hướng đến kết quả để tăng cường sự hiện diện trực tuyến của bạn",
         "features": [
           "Tối Ưu Hóa SEO",
-          "Marketing Mạng Xã Hội",
-          "Chiến Lược Nội Dung",
-          "Phân Tích & Theo Dõi"
+          "Marketing Nội Dung",
+          "Quản Lý Mạng Xã Hội",
+          "Chiến Dịch Email Marketing",
+          "Quảng Cáo PPC",
+          "Tối Ưu Tỷ Lệ Chuyển Đổi",
+          "Phân Tích & Báo Cáo"
         ]
       },
       {
-        "title": "Giải Pháp Thương Mại Điện Tử",
-        "description": "Phát triển cửa hàng trực tuyến toàn diện",
+        "title": "✨ Thiết Kế UI/UX",
+        "description": "Giải pháp thiết kế lấy người dùng làm trung tâm tạo ra trải nghiệm số hấp dẫn",
         "features": [
-          "Tích Hợp Giỏ Hàng",
-          "Thiết Lập Cổng Thanh Toán",
-          "Quản Lý Kho Hàng",
-          "Xử Lý Đơn Hàng"
+          "Nghiên Cứu & Phân Tích Người Dùng",
+          "Kiến Trúc Thông Tin",
+          "Thiết Kế Wireframe & Prototype",
+          "Thiết Kế Trực Quan",
+          "Thiết Kế Tương Tác",
+          "Kiểm Thử Khả Năng Sử Dụng",
+          "Tạo Hệ Thống Thiết Kế"
         ]
       },
       {
-        "title": "Dịch Vụ Đám Mây",
-        "description": "Giải pháp đám mây và lưu trữ có khả năng mở rộng",
+        "title": "☁️ Giải Pháp Đám Mây",
+        "description": "Cơ sở hạ tầng và dịch vụ đám mây có thể mở rộng cho hiệu suất tối ưu",
         "features": [
-          "Tích Hợp AWS/Azure",
-          "Kiến Trúc Đám Mây",
-          "Quản Lý Máy Chủ",
-          "Giải Pháp Cơ Sở Dữ Liệu"
+          "Thiết Kế Kiến Trúc Đám Mây",
+          "Thiết Lập AWS/Azure/GCP",
+          "Di Chuyển Cơ Sở Dữ Liệu",
+          "Cấu Hình Tự Động Mở Rộng",
+          "Sao Lưu & Phục Hồi",
+          "Bảo Mật & Tuân Thủ",
+          "Giám Sát 24/7"
         ]
       }
     ]
@@ -109,48 +147,376 @@
     "subtitle": "Những điểm mạnh của chúng tôi"
   },
   "process": {
-    "title": "Quy Trình Làm Việc",
-    "subtitle": "Cách chúng tôi thực hiện dự án"
+    "title": "Quy Trình Phát Triển",
+    "subtitle": "Phương pháp tiếp cận có hệ thống để mang lại kết quả xuất sắc với phương pháp đã được chứng minh",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Khám Phá & Chiến Lược",
+        "description": "Chúng tôi bắt đầu với việc phân tích sâu về mục tiêu kinh doanh, phân tích thị trường và yêu cầu kỹ thuật để tạo chiến lược toàn diện.",
+        "details": [
+          "Phân Tích Mục Tiêu Kinh Doanh",
+          "Nghiên Cứu Đối Tượng Mục Tiêu",
+          "Phân Tích Đối Thủ Cạnh Tranh",
+          "Lựa Chọn Công Nghệ",
+          "Xác Định Phạm Vi Dự Án",
+          "Lập Kế Hoạch Ngân Sách & Thời Gian",
+          "Đánh Giá Rủi Ro"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Thiết Kế & Trải Nghiệm",
+        "description": "Đội ngũ thiết kế của chúng tôi tạo ra giao diện tuyệt đẹp, lấy người dùng làm trung tâm phù hợp với thương hiệu và tối ưu hóa sự tương tác.",
+        "details": [
+          "Chiến Lược UI/UX",
+          "Tích Hợp Thương Hiệu",
+          "Thiết Kế Wireframe & Mockup",
+          "Prototype Tương Tác",
+          "Tối Ưu Luồng Người Dùng",
+          "Thiết Kế Mobile-First",
+          "Tiêu Chuẩn Truy Cập"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Phát Triển & Kiểm Thử",
+        "description": "Sử dụng công nghệ hiện đại và thực tiễn tốt nhất, chúng tôi xây dựng giải pháp mạnh mẽ, có thể mở rộng với kiểm thử toàn diện.",
+        "details": [
+          "Phát Triển Agile",
+          "Tiêu Chuẩn Chất Lượng Code",
+          "Tối Ưu Hiệu Suất",
+          "Triển Khai Bảo Mật",
+          "Kiểm Tra Đa Trình Duyệt",
+          "Tương Thích Mobile",
+          "Kiểm Thử Tích Hợp"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Ra Mắt & Phát Triển",
+        "description": "Chúng tôi đảm bảo ra mắt thành công với giám sát liên tục, tối ưu hóa và hỗ trợ cho sự phát triển bền vững.",
+        "details": [
+          "Danh Sách Kiểm Tra Trước Ra Mắt",
+          "Triển Khai SEO",
+          "Giám Sát Hiệu Suất",
+          "Thiết Lập Analytics",
+          "Giám Sát Bảo Mật",
+          "Cập Nhật Liên Tục",
+          "Hệ Thống Hỗ Trợ 24/7"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "Liên Hệ Với Chúng Tôi",
-    "subtitle": "Hãy cho chúng tôi biết về dự án của bạn",
+    "subtitle": "Bạn có dự án trong tâm trí? Hãy thảo luận về cách chúng tôi có thể giúp biến tầm nhìn của bạn thành hiện thực. Đội ngũ của chúng tôi thường phản hồi trong vòng 24 giờ.",
     "form": {
-      "name": "Họ và tên",
+      "name": "Họ và Tên",
       "email": "Email",
-      "message": "Tin nhắn",
-      "submit": "Gửi"
+      "phone": "Số Điện Thoại (Tùy chọn)",
+      "company": "Tên Công Ty (Tùy chọn)",
+      "subject": "Loại Dự Án",
+      "budget": "Ngân Sách Dự Kiến",
+      "timeline": "Thời Gian Dự Kiến",
+      "message": "Chi Tiết Dự Án",
+      "submit": "Gửi Tin Nhắn",
+      "success": "Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm.",
+      "error": "Gửi tin nhắn thất bại. Vui lòng thử lại hoặc liên hệ trực tiếp với chúng tôi.",
+      "placeholders": {
+        "subject": "Chọn Loại Dự Án...",
+        "budget": "Chọn Ngân Sách...",
+        "timeline": "Chọn Thời Gian...",
+        "message": "Vui lòng mô tả yêu cầu dự án, mục tiêu và các tính năng cụ thể bạn cần..."
+      },
+      "options": {
+        "subject": {
+          "standard": "Website Đa Trang Tiêu Chuẩn",
+          "catalog": "Website Danh Mục Doanh Nghiệp",
+          "multilingual": "Website Đa Ngôn Ngữ",
+          "ecommerce": "Website Thương Mại Điện Tử",
+          "custom": "Phát Triển Tùy Chỉnh"
+        },
+        "budget": {
+          "40-50k": "40.000 - 50.000 USD",
+          "50-60k": "50.000 - 60.000 USD",
+          "60-70k": "60.000 - 70.000 USD",
+          "70-90k": "70.000 - 90.000 USD",
+          "90k+": "Trên 90.000 USD"
+        },
+        "timeline": {
+          "1-2": "1-2 tháng",
+          "2-3": "2-3 tháng",
+          "3-4": "3-4 tháng",
+          "4+": "Trên 4 tháng"
+        }
+      }
+    },
+    "contact": {
+      "email": "contact@example.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Business Street, Tech City, TC 12345",
+      "workingHours": "Thứ 2 - Thứ 6: 9:00 - 18:00"
     }
   },
   "faq": {
     "title": "Câu Hỏi Thường Gặp",
-    "subtitle": "Tìm câu trả lời cho các câu hỏi phổ biến về dịch vụ và quy trình của chúng tôi",
+    "subtitle": "Tìm câu trả lời cho các câu hỏi phổ biến về dịch vụ, quy trình và giải pháp của chúng tôi",
     "contactText": "Bạn còn câu hỏi nào khác?",
     "contactLink": "Liên hệ với đội ngũ hỗ trợ",
     "items": [
       {
         "question": "Bạn sử dụng những công nghệ nào để phát triển web?",
-        "answer": "Chúng tôi sử dụng các công nghệ hiện đại như React, Next.js, TypeScript và Tailwind CSS cho phát triển frontend. Đối với backend, chúng tôi sử dụng Node.js, Python và các dịch vụ đám mây. Công nghệ của chúng tôi luôn được cập nhật theo tiêu chuẩn ngành."
+        "answer": "Chúng tôi sử dụng các công nghệ hiện đại và stack công nghệ bao gồm:\n\n• Frontend: React, Next.js, TypeScript, Tailwind CSS\n• Backend: Node.js, Python, Go\n• Cơ sở dữ liệu: PostgreSQL, MongoDB, Redis\n• Đám mây: AWS, Azure, GCP\n• CMS: Giải pháp Headless CMS\n• DevOps: Docker, Kubernetes, CI/CD\n\nCông nghệ của chúng tôi luôn được cập nhật theo tiêu chuẩn và thực tiễn tốt nhất của ngành."
       },
       {
         "question": "Làm thế nào để đảm bảo bảo mật website?",
-        "answer": "Chúng tôi triển khai nhiều lớp bảo mật bao gồm:\n\n• Chứng chỉ SSL và HTTPS\n• Hệ thống xác thực an toàn\n• Mã hóa dữ liệu khi lưu trữ và truyền tải\n• Kiểm tra bảo mật định kỳ\n• Bảo vệ chống XSS, CSRF, SQL injection\n• Giám sát bảo mật liên tục\n• Cập nhật bảo mật thường xuyên"
+        "answer": "Chúng tôi triển khai nhiều lớp bảo mật bao gồm:\n\n• Chứng chỉ SSL và mã hóa HTTPS\n• Hệ thống xác thực an toàn với 2FA\n• Mã hóa dữ liệu khi lưu trữ và truyền tải\n• Kiểm tra bảo mật và thử nghiệm xâm nhập định kỳ\n• Bảo vệ chống XSS, CSRF, SQL injection\n• Bảo vệ DDoS và triển khai WAF\n• Giám sát bảo mật liên tục\n• Cập nhật và vá bảo mật thường xuyên\n• Tích hợp cổng thanh toán an toàn\n• Sao lưu dữ liệu và khôi phục thảm họa\n• Tuân thủ GDPR, CCPA và các quy định khác"
       },
       {
         "question": "Quy trình phát triển của bạn như thế nào?",
-        "answer": "Quy trình phát triển Agile của chúng tôi bao gồm:\n\n1. Thu thập và phân tích yêu cầu\n2. Thiết kế UI/UX và tạo prototype\n3. Phát triển lặp với phản hồi thường xuyên từ khách hàng\n4. Kiểm thử và đảm bảo chất lượng\n5. Triển khai và tối ưu hóa\n6. Hỗ trợ sau khi ra mắt"
+        "answer": "Quy trình phát triển linh hoạt của chúng tôi bao gồm:\n\n1. Khám Phá & Lập Kế Hoạch\n   • Thu thập yêu cầu\n   • Phân tích kỹ thuật\n   • Tạo lộ trình dự án\n\n2. Thiết Kế & Tạo Mẫu\n   • Thiết kế UI/UX\n   • Tạo mẫu tương tác\n   • Tích hợp phản hồi khách hàng\n\n3. Phát Triển\n   • Sprint linh hoạt\n   • Cập nhật thường xuyên\n   • Tích hợp liên tục\n\n4. Kiểm Thử & QA\n   • Kiểm thử tự động\n   • Kiểm thử hiệu suất\n   • Kiểm thử bảo mật\n\n5. Triển Khai\n   • Triển khai theo giai đoạn\n   • Tối ưu hiệu suất\n   • Thiết lập cơ sở hạ tầng\n\n6. Sau Ra Mắt\n   • Giám sát\n   • Bảo trì\n   • Cải tiến liên tục"
       },
       {
         "question": "Bạn có cung cấp dịch vụ tối ưu hóa SEO không?",
-        "answer": "Có, chúng tôi triển khai chiến lược SEO toàn diện bao gồm:\n\n• Tối ưu hóa SEO kỹ thuật\n• Thẻ meta và schema markup\n• Tối ưu hiệu suất\n• Tương thích mobile\n• Tối ưu nội dung\n• Báo cáo và kiểm tra SEO định kỳ"
+        "answer": "Có, chúng tôi triển khai chiến lược SEO toàn diện bao gồm:\n\n• SEO Kỹ Thuật\n  - Meta tags và schema markup\n  - Tối ưu cấu trúc trang web\n  - Tối ưu cho di động\n  - Tối ưu Core Web Vitals\n\n• SEO Nội Dung\n  - Nghiên cứu và chiến lược từ khóa\n  - Tối ưu nội dung\n  - Thiết lập SEO địa phương\n\n• SEO Off-page\n  - Chiến lược backlink\n  - Tín hiệu xã hội\n  - Đề cập thương hiệu\n\n• Phân Tích & Giám Sát\n  - Thiết lập Google Analytics\n  - Tích hợp Search Console\n  - Báo cáo hiệu suất định kỳ"
       },
       {
-        "question": "Bạn cung cấp những hỗ trợ gì sau khi ra mắt?",
-        "answer": "Chúng tôi cung cấp các gói hỗ trợ linh hoạt bao gồm:\n\n• Hỗ trợ kỹ thuật 24/7\n• Cập nhật bảo trì thường xuyên\n• Giám sát hiệu suất\n• Vá lỗi bảo mật\n• Cập nhật nội dung\n• Nâng cấp tính năng\n\nCác gói hỗ trợ có thể tùy chỉnh theo nhu cầu của bạn."
+        "question": "Bạn cung cấp những hỗ trợ gì sau khi ra mắt website?",
+        "answer": "Chúng tôi cung cấp các gói hỗ trợ toàn diện bao gồm:\n\n• Hỗ Trợ Kỹ Thuật\n  - Hỗ trợ khẩn cấp 24/7\n  - Sửa lỗi và cập nhật\n  - Giám sát bảo mật\n\n• Bảo Trì\n  - Cập nhật thường xuyên\n  - Tối ưu hiệu suất\n  - Vá bảo mật\n\n• Cập Nhật Nội Dung\n  - Quản lý nội dung\n  - Sao lưu thường xuyên\n  - Bảo trì cơ sở dữ liệu\n\n• Giám Sát\n  - Theo dõi thời gian hoạt động\n  - Theo dõi hiệu suất\n  - Quét bảo mật\n\nCác gói hỗ trợ có thể được tùy chỉnh theo nhu cầu của bạn."
       },
       {
-        "question": "Bạn xử lý giá dự án như thế nào?",
-        "answer": "Chúng tôi cung cấp báo giá minh bạch dựa trên phạm vi và yêu cầu dự án. Mỗi dự án là duy nhất, vì vậy chúng tôi cung cấp báo giá chi tiết sau khi hiểu rõ nhu cầu cụ thể của bạn. Chúng tôi cũng cung cấp:\n\n• Kế hoạch thanh toán linh hoạt\n• Thanh toán theo cột mốc\n• Lộ trình dự án rõ ràng\n• Không có chi phí ẩn"
+        "question": "Làm thế nào bạn xử lý giá dự án?",
+        "answer": "Chúng tôi cung cấp giá minh bạch dựa trên phạm vi và yêu cầu dự án:\n\n• Dự Án Giá Cố Định\n  - Sản phẩm bàn giao rõ ràng\n  - Thời gian xác định\n  - Thanh toán theo cột mốc\n\n• Thời Gian & Vật Liệu\n  - Phạm vi linh hoạt\n  - Thanh toán thường xuyên\n  - Phân bổ nguồn lực\n\n• Mô Hình Duy Trì\n  - Hỗ trợ liên tục\n  - Nguồn lực dành riêng\n  - Dịch vụ ưu tiên\n\nTất cả giá bao gồm:\n• Không chi phí ẩn\n• Lịch thanh toán rõ ràng\n• Lập kế hoạch dự án chi tiết"
+      },
+      {
+        "question": "Điều gì làm cho dịch vụ phát triển web của bạn độc đáo?",
+        "answer": "Dịch vụ của chúng tôi nổi bật thông qua:\n\n• Đổi Mới\n  - Công nghệ mới nhất\n  - Kiến trúc hiện đại\n  - Giải pháp tiến bộ\n\n• Chất Lượng\n  - Kiểm thử nghiêm ngặt\n  - Thực tiễn tốt nhất\n  - Tiêu chuẩn chất lượng code\n\n• Hiệu Suất\n  - Tối ưu tốc độ\n  - Giải pháp có thể mở rộng\n  - Code hiệu quả\n\n• Hỗ Trợ\n  - Đội ngũ chuyên dụng\n  - Phản hồi nhanh\n  - Bảo trì liên tục"
+      },
+      {
+        "question": "Bạn xử lý bảo trì và cập nhật website như thế nào?",
+        "answer": "Quy trình bảo trì và cập nhật của chúng tôi bao gồm:\n\n• Bảo Trì Thường Xuyên\n  - Sao lưu hàng tuần\n  - Cập nhật bảo mật\n  - Kiểm tra hiệu suất\n\n• Cập Nhật Nội Dung\n  - Quản lý CMS\n  - Tối ưu nội dung\n  - Quản lý phương tiện\n\n• Cập Nhật Kỹ Thuật\n  - Cập nhật code\n  - Cập nhật plugin\n  - Cập nhật framework\n\n• Giám Sát\n  - Theo dõi hoạt động 24/7\n  - Theo dõi hiệu suất\n  - Quét bảo mật"
+      },
+      {
+        "question": "Cách tiếp cận của bạn về tính tương thích di động là gì?",
+        "answer": "Chúng tôi đảm bảo sự xuất sắc trên di động thông qua:\n\n• Thiết Kế\n  - Tiếp cận mobile-first\n  - Bố cục tương thích\n  - Giao diện thân thiện với cảm ứng\n\n• Phát Triển\n  - Kiểm thử đa thiết bị\n  - Tối ưu hiệu suất\n  - Cải tiến tiệm tiến\n\n• Kiểm Thử\n  - Kiểm thử thiết bị\n  - Kiểm thử trình duyệt\n  - Xác nhận trải nghiệm người dùng"
+      },
+      {
+        "question": "Bạn xử lý thời gian và thời hạn dự án như thế nào?",
+        "answer": "Cách tiếp cận quản lý dự án của chúng tôi bao gồm:\n\n• Lập Kế Hoạch\n  - Tạo thời gian biểu chi tiết\n  - Phân bổ nguồn lực\n  - Xác định cột mốc\n\n• Thực Hiện\n  - Phương pháp Agile\n  - Cập nhật thường xuyên\n  - Theo dõi tiến độ\n\n• Giao Tiếp\n  - Họp hàng tuần\n  - Báo cáo trạng thái\n  - Cập nhật tức thì\n\n• Quản Lý Rủi Ro\n  - Nhận diện sớm\n  - Chiến lược giảm thiểu\n  - Lập kế hoạch dự phòng"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "description": "Chuyển đổi ý tưởng thành trải nghiệm kỹ thuật số xuất sắc với công nghệ hiện đại."
+    },
+    "newsletter": {
+      "title": "Nhận Cập Nhật Phát Triển",
+      "subtitle": "Đăng ký để nhận thông tin và mẹo phát triển công nghệ mới nhất",
+      "placeholder": "Nhập email của bạn",
+      "button": "Đăng Ký",
+      "subscribing": "Đang đăng ký...",
+      "subscribed": "Đã đăng ký!",
+      "error": "Đăng ký thất bại. Vui lòng thử lại."
+    },
+    "sections": {
+      "services": {
+        "title": "Dịch Vụ",
+        "links": [
+          { "label": "Phát Triển Web", "href": "#services" },
+          { "label": "Thiết Kế UI/UX", "href": "#services" },
+          { "label": "Phát Triển Ứng Dụng Di Động", "href": "#services" }
+        ]
+      },
+      "company": {
+        "title": "Công Ty",
+        "links": [
+          { "label": "Quy Trình", "href": "#process" },
+          { "label": "Dự Án", "href": "#portfolio" },
+          { "label": "Bảng Giá", "href": "#pricing" },
+          { "label": "Câu Hỏi Thường Gặp", "href": "#faq" }
+        ]
+      },
+      "support": {
+        "title": "Hỗ Trợ",
+        "links": [
+          { "label": "Liên Hệ", "href": "#contact" },
+          { "label": "Tư Vấn Miễn Phí", "href": "#contact" }
+        ]
+      }
+    },
+    "copyright": "© {year} Đã đăng ký bản quyền."
+  },
+  "portfolio": {
+    "title": "Dự Án Của Chúng Tôi",
+    "subtitle": "Khám phá các dự án và câu chuyện thành công gần đây của chúng tôi",
+    "viewProject": "Xem Dự Án",
+    "projects": [
+      {
+        "title": "Phát Triển Web",
+        "description": "Ứng dụng web hiện đại được xây dựng bằng Next.js và React",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+          "features": ["Thiết Kế Responsive", "Tối Ưu SEO", "Đo Lường Hiệu Suất", "Tích Hợp API"],
+          "link": "https://example.com/project1"
+        }
+      },
+      {
+        "title": "Ứng Dụng Di Động",
+        "description": "Giải pháp đa nền tảng cho iOS và Android",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
+          "features": ["Thông Báo Đẩy", "Hỗ Trợ Offline", "Phân Tích", "Tối Ưu App Store"],
+          "link": "https://example.com/project2"
+        }
+      },
+      {
+        "title": "Thiết Kế UI/UX",
+        "description": "Thiết kế lấy người dùng làm trung tâm mang lại kết quả",
+        "image": "/placeholder.jpg",
+        "details": {
+          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
+          "features": ["Nghiên Cứu Người Dùng", "Wireframing", "Hệ Thống Thiết Kế", "Kiểm Tra Khả Năng Sử Dụng"],
+          "link": "https://example.com/project3"
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": "Đội Ngũ Của Chúng Tôi",
+    "subtitle": "Các chuyên gia tận tâm mang đến thành công cho bạn",
+    "members": [
+      {
+        "name": "John Smith",
+        "role": "CEO & Trưởng Nhóm Phát Triển",
+        "image": "/placeholder-team1.jpg",
+        "bio": "Hơn 10 năm kinh nghiệm trong phát triển web và lãnh đạo nhóm",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "Chuyên Gia UI/UX",
+        "image": "/placeholder-team2.jpg",
+        "bio": "Chuyên gia trong việc tạo ra trải nghiệm người dùng đẹp và hiệu quả",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Lập Trình Viên Backend",
+        "image": "/placeholder-team3.jpg",
+        "bio": "Chuyên về kiến trúc đám mây có thể mở rộng và bảo mật",
+        "social": {
+          "linkedin": "https://linkedin.com",
+          "github": "https://github.com",
+          "twitter": "https://twitter.com"
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Gói Phát Triển Website",
+    "subtitle": "Chọn giải pháp phù hợp nhất cho sự phát triển doanh nghiệp của bạn",
+    "plans": [
+      {
+        "name": "Website Đa Trang Tiêu Chuẩn",
+        "price": "$46,800",
+        "description": "Chuyển đổi số thành công",
+        "targetAudience": "Phù hợp cho doanh nghiệp, văn phòng, tư vấn và kinh doanh tự do",
+        "features": [
+          "Thiết kế 8 trang menu chính",
+          "Cấu trúc responsive RWD",
+          "Hệ thống tin tức/blog",
+          "Hiệu ứng động toàn trang",
+          "Hệ thống form liên hệ",
+          "Tùy chỉnh nội dung linh hoạt",
+          "Hệ thống quản trị nội dung",
+          "Tối ưu SEO cơ bản",
+          "Tích hợp Google Analytics"
+        ],
+        "cta": "Bắt Đầu Ngay"
+      },
+      {
+        "name": "Website Danh Mục Sản Phẩm",
+        "price": "$55,800",
+        "description": "Giải pháp chuyên nghiệp cho sản phẩm/dịch vụ",
+        "targetAudience": "Phù hợp cho công ty niêm yết, ngành điện tử, công nghệ",
+        "features": [
+          "Hệ thống quản lý danh mục",
+          "Mẫu trang sản phẩm",
+          "Hiệu ứng động toàn trang",
+          "Công cụ tải tập tin",
+          "Icon nổi bên phải",
+          "Tùy chỉnh nội dung",
+          "Tính năng CMS nâng cao",
+          "Tính năng SEO nâng cao",
+          "Form liên hệ đa phòng ban"
+        ],
+        "cta": "Phổ Biến Nhất"
+      },
+      {
+        "name": "Website Đa Ngôn Ngữ",
+        "price": "$62,800",
+        "description": "Giải pháp hàng đầu cho quốc tế hóa",
+        "targetAudience": "Phù hợp cho doanh nghiệp đa quốc gia, xuất khẩu",
+        "features": [
+          "Hệ thống chuyển đổi ngôn ngữ",
+          "Quản lý nội dung đa ngôn ngữ",
+          "Hệ thống danh mục sản phẩm",
+          "Hiệu ứng nội dung động",
+          "Menu nổi",
+          "Hệ thống quản trị nội dung",
+          "Thiết lập SEO quốc tế",
+          "Tối ưu hóa đa khu vực",
+          "Phân tích khách hàng toàn cầu"
+        ],
+        "cta": "Vươn Ra Toàn Cầu"
+      },
+      {
+        "name": "Website Thương Mại Điện Tử",
+        "price": "$88,000",
+        "description": "Giá trị cao cho bán hàng trực tuyến",
+        "targetAudience": "Phù hợp cho bán lẻ và kinh doanh trực tuyến",
+        "features": [
+          "Hệ thống quản lý sản phẩm",
+          "Hệ thống quản lý đơn hàng",
+          "Hệ thống khuyến mãi",
+          "Tích hợp thanh toán",
+          "Tích hợp vận chuyển",
+          "Hệ thống thành viên",
+          "Quản lý tồn kho",
+          "Phân tích nâng cao",
+          "Tích hợp công cụ marketing"
+        ],
+        "cta": "Bắt Đầu Bán Hàng"
+      },
+      {
+        "name": "Website Tùy Chỉnh",
+        "price": "Liên Hệ",
+        "description": "Giải pháp tích hợp thương hiệu số",
+        "targetAudience": "Dành cho dự án thiết kế web và xây dựng thương hiệu số với ngân sách linh hoạt",
+        "features": [
+          "Hiệu ứng tương tác",
+          "Thiết kế giao diện UIUX",
+          "Phát triển nâng cao",
+          "Hệ thống backend tùy chỉnh",
+          "CMS cấp doanh nghiệp",
+          "Tích hợp API",
+          "Tính năng tùy chỉnh",
+          "Tối ưu hiệu suất",
+          "Đội ngũ hỗ trợ riêng"
+        ],
+        "cta": "Nhận Báo Giá"
       }
     ]
   }

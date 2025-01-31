@@ -14,6 +14,12 @@ export type TranslationType = {
     title: string;
     subtitle: string;
     cta: string;
+    services: Array<{
+      title: string;
+      description: string;
+      color: string;
+      image: string;
+    }>;
   };
   nav: {
     home: string;
@@ -65,6 +71,23 @@ export type TranslationType = {
   process: {
     title: string;
     subtitle: string;
+    steps: Array<{
+      number: string;
+      title: string;
+      description: string;
+      details: string[];
+    }>;
+  };
+  pricing: {
+    title: string;
+    subtitle: string;
+    plans: Array<{
+      name: string;
+      price: string;
+      description: string;
+      features: string[];
+      cta: string;
+    }>;
   };
   contact: {
     title: string;
@@ -75,6 +98,10 @@ export type TranslationType = {
       message: string;
       submit: string;
     };
+    contact: {
+      email: string;
+      phone: string;
+    };
   };
   faq: {
     title: string;
@@ -84,6 +111,74 @@ export type TranslationType = {
     items: Array<{
       question: string;
       answer: string;
+    }>;
+  };
+  footer: {
+    company: {
+      description: string;
+    };
+    newsletter: {
+      title: string;
+      subtitle: string;
+      placeholder: string;
+      button: string;
+      subscribing: string;
+      subscribed: string;
+      error: string;
+    };
+    sections: {
+      services: {
+        title: string;
+        links: Array<{
+          label: string;
+          href: string;
+        }>;
+      };
+      company: {
+        title: string;
+        links: Array<{
+          label: string;
+          href: string;
+        }>;
+      };
+      support: {
+        title: string;
+        links: Array<{
+          label: string;
+          href: string;
+        }>;
+      };
+    };
+    copyright: string;
+  };
+  portfolio: {
+    title: string;
+    subtitle: string;
+    viewProject: string;
+    projects: Array<{
+      title: string;
+      description: string;
+      image: string;
+      details: {
+        technologies: string[];
+        features: string[];
+        link: string;
+      };
+    }>;
+  };
+  team: {
+    title: string;
+    subtitle: string;
+    members: Array<{
+      name: string;
+      role: string;
+      image: string;
+      bio: string;
+      social: {
+        linkedin: string;
+        github: string;
+        twitter: string;
+      }
     }>;
   };
 };

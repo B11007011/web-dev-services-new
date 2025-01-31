@@ -1,270 +1,237 @@
 'use client'
 
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react"
-import { motion, AnimatePresence } from "framer-motion"
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { IconBrandLinkedin, IconBrandGithub, IconBrandTwitter } from '@tabler/icons-react'
+import { useTranslations } from '@/providers/TranslationsProvider'
 
-const team = [
-  {
-    name: 'John Smith',
-    role: 'CEO & Lead Developer',
-    image: '/placeholder-team1.jpg',
-    bio: '10+ years of experience in web development and team leadership',
+type TeamTranslations = {
+  title: string;
+  subtitle: string;
+  members: Array<{
+    name: string;
+    role: string;
+    image: string;
+    bio: string;
     social: {
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://twitter.com',
-      github: 'https://github.com'
+      linkedin: string;
+      github: string;
+      twitter: string;
     }
-  },
-  {
-    name: 'Sarah Johnson',
-    role: 'UI/UX Designer',
-    image: '/placeholder-team2.jpg',
-    bio: 'Expert in creating beautiful and functional user experiences',
-    social: {
-      linkedin: 'https://linkedin.com',
-      dribbble: 'https://dribbble.com',
-      behance: 'https://behance.net'
-    }
-  },
-  {
-    name: 'Michael Chen',
-    role: 'Backend Developer',
-    image: '/placeholder-team3.jpg',
-    bio: 'Specialized in scalable cloud architecture and security',
-    social: {
-      linkedin: 'https://linkedin.com',
-      github: 'https://github.com',
-      stackoverflow: 'https://stackoverflow.com'
-    }
-  },
-  {
-    name: 'Emily Davis',
-    role: 'Project Manager',
-    image: '/placeholder-team4.jpg',
-    bio: 'Certified PM with focus on agile methodologies',
-    social: {
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://twitter.com'
-    }
-  }
-]
-
-const SocialIcon = ({ platform }: { platform: string }) => {
-  const icons = {
-    linkedin: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-      </svg>
-    ),
-    twitter: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-      </svg>
-    ),
-    github: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.239 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-      </svg>
-    ),
-    dribbble: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0zm9.885 11.441c-2.575-.422-4.943-.445-7.103-.073-.244-.563-.497-1.125-.767-1.68 2.31-1 4.165-2.358 5.548-4.082 1.35 1.594 2.197 3.619 2.322 5.835zm-3.842-7.282c-1.205 1.554-2.868 2.783-4.986 3.68-1.016-1.861-2.178-3.676-3.488-5.438.779-.197 1.591-.314 2.431-.314 2.275 0 4.368.779 6.043 2.072zm-10.516-.993c1.331 1.742 2.511 3.538 3.537 5.381-2.43.715-5.331 1.082-8.684 1.105.692-2.835 2.601-5.193 5.147-6.486zM1.333 12c0-.076.008-.152.01-.228 3.767-.026 7.046-.45 9.841-1.277.228.464.454.928.674 1.39-3.338 1.103-6.033 3.037-8.809 5.795-1.082-1.643-1.716-3.598-1.716-5.68zm3.48 6.943c2.561-2.649 5.113-4.491 8.368-5.498.979 2.542 1.669 5.158 2.065 7.846-1.539.716-3.247 1.121-5.046 1.121-1.995 0-3.851-.576-5.387-1.469zm7.408-3.961c-.354-2.292-.96-4.629-1.845-6.967 1.933-.374 4.051-.371 6.398-.001-.259 2.699-1.32 5.141-2.942 7.067z" />
-      </svg>
-    ),
-    behance: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.082zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
-      </svg>
-    ),
-    stackoverflow: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731H16.85v-2.137H6.111v2.137zm.259-4.852l10.48 2.189.451-2.07-10.478-2.187-.453 2.068zm1.359-5.056l9.705 4.53.903-1.95-9.706-4.53-.902 1.95zm2.715-4.785l8.217 6.855 1.359-1.62-8.216-6.853-1.36 1.618zM15.751 0l-1.746 1.294 6.405 8.604 1.746-1.294L15.751 0z" />
-      </svg>
-    )
-  }
-
-  return icons[platform as keyof typeof icons] || null
+  }>;
 }
 
-const Team = ({ autoplay = true }: { autoplay?: boolean }) => {
-  const [active, setActive] = useState(0)
-  const [mounted, setMounted] = useState(false)
+export default function Team() {
+  const [selectedMember, setSelectedMember] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-  const handleNext = () => {
-    setActive((prev) => (prev + 1) % team.length)
-  }
-
-  const handlePrev = () => {
-    setActive((prev) => (prev - 1 + team.length) % team.length)
-  }
-
-  const isActive = (index: number) => {
-    return index === active
-  }
-
-  useEffect(() => {
-    setMounted(true)
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000)
-      return () => clearInterval(interval)
-    }
-  }, [autoplay])
-
-  // Fixed rotation values for each card
-  const rotations = [0, 3, -3, 5]
-
-  if (!mounted) {
-    return null // Prevent server-side rendering
+  const content = useTranslations<TeamTranslations>('team') || {
+    title: 'Meet Our Team',
+    subtitle: 'Passionate experts dedicated to your success',
+    members: [
+      {
+        name: 'John Smith',
+        role: 'CEO & Lead Developer',
+        image: '/placeholder-team1.jpg',
+        bio: '10+ years of experience in web development and team leadership',
+        social: {
+          linkedin: 'https://linkedin.com',
+          github: 'https://github.com',
+          twitter: 'https://twitter.com'
+        }
+      },
+      {
+        name: 'Sarah Johnson',
+        role: 'UI/UX Designer',
+        image: '/placeholder-team2.jpg',
+        bio: 'Expert in creating beautiful and functional user experiences',
+        social: {
+          linkedin: 'https://linkedin.com',
+          github: 'https://github.com',
+          twitter: 'https://twitter.com'
+        }
+      },
+      {
+        name: 'Michael Chen',
+        role: 'Backend Developer',
+        image: '/placeholder-team3.jpg',
+        bio: 'Specialized in scalable cloud architecture and security',
+        social: {
+          linkedin: 'https://linkedin.com',
+          github: 'https://github.com',
+          twitter: 'https://twitter.com'
+        }
+      }
+    ]
   }
 
   return (
-    <section className="py-20 bg-[#0B1120]" id="team">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-white">
-            Our Team
-          </h2>
-          <p className="text-xl text-gray-400">
-            Meet the experts behind our success
-          </p>
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="team">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
+          >
+            {content.title}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/80 max-w-2xl mx-auto"
+          >
+            {content.subtitle}
+          </motion.p>
         </div>
 
-        <div className="max-w-sm md:max-w-4xl mx-auto">
-          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div>
-              <div className="relative h-80 w-full">
-                <AnimatePresence>
-                  {team.map((member, index) => (
-                    <motion.div
-                      key={member.image}
-                      initial={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: -100,
-                        rotate: rotations[index],
-                      }}
-                      animate={{
-                        opacity: isActive(index) ? 1 : 0.7,
-                        scale: isActive(index) ? 1 : 0.95,
-                        z: isActive(index) ? 0 : -100,
-                        rotate: isActive(index) ? 0 : rotations[index],
-                        zIndex: isActive(index) ? 999 : team.length + 2 - index,
-                        y: isActive(index) ? [0, -80, 0] : 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: 100,
-                        rotate: rotations[index],
-                      }}
-                      transition={{
-                        duration: 0.4,
-                        ease: "easeInOut",
-                      }}
-                      className="absolute inset-0 origin-bottom"
-                    >
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={500}
-                        height={500}
-                        className="h-full w-full rounded-3xl object-cover object-center shadow-xl"
-                      />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-
-            <div className="flex justify-between flex-col py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Team Member Preview */}
+          <motion.div 
+            className="relative aspect-[4/5] rounded-2xl overflow-hidden group"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AnimatePresence initial={false} mode="wait">
               <motion.div
-                key={active}
-                initial={{
-                  y: 20,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{
-                  y: -20,
-                  opacity: 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: "easeInOut",
-                }}
+                key={selectedMember}
+                initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
               >
-                <h3 className="text-2xl font-bold text-white">
-                  {team[active].name}
-                </h3>
-                <p className="text-blue-400 font-medium">
-                  {team[active].role}
-                </p>
-                <motion.p className="text-lg text-gray-400 mt-8">
-                  {team[active].bio.split(" ").map((word, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{
-                        filter: "blur(10px)",
-                        opacity: 0,
-                        y: 5,
-                      }}
-                      animate={{
-                        filter: "blur(0px)",
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                        delay: 0.02 * index,
-                      }}
-                      className="inline-block"
-                    >
-                      {word}&nbsp;
-                    </motion.span>
-                  ))}
+                <Image
+                  src={content.members[selectedMember].image}
+                  alt={content.members[selectedMember].name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Arrows */}
+            <div className="absolute inset-x-0 bottom-0 p-6 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+              <button
+                onClick={() => {
+                  setDirection(-1)
+                  setSelectedMember((prev) => (prev - 1 + content.members.length) % content.members.length)
+                }}
+                className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => {
+                  setDirection(1)
+                  setSelectedMember((prev) => (prev + 1) % content.members.length)
+                }}
+                className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                →
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Member Details */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedMember}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20"
+              >
+                <motion.h3 
+                  className="text-3xl font-bold mb-2 text-white"
+                  layoutId="memberName"
+                >
+                  {content.members[selectedMember].name}
+                </motion.h3>
+                <motion.p 
+                  className="text-xl text-blue-400 mb-6"
+                  layoutId="memberRole"
+                >
+                  {content.members[selectedMember].role}
+                </motion.p>
+                <motion.p 
+                  className="text-white/70 mb-8 text-lg"
+                  layoutId="memberBio"
+                >
+                  {content.members[selectedMember].bio}
                 </motion.p>
 
-                <div className="flex space-x-4 mt-6">
-                  {Object.entries(team[active].social).map(([platform, url]) => (
-                    <a
-                      key={platform}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-500 hover:text-blue-400 transition-colors duration-300"
-                    >
-                      <SocialIcon platform={platform} />
-                    </a>
-                  ))}
+                <div className="flex gap-4">
+                  <motion.a
+                    href={content.members[selectedMember].social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <IconBrandLinkedin className="w-6 h-6 text-white" />
+                  </motion.a>
+                  <motion.a
+                    href={content.members[selectedMember].social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <IconBrandGithub className="w-6 h-6 text-white" />
+                  </motion.a>
+                  <motion.a
+                    href={content.members[selectedMember].social.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <IconBrandTwitter className="w-6 h-6 text-white" />
+                  </motion.a>
                 </div>
               </motion.div>
+            </AnimatePresence>
 
-              <div className="flex gap-4 pt-12 md:pt-0">
+            {/* Team Navigation Dots */}
+            <div className="flex justify-center mt-8 gap-3">
+              {content.members.map((_, idx) => (
                 <button
-                  onClick={handlePrev}
-                  className="h-10 w-10 rounded-full bg-[#0F172A] hover:bg-blue-900/20 flex items-center justify-center group/button transition-colors duration-300"
-                >
-                  <IconArrowLeft className="h-5 w-5 text-blue-400 group-hover/button:rotate-12 transition-transform duration-300" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="h-10 w-10 rounded-full bg-[#0F172A] hover:bg-blue-900/20 flex items-center justify-center group/button transition-colors duration-300"
-                >
-                  <IconArrowRight className="h-5 w-5 text-blue-400 group-hover/button:-rotate-12 transition-transform duration-300" />
-                </button>
-              </div>
+                  key={idx}
+                  onClick={() => {
+                    setDirection(idx > selectedMember ? 1 : -1);
+                    setSelectedMember(idx);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    idx === selectedMember ? 'w-8 bg-blue-500' : 'bg-white/20'
+                  }`}
+                  aria-label={`View ${content.members[idx].name}'s profile`}
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default Team 
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
+    </section>
+  );
+} 

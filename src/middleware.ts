@@ -4,35 +4,47 @@ import type { NextRequest } from 'next/server'
 const locales = ['en', 'vi', 'zh-TW']
 const defaultLocale = 'en'
 
+function getLocale(request: NextRequest) {
+  // Get locale from cookie
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    return cookieLocale
+  }
+
+  // Get locale from accept-language header
+  const acceptLanguage = request.headers.get('accept-language')
+  if (acceptLanguage) {
+    const preferredLocale = acceptLanguage
+      .split(',')
+      .map(lang => lang.split(';')[0].trim())
+      .find(lang => locales.includes(lang))
+    if (preferredLocale) {
+      return preferredLocale
+    }
+  }
+
+  return defaultLocale
+}
+
 export function middleware(request: NextRequest) {
-  // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const pathname = request.nextUrl.pathname
 
-  // Check if the pathname starts with one of our locales
+  // Check if the pathname is missing a locale
   const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   )
 
+  // If pathname is missing locale, redirect to locale path
   if (pathnameIsMissingLocale) {
-    // Redirect if there is no locale
-    const locale = defaultLocale
-
-    // e.g. incoming request is /products
-    // The new URL is now /en/products
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname === '/' ? '' : pathname}`,
-        request.url
-      )
-    )
+    const locale = getLocale(request)
+    const newUrl = new URL(`/${locale}${pathname}`, request.url)
+    return NextResponse.redirect(newUrl)
   }
 }
 
 export const config = {
-  // Match all request paths except for the ones starting with:
-  // - api (API routes)
-  // - _next/static (static files)
-  // - _next/image (image optimization files)
-  // - favicon.ico (favicon file)
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  matcher: [
+    // Skip all internal paths (_next, api, etc)
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
 } 

@@ -53,14 +53,7 @@ export function NavigationBar() {
     }
   }, [isMenuOpen])
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>, id: string) => {
-    e.preventDefault()
-    
-    // Close menu first
-    setIsMenuOpen(false)
-    
-    // Get target section
-    const targetId = id.replace('#', '')
+  const scrollToSection = useCallback((targetId: string) => {
     const element = document.getElementById(targetId)
     
     if (element) {
@@ -76,24 +69,43 @@ export function NavigationBar() {
     }
   }, [])
 
+  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>, id: string) => {
+    e.preventDefault()
+    
+    // Close menu first
+    setIsMenuOpen(false)
+    
+    // Get target section
+    const targetId = id.replace('#', '')
+    scrollToSection(targetId)
+  }, [scrollToSection])
+
+  const handleLogoClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    setIsMenuOpen(false)
+    scrollToSection('hero')
+  }, [scrollToSection])
+
   // Update active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id]')
-      const scrollPosition = window.scrollY + window.innerHeight / 3
+      requestAnimationFrame(() => {
+        const sections = document.querySelectorAll('section[id]')
+        const scrollPosition = window.scrollY + window.innerHeight / 3
 
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop
-        const sectionBottom = sectionTop + section.clientHeight
-        const sectionId = section.getAttribute('id') || ''
+        sections.forEach((section) => {
+          const sectionTop = (section as HTMLElement).offsetTop
+          const sectionBottom = sectionTop + section.clientHeight
+          const sectionId = section.getAttribute('id') || ''
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          setActiveSection(sectionId)
-        }
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(sectionId)
+          }
+        })
       })
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll() // Check initial position
     
     return () => window.removeEventListener('scroll', handleScroll)
@@ -125,13 +137,11 @@ export function NavigationBar() {
         items={navItems} 
         className="bg-gray-900/60" 
         onItemClick={handleClick}
+        onLogoClick={handleLogoClick}
         activeSection={activeSection}
         isMenuOpen={isMenuOpen}
         onMenuToggle={setIsMenuOpen}
       />
-      <div className="fixed top-4 right-4 z-50">
-        <LanguageSwitcher />
-      </div>
     </div>
   )
 } 
