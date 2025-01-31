@@ -18,17 +18,21 @@ const nextConfig = {
       {
         domain: 'en.tecxmate.com',
         defaultLocale: 'en',
+        http: true
       },
       {
         domain: 'vi.tecxmate.com',
         defaultLocale: 'vi',
+        http: true
       },
       {
         domain: 'tw.tecxmate.com',
         defaultLocale: 'tw',
-      },
+        http: true
+      }
     ],
-  },
+    localeDetection: false
+  }
 }
 
 module.exports = nextConfig 
