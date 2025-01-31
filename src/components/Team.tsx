@@ -98,7 +98,7 @@ export default function Team() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Team Member Preview */}
           <motion.div 
-            className="relative aspect-[3/4] max-w-md mx-auto w-full rounded-2xl overflow-hidden group"
+            className="relative aspect-[2/2] max-w-md mx-auto w-full rounded-2xl overflow-hidden group"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
