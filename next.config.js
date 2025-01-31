@@ -12,6 +12,13 @@ const nextConfig = {
   },
   trailingSlash: true,
   output: 'server',
+  experimental: {
+    isrMemoryCacheSize: 0,
+    serverActions: true,
+  },
+  staticPageGenerationTimeout: 0,
+  dynamicParams: true,
+  generateStaticParams: false,
 }
 
 module.exports = nextConfig 
