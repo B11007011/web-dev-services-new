@@ -15,70 +15,93 @@ const languageMapping: { [key: string]: string } = {
   'en-GB': 'en'
 }
 
+// Mapping between subdomains and paths
+const subdomainToPath: { [key: string]: string } = {
+  'en': 'en',
+  'vi': 'vi',
+  'tw': 'zh-TW'
+}
+
 function getPreferredLanguage(request: NextRequest): string {
-  // Get accept-language header
   const acceptLanguage = request.headers.get('accept-language')
   if (!acceptLanguage) return defaultLocale
 
-  // Parse accept-language header
   const preferredLanguages = acceptLanguage.split(',')
     .map(lang => lang.split(';')[0].trim().toLowerCase())
 
-  // Check each preferred language
   for (const lang of preferredLanguages) {
-    // Check direct match
-    if (locales.includes(lang)) {
-      return lang
-    }
-    // Check mapped languages
-    if (languageMapping[lang]) {
-      return languageMapping[lang]
-    }
-    // Check language without region
+    if (locales.includes(lang)) return lang
+    if (languageMapping[lang]) return languageMapping[lang]
     const mainLang = lang.split('-')[0]
-    if (languageMapping[mainLang]) {
-      return languageMapping[mainLang]
-    }
+    if (languageMapping[mainLang]) return languageMapping[mainLang]
   }
 
   return defaultLocale
 }
 
-function getLocaleFromSubdomain(request: NextRequest) {
-  const host = request.headers.get('host')
-  if (!host) return defaultLocale
-
-  // Extract subdomain
-  const subdomain = host.split('.')[0]
-  if (locales.includes(subdomain)) {
-    return subdomain
-  }
-
-  return getPreferredLanguage(request)
-}
-
 export function middleware(request: NextRequest) {
+  // Get hostname and pathname from request
+  const hostname = request.headers.get('host') || ''
   const pathname = request.nextUrl.pathname
-  const host = request.headers.get('host')
-  if (!host) return NextResponse.next()
 
-  const currentSubdomain = host.split('.')[0]
-  
-  // If already on a valid language subdomain, don't redirect
+  // Check if we are in development environment
+  const isDev = hostname.includes('localhost') || hostname.includes('127.0.0.1')
+
+  // Get the current subdomain
+  const currentSubdomain = hostname.split('.')[0]
+
+  // If on a valid language subdomain
   if (locales.includes(currentSubdomain)) {
+    // If root path, redirect to the appropriate language path
+    if (pathname === '/' || pathname === '') {
+      const langPath = subdomainToPath[currentSubdomain]
+      const url = request.nextUrl.clone()
+      url.pathname = `/${langPath}`
+      return NextResponse.redirect(url)
+    }
+    
+    // Check if current path matches subdomain's language
+    const expectedPath = subdomainToPath[currentSubdomain]
+    const currentPath = pathname.split('/')[1]?.toLowerCase()
+    const expectedPathLower = expectedPath.toLowerCase()
+    
+    // If path doesn't match subdomain's language, redirect
+    if (currentPath !== expectedPathLower) {
+      const url = request.nextUrl.clone()
+      const restOfPath = pathname.substring(pathname.indexOf('/', 1) || pathname.length)
+      url.pathname = `/${expectedPath}${restOfPath}`
+      return NextResponse.redirect(url)
+    }
+
     return NextResponse.next()
   }
 
-  // If on main domain, redirect to appropriate language subdomain
-  const locale = getPreferredLanguage(request)
-  const domain = host.includes('.') ? host.split('.').slice(1).join('.') : host
-  const newUrl = new URL(`https://${locale}.${domain}${pathname}`)
-  return NextResponse.redirect(newUrl)
+  // If not on a language subdomain, redirect to appropriate one
+  const preferredLanguage = getPreferredLanguage(request)
+  
+  try {
+    let newUrl: URL
+    if (isDev) {
+      const port = hostname.includes(':') ? `:${hostname.split(':')[1]}` : ':3000'
+      newUrl = new URL(`http://${preferredLanguage}.localhost${port}/${subdomainToPath[preferredLanguage]}`)
+    } else {
+      const mainDomain = hostname.includes('.') ? hostname.split('.').slice(1).join('.') : hostname
+      newUrl = new URL(`https://${preferredLanguage}.${mainDomain}/${subdomainToPath[preferredLanguage]}`)
+    }
+
+    // Add search params if any
+    newUrl.search = request.nextUrl.search
+    
+    return NextResponse.redirect(newUrl)
+  } catch (error) {
+    console.error('Error in middleware:', error)
+    return NextResponse.next()
+  }
 }
 
 export const config = {
   matcher: [
     // Skip all internal paths (_next, api, etc)
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)',
   ],
 } 

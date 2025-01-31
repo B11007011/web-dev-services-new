@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
-    unoptimized: true,
+    domains: ['localhost', 'tecxmate.com', 'en.tecxmate.com', 'vi.tecxmate.com', 'tw.tecxmate.com'],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -11,28 +10,8 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   trailingSlash: true,
-  i18n: {
-    locales: ['en', 'vi', 'tw'],
-    defaultLocale: 'en',
-    domains: [
-      {
-        domain: 'en.tecxmate.com',
-        defaultLocale: 'en',
-        http: true
-      },
-      {
-        domain: 'vi.tecxmate.com',
-        defaultLocale: 'vi',
-        http: true
-      },
-      {
-        domain: 'tw.tecxmate.com',
-        defaultLocale: 'tw',
-        http: true
-      }
-    ],
-    localeDetection: false
-  }
+  // Remove i18n config since it's not compatible with static export
+  // We'll handle localization through middleware and static routing
 }
 
 module.exports = nextConfig 
