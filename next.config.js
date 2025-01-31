@@ -11,14 +11,14 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   trailingSlash: true,
-  output: 'server',
+  output: 'standalone',
   experimental: {
-    isrMemoryCacheSize: 0,
-    serverActions: true,
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'tecxmate.com', '*.tecxmate.com'],
+    },
   },
-  staticPageGenerationTimeout: 0,
-  dynamicParams: true,
-  generateStaticParams: false,
+  skipMiddlewareUrlNormalize: false,
+  skipTrailingSlashRedirect: false,
 }
 
 module.exports = nextConfig 
