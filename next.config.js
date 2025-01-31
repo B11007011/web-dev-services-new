@@ -13,7 +13,9 @@ const nextConfig = {
   trailingSlash: true,
   output: 'standalone',
   experimental: {
-    serverActions: true,
+    serverActions: {
+      enabled: true
+    }
   },
   skipMiddlewareUrlNormalize: false,
   skipTrailingSlashRedirect: false,
