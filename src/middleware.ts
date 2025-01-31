@@ -1,26 +1,17 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const locales = ['en', 'vi', 'zh-TW']
+const locales = ['en', 'vi', 'tw']
 const defaultLocale = 'en'
 
-function getLocale(request: NextRequest) {
-  // Get locale from cookie
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
-  if (cookieLocale && locales.includes(cookieLocale)) {
-    return cookieLocale
-  }
+function getLocaleFromSubdomain(request: NextRequest) {
+  const host = request.headers.get('host')
+  if (!host) return defaultLocale
 
-  // Get locale from accept-language header
-  const acceptLanguage = request.headers.get('accept-language')
-  if (acceptLanguage) {
-    const preferredLocale = acceptLanguage
-      .split(',')
-      .map(lang => lang.split(';')[0].trim())
-      .find(lang => locales.includes(lang))
-    if (preferredLocale) {
-      return preferredLocale
-    }
+  // Extract subdomain
+  const subdomain = host.split('.')[0]
+  if (locales.includes(subdomain)) {
+    return subdomain
   }
 
   return defaultLocale
@@ -28,18 +19,20 @@ function getLocale(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
-
-  // Check if the pathname is missing a locale
-  const pathnameIsMissingLocale = locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  )
-
-  // If pathname is missing locale, redirect to locale path
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
-    const newUrl = new URL(`/${locale}${pathname}`, request.url)
-    return NextResponse.redirect(newUrl)
+  const locale = getLocaleFromSubdomain(request)
+  
+  // If on wrong subdomain, redirect to correct one
+  const host = request.headers.get('host')
+  if (host) {
+    const currentSubdomain = host.split('.')[0]
+    if (currentSubdomain !== locale && locales.includes(locale)) {
+      const domain = host.split('.').slice(1).join('.')
+      const newUrl = new URL(`https://${locale}.${domain}${pathname}`)
+      return NextResponse.redirect(newUrl)
+    }
   }
+
+  return NextResponse.next()
 }
 
 export const config = {
