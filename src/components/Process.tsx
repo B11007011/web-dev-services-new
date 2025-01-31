@@ -124,11 +124,12 @@ const Process = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="relative group"
+                className="relative group h-full flex flex-col"
+                style={{ minHeight: "350px" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300">
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300 h-full flex flex-col">
                   {/* Step Number */}
                   <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
                     {step.number}
@@ -140,15 +141,17 @@ const Process = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-white/70 mb-4">
-                    {step.description}
-                  </p>
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/70 mb-4">
+                      {step.description}
+                    </p>
+                  </div>
 
                   {/* Details */}
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 flex-grow">
                     {step.details.map((detail, i) => (
                       <motion.li 
                         key={i} 

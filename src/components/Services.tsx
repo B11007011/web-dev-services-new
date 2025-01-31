@@ -142,24 +142,26 @@ export function Services() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="group relative"
+              className="group relative h-full flex flex-col"
+              style={{ minHeight: "400px" }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300">
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300 h-full flex flex-col">
+                
                 <div className="text-4xl mb-6 text-white/80 group-hover:text-white transition-colors">
-                  {service.title.split(' ')[0]} {/* Show only the emoji */}
+                  {service.title.split(' ')[0]}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  {service.title.split(' ').slice(1).join(' ')} {/* Show title without emoji */}
+                <h3 className="text-2xl font-bold text-white mb-4 flex-grow">
+                  {service.title.split(' ').slice(1).join(' ')}
                 </h3>
                 
-                <p className="text-white/70 mb-6">
+                <p className="text-white/70 mb-6 flex-grow">
                   {service.description}
                 </p>
                 
-                <ul className="space-y-3">
+                <ul className="space-y-3 flex-grow">
                   {service.features.map((feature, i) => (
                     <motion.li 
                       key={i}

@@ -74,11 +74,11 @@ export function QuoteForm({ isOpen, onClose }: QuoteFormProps) {
       <div className="relative w-full max-w-md bg-[#0B1120] rounded-lg shadow-2xl border border-gray-800">
         {/* Close Button */}
         <button
-          onClick={onClose}
-          className="absolute right-3 top-3 text-gray-400 hover:text-white transition-colors p-1.5 hover:bg-white/10 rounded-lg"
-        >
-          <X className="w-4 h-4" />
-        </button>
+  onClick={onClose}
+  className="absolute right-3 top-3 flex items-center justify-center text-gray-400 hover:text-white transition-colors p-1.5 hover:bg-white/10 rounded-lg"
+>
+  <X className="w-4 h-4" />
+</button>
 
         <div className="p-5">
           <h2 className="text-xl font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400">

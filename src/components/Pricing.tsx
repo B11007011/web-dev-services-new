@@ -147,7 +147,7 @@ const Pricing = () => {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-[1600px] mx-auto">
+        <div className="grid lg:grid-cols-5 gap-8 max-w-[1600px] mx-auto overflow-x-auto pb-4">
           {content.plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -157,11 +157,9 @@ const Pricing = () => {
               transition={{ delay: index * 0.1 }}
               className="group relative"
             >
-          
-              
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className={`relative h-full bg-white/10 backdrop-blur-lg rounded-2xl border ${
+              <div className={`relative h-full flex flex-col bg-white/10 backdrop-blur-lg rounded-2xl border ${
                 index === 1 ? 'border-blue-400/30' : 'border-white/20'
               } hover:border-white/30 transition-all duration-300 overflow-hidden p-6`}>
                 <div className="text-center mb-6">
@@ -171,7 +169,7 @@ const Pricing = () => {
                   <p className="text-white/50 text-xs">{plan.targetAudience}</p>
                 </div>
 
-                <ul className="space-y-3 mb-6">
+                <ul className="space-y-3 mb-6 flex-1">
                   {plan.features.map((feature, i) => (
                     <motion.li
                       key={i}
@@ -192,7 +190,7 @@ const Pricing = () => {
                     href="#contact"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`block w-full py-2 px-4 text-center text-white rounded-xl text-sm font-medium transition-colors duration-300 ${
+                    className={`block w-full py-2 px-4 text-center text-white rounded-xl text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
                       index === 1 
                         ? 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600' 
                         : 'bg-white/20 hover:bg-white/30'
