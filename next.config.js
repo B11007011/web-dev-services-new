@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     domains: ['localhost', 'tecxmate.com', 'en.tecxmate.com', 'vi.tecxmate.com', 'tw.tecxmate.com'],
+    unoptimized: false,
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -10,8 +11,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   trailingSlash: true,
-  // Remove i18n config since it's not compatible with static export
-  // We'll handle localization through middleware and static routing
+  output: 'server',
 }
 
 module.exports = nextConfig 
