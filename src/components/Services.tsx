@@ -14,58 +14,85 @@ type ServiceTranslations = {
 }
 
 const defaultServices = {
-  title: "🚀 Our Services",
-  subtitle: "Comprehensive virtual solutions to accelerate your business growth",
+  title: "🚀 Our Professional Services",
+  subtitle: "Comprehensive digital solutions to transform and scale your business",
   items: [
     {
       title: "🌐 Web Development",
-      description: "Modern, responsive websites built for speed and scalability",
+      description: "Modern, high-performance websites and web applications built for scalability and success",
       features: [
         "Next.js & React Architecture",
-        "Custom Web Applications",
-        "E-commerce Storefronts"
+        "Progressive Web Apps (PWA)",
+        "Custom CMS Development",
+        "API Development & Integration",
+        "Database Design & Optimization",
+        "Web Performance Optimization",
+        "Security Implementation"
       ]
     },
     {
       title: "📱 Mobile Development",
-      description: "Cross-platform apps that captivate iOS and Android users",
+      description: "Cross-platform mobile applications that deliver exceptional user experiences",
       features: [
         "React Native Development",
-        "IoT Integration"
+        "Native iOS/Android Apps",
+        "Mobile UI/UX Design",
+        "Push Notifications",
+        "Offline Functionality",
+        "App Store Optimization",
+        "Mobile Analytics Integration"
       ]
     },
     {
       title: "🛒 E-commerce Solutions",
-      description: "End-to-end online stores designed to boost sales",
+      description: "Complete e-commerce platforms designed to maximize sales and customer satisfaction",
       features: [
-        "Shopping Cart + Chat Integration",
-        "Secure Payment Gateway Setup",
-        "Automated Inventory Management"
+        "Custom Shopping Cart",
+        "Payment Gateway Integration",
+        "Inventory Management",
+        "Order Processing System",
+        "Customer Account Portal",
+        "Product Recommendation Engine",
+        "Multi-currency Support"
       ]
     },
     {
       title: "🎯 Digital Marketing",
-      description: "Data-driven strategies to dominate your market",
+      description: "Results-driven digital marketing strategies to boost your online presence",
       features: [
-        "SEO & Conversion Rate Optimization",
-        "Social Media Campaigns",
-        "ROI Analytics & Training"
+        "SEO Optimization",
+        "Content Marketing",
+        "Social Media Management",
+        "Email Marketing Campaigns",
+        "PPC Advertising",
+        "Conversion Rate Optimization",
+        "Analytics & Reporting"
       ]
     },
     {
       title: "✨ UI/UX Design",
-      description: "Intuitive interfaces that users love at first click",
+      description: "User-centered design solutions that create engaging digital experiences",
       features: [
+        "User Research & Analysis",
+        "Information Architecture",
         "Wireframing & Prototyping",
-        "User Experience Audits"
+        "Visual Design",
+        "Interaction Design",
+        "Usability Testing",
+        "Design System Creation"
       ]
     },
     {
       title: "☁️ Cloud Solutions",
-      description: "Scalable infrastructure for seamless growth",
+      description: "Scalable cloud infrastructure and services for optimal performance",
       features: [
-        "API/Stream Integration",
-        "Server & Database Management"
+        "Cloud Architecture Design",
+        "AWS/Azure/GCP Setup",
+        "Database Migration",
+        "Auto-scaling Configuration",
+        "Backup & Recovery",
+        "Security & Compliance",
+        "24/7 Monitoring"
       ]
     }
   ]

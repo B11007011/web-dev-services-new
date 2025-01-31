@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, MessageSquare, Phone } from 'lucide-react'
+import { Mail, MessageSquare, Phone, MapPin, Clock } from 'lucide-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import { useState } from 'react'
 
@@ -11,27 +11,101 @@ type ContactTranslations = {
   form: {
     name: string;
     email: string;
+    phone: string;
+    company: string;
+    subject: string;
+    budget: string;
+    timeline: string;
     message: string;
     submit: string;
+    success: string;
+    error: string;
+    placeholders: {
+      subject: string;
+      budget: string;
+      timeline: string;
+      message: string;
+    };
+    options: {
+      subject: {
+        standard: string;
+        catalog: string;
+        multilingual: string;
+        ecommerce: string;
+        custom: string;
+      };
+      budget: {
+        '40-50k': string;
+        '50-60k': string;
+        '60-70k': string;
+        '70-90k': string;
+        '90k+': string;
+      };
+      timeline: {
+        '1-2': string;
+        '2-3': string;
+        '3-4': string;
+        '4+': string;
+      };
+    };
   };
   contact: {
     email: string;
     phone: string;
+    address: string;
+    workingHours: string;
   };
 }
 
 const defaultContent: ContactTranslations = {
   title: 'Get in Touch',
-  subtitle: 'Have a project in mind? Let\'s discuss how we can help bring your vision to life.',
+  subtitle: 'Have a project in mind? Let\'s discuss how we can help bring your vision to life. Our team typically responds within 24 hours.',
   form: {
     name: 'Your Name',
     email: 'Your Email',
-    message: 'Your Message',
-    submit: 'Send Message'
+    phone: 'Phone Number (Optional)',
+    company: 'Company Name (Optional)',
+    subject: 'Project Type',
+    budget: 'Estimated Budget',
+    timeline: 'Expected Timeline',
+    message: 'Project Details',
+    submit: 'Send Message',
+    success: 'Thank you! We will contact you soon.',
+    error: 'Failed to send message. Please try again or contact us directly.',
+    placeholders: {
+      subject: 'Select Project Type...',
+      budget: 'Select Budget Range...',
+      timeline: 'Select Timeline...',
+      message: 'Please describe your project requirements, goals, and any specific features you need...'
+    },
+    options: {
+      subject: {
+        standard: 'Standard Multi-page Website',
+        catalog: 'Business Catalog Website',
+        multilingual: 'Multi-language Website',
+        ecommerce: 'E-commerce Website',
+        custom: 'Custom Development'
+      },
+      budget: {
+        '40-50k': '$40,000 - $50,000',
+        '50-60k': '$50,000 - $60,000',
+        '60-70k': '$60,000 - $70,000',
+        '70-90k': '$70,000 - $90,000',
+        '90k+': '$90,000+'
+      },
+      timeline: {
+        '1-2': '1-2 months',
+        '2-3': '2-3 months',
+        '3-4': '3-4 months',
+        '4+': '4+ months'
+      }
+    }
   },
   contact: {
     email: 'contact@example.com',
-    phone: '+1 (555) 123-4567'
+    phone: '+1 (555) 123-4567',
+    address: '123 Business Street, Tech City, TC 12345',
+    workingHours: 'Mon - Fri: 9:00 AM - 6:00 PM'
   }
 }
 
@@ -49,9 +123,14 @@ const Contact = () => {
     const form = e.currentTarget
     const formData = new FormData(form)
     const data = {
-      _subject: "New Contact Form Submission",
+      _subject: `New Contact Form Submission - ${formData.get('subject')}`,
       name: formData.get('name'),
       email: formData.get('email'),
+      phone: formData.get('phone'),
+      company: formData.get('company'),
+      subject: formData.get('subject'),
+      budget: formData.get('budget'),
+      timeline: formData.get('timeline'),
       message: formData.get('message')
     }
 
@@ -72,7 +151,7 @@ const Contact = () => {
         form.reset()
         setTimeout(() => {
           setSubmitStatus('idle')
-        }, 3000)
+        }, 5000)
       } else {
         console.error('Form submission error:', responseData)
         setSubmitStatus('error')
@@ -150,6 +229,32 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-6">
+                <div className="flex items-center gap-4">
+                  <MapPin className="w-6 h-6 text-blue-400" />
+                  <div>
+                    <h3 className="text-lg font-medium text-white">Address</h3>
+                    <p className="text-white/70">{content.contact.address}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-6">
+                <div className="flex items-center gap-4">
+                  <Clock className="w-6 h-6 text-blue-400" />
+                  <div>
+                    <h3 className="text-lg font-medium text-white">Working Hours</h3>
+                    <p className="text-white/70">{content.contact.workingHours}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -161,35 +266,118 @@ const Contact = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <form onSubmit={handleSubmit} className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-8">
               <div className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
-                    {content.form.name}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    minLength={2}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.name} <span className="text-red-400">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      minLength={2}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.email} <span className="text-red-400">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
-                    {content.form.email}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
-                  />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.phone}
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.company}
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                    />
+                  </div>
                 </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.subject} <span className="text-red-400">*</span>
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      required
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all appearance-none cursor-pointer"
+                    >
+                    <option value="" className="bg-blue-950">{content.form.placeholders.subject}</option>
+                    <option value="standard" className="bg-blue-950">{content.form.options.subject.standard}</option>
+                    <option value="catalog" className="bg-blue-950">{content.form.options.subject.catalog}</option>
+                    <option value="multilingual" className="bg-blue-950">{content.form.options.subject.multilingual}</option>
+                    <option value="ecommerce" className="bg-blue-950">{content.form.options.subject.ecommerce}</option>
+                    <option value="custom" className="bg-blue-950">{content.form.options.subject.custom}</option>
+                    </select>
+                  </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="budget" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.budget}
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="" className="bg-blue-950">{content.form.placeholders.budget}</option>
+                      <option value="40-50k" className="bg-blue-950">{content.form.options.budget['40-50k']}</option>
+                      <option value="50-60k" className="bg-blue-950">{content.form.options.budget['50-60k']}</option>
+                      <option value="60-70k" className="bg-blue-950">{content.form.options.budget['60-70k']}</option>
+                      <option value="70-90k" className="bg-blue-950">{content.form.options.budget['70-90k']}</option>
+                      <option value="90k+" className="bg-blue-950">{content.form.options.budget['90k+']}</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="timeline" className="block text-sm font-medium text-white/80 mb-2">
+                      {content.form.timeline}
+                    </label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="" className="bg-blue-950">{content.form.placeholders.timeline}</option>
+                      <option value="1-2" className="bg-blue-950">{content.form.options.timeline['1-2']}</option>
+                      <option value="2-3" className="bg-blue-950">{content.form.options.timeline['2-3']}</option>
+                      <option value="3-4" className="bg-blue-950">{content.form.options.timeline['3-4']}</option>
+                      <option value="4+" className="bg-blue-950">{content.form.options.timeline['4+']}</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
-                    {content.form.message}
+                    {content.form.message} <span className="text-red-400">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -197,15 +385,17 @@ const Contact = () => {
                     rows={4}
                     required
                     minLength={10}
+                    placeholder={content.form.placeholders.message}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all resize-none"
                   />
                 </div>
+
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full py-3 px-6 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full py-4 px-6 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -217,7 +407,7 @@ const Contact = () => {
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Message Sent!</span>
+                      <span>{content.form.success}</span>
                     </>
                   ) : (
                     <>
@@ -229,7 +419,7 @@ const Contact = () => {
 
                 {submitStatus === 'error' && (
                   <p className="text-red-500 text-sm text-center mt-2">
-                    Failed to send message. Please try again.
+                    {content.form.error}
                   </p>
                 )}
               </div>

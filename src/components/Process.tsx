@@ -19,54 +19,62 @@ type ProcessTranslations = {
 const Process = () => {
   const content = useTranslations<ProcessTranslations>('process') || {
     title: 'Our Development Process',
-    subtitle: 'A systematic approach to delivering exceptional results',
+    subtitle: 'A systematic approach to delivering exceptional results with proven methodologies',
     steps: [
       {
         number: '01',
-        title: 'Discovery & Planning',
-        description: 'We start by understanding your business goals, target audience, and technical requirements. Our team conducts thorough research and creates a detailed project roadmap.',
+        title: 'Discovery & Strategy',
+        description: 'We begin with a deep dive into your business objectives, market analysis, and technical requirements to create a comprehensive strategy.',
         details: [
-          'Requirements Analysis',
-          'Market Research',
-          'Technical Specifications',
-          'Project Timeline',
-          'Budget Planning'
+          'Business Goals Analysis',
+          'Target Audience Research',
+          'Competitor Analysis',
+          'Technology Stack Selection',
+          'Project Scope Definition',
+          'Budget & Timeline Planning',
+          'Risk Assessment'
         ]
       },
       {
         number: '02',
-        title: 'Design & Prototyping',
-        description: 'Our designers create intuitive user interfaces and engaging user experiences. We focus on modern aesthetics while ensuring optimal functionality.',
+        title: 'Design & UX',
+        description: 'Our design team creates stunning, user-centric interfaces that align with your brand and optimize user engagement.',
         details: [
-          'UI/UX Design',
-          'Wireframing',
+          'UI/UX Strategy',
+          'Brand Integration',
+          'Wireframing & Mockups',
           'Interactive Prototypes',
-          'Design System',
-          'User Testing'
+          'User Flow Optimization',
+          'Mobile-First Design',
+          'Accessibility Standards'
         ]
       },
       {
         number: '03',
-        title: 'Development & Testing',
-        description: 'Using cutting-edge technologies, we build robust and scalable solutions. Every feature is thoroughly tested to ensure quality and reliability.',
+        title: 'Development & QA',
+        description: 'Using modern technologies and best practices, we build robust, scalable solutions with comprehensive testing.',
         details: [
-          'Frontend Development',
-          'Backend Integration',
-          'Quality Assurance',
-          'Performance Testing',
-          'Security Checks'
+          'Agile Development',
+          'Code Quality Standards',
+          'Performance Optimization',
+          'Security Implementation',
+          'Cross-browser Testing',
+          'Mobile Responsiveness',
+          'Integration Testing'
         ]
       },
       {
         number: '04',
-        title: 'Launch & Support',
-        description: 'We ensure a smooth deployment and provide ongoing support. Our team monitors performance and implements continuous improvements.',
+        title: 'Launch & Growth',
+        description: 'We ensure a successful launch with continuous monitoring, optimization, and support for sustainable growth.',
         details: [
-          'Deployment Strategy',
+          'Pre-launch Checklist',
+          'SEO Implementation',
           'Performance Monitoring',
-          'SEO Optimization',
-          'Maintenance',
-          '24/7 Support'
+          'Analytics Setup',
+          'Security Monitoring',
+          'Continuous Updates',
+          '24/7 Support System'
         ]
       }
     ]
