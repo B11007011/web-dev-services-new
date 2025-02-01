@@ -30,25 +30,11 @@ export default function EnhancedStructuredData({
     url: url,
     logo: {
       '@type': 'ImageObject',
-      '@id': `${url}#logo`,
       url: logo,
-      width: 112,
-      height: 112,
-      caption: organizationName
-    },
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${url}#logo`,
-      url: logo,
-      width: 112,
-      height: 112
+      width: 190,
+      height: 190
     },
     description: description,
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'TW',
-      addressLocality: 'Taipei'
-    },
     sameAs: [
       'https://www.facebook.com/tecxmate',
       'https://twitter.com/tecxmate',
@@ -59,111 +45,61 @@ export default function EnhancedStructuredData({
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': `${url}#website`,
-    url: url,
     name: siteTitle,
+    url: url,
     description: description,
     publisher: {
-      '@id': `${url}#organization`
-    },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${url}/search?q={search_term_string}`,
-      'query-input': 'required name=search_term_string'
+      '@type': 'Organization',
+      name: organizationName,
+      logo: {
+        '@type': 'ImageObject',
+        url: logo,
+        width: 190,
+        height: 190
+      }
     }
-  }
-
-  const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${url}#business`,
-    name: organizationName,
-    image: logo,
-    url: url,
-    telephone: '+886-2-xxxx-xxxx',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'No. XX, Section X, XX Road',
-      addressLocality: 'Taipei',
-      postalCode: '10608',
-      addressCountry: 'TW'
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 25.0330,
-      longitude: 121.5654
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday'
-      ],
-      opens: '09:00',
-      closes: '18:00'
-    },
-    priceRange: '$$'
-  }
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    '@id': `${url}#breadcrumb`,
-    itemListElement: breadcrumbs.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.item,
-    }))
   }
 
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': `${url}#service`,
+    serviceType: 'Web Development',
     name: organizationName,
-    provider: {
-      '@id': `${url}#organization`
-    },
     description: description,
-    areaServed: {
-      '@type': 'Country',
-      name: 'Taiwan'
+    provider: {
+      '@type': 'Organization',
+      name: organizationName,
+      image: logo
     },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Web Development Services',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Website Development',
-            description: 'Professional website development services'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Web Application Development',
-            description: 'Custom web application development'
-          }
-        }
-      ]
+    areaServed: ['Taiwan', 'Global'],
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'TWD',
+        minPrice: '30000'
+      }
     }
   }
+
+  const breadcrumbSchema = breadcrumbs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.item
+    }))
+  } : null
 
   return (
     <>
       <JsonLd data={organizationSchema} />
       <JsonLd data={websiteSchema} />
-      <JsonLd data={localBusinessSchema} />
       <JsonLd data={serviceSchema} />
-      {breadcrumbs.length > 0 && <JsonLd data={breadcrumbSchema} />}
+      {breadcrumbSchema && <JsonLd data={breadcrumbSchema} />}
     </>
   )
 } 
