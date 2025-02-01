@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://tecxmate.com';
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const languages = ['en', 'vi', 'zh-TW'];
   const routes = [
     '',
@@ -24,18 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     
     // Add the root URL for each language
     entries.push({
-      url: `${baseUrlWithLang}/${lang}`,
-      lastModified: new Date(),
+      url: `${baseUrlWithLang}/${lang}/`,
+      lastModified: new Date().toISOString(),
       changeFrequency: 'daily',
       priority: 1,
     });
     
     // Add other routes
     routes.forEach(route => {
-      if (route !== '') { // Skip empty route as we already added root
+      if (route !== '') {
         entries.push({
-          url: `${baseUrlWithLang}/${lang}${route}`,
-          lastModified: new Date(),
+          url: `${baseUrlWithLang}/${lang}${route}/`,
+          lastModified: new Date().toISOString(),
           changeFrequency: 'weekly',
           priority: 0.8,
         });

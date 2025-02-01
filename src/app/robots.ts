@@ -1,12 +1,29 @@
 import { MetadataRoute } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export default function robots(): MetadataRoute.Robots {
-  return {
+  const rules = {
     rules: [
       {
         userAgent: '*',
+        allow: ['/'],
+        disallow: [
+          '/api/*',
+          '/admin/*',
+          '/_next/*',
+          '/*.json$',
+        ],
+      },
+      {
+        userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
+        disallow: [
+          '/api/*',
+          '/admin/*',
+          '/_next/*',
+          '/*.json$',
+        ],
       }
     ],
     sitemap: [
@@ -16,4 +33,6 @@ export default function robots(): MetadataRoute.Robots {
     ],
     host: 'https://tecxmate.com'
   }
+
+  return rules
 } 
