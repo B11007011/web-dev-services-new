@@ -3,26 +3,34 @@ import { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://example.com'; // Replace with your actual domain
-
-  return [
-    {
-      url: `${baseUrl}/en`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/vi`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/zh-TW`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
+  const baseUrl = 'https://tecxmate.com';
+  const languages = ['en', 'vi', 'zh-TW'];
+  const routes = [
+    '',
+    '/services',
+    '/about',
+    '/contact',
+    '/team',
+    '/portfolio',
+    '/blog'
   ];
+
+  const entries: MetadataRoute.Sitemap = [];
+
+  // Add language-specific routes
+  languages.forEach(lang => {
+    const subdomain = lang === 'zh-TW' ? 'tw' : lang;
+    const baseUrlWithLang = `https://${subdomain}.tecxmate.com`;
+    
+    routes.forEach(route => {
+      entries.push({
+        url: `${baseUrlWithLang}${lang}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: route === '' ? 1 : 0.8,
+      });
+    });
+  });
+
+  return entries;
 } 
