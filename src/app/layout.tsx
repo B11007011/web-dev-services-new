@@ -155,6 +155,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="IVfFVvMnAeD6nDyedE8wDB3uDXeQlLNLBTlvYH50nHg" />
         <link rel="alternate" href={alternates.en} hrefLang="en" />
         <link rel="alternate" href={alternates.vi} hrefLang="vi" />
         <link rel="alternate" href={alternates['zh-TW']} hrefLang="zh-TW" />
