@@ -7,6 +7,7 @@ import { headers } from 'next/headers'
 import { Metadata } from 'next'
 import JsonLd from '@/components/JsonLd'
 import { Analytics } from '@vercel/analytics/react'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const inter = Inter({
   subsets: ["latin"],
@@ -158,6 +159,7 @@ export default async function RootLayout({
         <link rel="alternate" href={alternates.vi} hrefLang="vi" />
         <link rel="alternate" href={alternates['zh-TW']} hrefLang="zh-TW" />
         <link rel="canonical" href={`${protocol}://${host}${lang === 'en' ? '/en' : lang === 'vi' ? '/vi' : '/zh-TW'}`} />
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
       </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <Providers>
