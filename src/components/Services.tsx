@@ -122,9 +122,9 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative group h-[700px]"
+      className="relative group h-full flex flex-col"
     >
-      <GlareCard className="h-full">
+      <GlareCard>
         <div className="relative h-full">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
@@ -142,36 +142,30 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
 
           {/* Content */}
           <div className="relative z-10 p-8 h-full flex flex-col">
-            {/* Icon */}
             <div className="text-4xl mb-6 text-white/90 group-hover:text-white transition-colors">
               {service.title.split(' ')[0]}
             </div>
             
-            {/* Title */}
-            <h3 className="text-2xl font-bold text-white mb-6">
+            <h3 className="text-2xl font-bold text-white mb-4 flex-grow">
               {title}
             </h3>
             
-            {/* Description */}
-            <p className="text-white/80 mb-8 text-base">
+            <p className="text-white/80 mb-6 flex-grow">
               {service.description}
             </p>
             
-            {/* Features List - with more space */}
-            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent hover:scrollbar-thumb-white/20">
-              <ul className="space-y-4 pr-2">
-                {service.features.map((feature: string, i: number) => (
-                  <motion.li 
-                    key={i}
-                    className="flex items-start gap-3 text-white/70 group-hover:text-white/90 transition-colors"
-                    whileHover={{ x: 5 }}
-                  >
-                    <span className="flex-shrink-0 text-blue-400 mt-1">✔</span>
-                    <span className="text-base leading-relaxed">{feature}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
+            <ul className="space-y-3 flex-grow">
+              {service.features.map((feature: string, i: number) => (
+                <motion.li 
+                  key={i}
+                  className="flex items-start gap-3 text-white/70 group-hover:text-white/90 transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  <span className="flex-shrink-0 text-blue-400">✔</span>
+                  <span>{feature}</span>
+                </motion.li>
+              ))}
+            </ul>
           </div>
         </div>
       </GlareCard>
