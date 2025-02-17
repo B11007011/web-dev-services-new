@@ -16,55 +16,62 @@ type FAQTranslations = {
   }>;
 }
 
+const defaultFAQ: FAQTranslations = {
+  title: 'Frequently Asked Questions',
+  subtitle: 'Find answers to common questions about our services, process, and solutions',
+  contactText: 'Still have questions?',
+  contactLink: 'Contact our support team',
+  items: [
+    {
+      question: 'What technologies do you use for web development?',
+      answer: 'We use modern technologies like React, Next.js, TypeScript, and Tailwind CSS for frontend development. For backend, we utilize Node.js, Python, and various cloud services. Our tech stack includes:\n\n• Frontend: React, Next.js, TypeScript, Tailwind CSS\n• Backend: Node.js, Python, Go\n• Database: PostgreSQL, MongoDB, Redis\n• Cloud: AWS, Azure, GCP\n• CMS: Headless CMS solutions\n• DevOps: Docker, Kubernetes, CI/CD\n\nOur tech stack is always up-to-date with industry standards and best practices.'
+    },
+    {
+      question: 'How do you ensure website security?',
+      answer: 'We implement multiple layers of security including:\n\n• SSL certificates and HTTPS encryption\n• Secure authentication systems with 2FA\n• Data encryption at rest and in transit\n• Regular security audits and penetration testing\n• Protection against XSS, CSRF, SQL injection\n• DDoS protection and WAF implementation\n• Continuous security monitoring\n• Regular security updates and patches\n• Secure payment gateway integration\n• Data backup and disaster recovery\n• Compliance with GDPR, CCPA, and other regulations'
+    },
+    {
+      question: 'What is your development process?',
+      answer: 'Our agile development process includes:\n\n1. Discovery & Planning\n   • Requirements gathering\n   • Technical analysis\n   • Project roadmap creation\n\n2. Design & Prototyping\n   • UI/UX design\n   • Interactive prototypes\n   • Client feedback integration\n\n3. Development\n   • Agile sprints\n   • Regular updates\n   • Continuous integration\n\n4. Testing & QA\n   • Automated testing\n   • Performance testing\n   • Security testing\n\n5. Deployment\n   • Staged rollout\n   • Performance optimization\n   • Infrastructure setup\n\n6. Post-launch\n   • Monitoring\n   • Maintenance\n   • Continuous improvement'
+    },
+    {
+      question: 'Do you provide SEO optimization?',
+      answer: 'Yes, we implement comprehensive SEO strategies including:\n\n• Technical SEO\n  - Meta tags and schema markup\n  - Site structure optimization\n  - Mobile optimization\n  - Core Web Vitals optimization\n\n• Content SEO\n  - Keyword research and strategy\n  - Content optimization\n  - Local SEO setup\n\n• Off-page SEO\n  - Backlink strategy\n  - Social signals\n  - Brand mentions\n\n• Analytics & Monitoring\n  - Google Analytics setup\n  - Search Console integration\n  - Regular performance reports'
+    },
+    {
+      question: 'What kind of support do you offer after launch?',
+      answer: 'We offer comprehensive support packages including:\n\n• Technical Support\n  - 24/7 emergency support\n  - Bug fixes and updates\n  - Security monitoring\n\n• Maintenance\n  - Regular updates\n  - Performance optimization\n  - Security patches\n\n• Content Updates\n  - Content management\n  - Regular backups\n  - Database maintenance\n\n• Monitoring\n  - Uptime monitoring\n  - Performance tracking\n  - Security scanning\n\nSupport plans can be customized based on your needs.'
+    },
+    {
+      question: 'How do you handle project pricing?',
+      answer: 'We offer transparent pricing based on project scope and requirements:\n\n• Fixed Price Projects\n  - Clear deliverables\n  - Defined timeline\n  - Milestone-based payments\n\n• Time & Material\n  - Flexible scope\n  - Regular billing\n  - Resource allocation\n\n• Retainer Model\n  - Ongoing support\n  - Reserved resources\n  - Priority service\n\nAll pricing includes:\n• No hidden costs\n• Clear payment schedules\n• Detailed project planning'
+    },
+    {
+      question: 'What makes your web development services unique?',
+      answer: 'Our services stand out through:\n\n• Innovation\n  - Latest technologies\n  - Modern architectures\n  - Progressive solutions\n\n• Quality\n  - Rigorous testing\n  - Best practices\n  - Code quality standards\n\n• Performance\n  - Speed optimization\n  - Scalable solutions\n  - Efficient code\n\n• Support\n  - Dedicated team\n  - Quick response\n  - Ongoing maintenance'
+    },
+    {
+      question: 'How do you handle website maintenance and updates?',
+      answer: 'Our maintenance and update process includes:\n\n• Regular Maintenance\n  - Weekly backups\n  - Security updates\n  - Performance checks\n\n• Content Updates\n  - CMS management\n  - Content optimization\n  - Media management\n\n• Technical Updates\n  - Code updates\n  - Plugin updates\n  - Framework updates\n\n• Monitoring\n  - 24/7 uptime monitoring\n  - Performance tracking\n  - Security scanning'
+    },
+    {
+      question: 'What is your approach to mobile responsiveness?',
+      answer: 'We ensure mobile excellence through:\n\n• Design\n  - Mobile-first approach\n  - Responsive layouts\n  - Touch-friendly interfaces\n\n• Development\n  - Cross-device testing\n  - Performance optimization\n  - Progressive enhancement\n\n• Testing\n  - Device testing\n  - Browser testing\n  - User experience validation'
+    },
+    {
+      question: 'How do you handle project timelines and deadlines?',
+      answer: 'Our project management approach includes:\n\n• Planning\n  - Detailed timeline creation\n  - Resource allocation\n  - Milestone definition\n\n• Execution\n  - Agile methodology\n  - Regular updates\n  - Progress tracking\n\n• Communication\n  - Weekly meetings\n  - Status reports\n  - Instant updates\n\n• Risk Management\n  - Early identification\n  - Mitigation strategies\n  - Contingency planning'
+    }
+  ]
+};
+
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const content = useTranslations<FAQTranslations>('faq') || {
-    title: 'Frequently Asked Questions',
-    subtitle: 'Find answers to common questions about our services, process, and solutions',
-    contactText: 'Still have questions?',
-    contactLink: 'Contact our support team',
-    items: [
-      {
-        question: 'What technologies do you use for web development?',
-        answer: 'We use modern technologies like React, Next.js, TypeScript, and Tailwind CSS for frontend development. For backend, we utilize Node.js, Python, and various cloud services. Our tech stack includes:\n\n• Frontend: React, Next.js, TypeScript, Tailwind CSS\n• Backend: Node.js, Python, Go\n• Database: PostgreSQL, MongoDB, Redis\n• Cloud: AWS, Azure, GCP\n• CMS: Headless CMS solutions\n• DevOps: Docker, Kubernetes, CI/CD\n\nOur tech stack is always up-to-date with industry standards and best practices.'
-      },
-      {
-        question: 'How do you ensure website security?',
-        answer: 'We implement multiple layers of security including:\n\n• SSL certificates and HTTPS encryption\n• Secure authentication systems with 2FA\n• Data encryption at rest and in transit\n• Regular security audits and penetration testing\n• Protection against XSS, CSRF, SQL injection\n• DDoS protection and WAF implementation\n• Continuous security monitoring\n• Regular security updates and patches\n• Secure payment gateway integration\n• Data backup and disaster recovery\n• Compliance with GDPR, CCPA, and other regulations'
-      },
-      {
-        question: 'What is your development process?',
-        answer: 'Our agile development process includes:\n\n1. Discovery & Planning\n   • Requirements gathering\n   • Technical analysis\n   • Project roadmap creation\n\n2. Design & Prototyping\n   • UI/UX design\n   • Interactive prototypes\n   • Client feedback integration\n\n3. Development\n   • Agile sprints\n   • Regular updates\n   • Continuous integration\n\n4. Testing & QA\n   • Automated testing\n   • Performance testing\n   • Security testing\n\n5. Deployment\n   • Staged rollout\n   • Performance optimization\n   • Infrastructure setup\n\n6. Post-launch\n   • Monitoring\n   • Maintenance\n   • Continuous improvement'
-      },
-      {
-        question: 'Do you provide SEO optimization?',
-        answer: 'Yes, we implement comprehensive SEO strategies including:\n\n• Technical SEO\n  - Meta tags and schema markup\n  - Site structure optimization\n  - Mobile optimization\n  - Core Web Vitals optimization\n\n• Content SEO\n  - Keyword research and strategy\n  - Content optimization\n  - Local SEO setup\n\n• Off-page SEO\n  - Backlink strategy\n  - Social signals\n  - Brand mentions\n\n• Analytics & Monitoring\n  - Google Analytics setup\n  - Search Console integration\n  - Regular performance reports'
-      },
-      {
-        question: 'What kind of support do you offer after launch?',
-        answer: 'We offer comprehensive support packages including:\n\n• Technical Support\n  - 24/7 emergency support\n  - Bug fixes and updates\n  - Security monitoring\n\n• Maintenance\n  - Regular updates\n  - Performance optimization\n  - Security patches\n\n• Content Updates\n  - Content management\n  - Regular backups\n  - Database maintenance\n\n• Monitoring\n  - Uptime monitoring\n  - Performance tracking\n  - Security scanning\n\nSupport plans can be customized based on your needs.'
-      },
-      {
-        question: 'How do you handle project pricing?',
-        answer: 'We offer transparent pricing based on project scope and requirements:\n\n• Fixed Price Projects\n  - Clear deliverables\n  - Defined timeline\n  - Milestone-based payments\n\n• Time & Material\n  - Flexible scope\n  - Regular billing\n  - Resource allocation\n\n• Retainer Model\n  - Ongoing support\n  - Reserved resources\n  - Priority service\n\nAll pricing includes:\n• No hidden costs\n• Clear payment schedules\n• Detailed project planning'
-      },
-      {
-        question: 'What makes your web development services unique?',
-        answer: 'Our services stand out through:\n\n• Innovation\n  - Latest technologies\n  - Modern architectures\n  - Progressive solutions\n\n• Quality\n  - Rigorous testing\n  - Best practices\n  - Code quality standards\n\n• Performance\n  - Speed optimization\n  - Scalable solutions\n  - Efficient code\n\n• Support\n  - Dedicated team\n  - Quick response\n  - Ongoing maintenance'
-      },
-      {
-        question: 'How do you handle website maintenance and updates?',
-        answer: 'Our maintenance and update process includes:\n\n• Regular Maintenance\n  - Weekly backups\n  - Security updates\n  - Performance checks\n\n• Content Updates\n  - CMS management\n  - Content optimization\n  - Media management\n\n• Technical Updates\n  - Code updates\n  - Plugin updates\n  - Framework updates\n\n• Monitoring\n  - 24/7 uptime monitoring\n  - Performance tracking\n  - Security scanning'
-      },
-      {
-        question: 'What is your approach to mobile responsiveness?',
-        answer: 'We ensure mobile excellence through:\n\n• Design\n  - Mobile-first approach\n  - Responsive layouts\n  - Touch-friendly interfaces\n\n• Development\n  - Cross-device testing\n  - Performance optimization\n  - Progressive enhancement\n\n• Testing\n  - Device testing\n  - Browser testing\n  - User experience validation'
-      },
-      {
-        question: 'How do you handle project timelines and deadlines?',
-        answer: 'Our project management approach includes:\n\n• Planning\n  - Detailed timeline creation\n  - Resource allocation\n  - Milestone definition\n\n• Execution\n  - Agile methodology\n  - Regular updates\n  - Progress tracking\n\n• Communication\n  - Weekly meetings\n  - Status reports\n  - Instant updates\n\n• Risk Management\n  - Early identification\n  - Mitigation strategies\n  - Contingency planning'
-      }
-    ]
+  const content = useTranslations<FAQTranslations>('faq');
+  const displayContent = Object.keys(content).length === 0 ? defaultFAQ : content;
+
+  if (!displayContent || !displayContent.items) {
+    return null;
   }
 
   const toggleFAQ = (index: number) => {
@@ -87,7 +94,7 @@ const FAQ = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -96,13 +103,13 @@ const FAQ = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <div className="grid gap-6">
-            {content.items.map((faq, index) => (
+            {displayContent.items.map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -162,13 +169,13 @@ const FAQ = () => {
           transition={{ delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <p className="text-white/60 mb-4">{content.contactText}</p>
+          <p className="text-white/60 mb-4">{displayContent.contactText}</p>
           <motion.a
             href="#contact"
             className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
             whileHover={{ x: 5 }}
           >
-            {content.contactLink}
+            {displayContent.contactLink}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { products } from '@/data/products';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -28,6 +29,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily',
       priority: 1,
+      // Add images for portfolio and services pages
+      ...(routes.includes('/portfolio') || routes.includes('/services') ? {
+        images: products.map(product => ({
+          url: new URL(product.thumbnail, baseUrlWithLang).href,
+          title: product.title,
+          caption: `Professional ${product.title} services by TecXmate`
+        }))
+      } : {})
     });
     
     // Add other routes
@@ -38,6 +47,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           lastModified: new Date().toISOString(),
           changeFrequency: 'weekly',
           priority: 0.8,
+          // Add images for portfolio and services pages
+          ...(route === '/portfolio' || route === '/services' ? {
+            images: products.map(product => ({
+              url: new URL(product.thumbnail, baseUrlWithLang).href,
+              title: product.title,
+              caption: `Professional ${product.title} services by TecXmate`
+            }))
+          } : {})
         });
       }
     });

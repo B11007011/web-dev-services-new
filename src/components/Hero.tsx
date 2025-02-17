@@ -18,31 +18,34 @@ type HeroContent = {
 }
 
 export function Hero() {
-  const content = useTranslations<HeroContent>('hero') || {
-    title: "We Build Amazing Websites",
-    subtitle: "Transform your business with modern web solutions",
-    cta: "Get Started",
+  const defaultContent: HeroContent = {
+    title: "Elevate your global presence with next-gen Websites",
+    subtitle: "At Tecxmate, we empower businesses with cutting-edge website design and development, with international technology consulting and solutions.",
+    cta: "Book a Call",
     services: [
       {
-        title: "Web Development",
-        description: "Modern, responsive websites built for speed and scalability",
+        title: "Global Reach",
+        description: "With representatives in: San Francisco, Taipei, Hanoi, HCMC, Bangkok, Shenzhen, and more.",
         color: "from-blue-600 to-purple-600",
         image: "/placeholder1.jpg"
       },
       {
-        title: "Mobile Apps",
-        description: "Cross-platform apps that captivate iOS and Android users",
+        title: "Tailored Solutions",
+        description: "Custom designs and digital branding that align with your brand's identity, optimized for performance and security.",
         color: "from-purple-600 to-red-600",
         image: "/placeholder2.jpg"
       },
       {
-        title: "Cloud Solutions",
-        description: "Scalable infrastructure for seamless growth",
+        title: "Full-Service Support",
+        description: "From development to maintenance, SEO optimization, and ongoing technical support.",
         color: "from-red-600 to-orange-600",
         image: "/placeholder3.jpg"
       }
     ]
-  }
+  };
+
+  const content = useTranslations<HeroContent>('hero');
+  const displayContent = Object.keys(content).length === 0 ? defaultContent : content;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -56,10 +59,10 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % content.services.length);
+      setCurrentIndex((prev) => (prev + 1) % displayContent.services.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [content.services.length]);
+  }, [displayContent.services.length]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -83,7 +86,7 @@ export function Hero() {
           <div className="text-left max-w-2xl md:flex-1">
             {/* Interactive Squares */}
             <div className="flex gap-2 mb-6">
-              {content.services.map((_, idx) => (
+              {displayContent.services.map((_, idx) => (
                 <motion.button
                   key={idx}
                   initial={{ opacity: 0 }}
@@ -103,7 +106,7 @@ export function Hero() {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-serif"
             >
-              {content.title}
+              {displayContent.title}
             </motion.h1>
             
             <motion.p 
@@ -112,7 +115,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mt-4 text-lg md:text-xl text-white/80 max-w-xl"
             >
-              {content.subtitle}
+              {displayContent.subtitle}
             </motion.p>
             
             <motion.div 
@@ -125,13 +128,13 @@ export function Hero() {
                 href="#contact"
                 className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-black bg-white hover:bg-white/90 transition-colors select-none"
               >
-                {content.cta}
+                {displayContent.cta}
               </Link>
               <Link
                 href="#services"
                 className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors select-none"
               >
-                {content.services[0].title}
+                {displayContent.services[0].title}
               </Link>
             </motion.div>
           </div>
@@ -142,7 +145,7 @@ export function Hero() {
             onMouseMove={handleMouseMove}
           >
             <AnimatePresence initial={false} custom={direction} mode="popLayout">
-              {content.services.map((service, idx) => {
+              {displayContent.services.map((service, idx) => {
                 const isActive = idx === currentIndex;
                 const offset = (idx - currentIndex) * 30;
                 

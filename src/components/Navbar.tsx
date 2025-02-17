@@ -42,15 +42,15 @@ export function Navbar() {
           <Link href="/" className="flex items-center space-x-2">
             <div className="relative w-8 h-8 md:w-10 md:h-10">
               <Image
-                src="/logo.svg"
-                alt="WebDev Services Logo"
+                src="/tecxmate chinese 拓科智聯.png"
+                alt="TecXmate Logo"
                 fill
                 className="object-contain"
                 priority
               />
             </div>
             <span className="text-lg md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
-              WebDev Services
+              TecXmate
             </span>
           </Link>
 

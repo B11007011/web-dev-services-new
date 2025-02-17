@@ -14,92 +14,95 @@ type ServiceTranslations = {
 }
 
 const defaultServices = {
-  title: "🚀 Our Professional Services",
-  subtitle: "Comprehensive digital solutions to transform and scale your business",
+  title: "🚀 Our Services",
+  subtitle: "Comprehensive web development and digital solutions for your global business needs",
   items: [
     {
-      title: "🌐 Web Development",
-      description: "Modern, high-performance websites and web applications built for scalability and success",
+      title: "🌐 New Website Design & Development",
+      description: "Custom website solutions for every industry and business need",
       features: [
-        "Next.js & React Architecture",
-        "Progressive Web Apps (PWA)",
-        "Custom CMS Development",
-        "API Development & Integration",
-        "Database Design & Optimization",
-        "Web Performance Optimization",
-        "Security Implementation"
+        "Startup Landing Pages",
+        "Personal & Project Portfolio",
+        "Education Websites",
+        "Corporate & Business Websites",
+        "E-commerce Solutions",
+        "AI Web Solutions",
+        "News, Blog & Media Websites",
+        "Real Estate & Rental Websites",
+        "Healthcare & Pharmaceutical Websites"
       ]
     },
     {
-      title: "📱 Mobile Development",
-      description: "Cross-platform mobile applications that deliver exceptional user experiences",
+      title: "🛠️ Website Maintenance & Upgrades",
+      description: "Comprehensive maintenance and security services for your website",
       features: [
-        "React Native Development",
-        "Native iOS/Android Apps",
-        "Mobile UI/UX Design",
-        "Push Notifications",
-        "Offline Functionality",
-        "App Store Optimization",
-        "Mobile Analytics Integration"
+        "High-Speed Hosting",
+        "Domain Registration",
+        "Website Diagnostics",
+        "Regular Maintenance",
+        "Malware Protection",
+        "Security Enhancement",
+        "Performance Optimization"
       ]
     },
     {
-      title: "🛒 E-commerce Solutions",
-      description: "Complete e-commerce platforms designed to maximize sales and customer satisfaction",
+      title: "🎨 Website UI/UX Design",
+      description: "Beautiful and functional design solutions for modern websites",
       features: [
-        "Custom Shopping Cart",
-        "Payment Gateway Integration",
-        "Inventory Management",
-        "Order Processing System",
-        "Customer Account Portal",
-        "Product Recommendation Engine",
-        "Multi-currency Support"
+        "Redesign Old Websites",
+        "Custom Design Requests",
+        "Multiple Style Options",
+        "Responsive Design",
+        "User Experience Optimization",
+        "Brand Identity Integration",
+        "Modern UI Components"
       ]
     },
     {
-      title: "🎯 Digital Marketing",
-      description: "Results-driven digital marketing strategies to boost your online presence",
+      title: "💡 Website Consulting",
+      description: "Expert guidance and solutions for your web presence",
       features: [
-        "SEO Optimization",
-        "Content Marketing",
-        "Social Media Management",
-        "Email Marketing Campaigns",
-        "PPC Advertising",
-        "Conversion Rate Optimization",
+        "Technical Consultation",
+        "Platform Selection",
+        "Architecture Planning",
+        "Performance Analysis",
+        "Security Assessment",
+        "SEO Strategy",
+        "Scalability Planning"
+      ]
+    },
+    {
+      title: "📧 Email & CRM Solutions",
+      description: "Automated email systems and customer relationship management",
+      features: [
+        "Email Engine Setup",
+        "Apollo Integration",
+        "Amazon Pinpoint",
+        "CRM Implementation",
+        "Automation Workflows",
+        "Customer Data Management",
         "Analytics & Reporting"
       ]
     },
     {
-      title: "✨ UI/UX Design",
-      description: "User-centered design solutions that create engaging digital experiences",
+      title: "💼 Enterprise Solutions",
+      description: "Custom software solutions for enterprises and SMEs",
       features: [
-        "User Research & Analysis",
-        "Information Architecture",
-        "Wireframing & Prototyping",
-        "Visual Design",
-        "Interaction Design",
-        "Usability Testing",
-        "Design System Creation"
-      ]
-    },
-    {
-      title: "☁️ Cloud Solutions",
-      description: "Scalable cloud infrastructure and services for optimal performance",
-      features: [
-        "Cloud Architecture Design",
-        "AWS/Azure/GCP Setup",
-        "Database Migration",
-        "Auto-scaling Configuration",
-        "Backup & Recovery",
-        "Security & Compliance",
-        "24/7 Monitoring"
+        "Custom ERP Systems",
+        "Business Process Automation",
+        "Integration Services",
+        "Data Management",
+        "Workflow Optimization",
+        "Scalable Architecture",
+        "Enterprise Security"
       ]
     }
   ]
 };
 
 export function Services() {
-  const content = useTranslations<ServiceTranslations>('services') || defaultServices;
+  const content = useTranslations<ServiceTranslations>('services');
+  const displayContent = Object.keys(content).length === 0 ? defaultServices : content;
 
   return (
     <section 
@@ -120,7 +123,7 @@ export function Services() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -129,12 +132,12 @@ export function Services() {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {content.items.map((service, idx) => (
+          {displayContent.items.map((service, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, y: 20 }}

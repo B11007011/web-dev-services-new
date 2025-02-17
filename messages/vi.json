@@ -1,24 +1,24 @@
 {
   "hero": {
-    "title": "Chúng Tôi Xây Dựng Website Tuyệt Vời",
-    "subtitle": "Chuyển đổi doanh nghiệp của bạn với giải pháp web hiện đại",
-    "cta": "Bắt Đầu Ngay",
+    "title": "Nâng tầm hiện diện toàn cầu với Websites thế hệ mới",
+    "subtitle": "Tại Tecxmate, chúng tôi giúp doanh nghiệp phát triển với thiết kế và phát triển website hiện đại, cùng với tư vấn và giải pháp công nghệ quốc tế.",
+    "cta": "Đặt Lịch Tư Vấn",
     "services": [
       {
-        "title": "Phát Triển Web",
-        "description": "Website hiện đại, tương thích với tốc độ và khả năng mở rộng",
+        "title": "Phạm Vi Toàn Cầu",
+        "description": "Với đại diện tại: San Francisco, Đài Bắc, Hà Nội, TP.HCM, Bangkok, Thâm Quyến, và nhiều nơi khác.",
         "color": "from-blue-600 to-purple-600",
         "image": "/placeholder1.jpg"
       },
       {
-        "title": "Ứng Dụng Di Động",
-        "description": "Ứng dụng đa nền tảng thu hút người dùng iOS và Android",
+        "title": "Giải Pháp Tùy Chỉnh",
+        "description": "Thiết kế và thương hiệu số phù hợp với định hướng thương hiệu của bạn, tối ưu hóa hiệu suất và bảo mật.",
         "color": "from-purple-600 to-red-600",
         "image": "/placeholder2.jpg"
       },
       {
-        "title": "Giải Pháp Đám Mây",
-        "description": "Cơ sở hạ tầng có thể mở rộng cho sự phát triển liền mạch",
+        "title": "Hỗ Trợ Toàn Diện",
+        "description": "Từ phát triển đến bảo trì, tối ưu hóa SEO, và hỗ trợ kỹ thuật liên tục.",
         "color": "from-red-600 to-orange-600",
         "image": "/placeholder3.jpg"
       }
@@ -59,85 +59,87 @@
     }
   },
   "services": {
-    "title": "🚀 Dịch Vụ Chuyên Nghiệp",
-    "subtitle": "Giải pháp kỹ thuật số toàn diện để chuyển đổi và mở rộng doanh nghiệp của bạn",
+    "title": "🚀 Dịch Vụ Của Chúng Tôi",
+    "subtitle": "Giải pháp phát triển web và số hóa toàn diện cho nhu cầu kinh doanh toàn cầu của bạn",
     "items": [
       {
-        "title": "🌐 Phát Triển Web",
-        "description": "Website và ứng dụng web hiện đại, hiệu suất cao được xây dựng để mở rộng và thành công",
+        "title": "🌐 Thiết Kế & Phát Triển Website Mới",
+        "description": "Giải pháp website tùy chỉnh cho mọi ngành nghề và nhu cầu kinh doanh",
         "features": [
-          "Kiến Trúc Next.js & React",
-          "Ứng Dụng Web Tiến Bộ (PWA)",
-          "Phát Triển CMS Tùy Chỉnh",
-          "Phát Triển & Tích Hợp API",
-          "Thiết Kế & Tối Ưu Cơ Sở Dữ Liệu",
-          "Tối Ưu Hiệu Suất Web",
-          "Triển Khai Bảo Mật"
+          "Landing Page Startup",
+          "Portfolio Cá Nhân & Dự Án",
+          "Website Giáo Dục",
+          "Website Doanh Nghiệp",
+          "Giải Pháp E-commerce",
+          "Giải Pháp Web AI",
+          "Website Tin Tức & Blog",
+          "Website Bất Động Sản",
+          "Website Y Tế & Dược Phẩm"
         ]
       },
       {
-        "title": "📱 Phát Triển Ứng Dụng Di Động",
-        "description": "Ứng dụng di động đa nền tảng mang lại trải nghiệm người dùng xuất sắc",
+        "title": "🛠️ Bảo Trì & Nâng Cấp Website",
+        "description": "Dịch vụ bảo trì và bảo mật toàn diện cho website của bạn",
         "features": [
-          "Phát Triển React Native",
-          "Ứng Dụng iOS/Android Gốc",
-          "Thiết Kế UI/UX Mobile",
-          "Thông Báo Đẩy",
-          "Chức Năng Offline",
-          "Tối Ưu App Store",
-          "Tích Hợp Analytics Mobile"
+          "Hosting Tốc Độ Cao",
+          "Đăng Ký Tên Miền",
+          "Chẩn Đoán Website",
+          "Bảo Trì Định Kỳ",
+          "Bảo Vệ Malware",
+          "Tăng Cường Bảo Mật",
+          "Tối Ưu Hiệu Suất"
         ]
       },
       {
-        "title": "🛒 Giải Pháp Thương Mại Điện Tử",
-        "description": "Nền tảng thương mại điện tử hoàn chỉnh được thiết kế để tối đa hóa doanh số và sự hài lòng của khách hàng",
+        "title": "🎨 Thiết Kế UI/UX Website",
+        "description": "Giải pháp thiết kế đẹp và chức năng cho website hiện đại",
         "features": [
-          "Giỏ Hàng Tùy Chỉnh",
-          "Tích Hợp Cổng Thanh Toán",
-          "Quản Lý Kho Hàng",
-          "Hệ Thống Xử Lý Đơn Hàng",
-          "Cổng Thông Tin Khách Hàng",
-          "Công Cụ Đề Xuất Sản Phẩm",
-          "Hỗ Trợ Đa Tiền Tệ"
+          "Thiết Kế Lại Website Cũ",
+          "Thiết Kế Theo Yêu Cầu",
+          "Nhiều Phong Cách Lựa Chọn",
+          "Thiết Kế Responsive",
+          "Tối Ưu Trải Nghiệm Người Dùng",
+          "Tích Hợp Nhận Diện Thương Hiệu",
+          "Thành Phần UI Hiện Đại"
         ]
       },
       {
-        "title": "🎯 Digital Marketing",
-        "description": "Chiến lược marketing số hướng đến kết quả để tăng cường sự hiện diện trực tuyến của bạn",
+        "title": "💡 Tư Vấn Website",
+        "description": "Hướng dẫn chuyên môn và giải pháp cho sự hiện diện web của bạn",
         "features": [
-          "Tối Ưu Hóa SEO",
-          "Marketing Nội Dung",
-          "Quản Lý Mạng Xã Hội",
-          "Chiến Dịch Email Marketing",
-          "Quảng Cáo PPC",
-          "Tối Ưu Tỷ Lệ Chuyển Đổi",
+          "Tư Vấn Kỹ Thuật",
+          "Lựa Chọn Nền Tảng",
+          "Lập Kế Hoạch Kiến Trúc",
+          "Phân Tích Hiệu Suất",
+          "Đánh Giá Bảo Mật",
+          "Chiến Lược SEO",
+          "Lập Kế Hoạch Mở Rộng"
+        ]
+      },
+      {
+        "title": "📧 Giải Pháp Email & CRM",
+        "description": "Hệ thống email tự động và quản lý quan hệ khách hàng",
+        "features": [
+          "Thiết Lập Email Engine",
+          "Tích Hợp Apollo",
+          "Amazon Pinpoint",
+          "Triển Khai CRM",
+          "Quy Trình Tự Động Hóa",
+          "Quản Lý Dữ Liệu Khách Hàng",
           "Phân Tích & Báo Cáo"
         ]
       },
       {
-        "title": "✨ Thiết Kế UI/UX",
-        "description": "Giải pháp thiết kế lấy người dùng làm trung tâm tạo ra trải nghiệm số hấp dẫn",
+        "title": "💼 Giải Pháp Doanh Nghiệp",
+        "description": "Giải pháp phần mềm tùy chỉnh cho doanh nghiệp và SME",
         "features": [
-          "Nghiên Cứu & Phân Tích Người Dùng",
-          "Kiến Trúc Thông Tin",
-          "Thiết Kế Wireframe & Prototype",
-          "Thiết Kế Trực Quan",
-          "Thiết Kế Tương Tác",
-          "Kiểm Thử Khả Năng Sử Dụng",
-          "Tạo Hệ Thống Thiết Kế"
-        ]
-      },
-      {
-        "title": "☁️ Giải Pháp Đám Mây",
-        "description": "Cơ sở hạ tầng và dịch vụ đám mây có thể mở rộng cho hiệu suất tối ưu",
-        "features": [
-          "Thiết Kế Kiến Trúc Đám Mây",
-          "Thiết Lập AWS/Azure/GCP",
-          "Di Chuyển Cơ Sở Dữ Liệu",
-          "Cấu Hình Tự Động Mở Rộng",
-          "Sao Lưu & Phục Hồi",
-          "Bảo Mật & Tuân Thủ",
-          "Giám Sát 24/7"
+          "Hệ Thống ERP Tùy Chỉnh",
+          "Tự Động Hóa Quy Trình",
+          "Dịch Vụ Tích Hợp",
+          "Quản Lý Dữ Liệu",
+          "Tối Ưu Quy Trình",
+          "Kiến Trúc Mở Rộng",
+          "Bảo Mật Doanh Nghiệp"
         ]
       }
     ]
@@ -147,116 +149,116 @@
     "subtitle": "Những điểm mạnh của chúng tôi"
   },
   "process": {
-    "title": "Quy Trình Phát Triển",
-    "subtitle": "Phương pháp tiếp cận có hệ thống để mang lại kết quả xuất sắc với phương pháp đã được chứng minh",
+    "title": "Quy Trình Của Chúng Tôi",
+    "subtitle": "Phương pháp tiếp cận có hệ thống để cung cấp website và giải pháp số chất lượng cao",
     "steps": [
       {
         "number": "01",
-        "title": "Khám Phá & Chiến Lược",
-        "description": "Chúng tôi bắt đầu với việc phân tích sâu về mục tiêu kinh doanh, phân tích thị trường và yêu cầu kỹ thuật để tạo chiến lược toàn diện.",
+        "title": "Khám Phá & Tư Vấn",
+        "description": "Hiểu rõ mục tiêu và yêu cầu của bạn để tạo ra giải pháp hoàn hảo cho doanh nghiệp.",
         "details": [
           "Phân Tích Mục Tiêu Kinh Doanh",
-          "Nghiên Cứu Đối Tượng Mục Tiêu",
-          "Phân Tích Đối Thủ Cạnh Tranh",
+          "Yêu Cầu Kỹ Thuật",
+          "Nghiên Cứu Thị Trường",
+          "Lập Kế Hoạch Ngân Sách",
+          "Xác Định Thời Gian",
           "Lựa Chọn Công Nghệ",
-          "Xác Định Phạm Vi Dự Án",
-          "Lập Kế Hoạch Ngân Sách & Thời Gian",
-          "Đánh Giá Rủi Ro"
+          "Kiến Trúc Giải Pháp"
         ]
       },
       {
         "number": "02",
-        "title": "Thiết Kế & Trải Nghiệm",
-        "description": "Đội ngũ thiết kế của chúng tôi tạo ra giao diện tuyệt đẹp, lấy người dùng làm trung tâm phù hợp với thương hiệu và tối ưu hóa sự tương tác.",
+        "title": "Thiết Kế & Phát Triển",
+        "description": "Tạo ra website chất lượng cao phù hợp hoàn hảo với thương hiệu và yêu cầu của bạn.",
         "details": [
-          "Chiến Lược UI/UX",
-          "Tích Hợp Thương Hiệu",
-          "Thiết Kế Wireframe & Mockup",
-          "Prototype Tương Tác",
-          "Tối Ưu Luồng Người Dùng",
-          "Thiết Kế Mobile-First",
-          "Tiêu Chuẩn Truy Cập"
+          "Thiết Kế UI/UX",
+          "Phát Triển Responsive",
+          "Tích Hợp Nội Dung",
+          "Triển Khai Tính Năng",
+          "Tối Ưu Hiệu Suất",
+          "Triển Khai Bảo Mật",
+          "Kiểm Tra Đa Trình Duyệt"
         ]
       },
       {
         "number": "03",
-        "title": "Phát Triển & Kiểm Thử",
-        "description": "Sử dụng công nghệ hiện đại và thực tiễn tốt nhất, chúng tôi xây dựng giải pháp mạnh mẽ, có thể mở rộng với kiểm thử toàn diện.",
+        "title": "Tối Ưu & SEO",
+        "description": "Nâng cao khả năng hiển thị và hiệu suất của website trên tất cả các công cụ tìm kiếm.",
         "details": [
-          "Phát Triển Agile",
-          "Tiêu Chuẩn Chất Lượng Code",
-          "Tối Ưu Hiệu Suất",
-          "Triển Khai Bảo Mật",
-          "Kiểm Tra Đa Trình Duyệt",
-          "Tương Thích Mobile",
-          "Kiểm Thử Tích Hợp"
+          "Tối Ưu Tốc Độ",
+          "Triển Khai SEO",
+          "Tối Ưu Nội Dung",
+          "Tối Ưu Di Động",
+          "SEO Kỹ Thuật",
+          "Thiết Lập Analytics",
+          "Giám Sát Hiệu Suất"
         ]
       },
       {
         "number": "04",
-        "title": "Ra Mắt & Phát Triển",
-        "description": "Chúng tôi đảm bảo ra mắt thành công với giám sát liên tục, tối ưu hóa và hỗ trợ cho sự phát triển bền vững.",
+        "title": "Ra Mắt & Hỗ Trợ",
+        "description": "Triển khai website và cung cấp hỗ trợ, bảo trì liên tục.",
         "details": [
-          "Danh Sách Kiểm Tra Trước Ra Mắt",
-          "Triển Khai SEO",
-          "Giám Sát Hiệu Suất",
-          "Thiết Lập Analytics",
+          "Kiểm Tra Trước Ra Mắt",
+          "Triển Khai",
+          "Hướng Dẫn Khách Hàng",
+          "Tài Liệu",
           "Giám Sát Bảo Mật",
-          "Cập Nhật Liên Tục",
-          "Hệ Thống Hỗ Trợ 24/7"
+          "Cập Nhật Thường Xuyên",
+          "Hỗ Trợ Liên Tục"
         ]
       }
     ]
   },
   "contact": {
-    "title": "Liên Hệ Với Chúng Tôi",
-    "subtitle": "Bạn có dự án trong tâm trí? Hãy thảo luận về cách chúng tôi có thể giúp biến tầm nhìn của bạn thành hiện thực. Đội ngũ của chúng tôi thường phản hồi trong vòng 24 giờ.",
+    "title": "Hãy Cùng Xây Dựng Điều Tuyệt Vời!",
+    "subtitle": "Sẵn sàng nâng tầm doanh nghiệp của bạn? Liên hệ ngay hôm nay để được tư vấn miễn phí và biến tầm nhìn của bạn thành hiện thực!",
     "form": {
-      "name": "Họ và Tên",
-      "email": "Email",
-      "phone": "Số Điện Thoại (Tùy chọn)",
-      "company": "Tên Công Ty (Tùy chọn)",
+      "name": "Tên Của Bạn",
+      "email": "Email Của Bạn",
+      "phone": "Số Điện Thoại (Tùy Chọn)",
+      "company": "Tên Công Ty (Tùy Chọn)",
       "subject": "Loại Dự Án",
       "budget": "Ngân Sách Dự Kiến",
       "timeline": "Thời Gian Dự Kiến",
       "message": "Chi Tiết Dự Án",
-      "submit": "Gửi Tin Nhắn",
+      "submit": "Đặt Lịch Tư Vấn",
       "success": "Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm.",
       "error": "Gửi tin nhắn thất bại. Vui lòng thử lại hoặc liên hệ trực tiếp với chúng tôi.",
       "placeholders": {
         "subject": "Chọn Loại Dự Án...",
-        "budget": "Chọn Ngân Sách...",
+        "budget": "Chọn Phạm Vi Ngân Sách...",
         "timeline": "Chọn Thời Gian...",
         "message": "Vui lòng mô tả yêu cầu dự án, mục tiêu và các tính năng cụ thể bạn cần..."
       },
       "options": {
         "subject": {
-          "standard": "Website Đa Trang Tiêu Chuẩn",
-          "catalog": "Website Danh Mục Doanh Nghiệp",
-          "multilingual": "Website Đa Ngôn Ngữ",
-          "ecommerce": "Website Thương Mại Điện Tử",
-          "custom": "Phát Triển Tùy Chỉnh"
+          "standard": "Thiết Kế & Phát Triển Website Mới",
+          "catalog": "Bảo Trì & Nâng Cấp Website",
+          "multilingual": "Thiết Kế UI/UX Website",
+          "ecommerce": "Tư Vấn Website",
+          "custom": "Giải Pháp Doanh Nghiệp Tùy Chỉnh"
         },
         "budget": {
-          "40-50k": "40.000 - 50.000 USD",
-          "50-60k": "50.000 - 60.000 USD",
-          "60-70k": "60.000 - 70.000 USD",
-          "70-90k": "70.000 - 90.000 USD",
-          "90k+": "Trên 90.000 USD"
+          "40-50k": "Dưới $5,000",
+          "50-60k": "$5,000 - $10,000",
+          "60-70k": "$10,000 - $20,000",
+          "70-90k": "$20,000 - $50,000",
+          "90k+": "Trên $50,000"
         },
         "timeline": {
-          "1-2": "1-2 tháng",
-          "2-3": "2-3 tháng",
-          "3-4": "3-4 tháng",
-          "4+": "Trên 4 tháng"
+          "1-2": "1-2 tuần",
+          "2-3": "2-4 tuần",
+          "3-4": "1-2 tháng",
+          "4+": "Trên 2 tháng"
         }
       }
     },
     "contact": {
-      "email": "contact@example.com",
-      "phone": "+1 (555) 123-4567",
-      "address": "123 Business Street, Tech City, TC 12345",
-      "workingHours": "Thứ 2 - Thứ 6: 9:00 - 18:00"
+      "email": "contact@tecxmate.com",
+      "phone": "Liên Hệ Qua Line/WhatsApp",
+      "address": "San Francisco | Đài Bắc | Hà Nội | TP.HCM | Bangkok | Thâm Quyến",
+      "workingHours": "Thứ 2 - Thứ 6: 9:00 - 18:00 (GMT+8)"
     }
   },
   "faq": {

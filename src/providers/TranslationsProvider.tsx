@@ -1,12 +1,7 @@
 'use client';
 
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-
-// Import translations directly using relative paths
-import enTranslations from '../../messages/en.json';
-import viTranslations from '../../messages/vi.json';
-import zhTWTranslations from '../../messages/zh-TW.json';
 
 // Define the structure of our translations
 export type TranslationType = {
@@ -183,15 +178,10 @@ export type TranslationType = {
   };
 };
 
-const translations: Record<string, TranslationType> = {
-  en: enTranslations as TranslationType,
-  vi: viTranslations as TranslationType,
-  'zh-TW': zhTWTranslations as TranslationType
-};
-
 type TranslationsContextType = {
   getTranslation: <T>(section: keyof TranslationType) => T;
   locale: string;
+  isLoading: boolean;
 };
 
 const TranslationsContext = createContext<TranslationsContextType | null>(null);
@@ -199,19 +189,51 @@ const TranslationsContext = createContext<TranslationsContextType | null>(null);
 export function TranslationsProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const locale = pathname?.split('/')[1] || 'en';
+  const [translations, setTranslations] = useState<Record<string, TranslationType>>({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTranslations = async () => {
+      try {
+        setIsLoading(true);
+        const [en, vi, zhTW] = await Promise.all([
+          import('../../messages/en.json'),
+          import('../../messages/vi.json'),
+          import('../../messages/zh-TW.json')
+        ]);
+
+        setTranslations({
+          en: en.default as TranslationType,
+          vi: vi.default as TranslationType,
+          'zh-TW': zhTW.default as TranslationType
+        });
+      } catch (error) {
+        console.error('Error loading translations:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadTranslations();
+  }, []);
 
   const getTranslation = <T,>(section: keyof TranslationType): T => {
+    // If still loading, return an empty object of the expected type
+    if (isLoading) {
+      return {} as T;
+    }
+
     try {
       const translation = translations[locale]?.[section];
-      return (translation as T) || (translations.en[section] as T);
+      return (translation as T) || (translations.en?.[section] as T) || {} as T;
     } catch (error) {
       console.error(`Error getting translation for section ${section}:`, error);
-      return translations.en[section] as T;
+      return {} as T;
     }
   };
 
   return (
-    <TranslationsContext.Provider value={{ getTranslation, locale }}>
+    <TranslationsContext.Provider value={{ getTranslation, locale, isLoading }}>
       {children}
     </TranslationsContext.Provider>
   );

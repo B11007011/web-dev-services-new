@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const locales = ['en', 'vi', 'tw']
+const locales = ['en', 'vi', 'zh-TW']
 const defaultLocale = 'en'
 
 // Language code mapping for common variations
 const languageMapping: { [key: string]: string } = {
-  'zh': 'tw',
-  'zh-TW': 'tw',
-  'zh-HK': 'tw',
-  'zh-Hant': 'tw',
+  'zh': 'zh-TW',
+  'zh-TW': 'zh-TW',
+  'zh-HK': 'zh-TW',
+  'zh-Hant': 'zh-TW',
   'vi-VN': 'vi',
   'en-US': 'en',
   'en-GB': 'en'
@@ -19,8 +19,20 @@ const languageMapping: { [key: string]: string } = {
 const subdomainToPath: { [key: string]: string } = {
   'en': 'en',
   'vi': 'vi',
-  'tw': 'zh-TW'
+  'zh-TW': 'zh-TW'
 }
+
+// Cache age definitions
+const CACHE_AGES = {
+  static: 31536000, // 1 year for static assets
+  page: 3600,       // 1 hour for pages
+  api: 300,         // 5 minutes for API responses
+}
+
+// Asset types that should be cached
+const STATIC_ASSETS = [
+  'image', 'font', 'script', 'style', 'manifest'
+]
 
 function getPreferredLanguage(request: NextRequest): string {
   const acceptLanguage = request.headers.get('accept-language')
@@ -39,69 +51,72 @@ function getPreferredLanguage(request: NextRequest): string {
   return defaultLocale
 }
 
-export function middleware(request: NextRequest) {
-  // Get hostname and pathname from request
-  const hostname = request.headers.get('host') || ''
-  const pathname = request.nextUrl.pathname
+function getAssetType(pathname: string): string | null {
+  if (pathname.match(/\.(jpg|jpeg|png|gif|webp|svg|ico)$/)) return 'image'
+  if (pathname.match(/\.(woff|woff2|ttf|otf|eot)$/)) return 'font'
+  if (pathname.match(/\.(js|mjs)$/)) return 'script'
+  if (pathname.match(/\.css$/)) return 'style'
+  if (pathname.match(/manifest\.json$/)) return 'manifest'
+  return null
+}
 
-  // Check if we are in development environment
-  const isDev = hostname.includes('localhost') || hostname.includes('127.0.0.1')
-
-  // Get the current subdomain
-  const currentSubdomain = hostname.split('.')[0]
-
-  // If on a valid language subdomain
-  if (locales.includes(currentSubdomain)) {
-    // If root path, redirect to the appropriate language path
-    if (pathname === '/' || pathname === '') {
-      const langPath = subdomainToPath[currentSubdomain]
-      const url = request.nextUrl.clone()
-      url.pathname = `/${langPath}`
-      return NextResponse.redirect(url)
-    }
-    
-    // Check if current path matches subdomain's language
-    const expectedPath = subdomainToPath[currentSubdomain]
-    const currentPath = pathname.split('/')[1]?.toLowerCase()
-    const expectedPathLower = expectedPath.toLowerCase()
-    
-    // If path doesn't match subdomain's language, redirect
-    if (currentPath !== expectedPathLower) {
-      const url = request.nextUrl.clone()
-      const restOfPath = pathname.substring(pathname.indexOf('/', 1) || pathname.length)
-      url.pathname = `/${expectedPath}${restOfPath}`
-      return NextResponse.redirect(url)
-    }
-
-    return NextResponse.next()
-  }
-
-  // If not on a language subdomain, redirect to appropriate one
-  const preferredLanguage = getPreferredLanguage(request)
+export async function middleware(request: NextRequest) {
+  const { pathname, search, hash } = request.nextUrl
   
-  try {
-    let newUrl: URL
-    if (isDev) {
-      const port = hostname.includes(':') ? `:${hostname.split(':')[1]}` : ':3000'
-      newUrl = new URL(`http://${preferredLanguage}.localhost${port}/${subdomainToPath[preferredLanguage]}`)
-    } else {
-      const mainDomain = hostname.includes('.') ? hostname.split('.').slice(1).join('.') : hostname
-      newUrl = new URL(`https://${preferredLanguage}.${mainDomain}/${subdomainToPath[preferredLanguage]}`)
-    }
-
-    // Add search params if any
-    newUrl.search = request.nextUrl.search
-    
-    return NextResponse.redirect(newUrl)
-  } catch (error) {
-    console.error('Error in middleware:', error)
-    return NextResponse.next()
+  // Handle static assets caching
+  const assetType = getAssetType(pathname)
+  if (assetType && STATIC_ASSETS.includes(assetType)) {
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', `public, max-age=${CACHE_AGES.static}, immutable`)
+    return response
   }
+
+  // Handle page caching
+  if (!pathname.startsWith('/api/')) {
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', `public, max-age=${CACHE_AGES.page}, stale-while-revalidate`)
+    return response
+  }
+
+  // Handle API caching
+  if (pathname.startsWith('/api/')) {
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', `public, max-age=${CACHE_AGES.api}, stale-while-revalidate`)
+    return response
+  }
+
+  // Get hostname
+  const hostname = request.headers.get('host') || ''
+
+  // Get subdomain
+  const subdomain = hostname.split('.')[0]
+
+  // Redirect www to non-www
+  if (hostname.startsWith('www.')) {
+    return NextResponse.redirect(
+      new URL(pathname + search + hash, `https://${hostname.replace('www.', '')}`)
+    )
+  }
+
+  // Handle language-specific subdomains
+  let locale = subdomain
+  if (!locales.includes(locale)) {
+    locale = 'en'
+  }
+
+  // Clone the URL and set the pathname
+  const url = request.nextUrl.clone()
+  url.pathname = `/${locale}${pathname}`
+
+  // Return rewritten response
+  return NextResponse.rewrite(url)
 }
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next, api, etc)
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)',
+    // Skip all internal paths (_next, api)
+    '/((?!_next|api).*)',
+    // Optional: Match API routes
+    '/api/:path*',
   ],
 } 

@@ -3,7 +3,7 @@ import type { Configuration as WebpackConfig } from 'webpack';
 
 /** @type {import('next').NextConfig} */
 const config: NextConfig = {
-  output: 'export',
+ 
   images: {
     unoptimized: true, // Disable image optimization for static export
   },

@@ -15,18 +15,10 @@ export function NavigationBar() {
   const [translations, setTranslations] = useState({
     nav: {
       home: 'Home',
-    //  stats: 'Stats',
       services: 'Services',
-     // features: 'Features',
       process: 'Process',
-     // technologies: 'Technologies',
       portfolio: 'Portfolio',
-    //  caseStudies: 'Case Studies',
-    //  team: 'Team',
-     // blog: 'Blog',
-    //  testimonials: 'Testimonials',
       pricing: 'Pricing',
-    //  faq: 'FAQ',
       contact: 'Contact'
     }
   });
@@ -113,19 +105,10 @@ export function NavigationBar() {
 
   const navItems = [
     { name: translations.nav.home, url: '#hero', icon: Home },
-   // { name: translations.nav.stats, url: '#stats', icon: Laptop },
     { name: translations.nav.services, url: '#services', icon: Laptop },
-   // { name: translations.nav.features, url: '#features', icon: Code },
     { name: translations.nav.process, url: '#process', icon: Lightbulb },
-   // { name: translations.nav.technologies, url: '#technologies', icon: Code },
     { name: translations.nav.portfolio, url: '#portfolio', icon: Laptop },
-   // { name: translations.nav.caseStudies, url: '#case-studies', icon: Newspaper },
-   // { name: translations.nav.team, url: '#team', icon: Users },
-   // { name: translations.nav.blog, url: '#blog', icon: Newspaper },
- //   { name: translations.nav.testimonials, url: '#testimonials', icon: Users },
     { name: translations.nav.pricing, url: '#pricing', icon: Laptop },
-    { name: 'FAQ', url: '#faq', icon: HelpCircle },
-  //  { name: translations.nav.faq, url: '#faq', icon: Lightbulb },
     { name: translations.nav.contact, url: '#contact', icon: Phone }
   ]
 

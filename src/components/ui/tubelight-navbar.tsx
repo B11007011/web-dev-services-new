@@ -122,15 +122,16 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
             onClick={onLogoClick}
             className="flex items-center gap-2 group"
           >
-            <div className="relative w-8 h-8">
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
-              <div className="relative w-full h-full rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">W</span>
-              </div>
+            <div className="relative w-10 h-10">
+              <img 
+                src="/tecxmate chinese 皇貴科技.png"
+                alt="TecXmate 皇貴科技"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-semibold text-lg leading-none">WebDev</span>
-              <span className="text-gray-400 text-xs leading-none">Services</span>
+              <span className="text-white font-semibold text-lg leading-none">TecXmate</span>
+              <span className="text-gray-400 text-xs leading-none">皇貴科技</span>
             </div>
           </a>
         </div>

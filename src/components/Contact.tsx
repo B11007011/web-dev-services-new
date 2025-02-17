@@ -58,8 +58,8 @@ type ContactTranslations = {
 }
 
 const defaultContent: ContactTranslations = {
-  title: 'Get in Touch',
-  subtitle: 'Have a project in mind? Let\'s discuss how we can help bring your vision to life. Our team typically responds within 24 hours.',
+  title: 'Let\'s Build Something Great Together!',
+  subtitle: 'Ready to elevate your business? Contact us today for a free consultation and bring your vision to life!',
   form: {
     name: 'Your Name',
     email: 'Your Email',
@@ -69,7 +69,7 @@ const defaultContent: ContactTranslations = {
     budget: 'Estimated Budget',
     timeline: 'Expected Timeline',
     message: 'Project Details',
-    submit: 'Send Message',
+    submit: 'Book a Call',
     success: 'Thank you! We will contact you soon.',
     error: 'Failed to send message. Please try again or contact us directly.',
     placeholders: {
@@ -80,40 +80,44 @@ const defaultContent: ContactTranslations = {
     },
     options: {
       subject: {
-        standard: 'Standard Multi-page Website',
-        catalog: 'Business Catalog Website',
-        multilingual: 'Multi-language Website',
-        ecommerce: 'E-commerce Website',
-        custom: 'Custom Development'
+        standard: 'New Website Design & Development',
+        catalog: 'Website Maintenance & Upgrades',
+        multilingual: 'Website UI/UX Design',
+        ecommerce: 'Website Consulting',
+        custom: 'Custom Enterprise Solution'
       },
       budget: {
-        '40-50k': '$40,000 - $50,000',
-        '50-60k': '$50,000 - $60,000',
-        '60-70k': '$60,000 - $70,000',
-        '70-90k': '$70,000 - $90,000',
-        '90k+': '$90,000+'
+        '40-50k': 'Under $5,000',
+        '50-60k': '$5,000 - $10,000',
+        '60-70k': '$10,000 - $20,000',
+        '70-90k': '$20,000 - $50,000',
+        '90k+': '$50,000+'
       },
       timeline: {
-        '1-2': '1-2 months',
-        '2-3': '2-3 months',
-        '3-4': '3-4 months',
-        '4+': '4+ months'
+        '1-2': '1-2 weeks',
+        '2-3': '2-4 weeks',
+        '3-4': '1-2 months',
+        '4+': '2+ months'
       }
     }
   },
   contact: {
-    email: 'contact@example.com',
-    phone: '+1 (555) 123-4567',
-    address: '123 Business Street, Tech City, TC 12345',
-    workingHours: 'Mon - Fri: 9:00 AM - 6:00 PM'
+    email: 'contact@tecxmate.com',
+    phone: 'Contact Us on Line/WhatsApp',
+    address: 'San Francisco | Taipei | Hanoi | HCMC | Bangkok | Shenzhen',
+    workingHours: 'Mon - Fri: 9:00 AM - 6:00 PM (GMT+8)'
   }
 }
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const translations = useTranslations<ContactTranslations>('contact')
-  const content = translations || defaultContent
+  const content = useTranslations<ContactTranslations>('contact');
+  const displayContent = Object.keys(content).length === 0 ? defaultContent : content;
+
+  if (!displayContent || !displayContent.contact) {
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -180,7 +184,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +193,7 @@ const Contact = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
@@ -207,8 +211,8 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-blue-400" />
                   <div>
                     <h3 className="text-lg font-medium text-white">Email</h3>
-                    <a href={`mailto:${content.contact.email}`} className="text-white/70 hover:text-blue-400 transition-colors">
-                      {content.contact.email}
+                    <a href={`mailto:${displayContent.contact.email}`} className="text-white/70 hover:text-blue-400 transition-colors">
+                      {displayContent.contact.email}
                     </a>
                   </div>
                 </div>
@@ -222,8 +226,8 @@ const Contact = () => {
                   <Phone className="w-6 h-6 text-blue-400" />
                   <div>
                     <h3 className="text-lg font-medium text-white">Phone</h3>
-                    <a href={`tel:${content.contact.phone}`} className="text-white/70 hover:text-blue-400 transition-colors">
-                      {content.contact.phone}
+                    <a href={`tel:${displayContent.contact.phone}`} className="text-white/70 hover:text-blue-400 transition-colors">
+                      {displayContent.contact.phone}
                     </a>
                   </div>
                 </div>
@@ -237,7 +241,7 @@ const Contact = () => {
                   <MapPin className="w-6 h-6 text-blue-400" />
                   <div>
                     <h3 className="text-lg font-medium text-white">Address</h3>
-                    <p className="text-white/70">{content.contact.address}</p>
+                    <p className="text-white/70">{displayContent.contact.address}</p>
                   </div>
                 </div>
               </div>
@@ -250,7 +254,7 @@ const Contact = () => {
                   <Clock className="w-6 h-6 text-blue-400" />
                   <div>
                     <h3 className="text-lg font-medium text-white">Working Hours</h3>
-                    <p className="text-white/70">{content.contact.workingHours}</p>
+                    <p className="text-white/70">{displayContent.contact.workingHours}</p>
                   </div>
                 </div>
               </div>
@@ -261,169 +265,163 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="group relative"
+            className="relative"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <form onSubmit={handleSubmit} className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-8">
-              <div className="space-y-6">
+            <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.name} <span className="text-red-400">*</span>
+                    <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.name}
                     </label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
-                      minLength={2}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.email} <span className="text-red-400">*</span>
+                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.email}
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.phone}
+                    <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.phone}
                     </label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.company}
+                    <label htmlFor="company" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.company}
                     </label>
                     <input
                       type="text"
                       id="company"
                       name="company"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                 </div>
 
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.subject} <span className="text-red-400">*</span>
+                    <label htmlFor="subject" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.subject}
                     </label>
                     <select
                       id="subject"
                       name="subject"
                       required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all appearance-none cursor-pointer"
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                    <option value="" className="bg-blue-950">{content.form.placeholders.subject}</option>
-                    <option value="standard" className="bg-blue-950">{content.form.options.subject.standard}</option>
-                    <option value="catalog" className="bg-blue-950">{content.form.options.subject.catalog}</option>
-                    <option value="multilingual" className="bg-blue-950">{content.form.options.subject.multilingual}</option>
-                    <option value="ecommerce" className="bg-blue-950">{content.form.options.subject.ecommerce}</option>
-                    <option value="custom" className="bg-blue-950">{content.form.options.subject.custom}</option>
+                      <option value="" className="bg-gray-900">{displayContent.form.placeholders.subject}</option>
+                      {Object.entries(displayContent.form.options.subject).map(([key, value]) => (
+                        <option key={key} value={value} className="bg-gray-900">
+                          {value}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.budget}
+                    <label htmlFor="budget" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.budget}
                     </label>
                     <select
                       id="budget"
                       name="budget"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all appearance-none cursor-pointer"
+                      required
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="" className="bg-blue-950">{content.form.placeholders.budget}</option>
-                      <option value="40-50k" className="bg-blue-950">{content.form.options.budget['40-50k']}</option>
-                      <option value="50-60k" className="bg-blue-950">{content.form.options.budget['50-60k']}</option>
-                      <option value="60-70k" className="bg-blue-950">{content.form.options.budget['60-70k']}</option>
-                      <option value="70-90k" className="bg-blue-950">{content.form.options.budget['70-90k']}</option>
-                      <option value="90k+" className="bg-blue-950">{content.form.options.budget['90k+']}</option>
+                      <option value="" className="bg-gray-900">{displayContent.form.placeholders.budget}</option>
+                      {Object.entries(displayContent.form.options.budget).map(([key, value]) => (
+                        <option key={key} value={value} className="bg-gray-900">
+                          {value}
+                        </option>
+                      ))}
                     </select>
                   </div>
+
                   <div>
-                    <label htmlFor="timeline" className="block text-sm font-medium text-white/80 mb-2">
-                      {content.form.timeline}
+                    <label htmlFor="timeline" className="block text-sm font-medium text-white mb-2">
+                      {displayContent.form.timeline}
                     </label>
                     <select
                       id="timeline"
                       name="timeline"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all appearance-none cursor-pointer"
+                      required
+                      className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="" className="bg-blue-950">{content.form.placeholders.timeline}</option>
-                      <option value="1-2" className="bg-blue-950">{content.form.options.timeline['1-2']}</option>
-                      <option value="2-3" className="bg-blue-950">{content.form.options.timeline['2-3']}</option>
-                      <option value="3-4" className="bg-blue-950">{content.form.options.timeline['3-4']}</option>
-                      <option value="4+" className="bg-blue-950">{content.form.options.timeline['4+']}</option>
+                      <option value="" className="bg-gray-900">{displayContent.form.placeholders.timeline}</option>
+                      {Object.entries(displayContent.form.options.timeline).map(([key, value]) => (
+                        <option key={key} value={value} className="bg-gray-900">
+                          {value}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
-                    {content.form.message} <span className="text-red-400">*</span>
+                  <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
+                    {displayContent.form.message}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
                     required
-                    minLength={10}
-                    placeholder={content.form.placeholders.message}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-blue-400 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all resize-none"
+                    placeholder={displayContent.form.placeholders.message}
+                    className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                   />
                 </div>
 
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 px-6 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Sending...</span>
-                    </>
-                  ) : submitStatus === 'success' ? (
-                    <>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span>{content.form.success}</span>
-                    </>
-                  ) : (
-                    <>
-                      <MessageSquare className="w-5 h-5" />
-                      <span>{content.form.submit}</span>
-                    </>
-                  )}
-                </motion.button>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full py-3 px-6 text-white rounded-lg font-medium transition-all duration-200 ${
+                      isSubmitting
+                        ? 'bg-gray-500 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600'
+                    }`}
+                  >
+                    {isSubmitting ? 'Sending...' : displayContent.form.submit}
+                  </button>
+                </div>
+
+                {submitStatus === 'success' && (
+                  <div className="text-green-400 text-center">
+                    {displayContent.form.success}
+                  </div>
+                )}
 
                 {submitStatus === 'error' && (
-                  <p className="text-red-500 text-sm text-center mt-2">
-                    {content.form.error}
-                  </p>
+                  <div className="text-red-400 text-center">
+                    {displayContent.form.error}
+                  </div>
                 )}
-              </div>
-            </form>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>

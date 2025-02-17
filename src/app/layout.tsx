@@ -9,6 +9,8 @@ import JsonLd from '@/components/JsonLd'
 import { Analytics } from '@vercel/analytics/react'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
@@ -66,6 +68,9 @@ export async function generateMetadata(): Promise<Metadata> {
         'max-snippet': -1,
       },
     },
+    verification: {
+      google: 'google-site-verification=YOUR_VERIFICATION_CODE',
+    },
     openGraph: {
       title: titles[lang as keyof typeof titles],
       description: descriptions[lang as keyof typeof descriptions],
@@ -78,9 +83,6 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: titles[lang as keyof typeof titles],
       description: descriptions[lang as keyof typeof descriptions],
-    },
-    verification: {
-      google: 'google-site-verification=IVfFVvMnAeD6nDyedE8wDB3uDXeQlLNLBTlvYH50nHg',
     },
   }
 }
@@ -160,15 +162,15 @@ export default async function RootLayout({
         <link rel="alternate" href={alternates.vi} hrefLang="vi" />
         <link rel="alternate" href={alternates['zh-TW']} hrefLang="zh-TW" />
         <link rel="canonical" href={`${protocol}://${host}${lang === 'en' ? '/en' : lang === 'vi' ? '/vi' : '/zh-TW'}`} />
-        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
       </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <Providers>
           {children}
           <ScrollToTop />
+          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
+          <Analytics />
+          <JsonLd data={structuredData} />
         </Providers>
-        <JsonLd data={structuredData} />
-        <Analytics />
       </body>
     </html>
   )

@@ -24,7 +24,11 @@ export function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href={`/${locale}`} className="flex-shrink-0 flex items-center">
-              <img className="h-8 w-auto" src="/logo.png" alt="Web Dev Services" />
+              <img 
+                className="h-8 w-auto" 
+                src="/tecxmate chinese 皇貴科技.png" 
+                alt="TecXmate 皇貴科技" 
+              />
             </Link>
           </div>
           

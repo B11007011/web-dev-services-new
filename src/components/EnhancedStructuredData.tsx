@@ -26,19 +26,31 @@ export default function EnhancedStructuredData({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${url}#organization`,
-    name: organizationName,
-    url: url,
+    name: 'Tecxmate',
+    url: 'https://tecxmate.com',
     logo: {
       '@type': 'ImageObject',
       url: logo,
       width: 190,
       height: 190
     },
-    description: description,
+    description: 'Helping people transition from local to digital with web and app solutions',
     sameAs: [
       'https://www.facebook.com/tecxmate',
       'https://twitter.com/tecxmate',
-      'https://www.linkedin.com/company/tecxmate'
+      'https://line.me/tecxmate',
+      'https://zalo.me/tecxmate',
+      'https://weixin.qq.com/tecxmate'
+    ],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        contactOption: 'TollFree',
+        areaServed: ['TW', 'VN', 'Global'],
+        availableLanguage: ['en', 'vi', 'zh-TW'],
+        url: 'https://tecxmate.com/contact'
+      }
     ]
   }
 

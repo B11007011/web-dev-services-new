@@ -16,68 +16,75 @@ type ProcessTranslations = {
   }>;
 }
 
+const defaultProcess: ProcessTranslations = {
+  title: 'Our Process',
+  subtitle: 'A systematic approach to delivering high-quality websites and digital solutions',
+  steps: [
+    {
+      number: '01',
+      title: 'Discovery & Consultation',
+      description: 'Understanding your goals and requirements to create the perfect solution for your business.',
+      details: [
+        'Business Goals Analysis',
+        'Technical Requirements',
+        'Market Research',
+        'Budget Planning',
+        'Timeline Definition',
+        'Technology Stack Selection',
+        'Solution Architecture'
+      ]
+    },
+    {
+      number: '02',
+      title: 'Design & Development',
+      description: 'Crafting a high-quality website that perfectly aligns with your brand and requirements.',
+      details: [
+        'UI/UX Design',
+        'Responsive Development',
+        'Content Integration',
+        'Feature Implementation',
+        'Performance Optimization',
+        'Security Implementation',
+        'Cross-browser Testing'
+      ]
+    },
+    {
+      number: '03',
+      title: 'Optimization & SEO',
+      description: 'Enhancing your website\'s visibility and performance across all search engines.',
+      details: [
+        'Speed Optimization',
+        'SEO Implementation',
+        'Content Optimization',
+        'Mobile Optimization',
+        'Technical SEO',
+        'Analytics Setup',
+        'Performance Monitoring'
+      ]
+    },
+    {
+      number: '04',
+      title: 'Launch & Support',
+      description: 'Deploying your website and providing continuous support and maintenance.',
+      details: [
+        'Pre-launch Testing',
+        'Deployment',
+        'Client Walkthrough',
+        'Documentation',
+        'Security Monitoring',
+        'Regular Updates',
+        'Ongoing Support'
+      ]
+    }
+  ]
+};
+
 const Process = () => {
-  const content = useTranslations<ProcessTranslations>('process') || {
-    title: 'Our Development Process',
-    subtitle: 'A systematic approach to delivering exceptional results with proven methodologies',
-    steps: [
-      {
-        number: '01',
-        title: 'Discovery & Strategy',
-        description: 'We begin with a deep dive into your business objectives, market analysis, and technical requirements to create a comprehensive strategy.',
-        details: [
-          'Business Goals Analysis',
-          'Target Audience Research',
-          'Competitor Analysis',
-          'Technology Stack Selection',
-          'Project Scope Definition',
-          'Budget & Timeline Planning',
-          'Risk Assessment'
-        ]
-      },
-      {
-        number: '02',
-        title: 'Design & UX',
-        description: 'Our design team creates stunning, user-centric interfaces that align with your brand and optimize user engagement.',
-        details: [
-          'UI/UX Strategy',
-          'Brand Integration',
-          'Wireframing & Mockups',
-          'Interactive Prototypes',
-          'User Flow Optimization',
-          'Mobile-First Design',
-          'Accessibility Standards'
-        ]
-      },
-      {
-        number: '03',
-        title: 'Development & QA',
-        description: 'Using modern technologies and best practices, we build robust, scalable solutions with comprehensive testing.',
-        details: [
-          'Agile Development',
-          'Code Quality Standards',
-          'Performance Optimization',
-          'Security Implementation',
-          'Cross-browser Testing',
-          'Mobile Responsiveness',
-          'Integration Testing'
-        ]
-      },
-      {
-        number: '04',
-        title: 'Launch & Growth',
-        description: 'We ensure a successful launch with continuous monitoring, optimization, and support for sustainable growth.',
-        details: [
-          'Pre-launch Checklist',
-          'SEO Implementation',
-          'Performance Monitoring',
-          'Analytics Setup',
-          'Security Monitoring',
-          'Continuous Updates',
-          '24/7 Support System'
-        ]
-      }
-    ]
+  const content = useTranslations<ProcessTranslations>('process');
+  const displayContent = Object.keys(content).length === 0 ? defaultProcess : content;
+
+  if (!displayContent || !displayContent.steps) {
+    return null;
   }
 
   const icons = [Search, Palette, Code2, Rocket]
@@ -98,7 +105,7 @@ const Process = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -107,7 +114,7 @@ const Process = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
@@ -116,7 +123,7 @@ const Process = () => {
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.steps.map((step, index) => (
+            {displayContent.steps.map((step, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

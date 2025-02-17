@@ -1,24 +1,24 @@
 {
   "hero": {
-    "title": "We Build Amazing Websites",
-    "subtitle": "Transform your business with modern web solutions",
-    "cta": "Get Started",
+    "title": "Elevate your global presence with next-gen Websites",
+    "subtitle": "At Tecxmate, we empower businesses with cutting-edge website design and development, with international technology consulting and solutions.",
+    "cta": "Book a Call",
     "services": [
       {
-        "title": "Web Development",
-        "description": "Modern, responsive websites built for speed and scalability",
+        "title": "Global Reach",
+        "description": "With representatives in: San Francisco, Taipei, Hanoi, HCMC, Bangkok, Shenzhen, and more.",
         "color": "from-blue-600 to-purple-600",
         "image": "/placeholder1.jpg"
       },
       {
-        "title": "Mobile Apps",
-        "description": "Cross-platform apps that captivate iOS and Android users",
+        "title": "Tailored Solutions",
+        "description": "Custom designs and digital branding that align with your brand's identity, optimized for performance and security.",
         "color": "from-purple-600 to-red-600",
         "image": "/placeholder2.jpg"
       },
       {
-        "title": "Cloud Solutions",
-        "description": "Scalable infrastructure for seamless growth",
+        "title": "Full-Service Support",
+        "description": "From development to maintenance, SEO optimization, and ongoing technical support.",
         "color": "from-red-600 to-orange-600",
         "image": "/placeholder3.jpg"
       }
@@ -59,85 +59,87 @@
     }
   },
   "services": {
-    "title": "🚀 Our Professional Services",
-    "subtitle": "Comprehensive digital solutions to transform and scale your business",
+    "title": "🚀 Our Services",
+    "subtitle": "Comprehensive web development and digital solutions for your global business needs",
     "items": [
       {
-        "title": "🌐 Web Development",
-        "description": "Modern, high-performance websites and web applications built for scalability and success",
+        "title": "🌐 New Website Design & Development",
+        "description": "Custom website solutions for every industry and business need",
         "features": [
-          "Next.js & React Architecture",
-          "Progressive Web Apps (PWA)",
-          "Custom CMS Development",
-          "API Development & Integration",
-          "Database Design & Optimization",
-          "Web Performance Optimization",
-          "Security Implementation"
+          "Startup Landing Pages",
+          "Personal & Project Portfolio",
+          "Education Websites",
+          "Corporate & Business Websites",
+          "E-commerce Solutions",
+          "AI Web Solutions",
+          "News, Blog & Media Websites",
+          "Real Estate & Rental Websites",
+          "Healthcare & Pharmaceutical Websites"
         ]
       },
       {
-        "title": "📱 Mobile Development",
-        "description": "Cross-platform mobile applications that deliver exceptional user experiences",
+        "title": "🛠️ Website Maintenance & Upgrades",
+        "description": "Comprehensive maintenance and security services for your website",
         "features": [
-          "React Native Development",
-          "Native iOS/Android Apps",
-          "Mobile UI/UX Design",
-          "Push Notifications",
-          "Offline Functionality",
-          "App Store Optimization",
-          "Mobile Analytics Integration"
+          "High-Speed Hosting",
+          "Domain Registration",
+          "Website Diagnostics",
+          "Regular Maintenance",
+          "Malware Protection",
+          "Security Enhancement",
+          "Performance Optimization"
         ]
       },
       {
-        "title": "🛒 E-commerce Solutions",
-        "description": "Complete e-commerce platforms designed to maximize sales and customer satisfaction",
+        "title": "🎨 Website UI/UX Design",
+        "description": "Beautiful and functional design solutions for modern websites",
         "features": [
-          "Custom Shopping Cart",
-          "Payment Gateway Integration",
-          "Inventory Management",
-          "Order Processing System",
-          "Customer Account Portal",
-          "Product Recommendation Engine",
-          "Multi-currency Support"
+          "Redesign Old Websites",
+          "Custom Design Requests",
+          "Multiple Style Options",
+          "Responsive Design",
+          "User Experience Optimization",
+          "Brand Identity Integration",
+          "Modern UI Components"
         ]
       },
       {
-        "title": "🎯 Digital Marketing",
-        "description": "Results-driven digital marketing strategies to boost your online presence",
+        "title": "💡 Website Consulting",
+        "description": "Expert guidance and solutions for your web presence",
         "features": [
-          "SEO Optimization",
-          "Content Marketing",
-          "Social Media Management",
-          "Email Marketing Campaigns",
-          "PPC Advertising",
-          "Conversion Rate Optimization",
+          "Technical Consultation",
+          "Platform Selection",
+          "Architecture Planning",
+          "Performance Analysis",
+          "Security Assessment",
+          "SEO Strategy",
+          "Scalability Planning"
+        ]
+      },
+      {
+        "title": "📧 Email & CRM Solutions",
+        "description": "Automated email systems and customer relationship management",
+        "features": [
+          "Email Engine Setup",
+          "Apollo Integration",
+          "Amazon Pinpoint",
+          "CRM Implementation",
+          "Automation Workflows",
+          "Customer Data Management",
           "Analytics & Reporting"
         ]
       },
       {
-        "title": "✨ UI/UX Design",
-        "description": "User-centered design solutions that create engaging digital experiences",
+        "title": "💼 Enterprise Solutions",
+        "description": "Custom software solutions for enterprises and SMEs",
         "features": [
-          "User Research & Analysis",
-          "Information Architecture",
-          "Wireframing & Prototyping",
-          "Visual Design",
-          "Interaction Design",
-          "Usability Testing",
-          "Design System Creation"
-        ]
-      },
-      {
-        "title": "☁️ Cloud Solutions",
-        "description": "Scalable cloud infrastructure and services for optimal performance",
-        "features": [
-          "Cloud Architecture Design",
-          "AWS/Azure/GCP Setup",
-          "Database Migration",
-          "Auto-scaling Configuration",
-          "Backup & Recovery",
-          "Security & Compliance",
-          "24/7 Monitoring"
+          "Custom ERP Systems",
+          "Business Process Automation",
+          "Integration Services",
+          "Data Management",
+          "Workflow Optimization",
+          "Scalable Architecture",
+          "Enterprise Security"
         ]
       }
     ]
@@ -147,70 +149,70 @@
     "subtitle": "What sets us apart"
   },
   "process": {
-    "title": "Our Development Process",
-    "subtitle": "A systematic approach to delivering exceptional results with proven methodologies",
+    "title": "Our Process",
+    "subtitle": "A systematic approach to delivering high-quality websites and digital solutions",
     "steps": [
       {
         "number": "01",
-        "title": "Discovery & Strategy",
-        "description": "We begin with a deep dive into your business objectives, market analysis, and technical requirements to create a comprehensive strategy.",
+        "title": "Discovery & Consultation",
+        "description": "Understanding your goals and requirements to create the perfect solution for your business.",
         "details": [
           "Business Goals Analysis",
-          "Target Audience Research",
-          "Competitor Analysis",
+          "Technical Requirements",
+          "Market Research",
+          "Budget Planning",
+          "Timeline Definition",
           "Technology Stack Selection",
-          "Project Scope Definition",
-          "Budget & Timeline Planning",
-          "Risk Assessment"
+          "Solution Architecture"
         ]
       },
       {
         "number": "02",
-        "title": "Design & UX",
-        "description": "Our design team creates stunning, user-centric interfaces that align with your brand and optimize user engagement.",
+        "title": "Design & Development",
+        "description": "Crafting a high-quality website that perfectly aligns with your brand and requirements.",
         "details": [
-          "UI/UX Strategy",
-          "Brand Integration",
-          "Wireframing & Mockups",
-          "Interactive Prototypes",
-          "User Flow Optimization",
-          "Mobile-First Design",
-          "Accessibility Standards"
+          "UI/UX Design",
+          "Responsive Development",
+          "Content Integration",
+          "Feature Implementation",
+          "Performance Optimization",
+          "Security Implementation",
+          "Cross-browser Testing"
         ]
       },
       {
         "number": "03",
-        "title": "Development & QA",
-        "description": "Using modern technologies and best practices, we build robust, scalable solutions with comprehensive testing.",
+        "title": "Optimization & SEO",
+        "description": "Enhancing your website's visibility and performance across all search engines.",
         "details": [
-          "Agile Development",
-          "Code Quality Standards",
-          "Performance Optimization",
-          "Security Implementation",
-          "Cross-browser Testing",
-          "Mobile Responsiveness",
-          "Integration Testing"
+          "Speed Optimization",
+          "SEO Implementation",
+          "Content Optimization",
+          "Mobile Optimization",
+          "Technical SEO",
+          "Analytics Setup",
+          "Performance Monitoring"
         ]
       },
       {
         "number": "04",
-        "title": "Launch & Growth",
-        "description": "We ensure a successful launch with continuous monitoring, optimization, and support for sustainable growth.",
+        "title": "Launch & Support",
+        "description": "Deploying your website and providing continuous support and maintenance.",
         "details": [
-          "Pre-launch Checklist",
-          "SEO Implementation",
-          "Performance Monitoring",
-          "Analytics Setup",
+          "Pre-launch Testing",
+          "Deployment",
+          "Client Walkthrough",
+          "Documentation",
           "Security Monitoring",
-          "Continuous Updates",
-          "24/7 Support System"
+          "Regular Updates",
+          "Ongoing Support"
         ]
       }
     ]
   },
   "contact": {
-    "title": "Get in Touch",
-    "subtitle": "Have a project in mind? Let's discuss how we can help bring your vision to life. Our team typically responds within 24 hours.",
+    "title": "Let's Build Something Great Together!",
+    "subtitle": "Ready to elevate your business? Contact us today for a free consultation and bring your vision to life!",
     "form": {
       "name": "Your Name",
       "email": "Your Email",
@@ -220,7 +222,7 @@
       "budget": "Estimated Budget",
       "timeline": "Expected Timeline",
       "message": "Project Details",
-      "submit": "Send Message",
+      "submit": "Book a Call",
       "success": "Thank you! We will contact you soon.",
       "error": "Failed to send message. Please try again or contact us directly.",
       "placeholders": {
@@ -231,32 +233,32 @@
       },
       "options": {
         "subject": {
-          "standard": "Standard Multi-page Website",
-          "catalog": "Business Catalog Website",
-          "multilingual": "Multi-language Website",
-          "ecommerce": "E-commerce Website",
-          "custom": "Custom Development"
+          "standard": "New Website Design & Development",
+          "catalog": "Website Maintenance & Upgrades",
+          "multilingual": "Website UI/UX Design",
+          "ecommerce": "Website Consulting",
+          "custom": "Custom Enterprise Solution"
         },
         "budget": {
-          "40-50k": "$40,000 - $50,000",
-          "50-60k": "$50,000 - $60,000",
-          "60-70k": "$60,000 - $70,000",
-          "70-90k": "$70,000 - $90,000",
-          "90k+": "$90,000+"
+          "40-50k": "Under $5,000",
+          "50-60k": "$5,000 - $10,000",
+          "60-70k": "$10,000 - $20,000",
+          "70-90k": "$20,000 - $50,000",
+          "90k+": "$50,000+"
         },
         "timeline": {
-          "1-2": "1-2 months",
-          "2-3": "2-3 months",
-          "3-4": "3-4 months",
-          "4+": "4+ months"
+          "1-2": "1-2 weeks",
+          "2-3": "2-4 weeks",
+          "3-4": "1-2 months",
+          "4+": "2+ months"
         }
       }
     },
     "contact": {
-      "email": "contact@example.com",
-      "phone": "+1 (555) 123-4567",
-      "address": "123 Business Street, Tech City, TC 12345",
-      "workingHours": "Mon - Fri: 9:00 AM - 6:00 PM"
+      "email": "contact@tecxmate.com",
+      "phone": "Contact Us on Line/WhatsApp",
+      "address": "San Francisco | Taipei | Hanoi | HCMC | Bangkok | Shenzhen",
+      "workingHours": "Mon - Fri: 9:00 AM - 6:00 PM (GMT+8)"
     }
   },
   "faq": {
