@@ -1,7 +1,10 @@
 'use client'
 
+import { cn } from "@/lib/utils"
 import { motion } from 'framer-motion'
 import { useTranslations } from '@/providers/TranslationsProvider'
+import { GlareCard } from '@/components/ui/GlareCard'
+import Image from 'next/image'
 
 type ServiceTranslations = {
   title: string;
@@ -12,6 +15,15 @@ type ServiceTranslations = {
     features: string[];
   }>;
 }
+
+const serviceImages = {
+  "New Website Design & Development": "/images/hero/services/pexels-junior-teixeira-1064069-2047905.jpg",
+  "Website Maintenance & Upgrades": "/images/hero/services/pexels-ismailhamzapolat-28038387.jpg",
+  "Website UI/UX Design": "/images/hero/services/pexels-nickoloui-2473183.jpg",
+  "Website Consulting": "/images/hero/services/pexels-regeci-9544053.jpg",
+  "Email & CRM Solutions": "/images/hero/services/pexels-aykut-aktas-109304778-10946066.jpg",
+  "Enterprise Solutions": "/images/hero/services/pexels-cottonbro-7013230.jpg"
+};
 
 const defaultServices = {
   title: "🚀 Our Services",
@@ -100,6 +112,73 @@ const defaultServices = {
   ]
 };
 
+const ServiceCard = ({ service, index }: { service: any; index: number }) => {
+  const title = service.title.split(' ').slice(1).join(' ');
+  const imagePath = serviceImages[title] || '';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="relative group h-[600px]"
+    >
+      <GlareCard className="h-full">
+        <div className="relative h-full">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={imagePath}
+              alt={title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover object-center opacity-20 group-hover:opacity-30 transition-opacity duration-500"
+              quality={90}
+              priority={index < 3}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-black/80 to-purple-900/90 mix-blend-multiply" />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 p-8 h-full flex flex-col">
+            {/* Icon */}
+            <div className="text-4xl mb-4 text-white/90 group-hover:text-white transition-colors">
+              {service.title.split(' ')[0]}
+            </div>
+            
+            {/* Title */}
+            <h3 className="text-2xl font-bold text-white mb-4">
+              {title}
+            </h3>
+            
+            {/* Description */}
+            <p className="text-white/80 mb-6">
+              {service.description}
+            </p>
+            
+            {/* Features List - with fixed height and scrolling if needed */}
+            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent hover:scrollbar-thumb-white/20">
+              <ul className="space-y-3 pr-2">
+                {service.features.map((feature: string, i: number) => (
+                  <motion.li 
+                    key={i}
+                    className="flex items-start gap-3 text-white/70 group-hover:text-white/90 transition-colors"
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="flex-shrink-0 text-blue-400 mt-1">✔</span>
+                    <span className="text-sm">{feature}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </GlareCard>
+    </motion.div>
+  );
+};
+
 export function Services() {
   const content = useTranslations<ServiceTranslations>('services');
   const displayContent = Object.keys(content).length === 0 ? defaultServices : content;
@@ -107,7 +186,7 @@ export function Services() {
   return (
     <section 
       id="services"
-      className="relative py-20 overflow-hidden bg-gradient-to-b from-blue-950 via-black to-blue-950"
+      className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
@@ -115,8 +194,8 @@ export function Services() {
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +209,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-white/80 max-w-2xl mx-auto"
+            className="text-xl text-white/80"
           >
             {displayContent.subtitle}
           </motion.p>
@@ -138,46 +217,7 @@ export function Services() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayContent.items.map((service, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="group relative h-full flex flex-col"
-              style={{ minHeight: "400px" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300 h-full flex flex-col">
-                
-                <div className="text-4xl mb-6 text-white/80 group-hover:text-white transition-colors">
-                  {service.title.split(' ')[0]}
-                </div>
-                
-                <h3 className="text-2xl font-bold text-white mb-4 flex-grow">
-                  {service.title.split(' ').slice(1).join(' ')}
-                </h3>
-                
-                <p className="text-white/70 mb-6 flex-grow">
-                  {service.description}
-                </p>
-                
-                <ul className="space-y-3 flex-grow">
-                  {service.features.map((feature, i) => (
-                    <motion.li 
-                      key={i}
-                      className="flex items-start gap-3 text-white/60 group-hover:text-white/80 transition-colors"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="flex-shrink-0 text-blue-400">✔</span>
-                      <span>{feature}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+            <ServiceCard key={idx} service={service} index={idx} />
           ))}
         </div>
       </div>

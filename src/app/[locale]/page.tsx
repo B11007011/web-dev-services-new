@@ -1,6 +1,5 @@
 import { Hero } from '@/components/Hero'
-//import { Stats } from '@/components/Stats'
-import { ServicesCarousel } from '@/components/ServicesCarousel'
+import { Services } from '@/components/Services'
 import Process from '@/components/Process'
 import Portfolio from '@/components/Portfolio'
 import Pricing from '@/components/Pricing'
@@ -23,8 +22,7 @@ export default function LocalePage() {
   return (
     <main className="min-h-screen bg-white">
       <Hero />
-      {/*<Stats />*/}
-      <ServicesCarousel />
+      <Services />
       {/*<WhyChooseUs />*/}
       <Process />
       <Portfolio />
