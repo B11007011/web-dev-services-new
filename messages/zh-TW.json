@@ -8,19 +8,19 @@
         "title": "全球據點",
         "description": "代表處遍布：舊金山、台北、河內、胡志明市、曼谷、深圳等地。",
         "color": "from-blue-600 to-purple-600",
-        "image": "/placeholder1.jpg"
+        "image": "/images/hero/global.jpg"
       },
       {
         "title": "客製化解決方案",
         "description": "符合您品牌定位的客製化設計和數位品牌，優化性能和安全性。",
         "color": "from-purple-600 to-red-600",
-        "image": "/placeholder2.jpg"
+        "image": "/images/hero/Solutions.jpg"
       },
       {
         "title": "全方位支援",
         "description": "從開發到維護、SEO優化，以及持續的技術支援。",
         "color": "from-red-600 to-orange-600",
-        "image": "/placeholder3.jpg"
+        "image": "/images/hero/Support.jpg"
       }
     ]
   },
@@ -454,7 +454,7 @@
       {
         "title": "網站開發",
         "description": "使用Next.js和React構建的現代網絡應用",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/annebeauty.site.png",
         "details": {
           "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
           "features": ["響應式設計", "SEO優化", "性能指標", "API整合"],
@@ -464,7 +464,7 @@
       {
         "title": "移動應用",
         "description": "iOS和Android的跨平台解決方案",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/mindful.png",
         "details": {
           "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
           "features": ["推送通知", "離線支持", "數據分析", "應用商店優化"],
@@ -474,7 +474,7 @@
       {
         "title": "UI/UX設計",
         "description": "以用戶為中心的設計帶來成果",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/tecxmate.jpg",
         "details": {
           "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
           "features": ["用戶研究", "線框圖", "設計系統", "可用性測試"],

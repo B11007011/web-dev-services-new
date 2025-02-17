@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useTransform, useMotionValue, useSpring } from
 import Link from 'next/link'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import { useState, useEffect } from 'react'
+import OptimizedImage from './OptimizedImage'
 
 type HeroContent = {
   title: string;
@@ -27,25 +28,42 @@ export function Hero() {
         title: "Global Reach",
         description: "With representatives in: San Francisco, Taipei, Hanoi, HCMC, Bangkok, Shenzhen, and more.",
         color: "from-blue-600 to-purple-600",
-        image: "/placeholder1.jpg"
+        image: "images/hero/global.jpg"
       },
       {
         title: "Tailored Solutions",
         description: "Custom designs and digital branding that align with your brand's identity, optimized for performance and security.",
         color: "from-purple-600 to-red-600",
-        image: "/placeholder2.jpg"
+        image: "images/hero/Solutions.jpg"
       },
       {
         title: "Full-Service Support",
         description: "From development to maintenance, SEO optimization, and ongoing technical support.",
         color: "from-red-600 to-orange-600",
-        image: "/placeholder3.jpg"
+        image: "images/hero/Support.jpg"
       }
     ]
   };
 
+  // Get translations and ensure we always have valid content
   const content = useTranslations<HeroContent>('hero');
-  const displayContent = Object.keys(content).length === 0 ? defaultContent : content;
+  const [displayContent, setDisplayContent] = useState<HeroContent>(defaultContent);
+  
+  useEffect(() => {
+    // Only update display content if we have valid translation content
+    if (content && Object.keys(content).length > 0 && Array.isArray(content.services)) {
+      // Merge translations with default content, keeping default images
+      const validContent = {
+        ...content,
+        services: content.services.map((service, index) => ({
+          ...service,
+          // Always use default image paths
+          image: defaultContent.services[index].image
+        }))
+      };
+      setDisplayContent(validContent);
+    }
+  }, [content]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -57,12 +75,53 @@ export function Hero() {
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
 
   useEffect(() => {
+    // Log the image paths and verify they exist
+    const images = displayContent.services.map(service => service.image);
+    console.log('Hero images to load:', images);
+    
+    // Validate content
+    if (!Array.isArray(displayContent.services) || displayContent.services.length === 0) {
+      console.error('Invalid services data:', displayContent.services);
+      return;
+    }
+
+    // Preload images with proper path handling
+    const preloadPromises = images.map((src) => {
+      return new Promise((resolve, reject) => {
+        if (!src || typeof src !== 'string') {
+          console.error('Invalid image source:', src);
+          reject(new Error('Invalid image source'));
+          return;
+        }
+        const img = new Image();
+        img.onload = () => {
+          console.log('Successfully preloaded:', src);
+          resolve(src);
+        };
+        img.onerror = (e) => {
+          console.error('Failed to preload:', src, e);
+          reject(e);
+        };
+        img.src = `/${src}`; // Add leading slash for proper path resolution
+      });
+    });
+
+    Promise.all(preloadPromises)
+      .then(() => console.log('All images preloaded successfully'))
+      .catch(error => console.error('Error preloading images:', error));
+
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % displayContent.services.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [displayContent.services.length]);
+  }, [displayContent.services]);
+
+  // Early return if no valid services
+  if (!Array.isArray(displayContent.services) || displayContent.services.length === 0) {
+    console.error('No valid services data available');
+    return null;
+  }
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -178,13 +237,29 @@ export function Hero() {
                     <div className={`w-full h-full rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
                       isActive ? 'border-white/30 shadow-2xl' : 'border-white/10'
                     }`}>
-                      <div className={`w-full h-full bg-gradient-to-br ${service.color} p-6 flex flex-col justify-end`}>
-                        <h3 className="text-2xl font-bold text-white mb-3 font-sans">
-                          {service.title}
-                        </h3>
-                        <p className="text-base text-white/80 font-sans">
-                          {service.description}
-                        </p>
+                      <div className="relative w-full h-full">
+                        {/* Background Image */}
+                        <OptimizedImage
+                          src={service.image}
+                          alt={service.title}
+                          priority={true}
+                          className="absolute inset-0 object-cover w-full h-full"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          fill
+                        />
+                        
+                        {/* Gradient Overlay - Reduced opacity */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-60`} />
+                        
+                        {/* Content */}
+                        <div className="absolute inset-0 p-6 flex flex-col justify-end bg-black/20">
+                          <h3 className="text-2xl font-bold text-white mb-3 font-sans">
+                            {service.title}
+                          </h3>
+                          <p className="text-base text-white/90 font-sans">
+                            {service.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </motion.div>

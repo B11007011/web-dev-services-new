@@ -8,19 +8,19 @@
         "title": "Global Reach",
         "description": "With representatives in: San Francisco, Taipei, Hanoi, HCMC, Bangkok, Shenzhen, and more.",
         "color": "from-blue-600 to-purple-600",
-        "image": "/placeholder1.jpg"
+        "image": "/images/hero/global.jpg"
       },
       {
         "title": "Tailored Solutions",
         "description": "Custom designs and digital branding that align with your brand's identity, optimized for performance and security.",
         "color": "from-purple-600 to-red-600",
-        "image": "/placeholder2.jpg"
+        "image": "/images/hero/Solutions.jpg"
       },
       {
         "title": "Full-Service Support",
         "description": "From development to maintenance, SEO optimization, and ongoing technical support.",
         "color": "from-red-600 to-orange-600",
-        "image": "/placeholder3.jpg"
+        "image": "/images/hero/Support.jpg"
       }
     ]
   },
@@ -342,7 +342,7 @@
       {
         "title": "Web Development",
         "description": "Modern web application built with Next.js and React",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/annebeauty.site.png",
         "details": {
           "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
           "features": ["Responsive Design", "SEO Optimization", "Performance Metrics", "API Integration"],
@@ -352,7 +352,7 @@
       {
         "title": "Mobile Application",
         "description": "Cross-platform solution for iOS and Android",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/mindful.png",
         "details": {
           "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
           "features": ["Push Notifications", "Offline Support", "Analytics", "App Store Optimization"],
@@ -362,7 +362,7 @@
       {
         "title": "UI/UX Design",
         "description": "User-centered design that delivers results",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/tecxmate.jpg",
         "details": {
           "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
           "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],

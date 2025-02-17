@@ -31,11 +31,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
       // Add images for portfolio and services pages
       ...(routes.includes('/portfolio') || routes.includes('/services') ? {
-        images: products.map(product => ({
-          url: new URL(product.thumbnail, baseUrlWithLang).href,
-          title: product.title,
-          caption: `Professional ${product.title} services by TecXmate`
-        }))
+        images: products.map(product => 
+          new URL(product.thumbnail, baseUrlWithLang).href
+        )
       } : {})
     });
     
@@ -49,11 +47,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           priority: 0.8,
           // Add images for portfolio and services pages
           ...(route === '/portfolio' || route === '/services' ? {
-            images: products.map(product => ({
-              url: new URL(product.thumbnail, baseUrlWithLang).href,
-              title: product.title,
-              caption: `Professional ${product.title} services by TecXmate`
-            }))
+            images: products.map(product => 
+              new URL(product.thumbnail, baseUrlWithLang).href
+            )
           } : {})
         });
       }

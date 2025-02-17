@@ -8,19 +8,19 @@
         "title": "Phạm Vi Toàn Cầu",
         "description": "Với đại diện tại: San Francisco, Đài Bắc, Hà Nội, TP.HCM, Bangkok, Thâm Quyến, và nhiều nơi khác.",
         "color": "from-blue-600 to-purple-600",
-        "image": "/placeholder1.jpg"
+        "image": "/images/hero/global.jpg"
       },
       {
         "title": "Giải Pháp Tùy Chỉnh",
         "description": "Thiết kế và thương hiệu số phù hợp với định hướng thương hiệu của bạn, tối ưu hóa hiệu suất và bảo mật.",
         "color": "from-purple-600 to-red-600",
-        "image": "/placeholder2.jpg"
+        "image": "/images/hero/Solutions.jpg"
       },
       {
         "title": "Hỗ Trợ Toàn Diện",
         "description": "Từ phát triển đến bảo trì, tối ưu hóa SEO, và hỗ trợ kỹ thuật liên tục.",
         "color": "from-red-600 to-orange-600",
-        "image": "/placeholder3.jpg"
+        "image": "/images/hero/Support.jpg"
       }
     ]
   },
@@ -358,7 +358,7 @@
       {
         "title": "Phát Triển Web",
         "description": "Ứng dụng web hiện đại được xây dựng bằng Next.js và React",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/annebeauty.site.png",
         "details": {
           "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
           "features": ["Thiết Kế Responsive", "Tối Ưu SEO", "Đo Lường Hiệu Suất", "Tích Hợp API"],
@@ -368,7 +368,7 @@
       {
         "title": "Ứng Dụng Di Động",
         "description": "Giải pháp đa nền tảng cho iOS và Android",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/mindful.png",
         "details": {
           "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
           "features": ["Thông Báo Đẩy", "Hỗ Trợ Offline", "Phân Tích", "Tối Ưu App Store"],
@@ -378,7 +378,7 @@
       {
         "title": "Thiết Kế UI/UX",
         "description": "Thiết kế lấy người dùng làm trung tâm mang lại kết quả",
-        "image": "/placeholder.jpg",
+        "image": "/portfolio/tecxmate.jpg",
         "details": {
           "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
           "features": ["Nghiên Cứu Người Dùng", "Wireframing", "Hệ Thống Thiết Kế", "Kiểm Tra Khả Năng Sử Dụng"],
