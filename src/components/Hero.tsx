@@ -135,8 +135,28 @@ export function Hero() {
     <section 
       id="hero"
       className="relative min-h-[80vh] overflow-hidden bg-gradient-to-br from-blue-950 to-black pt-20">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        {/* Primary Gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+        
+        {/* Animated Gradient Orbs */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-[25%] -left-[25%] w-[150%] h-[150%] animate-slow-spin">
+            <div className="absolute top-[40%] left-[40%] w-[300px] h-[300px] rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl" />
+            <div className="absolute top-[45%] left-[45%] w-[250px] h-[250px] rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl" />
+          </div>
+        </div>
+        
+        {/* Noise Texture */}
+        <div className="absolute inset-0 bg-noise opacity-[0.02]" />
+        
+        {/* Glass Effect */}
+        <div className="absolute inset-0 backdrop-blur-3xl" />
+      </div>
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -4,6 +4,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Search, Palette, Code2, Rocket } from 'lucide-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
+import { GlareCard } from '@/components/ui/GlareCard'
+import Image from 'next/image'
 
 type ProcessTranslations = {
   title: string;
@@ -15,6 +17,13 @@ type ProcessTranslations = {
     details: string[];
   }>;
 }
+
+const processImages = [
+  '/images/hero/services/pexels-cottonbro-7013230.jpg',
+  '/images/hero/services/pexels-aykut-aktas-109304778-10946066.jpg',
+  '/images/hero/services/pexels-regeci-9544053.jpg',
+  '/images/hero/services/pexels-ismailhamzapolat-28038387.jpg'
+]
 
 const defaultProcess: ProcessTranslations = {
   title: 'Our Process',
@@ -130,47 +139,58 @@ const Process = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="relative group h-full flex flex-col"
-                style={{ minHeight: "350px" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300 h-full flex flex-col">
-                  {/* Step Number */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
-                    {step.number}
-                  </div>
+                <GlareCard>
+                  <div className="relative h-full">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 z-0">
+                      <Image
+                        src={processImages[index]}
+                        alt={step.title}
+                        fill
+                        className="object-cover opacity-20"
+                        quality={90}
+                      />
+                    </div>
+                    
+                    <div className="relative z-10 p-8 h-full flex flex-col">
+                      {/* Step Number */}
+                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+                        {step.number}
+                      </div>
 
-                  {/* Icon */}
-                  <div className="mb-6">
-                    {React.createElement(icons[index], { className: "w-8 h-8 text-blue-400" })}
-                  </div>
+                      {/* Icon */}
+                      <div className="mb-6">
+                        {React.createElement(icons[index], { className: "w-8 h-8 text-blue-400" })}
+                      </div>
 
-                  {/* Content */}
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-semibold text-white mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/70 mb-4">
-                      {step.description}
-                    </p>
-                  </div>
+                      {/* Content */}
+                      <div className="flex-grow">
+                        <h3 className="text-xl font-semibold text-white mb-3">
+                          {step.title}
+                        </h3>
+                        <p className="text-white/70 mb-4">
+                          {step.description}
+                        </p>
+                      </div>
 
-                  {/* Details */}
-                  <ul className="space-y-2 flex-grow">
-                    {step.details.map((detail, i) => (
-                      <motion.li 
-                        key={i} 
-                        className="flex items-center text-white/60 group-hover:text-white/80 transition-colors"
-                        whileHover={{ x: 5 }}
-                      >
-                        <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2" />
-                        {detail}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
+                      {/* Details */}
+                      <ul className="space-y-2 flex-grow">
+                        {step.details.map((detail, i) => (
+                          <motion.li 
+                            key={i} 
+                            className="flex items-center text-white/60 hover:text-white/80 transition-colors"
+                            whileHover={{ x: 5 }}
+                          >
+                            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2" />
+                            {detail}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </GlareCard>
               </motion.div>
             ))}
           </div>
