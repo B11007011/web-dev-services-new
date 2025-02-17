@@ -7,7 +7,7 @@ import LanguageHandler from "@/components/LanguageHandler";
 import EnhancedStructuredData from "@/components/EnhancedStructuredData";
 import { ReactNode } from "react";
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Be_Vietnam_Pro, Inter } from "next/font/google";
 import { cn } from '@/lib/utils'
 import { Providers } from '@/providers/Providers'
 import { headers } from 'next/headers'
@@ -25,6 +25,15 @@ const inter = Inter({
   display: 'swap',
   preload: true,
   fallback: ['system-ui', 'arial'],
+  variable: '--font-inter',
+});
+
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ["latin", "vietnamese"],
+  display: 'swap',
+  preload: true,
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-be-vietnam-pro',
 });
 
 const locales = ['en', 'vi', 'zh-TW'] as const;
@@ -70,6 +79,12 @@ async function getLocalizedContent(locale: Locale) {
   };
 }
 
+const LANGUAGE_SUBDOMAINS = {
+  'en': '',  // Default domain
+  'vi': 'vi',
+  'zh-TW': 'tw'
+};
+
 export async function generateMetadata(
   { params: { locale } }: Props
 ): Promise<Metadata> {
@@ -79,6 +94,20 @@ export async function generateMetadata(
   ]);
 
   const { baseUrl } = metadataParams;
+  const domain = baseUrl.split('://')[1];
+
+  // Generate hreflang URLs for all supported languages with subdomains
+  const hreflangUrls = {
+    'en-US': `https://${domain}/en`,
+    'vi-VN': `https://vi.${domain}/vi`,
+    'zh-TW': `https://tw.${domain}/zh-TW`,
+  };
+
+  // Get current subdomain URL
+  const subdomain = LANGUAGE_SUBDOMAINS[locale as keyof typeof LANGUAGE_SUBDOMAINS];
+  const currentUrl = subdomain
+    ? `https://${subdomain}.${domain}/${locale}`
+    : `https://${domain}/${locale}`;
 
   return {
     title: {
@@ -88,17 +117,37 @@ export async function generateMetadata(
     description: content.description,
     metadataBase: new URL(baseUrl),
     alternates: {
+      canonical: currentUrl,
       languages: {
-        'en': '/en',
-        'vi': '/vi',
-        'zh-TW': '/zh-TW'
+        'en': `https://${domain}/en`,
+        'vi': `https://vi.${domain}/vi`,
+        'zh-TW': `https://tw.${domain}/zh-TW`
+      },
+      types: {
+        'application/rss+xml': `${baseUrl}/feed.xml`,
       }
     },
     openGraph: {
       title: content.title,
       description: content.description,
       locale: locale,
-      alternateLocale: locales.filter(l => l !== locale)
+      alternateLocale: locales.filter(l => l !== locale),
+      url: currentUrl,
+      siteName: content.title,
+      images: [
+        {
+          url: `${baseUrl}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: content.title
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: content.title,
+      description: content.description,
+      images: [`${baseUrl}/og-image.jpg`],
     },
     icons: {
       icon: [
@@ -113,6 +162,11 @@ export async function generateMetadata(
     },
     verification: {
       google: 'IVfFVvMnAeD6nDyedE8wDB3uDXeQlLNLBTlvYH50nHg'
+    },
+    other: {
+      'google-site-verification': 'IVfFVvMnAeD6nDyedE8wDB3uDXeQlLNLBTlvYH50nHg',
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_VALIDATION || '',
+      'baidu-site-verification': process.env.NEXT_PUBLIC_BAIDU_VALIDATION || ''
     }
   };
 }
@@ -162,7 +216,11 @@ export default async function LocaleLayout({
   };
 
   return (
-    <div className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
+    <div className={cn(
+      "min-h-screen bg-background font-sans antialiased",
+      inter.variable,
+      beVietnamPro.variable
+    )}>
       <Providers>
         <TranslationsProvider>
           <LanguageHandler locale={locale} />

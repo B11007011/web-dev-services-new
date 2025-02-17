@@ -104,7 +104,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-serif"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-sans"
             >
               {displayContent.title}
             </motion.h1>
@@ -113,7 +113,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mt-4 text-lg md:text-xl text-white/80 max-w-xl"
+              className="mt-4 text-lg md:text-xl text-white/80 max-w-xl font-sans"
             >
               {displayContent.subtitle}
             </motion.p>
@@ -126,13 +126,13 @@ export function Hero() {
             >
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-black bg-white hover:bg-white/90 transition-colors select-none"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-black bg-white hover:bg-white/90 transition-colors select-none font-sans"
               >
                 {displayContent.cta}
               </Link>
               <Link
                 href="#services"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors select-none"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors select-none font-sans"
               >
                 {displayContent.services[0].title}
               </Link>
@@ -179,10 +179,10 @@ export function Hero() {
                       isActive ? 'border-white/30 shadow-2xl' : 'border-white/10'
                     }`}>
                       <div className={`w-full h-full bg-gradient-to-br ${service.color} p-6 flex flex-col justify-end`}>
-                        <h3 className="text-2xl font-bold text-white mb-3">
+                        <h3 className="text-2xl font-bold text-white mb-3 font-sans">
                           {service.title}
                         </h3>
-                        <p className="text-base text-white/80">
+                        <p className="text-base text-white/80 font-sans">
                           {service.description}
                         </p>
                       </div>
