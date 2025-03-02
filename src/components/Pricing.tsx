@@ -115,8 +115,8 @@ const defaultContent: PricingTranslations = {
 }
 
 const Pricing = () => {
-  const translations = useTranslations<PricingTranslations>('pricing')
-  const content = translations || defaultContent
+  const content = useTranslations<PricingTranslations>('pricing');
+  const displayContent = Object.keys(content).length === 0 ? defaultContent : content;
 
   return (
     <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="pricing">
@@ -134,7 +134,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -143,12 +143,12 @@ const Pricing = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 max-w-[1600px] mx-auto overflow-x-auto pb-4">
-          {content.plans.map((plan, index) => (
+          {displayContent.plans.map((plan, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

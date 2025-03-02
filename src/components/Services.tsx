@@ -1,7 +1,10 @@
 'use client'
 
+import { cn } from "@/lib/utils"
 import { motion } from 'framer-motion'
 import { useTranslations } from '@/providers/TranslationsProvider'
+import { GlareCard } from '@/components/ui/GlareCard'
+import Image from 'next/image'
 
 type ServiceTranslations = {
   title: string;
@@ -13,98 +16,171 @@ type ServiceTranslations = {
   }>;
 }
 
+const serviceImages = {
+  "New Website Design & Development": "/images/hero/services/pexels-junior-teixeira-1064069-2047905.jpg",
+  "Website Maintenance & Upgrades": "/images/hero/services/pexels-ismailhamzapolat-28038387.jpg",
+  "Website UI/UX Design": "/images/hero/services/pexels-nickoloui-2473183.jpg",
+  "Website Consulting": "/images/hero/services/pexels-regeci-9544053.jpg",
+  "Email & CRM Solutions": "/images/hero/services/pexels-aykut-aktas-109304778-10946066.jpg",
+  "Enterprise Solutions": "/images/hero/services/pexels-cottonbro-7013230.jpg"
+};
+
 const defaultServices = {
-  title: "🚀 Our Professional Services",
-  subtitle: "Comprehensive digital solutions to transform and scale your business",
+  title: "🚀 Our Services",
+  subtitle: "Comprehensive web development and digital solutions for your global business needs",
   items: [
     {
-      title: "🌐 Web Development",
-      description: "Modern, high-performance websites and web applications built for scalability and success",
+      title: "🌐 New Website Design & Development",
+      description: "Custom website solutions for every industry and business need",
       features: [
-        "Next.js & React Architecture",
-        "Progressive Web Apps (PWA)",
-        "Custom CMS Development",
-        "API Development & Integration",
-        "Database Design & Optimization",
-        "Web Performance Optimization",
-        "Security Implementation"
+        "Startup Landing Pages",
+        "Personal & Project Portfolio",
+        "Education Websites",
+        "Corporate & Business Websites",
+        "E-commerce Solutions",
+        "AI Web Solutions",
+        "News, Blog & Media Websites",
+        "Real Estate & Rental Websites",
+        "Healthcare & Pharmaceutical Websites"
       ]
     },
     {
-      title: "📱 Mobile Development",
-      description: "Cross-platform mobile applications that deliver exceptional user experiences",
+      title: "🛠️ Website Maintenance & Upgrades",
+      description: "Comprehensive maintenance and security services for your website",
       features: [
-        "React Native Development",
-        "Native iOS/Android Apps",
-        "Mobile UI/UX Design",
-        "Push Notifications",
-        "Offline Functionality",
-        "App Store Optimization",
-        "Mobile Analytics Integration"
+        "High-Speed Hosting",
+        "Domain Registration",
+        "Website Diagnostics",
+        "Regular Maintenance",
+        "Malware Protection",
+        "Security Enhancement",
+        "Performance Optimization"
       ]
     },
     {
-      title: "🛒 E-commerce Solutions",
-      description: "Complete e-commerce platforms designed to maximize sales and customer satisfaction",
+      title: "🎨 Website UI/UX Design",
+      description: "Beautiful and functional design solutions for modern websites",
       features: [
-        "Custom Shopping Cart",
-        "Payment Gateway Integration",
-        "Inventory Management",
-        "Order Processing System",
-        "Customer Account Portal",
-        "Product Recommendation Engine",
-        "Multi-currency Support"
+        "Redesign Old Websites",
+        "Custom Design Requests",
+        "Multiple Style Options",
+        "Responsive Design",
+        "User Experience Optimization",
+        "Brand Identity Integration",
+        "Modern UI Components"
       ]
     },
     {
-      title: "🎯 Digital Marketing",
-      description: "Results-driven digital marketing strategies to boost your online presence",
+      title: "💡 Website Consulting",
+      description: "Expert guidance and solutions for your web presence",
       features: [
-        "SEO Optimization",
-        "Content Marketing",
-        "Social Media Management",
-        "Email Marketing Campaigns",
-        "PPC Advertising",
-        "Conversion Rate Optimization",
+        "Technical Consultation",
+        "Platform Selection",
+        "Architecture Planning",
+        "Performance Analysis",
+        "Security Assessment",
+        "SEO Strategy",
+        "Scalability Planning"
+      ]
+    },
+    {
+      title: "📧 Email & CRM Solutions",
+      description: "Automated email systems and customer relationship management",
+      features: [
+        "Email Engine Setup",
+        "Apollo Integration",
+        "Amazon Pinpoint",
+        "CRM Implementation",
+        "Automation Workflows",
+        "Customer Data Management",
         "Analytics & Reporting"
       ]
     },
     {
-      title: "✨ UI/UX Design",
-      description: "User-centered design solutions that create engaging digital experiences",
+      title: "💼 Enterprise Solutions",
+      description: "Custom software solutions for enterprises and SMEs",
       features: [
-        "User Research & Analysis",
-        "Information Architecture",
-        "Wireframing & Prototyping",
-        "Visual Design",
-        "Interaction Design",
-        "Usability Testing",
-        "Design System Creation"
-      ]
-    },
-    {
-      title: "☁️ Cloud Solutions",
-      description: "Scalable cloud infrastructure and services for optimal performance",
-      features: [
-        "Cloud Architecture Design",
-        "AWS/Azure/GCP Setup",
-        "Database Migration",
-        "Auto-scaling Configuration",
-        "Backup & Recovery",
-        "Security & Compliance",
-        "24/7 Monitoring"
+        "Custom ERP Systems",
+        "Business Process Automation",
+        "Integration Services",
+        "Data Management",
+        "Workflow Optimization",
+        "Scalable Architecture",
+        "Enterprise Security"
       ]
     }
   ]
 };
 
+const ServiceCard = ({ service, index }: { service: any; index: number }) => {
+  const title = service.title.split(' ').slice(1).join(' ');
+  const imagePath = serviceImages[title] || '';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="relative group"
+    >
+      <GlareCard>
+        <div className="relative h-[520px]">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={imagePath}
+              alt={title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover object-center opacity-20 group-hover:opacity-30 transition-opacity duration-500"
+              quality={90}
+              priority={index < 3}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-black/80 to-purple-900/90 mix-blend-multiply" />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 p-6 h-full flex flex-col">
+            <div className="text-3xl mb-3 text-white/90 group-hover:text-white transition-colors">
+              {service.title.split(' ')[0]}
+            </div>
+            
+            <h3 className="text-xl font-bold text-white mb-2">
+              {title}
+            </h3>
+            
+            <p className="text-white/80 mb-4 text-sm">
+              {service.description}
+            </p>
+            
+            <ul className="space-y-1.5 mt-auto">
+              {service.features.map((feature: string, i: number) => (
+                <motion.li 
+                  key={i}
+                  className="flex items-start gap-2 text-white/70 group-hover:text-white/90 transition-colors text-sm"
+                  whileHover={{ x: 5 }}
+                >
+                  <span className="flex-shrink-0 text-blue-400 mt-0.5">✔</span>
+                  <span>{feature}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </GlareCard>
+    </motion.div>
+  );
+};
+
 export function Services() {
-  const content = useTranslations<ServiceTranslations>('services') || defaultServices;
+  const content = useTranslations<ServiceTranslations>('services');
+  const displayContent = Object.keys(content).length === 0 ? defaultServices : content;
 
   return (
     <section 
       id="services"
-      className="relative py-20 overflow-hidden bg-gradient-to-b from-blue-950 via-black to-blue-950"
+      className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
@@ -112,69 +188,30 @@ export function Services() {
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-white/80 max-w-2xl mx-auto"
+            className="text-xl text-white/80"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {content.items.map((service, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="group relative h-full flex flex-col"
-              style={{ minHeight: "400px" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300 h-full flex flex-col">
-                
-                <div className="text-4xl mb-6 text-white/80 group-hover:text-white transition-colors">
-                  {service.title.split(' ')[0]}
-                </div>
-                
-                <h3 className="text-2xl font-bold text-white mb-4 flex-grow">
-                  {service.title.split(' ').slice(1).join(' ')}
-                </h3>
-                
-                <p className="text-white/70 mb-6 flex-grow">
-                  {service.description}
-                </p>
-                
-                <ul className="space-y-3 flex-grow">
-                  {service.features.map((feature, i) => (
-                    <motion.li 
-                      key={i}
-                      className="flex items-start gap-3 text-white/60 group-hover:text-white/80 transition-colors"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="flex-shrink-0 text-blue-400">✔</span>
-                      <span>{feature}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayContent.items.map((service, idx) => (
+            <ServiceCard key={idx} service={service} index={idx} />
           ))}
         </div>
       </div>

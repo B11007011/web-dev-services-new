@@ -4,6 +4,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Search, Palette, Code2, Rocket } from 'lucide-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
+import { GlareCard } from '@/components/ui/GlareCard'
+import Image from 'next/image'
 
 type ProcessTranslations = {
   title: string;
@@ -16,68 +18,82 @@ type ProcessTranslations = {
   }>;
 }
 
+const processImages = [
+  '/images/hero/services/pexels-cottonbro-7013230.jpg',
+  '/images/hero/services/pexels-aykut-aktas-109304778-10946066.jpg',
+  '/images/hero/services/pexels-regeci-9544053.jpg',
+  '/images/hero/services/pexels-ismailhamzapolat-28038387.jpg'
+]
+
+const defaultProcess: ProcessTranslations = {
+  title: 'Our Process',
+  subtitle: 'A systematic approach to delivering high-quality websites and digital solutions',
+  steps: [
+    {
+      number: '01',
+      title: 'Discovery & Consultation',
+      description: 'Understanding your goals and requirements to create the perfect solution for your business.',
+      details: [
+        'Business Goals Analysis',
+        'Technical Requirements',
+        'Market Research',
+        'Budget Planning',
+        'Timeline Definition',
+        'Technology Stack Selection',
+        'Solution Architecture'
+      ]
+    },
+    {
+      number: '02',
+      title: 'Design & Development',
+      description: 'Crafting a high-quality website that perfectly aligns with your brand and requirements.',
+      details: [
+        'UI/UX Design',
+        'Responsive Development',
+        'Content Integration',
+        'Feature Implementation',
+        'Performance Optimization',
+        'Security Implementation',
+        'Cross-browser Testing'
+      ]
+    },
+    {
+      number: '03',
+      title: 'Optimization & SEO',
+      description: 'Enhancing your website\'s visibility and performance across all search engines.',
+      details: [
+        'Speed Optimization',
+        'SEO Implementation',
+        'Content Optimization',
+        'Mobile Optimization',
+        'Technical SEO',
+        'Analytics Setup',
+        'Performance Monitoring'
+      ]
+    },
+    {
+      number: '04',
+      title: 'Launch & Support',
+      description: 'Deploying your website and providing continuous support and maintenance.',
+      details: [
+        'Pre-launch Testing',
+        'Deployment',
+        'Client Walkthrough',
+        'Documentation',
+        'Security Monitoring',
+        'Regular Updates',
+        'Ongoing Support'
+      ]
+    }
+  ]
+};
+
 const Process = () => {
-  const content = useTranslations<ProcessTranslations>('process') || {
-    title: 'Our Development Process',
-    subtitle: 'A systematic approach to delivering exceptional results with proven methodologies',
-    steps: [
-      {
-        number: '01',
-        title: 'Discovery & Strategy',
-        description: 'We begin with a deep dive into your business objectives, market analysis, and technical requirements to create a comprehensive strategy.',
-        details: [
-          'Business Goals Analysis',
-          'Target Audience Research',
-          'Competitor Analysis',
-          'Technology Stack Selection',
-          'Project Scope Definition',
-          'Budget & Timeline Planning',
-          'Risk Assessment'
-        ]
-      },
-      {
-        number: '02',
-        title: 'Design & UX',
-        description: 'Our design team creates stunning, user-centric interfaces that align with your brand and optimize user engagement.',
-        details: [
-          'UI/UX Strategy',
-          'Brand Integration',
-          'Wireframing & Mockups',
-          'Interactive Prototypes',
-          'User Flow Optimization',
-          'Mobile-First Design',
-          'Accessibility Standards'
-        ]
-      },
-      {
-        number: '03',
-        title: 'Development & QA',
-        description: 'Using modern technologies and best practices, we build robust, scalable solutions with comprehensive testing.',
-        details: [
-          'Agile Development',
-          'Code Quality Standards',
-          'Performance Optimization',
-          'Security Implementation',
-          'Cross-browser Testing',
-          'Mobile Responsiveness',
-          'Integration Testing'
-        ]
-      },
-      {
-        number: '04',
-        title: 'Launch & Growth',
-        description: 'We ensure a successful launch with continuous monitoring, optimization, and support for sustainable growth.',
-        details: [
-          'Pre-launch Checklist',
-          'SEO Implementation',
-          'Performance Monitoring',
-          'Analytics Setup',
-          'Security Monitoring',
-          'Continuous Updates',
-          '24/7 Support System'
-        ]
-      }
-    ]
+  const content = useTranslations<ProcessTranslations>('process');
+  const displayContent = Object.keys(content).length === 0 ? defaultProcess : content;
+
+  if (!displayContent || !displayContent.steps) {
+    return null;
   }
 
   const icons = [Search, Palette, Code2, Rocket]
@@ -89,7 +105,7 @@ const Process = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
       </div>
-      
+
       <div className="relative z-10 container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2 
@@ -98,7 +114,7 @@ const Process = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-serif"
           >
-            {content.title}
+            {displayContent.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -107,66 +123,71 @@ const Process = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80"
           >
-            {content.subtitle}
+            {displayContent.subtitle}
           </motion.p>
         </div>
 
-        <div className="relative">
-          {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2" />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="relative group h-full flex flex-col"
-                style={{ minHeight: "350px" }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/30 transition-all duration-300 h-full flex flex-col">
-                  {/* Step Number */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
-                    {step.number}
-                  </div>
-
-                  {/* Icon */}
-                  <div className="mb-6">
-                    {React.createElement(icons[index], { className: "w-8 h-8 text-blue-400" })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {displayContent.steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <GlareCard>
+                <div className="relative h-[400px]">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src={processImages[index]}
+                      alt={step.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover object-center opacity-20 group-hover:opacity-30 transition-opacity duration-500"
+                      quality={90}
+                      priority={index < 2}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-black/80 to-purple-900/90 mix-blend-multiply" />
                   </div>
 
                   {/* Content */}
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-semibold text-white mb-3">
+                  <div className="relative z-10 p-6 h-full flex flex-col">
+                    {/* Step Number */}
+                    <div className="text-3xl mb-4 text-white/90 group-hover:text-white transition-colors flex items-center gap-3">
+                      <span className="bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg w-12 h-12 flex items-center justify-center font-bold">
+                        {step.number}
+                      </span>
+                      {React.createElement(icons[index], { className: "w-8 h-8 text-blue-400" })}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
                       {step.title}
                     </h3>
-                    <p className="text-white/70 mb-4">
+
+                    <p className="text-white/80 mb-4 text-sm line-clamp-2">
                       {step.description}
                     </p>
-                  </div>
 
-                  {/* Details */}
-                  <ul className="space-y-2 flex-grow">
-                    {step.details.map((detail, i) => (
-                      <motion.li 
-                        key={i} 
-                        className="flex items-center text-white/60 group-hover:text-white/80 transition-colors"
-                        whileHover={{ x: 5 }}
-                      >
-                        <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2" />
-                        {detail}
-                      </motion.li>
-                    ))}
-                  </ul>
+                    <ul className="space-y-2 mt-auto">
+                      {step.details.map((detail, i) => (
+                        <motion.li 
+                          key={i}
+                          className="flex items-start gap-2 text-white/70 group-hover:text-white/90 transition-colors text-sm"
+                          whileHover={{ x: 5 }}
+                        >
+                          <span className="flex-shrink-0 text-blue-400 mt-0.5">✔</span>
+                          <span className="line-clamp-1">{detail}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </GlareCard>
+            </motion.div>
+          ))}
         </div>
       </div>
 

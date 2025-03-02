@@ -1,5 +1,4 @@
 import { Hero } from '@/components/Hero'
-//import { Stats } from '@/components/Stats'
 import { Services } from '@/components/Services'
 import Process from '@/components/Process'
 import Portfolio from '@/components/Portfolio'
@@ -23,16 +22,14 @@ export default function LocalePage() {
   return (
     <main className="min-h-screen bg-white">
       <Hero />
-      {/*<Stats />*/}
       <Services />
       {/*<WhyChooseUs />*/}
       <Process />
       <Portfolio />
-     
       <Team />
       <Pricing />
       <FAQ />
-      <Contact />
+      
       {/* Add other components */}
     </main>
   )

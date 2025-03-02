@@ -1,28 +1,60 @@
 import { MetadataRoute } from 'next';
+import { products } from '@/data/products';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://example.com'; // Replace with your actual domain
-
-  return [
-    {
-      url: `${baseUrl}/en`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/vi`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/zh-TW`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const languages = ['en', 'vi', 'zh-TW'];
+  const routes = [
+    '',
+    '/services',
+    '/about',
+    '/contact',
+    '/team',
+    '/portfolio',
+    '/blog'
   ];
+
+  const entries: MetadataRoute.Sitemap = [];
+
+  // Add language-specific routes
+  languages.forEach(lang => {
+    const subdomain = lang === 'zh-TW' ? 'tw' : lang;
+    const baseUrlWithLang = `https://${subdomain}.tecxmate.com`;
+    
+    // Add the root URL for each language
+    entries.push({
+      url: `${baseUrlWithLang}/${lang}/`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'daily',
+      priority: 1,
+      // Add images for portfolio and services pages
+      ...(routes.includes('/portfolio') || routes.includes('/services') ? {
+        images: products.map(product => 
+          new URL(product.thumbnail, baseUrlWithLang).href
+        )
+      } : {})
+    });
+    
+    // Add other routes
+    routes.forEach(route => {
+      if (route !== '') {
+        entries.push({
+          url: `${baseUrlWithLang}/${lang}${route}/`,
+          lastModified: new Date().toISOString(),
+          changeFrequency: 'weekly',
+          priority: 0.8,
+          // Add images for portfolio and services pages
+          ...(route === '/portfolio' || route === '/services' ? {
+            images: products.map(product => 
+              new URL(product.thumbnail, baseUrlWithLang).href
+            )
+          } : {})
+        });
+      }
+    });
+  });
+
+  return entries;
 } 

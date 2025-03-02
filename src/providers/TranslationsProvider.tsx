@@ -1,12 +1,7 @@
 'use client';
 
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-
-// Import translations directly using relative paths
-import enTranslations from '../../messages/en.json';
-import viTranslations from '../../messages/vi.json';
-import zhTWTranslations from '../../messages/zh-TW.json';
 
 // Define the structure of our translations
 export type TranslationType = {
@@ -183,35 +178,109 @@ export type TranslationType = {
   };
 };
 
-const translations: Record<string, TranslationType> = {
-  en: enTranslations as TranslationType,
-  vi: viTranslations as TranslationType,
-  'zh-TW': zhTWTranslations as TranslationType
-};
-
 type TranslationsContextType = {
   getTranslation: <T>(section: keyof TranslationType) => T;
   locale: string;
+  isLoading: boolean;
 };
 
 const TranslationsContext = createContext<TranslationsContextType | null>(null);
 
+const isClient = typeof window !== 'undefined';
+
 export function TranslationsProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const locale = pathname?.split('/')[1] || 'en';
+  const [translations, setTranslations] = useState<Record<string, TranslationType>>({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTranslations = async () => {
+      try {
+        // Don't set loading state if we already have translations for this locale
+        if (translations[locale]) {
+          return;
+        }
+
+        setIsLoading(true);
+        
+        // Check cache first (only in client-side)
+        if (isClient) {
+          const cacheKey = `translations_${locale}`;
+          const cachedData = localStorage.getItem(cacheKey);
+          
+          if (cachedData) {
+            try {
+              const parsedData = JSON.parse(cachedData);
+              const cacheTimestamp = parsedData.timestamp;
+              const currentTime = new Date().getTime();
+              
+              // Cache is valid for 24 hours
+              if (currentTime - cacheTimestamp < 24 * 60 * 60 * 1000) {
+                setTranslations(prev => ({
+                  ...prev,
+                  [locale]: parsedData.translations[locale]
+                }));
+                setIsLoading(false);
+                return;
+              }
+            } catch (e) {
+              console.error('Error parsing cached translations:', e);
+            }
+          }
+        }
+
+        // Load fresh translations if cache is invalid or missing
+        const [en, vi, zhTW] = await Promise.all([
+          import('../../messages/en.json'),
+          import('../../messages/vi.json'),
+          import('../../messages/zh-TW.json')
+        ]);
+
+        const newTranslations = {
+          en: en.default as TranslationType,
+          vi: vi.default as TranslationType,
+          'zh-TW': zhTW.default as TranslationType
+        };
+
+        setTranslations(prev => ({
+          ...prev,
+          ...newTranslations
+        }));
+
+        // Update cache (only in client-side)
+        if (isClient) {
+          try {
+            const cacheKey = `translations_${locale}`;
+            localStorage.setItem(cacheKey, JSON.stringify({
+              translations: { [locale]: newTranslations[locale] },
+              timestamp: new Date().getTime()
+            }));
+          } catch (e) {
+            console.error('Error caching translations:', e);
+          }
+        }
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading translations:', error);
+        setIsLoading(false);
+      }
+    };
+
+    loadTranslations();
+  }, [locale]);
 
   const getTranslation = <T,>(section: keyof TranslationType): T => {
-    try {
-      const translation = translations[locale]?.[section];
-      return (translation as T) || (translations.en[section] as T);
-    } catch (error) {
-      console.error(`Error getting translation for section ${section}:`, error);
-      return translations.en[section] as T;
+    if (!translations[locale]) {
+      // Return empty object if translations aren't loaded yet
+      return {} as T;
     }
+    return translations[locale][section] as T;
   };
 
   return (
-    <TranslationsContext.Provider value={{ getTranslation, locale }}>
+    <TranslationsContext.Provider value={{ getTranslation, locale, isLoading }}>
       {children}
     </TranslationsContext.Provider>
   );

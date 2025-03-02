@@ -6,6 +6,7 @@ import { LucideIcon, Menu, X, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { QuoteForm } from "./quote-form"
 import LanguageSwitcher from '../LanguageSwitcher'
+import Image from "next/image"
 
 interface NavItem {
   name: string
@@ -122,15 +123,21 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
             onClick={onLogoClick}
             className="flex items-center gap-2 group"
           >
-            <div className="relative w-8 h-8">
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
-              <div className="relative w-full h-full rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">W</span>
-              </div>
+            <div className={cn(
+              "relative",
+              isMobile ? "w-[100px] h-[90px]" : "w-[269.7px] h-[250px]"
+            )}>
+              <Image
+                src={isMobile ? "/logo/1.svg" : "/logo/3.svg"}
+                alt="Logo"
+                width={isMobile ? 40 : 150}
+                height={isMobile ? 40 : 50}
+                className="w-auto h-auto"
+                priority
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-semibold text-lg leading-none">WebDev</span>
-              <span className="text-gray-400 text-xs leading-none">Services</span>
+              
             </div>
           </a>
         </div>
