@@ -133,7 +133,7 @@ export function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-950 overflow-hidden" 
+      className="relative h-[700px] w-full bg-gradient-to-br from-blue-950 via-black to-blue-950 overflow-hidden" 
       id="hero"
       onMouseMove={handleMouseMove}
     >
@@ -150,36 +150,14 @@ export function Hero() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
+      <div className="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
         <div className="max-w-3xl">
-          {/* Service Indicators */}
-          <motion.div 
-            className="flex space-x-3 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {displayContent.services.map((_, idx) => (
-              <motion.button
-                key={idx}
-                initial={{ scale: 0.8 }}
-                animate={{ 
-                  scale: currentIndex === idx ? 1 : 0.8,
-                  backgroundColor: currentIndex === idx ? '#6366f1' : '#1f2937'
-                }}
-                transition={{ duration: 0.2 }}
-                onClick={() => setCurrentIndex(idx)}
-                className="w-3 h-3 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              />
-            ))}
-          </motion.div>
-
           {/* Title */}
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight"
           >
             {displayContent.title}
           </motion.h1>
@@ -189,7 +167,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
+            className="text-base sm:text-lg text-gray-300 mb-6 max-w-2xl leading-relaxed"
           >
             {displayContent.subtitle}
           </motion.p>
@@ -203,14 +181,14 @@ export function Hero() {
           >
             <Link
               href="#services"
-              className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-transparent border-2 border-indigo-500 rounded-lg overflow-hidden transition-all duration-300 hover:bg-indigo-500/10"
+              className="group relative inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-transparent border-2 border-indigo-500 rounded-lg overflow-hidden transition-all duration-300 hover:bg-indigo-500/10"
             >
               <span className="relative z-10">{displayContent.services[0].title}</span>
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
             </Link>
             <Link
               href="#contact"
-              className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25"
+              className="group relative inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25"
             >
               <span className="relative z-10">{displayContent.cta}</span>
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -231,13 +209,13 @@ export function Hero() {
               rotateY,
               transformStyle: "preserve-3d",
             }}
-            className="absolute bottom-16 right-8 w-96 hidden lg:block"
+            className="absolute bottom-12 right-8 w-80 hidden lg:block"
           >
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
-              <h3 className="text-xl font-semibold text-white mb-2">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/50">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 {displayContent.services[currentIndex].title}
               </h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm">
                 {displayContent.services[currentIndex].description}
               </p>
             </div>
