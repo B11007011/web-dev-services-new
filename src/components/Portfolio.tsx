@@ -76,7 +76,7 @@ const defaultPortfolio: PortfolioTranslations = {
     {
       title: "Tecxmate Corporate",
       description: "Modern multilingual corporate website with dynamic content management",
-      image: "/portfolio/tecxmate.jpg",
+      image: "/logo/tecxmate-logo.png",
       details: {
         technologies: [
           "React",

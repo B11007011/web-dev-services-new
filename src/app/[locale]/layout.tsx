@@ -33,8 +33,10 @@ const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   display: 'swap',
   preload: true,
-  weight: ['400', '500', '600', '700'],
+  weight: ["400", "500", "600", "700"],
   variable: '--font-be-vietnam-pro',
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: false
 });
 
 const locales = ['en', 'vi', 'zh-TW'] as const;
