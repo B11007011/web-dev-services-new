@@ -11,7 +11,7 @@ import Image from "next/image"
 interface NavItem {
   name: string
   url: string
-  icon: LucideIcon
+  icon: () => JSX.Element
 }
 
 interface NavBarProps {
@@ -305,7 +305,7 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
                         isActive ? "bg-gray-700/80" : "hover:bg-gray-800/60"
                       )}
                     >
-                      <item.icon size={24} className="shrink-0" />
+                      <item.icon />
                       <span className="truncate">{item.name}</span>
                       {isActive && (
                         <motion.div

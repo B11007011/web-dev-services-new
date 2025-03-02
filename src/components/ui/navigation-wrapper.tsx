@@ -19,7 +19,7 @@ export function NavigationBar() {
       process: 'Process',
       portfolio: 'Portfolio',
       pricing: 'Pricing',
-      contact: 'Contact'
+     
     }
   });
 
@@ -104,12 +104,12 @@ export function NavigationBar() {
   }, [])
 
   const navItems = [
-    { name: translations.nav.home, url: '#hero', icon: Home },
-    { name: translations.nav.services, url: '#services', icon: Laptop },
-    { name: translations.nav.process, url: '#process', icon: Lightbulb },
-    { name: translations.nav.portfolio, url: '#portfolio', icon: Laptop },
-    { name: translations.nav.pricing, url: '#pricing', icon: Laptop },
-    { name: translations.nav.contact, url: '#contact', icon: Phone }
+    { name: translations.nav.home, url: '#hero', icon: () => <Home /> },
+    { name: translations.nav.services, url: '#services', icon: () => <Laptop /> },
+    { name: translations.nav.process, url: '#process', icon: () => <Lightbulb /> },
+    { name: translations.nav.portfolio, url: '#portfolio', icon: () => <Laptop /> },
+    { name: translations.nav.pricing, url: '#pricing', icon: () => <Laptop /> },
+   
   ]
 
   if (!mounted) return null
