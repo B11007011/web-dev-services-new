@@ -122,16 +122,22 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
             onClick={onLogoClick}
             className="flex items-center gap-2 group"
           >
-            <div className="relative w-10 h-10">
+            <div className="relative w-[269.7px] h-[250px]">
               <img 
-                src="/logo.png"
-                alt="TecXmate 皇貴科技"
-                className="w-full h-full object-contain"
+                src="/logo/3.svg"
+                alt="TEXMATE Logo"
+                width={269.7}
+                height={290}
+                className="w-full h-full object-fill"
+                style={{
+                  objectFit: 'fill',
+                  width: '100%',
+                  height: '100%'
+                }}
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-semibold text-lg leading-none">TecXmate</span>
-              <span className="text-gray-400 text-xs leading-none">皇貴科技</span>
+              
             </div>
           </a>
         </div>
