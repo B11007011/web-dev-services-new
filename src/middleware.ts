@@ -15,13 +15,6 @@ const languageMapping: { [key: string]: string } = {
   'en-GB': 'en'
 }
 
-// Mapping between subdomains and paths
-const subdomainToPath: { [key: string]: string } = {
-  'en': 'en',
-  'vi': 'vi',
-  'zh-TW': 'zh-TW'
-}
-
 // Cache age definitions
 const CACHE_AGES = {
   static: 31536000, // 1 year for static assets
@@ -34,82 +27,93 @@ const STATIC_ASSETS = [
   'image', 'font', 'script', 'style', 'manifest'
 ]
 
-function getPreferredLanguage(request: NextRequest): string {
-  const acceptLanguage = request.headers.get('accept-language')
-  if (!acceptLanguage) return defaultLocale
+function getAssetType(pathname: string): string | null {
+  const extension = pathname.split('.').pop()?.toLowerCase()
+  if (!extension) return null
 
-  const preferredLanguages = acceptLanguage.split(',')
-    .map(lang => lang.split(';')[0].trim().toLowerCase())
-
-  for (const lang of preferredLanguages) {
-    if (locales.includes(lang)) return lang
-    if (languageMapping[lang]) return languageMapping[lang]
-    const mainLang = lang.split('-')[0]
-    if (languageMapping[mainLang]) return languageMapping[mainLang]
+  const assetTypes: Record<string, string> = {
+    'png': 'image',
+    'jpg': 'image',
+    'jpeg': 'image',
+    'gif': 'image',
+    'svg': 'image',
+    'ico': 'image',
+    'woff': 'font',
+    'woff2': 'font',
+    'ttf': 'font',
+    'otf': 'font',
+    'js': 'script',
+    'css': 'style',
+    'webmanifest': 'manifest',
+    'json': 'manifest'
   }
 
-  return defaultLocale
-}
-
-function getAssetType(pathname: string): string | null {
-  if (pathname.match(/\.(jpg|jpeg|png|gif|webp|svg|ico)$/)) return 'image'
-  if (pathname.match(/\.(woff|woff2|ttf|otf|eot)$/)) return 'font'
-  if (pathname.match(/\.(js|mjs)$/)) return 'script'
-  if (pathname.match(/\.css$/)) return 'style'
-  if (pathname.match(/manifest\.json$/)) return 'manifest'
-  return null
+  return assetTypes[extension] || null
 }
 
 export async function middleware(request: NextRequest) {
-  const { pathname, search, hash } = request.nextUrl
+  const pathname = request.nextUrl.pathname
+  const search = request.nextUrl.search
+  const host = request.headers.get('host') || ''
   
-  // Handle static assets caching
+  // Handle asset caching
   const assetType = getAssetType(pathname)
   if (assetType && STATIC_ASSETS.includes(assetType)) {
     const response = NextResponse.next()
-    response.headers.set('Cache-Control', `public, max-age=${CACHE_AGES.static}, immutable`)
-    return response
-  }
-
-  // Handle page caching
-  if (!pathname.startsWith('/api/')) {
-    const response = NextResponse.next()
-    response.headers.set('Cache-Control', `public, max-age=${CACHE_AGES.page}, stale-while-revalidate`)
-    return response
-  }
-
-  // Handle API caching
-  if (pathname.startsWith('/api/')) {
-    const response = NextResponse.next()
-    response.headers.set('Cache-Control', `public, max-age=${CACHE_AGES.api}, stale-while-revalidate`)
-    return response
-  }
-
-  // Get hostname
-  const hostname = request.headers.get('host') || ''
-
-  // Get subdomain
-  const subdomain = hostname.split('.')[0]
-
-  // Redirect www to non-www
-  if (hostname.startsWith('www.')) {
-    return NextResponse.redirect(
-      new URL(pathname + search + hash, `https://${hostname.replace('www.', '')}`)
+    response.headers.set(
+      'Cache-Control',
+      `public, max-age=${CACHE_AGES.static}, stale-while-revalidate`
     )
+    return response
   }
 
-  // Handle language-specific subdomains
-  let locale = subdomain
-  if (!locales.includes(locale)) {
-    locale = 'en'
+  // Get locale from pathname
+  const pathnameParts = pathname.split('/')
+  const pathLocale = pathnameParts[1]
+  
+  // Check if the pathname already includes a valid locale
+  if (locales.includes(pathLocale)) {
+    const response = NextResponse.next()
+    
+    // Set appropriate cache headers based on the type of request
+    if (pathname.startsWith('/api/')) {
+      response.headers.set(
+        'Cache-Control',
+        `public, max-age=${CACHE_AGES.api}, stale-while-revalidate`
+      )
+    } else {
+      response.headers.set(
+        'Cache-Control',
+        `public, max-age=${CACHE_AGES.page}, stale-while-revalidate`
+      )
+    }
+    
+    return response
   }
 
-  // Clone the URL and set the pathname
-  const url = request.nextUrl.clone()
-  url.pathname = `/${locale}${pathname}`
+  // Get preferred language from accept-language header
+  const acceptLanguage = request.headers.get('accept-language')
+  let preferredLocale = defaultLocale
 
-  // Return rewritten response
-  return NextResponse.rewrite(url)
+  if (acceptLanguage) {
+    const preferredLanguages = acceptLanguage.split(',')
+    for (const lang of preferredLanguages) {
+      const langCode = lang.split(';')[0].trim()
+      if (languageMapping[langCode]) {
+        preferredLocale = languageMapping[langCode]
+        break
+      }
+      if (locales.includes(langCode)) {
+        preferredLocale = langCode
+        break
+      }
+    }
+  }
+
+  // Redirect to the appropriate locale path
+  return NextResponse.redirect(
+    new URL(`/${preferredLocale}${pathname}${search}`, request.url)
+  )
 }
 
 export const config = {

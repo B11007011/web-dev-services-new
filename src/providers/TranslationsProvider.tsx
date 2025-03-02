@@ -197,65 +197,32 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const loadTranslations = async () => {
       try {
-        // Don't set loading state if we already have translations for this locale
-        if (translations[locale]) {
+        setIsLoading(true);
+
+        // Try to load from cache first
+        const cachedTranslations = await loadFromCache(locale);
+        if (cachedTranslations) {
+          setTranslations(prevTranslations => ({
+            ...prevTranslations,
+            [locale]: cachedTranslations
+          }));
+          setIsLoading(false);
           return;
         }
 
-        setIsLoading(true);
-        
-        // Check cache first (only in client-side)
-        if (isClient) {
-          const cacheKey = `translations_${locale}`;
-          const cachedData = localStorage.getItem(cacheKey);
-          
-          if (cachedData) {
-            try {
-              const parsedData = JSON.parse(cachedData);
-              const cacheTimestamp = parsedData.timestamp;
-              const currentTime = new Date().getTime();
-              
-              // Cache is valid for 24 hours
-              if (currentTime - cacheTimestamp < 24 * 60 * 60 * 1000) {
-                setTranslations(prev => ({
-                  ...prev,
-                  [locale]: parsedData.translations[locale]
-                }));
-                setIsLoading(false);
-                return;
-              }
-            } catch (e) {
-              console.error('Error parsing cached translations:', e);
-            }
-          }
-        }
+        // If not in cache, fetch from server
+        const response = await fetch(`/api/translations/${locale}`);
+        const data = await response.json();
 
-        // Load fresh translations if cache is invalid or missing
-        const [en, vi, zhTW] = await Promise.all([
-          import('../../messages/en.json'),
-          import('../../messages/vi.json'),
-          import('../../messages/zh-TW.json')
-        ]);
-
-        const newTranslations = {
-          en: en.default as TranslationType,
-          vi: vi.default as TranslationType,
-          'zh-TW': zhTW.default as TranslationType
-        };
-
-        setTranslations(prev => ({
-          ...prev,
-          ...newTranslations
+        setTranslations(prevTranslations => ({
+          ...prevTranslations,
+          [locale]: data
         }));
 
-        // Update cache (only in client-side)
-        if (isClient) {
+        // Cache the translations
+        if (typeof window !== 'undefined') {
           try {
-            const cacheKey = `translations_${locale}`;
-            localStorage.setItem(cacheKey, JSON.stringify({
-              translations: { [locale]: newTranslations[locale] },
-              timestamp: new Date().getTime()
-            }));
+            await cacheTranslations(locale, data);
           } catch (e) {
             console.error('Error caching translations:', e);
           }
@@ -269,7 +236,7 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
     };
 
     loadTranslations();
-  }, [locale]);
+  }, [locale, translations]);
 
   const getTranslation = <T,>(section: keyof TranslationType): T => {
     if (!translations[locale]) {
