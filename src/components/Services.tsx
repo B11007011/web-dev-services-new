@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from "@/lib/utils"
 import { motion } from 'framer-motion'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import { GlareCard } from '@/components/ui/GlareCard'
@@ -16,7 +15,17 @@ type ServiceTranslations = {
   }>;
 }
 
-const serviceImages = {
+type ServiceItem = {
+  title: string;
+  description: string;
+  features: string[];
+}
+
+type ServiceImageMap = {
+  [key: string]: string;
+}
+
+const serviceImages: ServiceImageMap = {
   "New Website Design & Development": "/images/hero/services/pexels-junior-teixeira-1064069-2047905.jpg",
   "Website Maintenance & Upgrades": "/images/hero/services/pexels-ismailhamzapolat-28038387.jpg",
   "Website UI/UX Design": "/images/hero/services/pexels-nickoloui-2473183.jpg",
@@ -112,7 +121,7 @@ const defaultServices = {
   ]
 };
 
-const ServiceCard = ({ service, index }: { service: any; index: number }) => {
+const ServiceCard = ({ service, index }: { service: ServiceItem; index: number }) => {
   const title = service.title.split(' ').slice(1).join(' ');
   const imagePath = serviceImages[title] || '';
 

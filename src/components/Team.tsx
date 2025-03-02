@@ -1,9 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconMail, IconMapPin, IconBriefcase } from '@tabler/icons-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import JsonLd from '@/components/JsonLd'
 import { TeamMember } from '@/components/TeamMember'

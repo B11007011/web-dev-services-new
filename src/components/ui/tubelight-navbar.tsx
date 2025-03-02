@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useEffect, useState, useCallback } from "react"
+import React, { useEffect, useState, useCallback, ReactElement } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { LucideIcon, Menu, X, FileText } from "lucide-react"
+import { Menu, X, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { QuoteForm } from "./quote-form"
 import LanguageSwitcher from '../LanguageSwitcher'
@@ -11,7 +11,7 @@ import Image from "next/image"
 interface NavItem {
   name: string
   url: string
-  icon: () => JSX.Element
+  icon: () => ReactElement
 }
 
 interface NavBarProps {

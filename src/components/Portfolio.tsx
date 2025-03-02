@@ -1,9 +1,7 @@
 'use client'
 
-import React, { useRef, useState, useCallback, useEffect } from 'react'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import { PortfolioItem } from './PortfolioItem'
 import { ProjectModal } from './ProjectModal'
@@ -96,26 +94,6 @@ const defaultPortfolio: PortfolioTranslations = {
     }
   ]
 };
-
-// Custom hook for handling clicks outside of a component
-const useOutsideClick = (ref: React.RefObject<HTMLDivElement>, callback: Function) => {
-  useEffect(() => {
-    const listener = (event: MouseEvent | TouchEvent) => {
-      if (!ref.current || ref.current.contains(event.target as Node)) {
-        return
-      }
-      callback(event)
-    }
-
-    document.addEventListener('mousedown', listener)
-    document.addEventListener('touchstart', listener)
-
-    return () => {
-      document.removeEventListener('mousedown', listener)
-      document.removeEventListener('touchstart', listener)
-    }
-  }, [ref, callback])
-}
 
 const Portfolio = () => {
   const content = useTranslations<PortfolioTranslations>('portfolio');

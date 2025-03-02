@@ -1,9 +1,8 @@
 "use client"
 
 import { useEffect, useState, useCallback } from 'react'
-import { Home, Laptop, Users, Phone, Newspaper, Code, Lightbulb, HelpCircle } from 'lucide-react'
+import { Home, Laptop, Lightbulb } from 'lucide-react'
 import { NavBar } from "./tubelight-navbar"
-import LanguageSwitcher from '../LanguageSwitcher'
 import { usePathname } from 'next/navigation'
 
 export function NavigationBar() {

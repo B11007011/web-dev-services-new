@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, MessageSquare, Phone, MapPin, Clock } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import { useState } from 'react'
 
