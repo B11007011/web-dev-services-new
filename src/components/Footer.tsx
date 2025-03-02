@@ -191,13 +191,12 @@ const Footer = () => {
           <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-6">
             <Link href="/" className="flex items-center space-x-3">
               <Image 
-                src="/tecxmate chinese 皇貴科技.png" 
-                alt="TecXmate 皇貴科技" 
-                width={40} 
-                height={40} 
-                className="w-10 h-10" 
+                src="/logo/3.svg" 
+                alt="TecXmate Logo"
+                width={136} 
+                height={50} 
+                className="w-100 h-30 text-[#8c52ff]" 
               />
-              <span className="text-xl font-semibold">TecXmate</span>
             </Link>
             <p className="text-base text-gray-400">
               {displayContent.company.description}

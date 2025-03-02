@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useTranslations } from '@/providers/TranslationsProvider'
 import { PortfolioItem } from './PortfolioItem'
+import { ProjectModal } from './ProjectModal'
 
 type PortfolioTranslations = {
   title: string;
@@ -119,6 +120,7 @@ const useOutsideClick = (ref: React.RefObject<HTMLDivElement>, callback: Functio
 const Portfolio = () => {
   const content = useTranslations<PortfolioTranslations>('portfolio');
   const displayContent = Object.keys(content).length === 0 ? defaultPortfolio : content;
+  const [selectedProject, setSelectedProject] = useState<typeof displayContent.projects[0] | null>(null);
 
   if (!displayContent || !displayContent.projects) {
     return null;
@@ -170,6 +172,8 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 * (index + 1) }}
+              onClick={() => setSelectedProject(project)}
+              className="cursor-pointer"
             >
               <PortfolioItem {...project} />
             </motion.div>
@@ -184,6 +188,13 @@ const Portfolio = () => {
       {/* Additional Decorative Lights */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/30 rounded-full filter blur-[128px] -translate-x-1/2" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/30 rounded-full filter blur-[128px] translate-x-1/2" />
+
+      {/* Project Modal */}
+      <ProjectModal
+        isOpen={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        project={selectedProject}
+      />
     </section>
   );
 }

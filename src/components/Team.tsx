@@ -98,7 +98,7 @@ export default function Team() {
       imagePath: '/Team/Brian Nguyen.png',
       imagePosition: 'center 30%',
       contact: {
-        email: 'Brian.tecx@gmail.com'
+        email: 'brian.tecx@gmail.com'
       }
     }
   ];

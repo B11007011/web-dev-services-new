@@ -29,7 +29,7 @@ export default function LocalePage() {
       <Team />
       <Pricing />
       <FAQ />
-      <Contact />
+      
       {/* Add other components */}
     </main>
   )

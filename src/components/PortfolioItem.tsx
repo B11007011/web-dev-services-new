@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Search } from 'lucide-react';
 
 interface PortfolioItemProps {
   title: string;
@@ -29,9 +30,16 @@ export function PortfolioItem({
             src={image}
             alt={title}
             fill
-            className="object-contain bg-black/40"
+            className="object-contain bg-black/40 transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center gap-2">
+              <Search className="w-8 h-8 text-white" />
+              <span className="text-white font-medium">View Details</span>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -40,7 +48,7 @@ export function PortfolioItem({
         <p className="text-white/90 mb-4 line-clamp-2 leading-relaxed">{description}</p>
         
         <div className="flex flex-wrap gap-2 mb-4">
-          {details.technologies.map((tech, index) => (
+          {details.technologies.slice(0, 3).map((tech, index) => (
             <span 
               key={index}
               className="px-3 py-1 text-sm bg-blue-500/10 text-blue-300 rounded-full border border-blue-500/20"
@@ -48,10 +56,15 @@ export function PortfolioItem({
               {tech}
             </span>
           ))}
+          {details.technologies.length > 3 && (
+            <span className="px-3 py-1 text-sm bg-blue-500/10 text-blue-300 rounded-full border border-blue-500/20">
+              +{details.technologies.length - 3} more
+            </span>
+          )}
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {details.features.map((feature, index) => (
+        <div className="flex flex-wrap gap-2">
+          {details.features.slice(0, 2).map((feature, index) => (
             <span 
               key={index}
               className="px-3 py-1 text-sm bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20"
@@ -59,30 +72,11 @@ export function PortfolioItem({
               {feature}
             </span>
           ))}
-        </div>
-        
-        <div className="flex justify-start">
-          <a
-            href={details.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/button inline-flex items-center gap-2 px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-all duration-300"
-          >
-            View Project
-            <svg 
-              className="w-4 h-4 transform group-hover/button:translate-x-1 transition-transform" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M13 7l5 5m0 0l-5 5m5-5H6" 
-              />
-            </svg>
-          </a>
+          {details.features.length > 2 && (
+            <span className="px-3 py-1 text-sm bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20">
+              +{details.features.length - 2} more
+            </span>
+          )}
         </div>
       </div>
     </motion.div>

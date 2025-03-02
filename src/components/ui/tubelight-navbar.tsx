@@ -122,12 +122,15 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
             onClick={onLogoClick}
             className="flex items-center gap-2 group"
           >
-            <div className="relative w-[269.7px] h-[250px]">
+            <div className={cn(
+              "relative",
+              isMobile ? "w-[100px] h-[90px]" : "w-[269.7px] h-[250px]"
+            )}>
               <img 
-                src="/logo/3.svg"
+                src={isMobile ? "/logo/1.svg" : "/logo/3.svg"}
                 alt="TEXMATE Logo"
-                width={269.7}
-                height={290}
+                width={isMobile ? 80 : 269.7}
+                height={isMobile ? 80 : 290}
                 className="w-full h-full object-fill"
                 style={{
                   objectFit: 'fill',
