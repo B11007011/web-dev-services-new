@@ -6,6 +6,7 @@ import { LucideIcon, Menu, X, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { QuoteForm } from "./quote-form"
 import LanguageSwitcher from '../LanguageSwitcher'
+import Image from "next/image"
 
 interface NavItem {
   name: string
@@ -126,17 +127,13 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
               "relative",
               isMobile ? "w-[100px] h-[90px]" : "w-[269.7px] h-[250px]"
             )}>
-              <img 
+              <Image
                 src={isMobile ? "/logo/1.svg" : "/logo/3.svg"}
-                alt="TEXMATE Logo"
-                width={isMobile ? 80 : 269.7}
-                height={isMobile ? 80 : 290}
-                className="w-full h-full object-fill"
-                style={{
-                  objectFit: 'fill',
-                  width: '100%',
-                  height: '100%'
-                }}
+                alt="Logo"
+                width={isMobile ? 40 : 150}
+                height={isMobile ? 40 : 50}
+                className="w-auto h-auto"
+                priority
               />
             </div>
             <div className="flex flex-col">

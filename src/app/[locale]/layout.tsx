@@ -16,6 +16,7 @@ import { Analytics } from '@vercel/analytics/react'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ScrollToTopWrapper from '@/components/client/ScrollToTopWrapper'
 import { Viewport } from 'next'
+import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-dynamic';
 
@@ -86,8 +87,13 @@ const LANGUAGE_SUBDOMAINS = {
 };
 
 export async function generateMetadata(
-  { params: { locale } }: Props
+  props: Props
 ): Promise<Metadata> {
+  const locale = props.params.locale;
+  if (!locales.includes(locale)) {
+    return {}; // Return empty metadata if locale is invalid
+  }
+
   const [metadataParams, content] = await Promise.all([
     getMetadataParams(),
     getLocalizedContent(locale)
@@ -178,12 +184,13 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-export default async function LocaleLayout({
-  children,
-  params: { locale }
-}: Props) {
+export default async function LocaleLayout(
+  props: Props
+) {
+  const locale = props.params.locale;
+  
   if (!locales.includes(locale)) {
-    return null;
+    notFound(); // This will show the 404 page
   }
 
   const [metadataParams, content] = await Promise.all([
@@ -234,7 +241,7 @@ export default async function LocaleLayout({
           ]}
         />
         <NavigationBar />
-        {children}
+        {props.children}
         <Footer />
         <ScrollToTopWrapper />
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />

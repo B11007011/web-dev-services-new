@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { CSSProperties, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps {
   src: string;
@@ -11,6 +12,7 @@ interface OptimizedImageProps {
   style?: CSSProperties;
   sizes?: string;
   fill?: boolean;
+  quality?: number;
 }
 
 export default function OptimizedImage({
@@ -22,7 +24,8 @@ export default function OptimizedImage({
   className = '',
   style,
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-  fill = false
+  fill = false,
+  quality
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -39,10 +42,13 @@ export default function OptimizedImage({
           fill
           priority={priority}
           sizes={sizes}
-          className={`duration-700 ease-in-out ${
-            isLoading ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
-          } object-cover`}
-          onLoadingComplete={() => setIsLoading(false)}
+          className={cn(
+            'transition-opacity duration-300',
+            isLoading ? 'opacity-0' : 'opacity-100',
+            className
+          )}
+          quality={quality}
+          onLoad={() => setIsLoading(false)}
           onError={() => {
             setError(true);
             console.error(`Failed to load image: ${imageSrc}`);
@@ -70,10 +76,13 @@ export default function OptimizedImage({
         height={height || 1080}
         priority={priority}
         sizes={sizes}
-        className={`duration-700 ease-in-out ${
-          isLoading ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
-        } object-cover`}
-        onLoadingComplete={() => setIsLoading(false)}
+        className={cn(
+          'transition-opacity duration-300',
+          isLoading ? 'opacity-0' : 'opacity-100',
+          className
+        )}
+        quality={quality}
+        onLoad={() => setIsLoading(false)}
         onError={() => {
           setError(true);
           console.error(`Failed to load image: ${imageSrc}`);
@@ -90,4 +99,4 @@ export default function OptimizedImage({
       )}
     </div>
   );
-} 
+}

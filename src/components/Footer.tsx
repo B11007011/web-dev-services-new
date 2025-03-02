@@ -190,12 +190,13 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-6">
             <Link href="/" className="flex items-center space-x-3">
-              <Image 
-                src="/logo/3.svg" 
-                alt="TecXmate Logo"
-                width={136} 
-                height={50} 
-                className="w-100 h-30 text-[#8c52ff]" 
+              <Image
+                src="/logo/3.svg"
+                alt="Logo"
+                width={150}
+                height={50}
+                className="w-auto h-auto"
+                priority
               />
             </Link>
             <p className="text-base text-gray-400">

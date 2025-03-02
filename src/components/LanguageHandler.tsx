@@ -29,6 +29,9 @@ const LanguageHandler = ({ locale }: Props) => {
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://tecxmate.com';
       
       const redirectToSubdomain = (lang: string) => {
+        // Don't redirect if we're already on the correct language
+        if (lang === locale) return;
+
         if (isLocalhost) {
           // In development, use path-based routing
           router.push(`/${lang}`);
@@ -39,7 +42,11 @@ const LanguageHandler = ({ locale }: Props) => {
           const newUrl = subdomain 
             ? `https://${subdomain}.${domain}/${lang}`
             : `https://${domain}/${lang}`;
-          window.location.href = newUrl;
+          
+          // Only redirect if we're actually changing domains
+          if (window.location.href !== newUrl) {
+            window.location.href = newUrl;
+          }
         }
       };
       
@@ -57,12 +64,12 @@ const LanguageHandler = ({ locale }: Props) => {
         // Store the detected language
         localStorage.setItem('preferred_language', detectedLang);
 
-        // Redirect if current locale doesn't match detected language
+        // Only redirect if the detected language is different
         if (locale !== detectedLang) {
           redirectToSubdomain(detectedLang);
         }
       } else if (locale !== storedLang) {
-        // Redirect if current locale doesn't match stored preference
+        // Only redirect if the stored language is different
         redirectToSubdomain(storedLang);
       }
     } catch (error) {

@@ -197,6 +197,11 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const loadTranslations = async () => {
       try {
+        // Don't set loading state if we already have translations for this locale
+        if (translations[locale]) {
+          return;
+        }
+
         setIsLoading(true);
         
         // Check cache first (only in client-side)
@@ -212,7 +217,10 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
               
               // Cache is valid for 24 hours
               if (currentTime - cacheTimestamp < 24 * 60 * 60 * 1000) {
-                setTranslations(parsedData.translations);
+                setTranslations(prev => ({
+                  ...prev,
+                  [locale]: parsedData.translations[locale]
+                }));
                 setIsLoading(false);
                 return;
               }
@@ -235,12 +243,17 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
           'zh-TW': zhTW.default as TranslationType
         };
 
+        setTranslations(prev => ({
+          ...prev,
+          ...newTranslations
+        }));
+
         // Update cache (only in client-side)
         if (isClient) {
           try {
             const cacheKey = `translations_${locale}`;
             localStorage.setItem(cacheKey, JSON.stringify({
-              translations: newTranslations,
+              translations: { [locale]: newTranslations[locale] },
               timestamp: new Date().getTime()
             }));
           } catch (e) {
@@ -248,23 +261,9 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
           }
         }
 
-        setTranslations(newTranslations);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error loading translations:', error);
-        // Fallback to cached data if available (only in client-side)
-        if (isClient) {
-          const cacheKey = `translations_${locale}`;
-          const cachedData = localStorage.getItem(cacheKey);
-          if (cachedData) {
-            try {
-              const parsedData = JSON.parse(cachedData);
-              setTranslations(parsedData.translations);
-            } catch (e) {
-              console.error('Error parsing fallback cached translations:', e);
-            }
-          }
-        }
-      } finally {
         setIsLoading(false);
       }
     };
@@ -273,17 +272,11 @@ export function TranslationsProvider({ children }: { children: ReactNode }) {
   }, [locale]);
 
   const getTranslation = <T,>(section: keyof TranslationType): T => {
-    if (isLoading) {
+    if (!translations[locale]) {
+      // Return empty object if translations aren't loaded yet
       return {} as T;
     }
-
-    try {
-      const translation = translations[locale]?.[section];
-      return (translation as T) || (translations.en?.[section] as T) || {} as T;
-    } catch (error) {
-      console.error(`Error getting translation for section ${section}:`, error);
-      return {} as T;
-    }
+    return translations[locale][section] as T;
   };
 
   return (

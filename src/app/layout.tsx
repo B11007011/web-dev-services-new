@@ -178,7 +178,7 @@ export default async function RootLayout({
           <ScrollToTop />
         </Providers>
         <Analytics />
-        <GoogleAnalytics />
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_ID || ''} />
       </body>
     </html>
   );
