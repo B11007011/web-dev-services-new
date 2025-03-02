@@ -120,7 +120,7 @@ const Footer = () => {
     support: {
       title: 'Support',
       links: [
-        { label: 'Contact Us', href: '#contact' },
+      //  { label: 'Contact Us', href: '#contact' },
         { label: 'Free Consultation', href: '#contact' }
       ]
     }
@@ -193,9 +193,9 @@ const Footer = () => {
               <Image
                 src="/logo/3.svg"
                 alt="Logo"
-                width={150}
-                height={50}
-                className="w-auto h-auto"
+                width={350}
+                height={140}
+                className="w-[500px] h-[100px]"
                 priority
               />
             </Link>
