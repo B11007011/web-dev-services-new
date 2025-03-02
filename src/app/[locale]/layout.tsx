@@ -8,6 +8,7 @@ import EnhancedStructuredData from "@/components/EnhancedStructuredData";
 import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Be_Vietnam_Pro, Inter } from "next/font/google";
+import { cn } from '@/lib/utils'
 import { Providers } from '@/providers/Providers'
 import { headers } from 'next/headers'
 import JsonLd from '@/components/JsonLd'
@@ -32,10 +33,8 @@ const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   display: 'swap',
   preload: true,
-  weight: ["400", "500", "600", "700"],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-be-vietnam-pro',
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: false
 });
 
 const locales = ['en', 'vi', 'zh-TW'] as const;
@@ -101,12 +100,20 @@ export async function generateMetadata(
   ]);
 
   const { baseUrl } = metadataParams;
+  const domain = baseUrl.split('://')[1];
+
+  // Generate hreflang URLs for all supported languages with subdomains
+  const hreflangUrls = {
+    'en-US': `https://${domain}/en`,
+    'vi-VN': `https://vi.${domain}/vi`,
+    'zh-TW': `https://tw.${domain}/zh-TW`,
+  };
 
   // Get current subdomain URL
   const subdomain = LANGUAGE_SUBDOMAINS[locale as keyof typeof LANGUAGE_SUBDOMAINS];
   const currentUrl = subdomain
-    ? `https://${subdomain}.${baseUrl.split('://')[1]}/${locale}`
-    : `https://${baseUrl.split('://')[1]}/${locale}`;
+    ? `https://${subdomain}.${domain}/${locale}`
+    : `https://${domain}/${locale}`;
 
   return {
     title: {
@@ -118,9 +125,9 @@ export async function generateMetadata(
     alternates: {
       canonical: currentUrl,
       languages: {
-        'en': `https://${baseUrl.split('://')[1]}/en`,
-        'vi': `https://vi.${baseUrl.split('://')[1]}/vi`,
-        'zh-TW': `https://tw.${baseUrl.split('://')[1]}/zh-TW`
+        'en': `https://${domain}/en`,
+        'vi': `https://vi.${domain}/vi`,
+        'zh-TW': `https://tw.${domain}/zh-TW`
       },
       types: {
         'application/rss+xml': `${baseUrl}/feed.xml`,

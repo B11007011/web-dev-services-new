@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState, useCallback } from 'react'
-import { Home, Laptop, Lightbulb } from 'lucide-react'
+import { Home, Laptop, Users, Phone, Newspaper, Code, Lightbulb, HelpCircle } from 'lucide-react'
 import { NavBar } from "./tubelight-navbar"
+import LanguageSwitcher from '../LanguageSwitcher'
 import { usePathname } from 'next/navigation'
 
 export function NavigationBar() {
@@ -103,11 +104,11 @@ export function NavigationBar() {
   }, [])
 
   const navItems = [
-    { name: translations.nav.home, url: '#hero', icon: () => <Home /> },
-    { name: translations.nav.services, url: '#services', icon: () => <Laptop /> },
-    { name: translations.nav.process, url: '#process', icon: () => <Lightbulb /> },
-    { name: translations.nav.portfolio, url: '#portfolio', icon: () => <Laptop /> },
-    { name: translations.nav.pricing, url: '#pricing', icon: () => <Laptop /> },
+    { name: translations.nav.home, url: '#hero', icon: Home },
+    { name: translations.nav.services, url: '#services', icon: Laptop },
+    { name: translations.nav.process, url: '#process', icon: Lightbulb },
+    { name: translations.nav.portfolio, url: '#portfolio', icon: Laptop },
+    { name: translations.nav.pricing, url: '#pricing', icon: Laptop },
    
   ]
 

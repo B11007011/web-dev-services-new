@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useEffect, useState, useCallback, ReactElement } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, FileText } from "lucide-react"
+import { LucideIcon, Menu, X, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { QuoteForm } from "./quote-form"
 import LanguageSwitcher from '../LanguageSwitcher'
@@ -11,7 +11,7 @@ import Image from "next/image"
 interface NavItem {
   name: string
   url: string
-  icon: () => ReactElement
+  icon: LucideIcon
 }
 
 interface NavBarProps {
@@ -305,7 +305,7 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
                         isActive ? "bg-gray-700/80" : "hover:bg-gray-800/60"
                       )}
                     >
-                      <item.icon />
+                      <item.icon size={24} className="shrink-0" />
                       <span className="truncate">{item.name}</span>
                       {isActive && (
                         <motion.div

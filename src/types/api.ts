@@ -19,7 +19,7 @@ export interface ContactCreateInput {
   company?: string | null
 }
 
-export interface ApiResponse<T = unknown> {
+export interface ApiResponse<T = any> {
   message?: string
   error?: string
   data?: T

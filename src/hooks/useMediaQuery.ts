@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 
 const IS_SERVER = typeof window === 'undefined'
 
@@ -14,12 +14,12 @@ export function useMediaQuery(
     initializeWithValue = true,
   }: UseMediaQueryOptions = {}
 ): boolean {
-  const getMatches = useCallback((query: string): boolean => {
+  const getMatches = (query: string): boolean => {
     if (IS_SERVER) {
       return defaultValue
     }
     return window.matchMedia(query).matches
-  }, [defaultValue])
+  }
 
   const [matches, setMatches] = useState<boolean>(() => {
     if (initializeWithValue) {
@@ -52,7 +52,7 @@ export function useMediaQuery(
     return () => {
       matchMedia.removeEventListener('change', handleChange)
     }
-  }, [query, matches, getMatches])
+  }, [query, matches])
 
   return matches
 } 
