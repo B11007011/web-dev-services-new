@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inter, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { cn } from '@/lib/utils'
 import { Providers } from '@/providers/Providers'
@@ -14,6 +14,14 @@ export const dynamic = 'force-dynamic';
 const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
+  variable: '--font-inter',
+});
+
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ["latin", "vietnamese"],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-be-vietnam-pro',
 });
 
 // Get language from subdomain
@@ -120,7 +128,7 @@ export default async function RootLayout({
         url: `${protocol}://${host}`,
         logo: {
           '@type': 'ImageObject',
-          url: `${protocol}://${host}/logo.png`,
+          url: `${protocol}://${host}/logo.svg`,
         },
         sameAs: [
           'https://www.linkedin.com/company/tecxmate',
@@ -155,23 +163,23 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning className={cn(inter.variable, beVietnamPro.variable)}>
       <head>
         <meta name="google-site-verification" content="IVfFVvMnAeD6nDyedE8wDB3uDXeQlLNLBTlvYH50nHg" />
         <link rel="alternate" href={alternates.en} hrefLang="en" />
         <link rel="alternate" href={alternates.vi} hrefLang="vi" />
         <link rel="alternate" href={alternates['zh-TW']} hrefLang="zh-TW" />
         <link rel="canonical" href={`${protocol}://${host}${lang === 'en' ? '/en' : lang === 'vi' ? '/vi' : '/zh-TW'}`} />
+        <JsonLd data={structuredData} />
       </head>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
+      <body>
         <Providers>
           {children}
           <ScrollToTop />
-          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
-          <Analytics />
-          <JsonLd data={structuredData} />
         </Providers>
+        <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
-  )
+  );
 } 

@@ -210,45 +210,37 @@ export default async function LocaleLayout({
       name: 'Tecxmate',
       logo: {
         '@type': 'ImageObject',
-        url: `${protocol}://${host}/tecxmate chinese 拓科智聯.png`
+        url: `${protocol}://${host}/logo.svg`
       }
     }
   };
 
   return (
-    <div className={cn(
-      "min-h-screen bg-background font-sans antialiased",
-      inter.variable,
-      beVietnamPro.variable
-    )}>
-      <Providers>
-        <TranslationsProvider>
-          <LanguageHandler locale={locale} />
-          <ViewportHandler />
-          <EnhancedStructuredData
-            organizationName={content.organizationName}
-            url={currentUrl}
-            logo={`${baseUrl}/logo.png`}
-            siteTitle={content.title}
-            description={content.description}
-            breadcrumbs={[
-              {
-                name: 'Home',
-                item: currentUrl
-              }
-            ]}
-          />
-          <NavigationBar />
-          <main className="min-h-screen pt-20">
-            {children}
-          </main>
-          <Footer />
-          <ScrollToTopWrapper />
-          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
-          <Analytics />
-          <JsonLd data={structuredData} />
-        </TranslationsProvider>
-      </Providers>
-    </div>
+    <Providers>
+      <TranslationsProvider>
+        <LanguageHandler locale={locale} />
+        <ViewportHandler />
+        <EnhancedStructuredData
+          organizationName={content.organizationName}
+          url={currentUrl}
+          logo={`${baseUrl}/logo.svg`}
+          siteTitle={content.title}
+          description={content.description}
+          breadcrumbs={[
+            {
+              name: 'Home',
+              item: currentUrl
+            }
+          ]}
+        />
+        <NavigationBar />
+        {children}
+        <Footer />
+        <ScrollToTopWrapper />
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
+        <Analytics />
+        <JsonLd data={structuredData} />
+      </TranslationsProvider>
+    </Providers>
   );
 } 

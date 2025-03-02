@@ -23,7 +23,7 @@ export default function SEO({ title, description, canonical }: SEOProps) {
       name: 'Your Company Name',
       logo: {
         '@type': 'ImageObject',
-        url: `https://example.com/logo.png`
+        url: `/logo.svg`
       }
     }
   };

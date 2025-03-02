@@ -122,10 +122,10 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative group h-full flex flex-col"
+      className="relative group"
     >
       <GlareCard>
-        <div className="relative h-full">
+        <div className="relative h-[520px]">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -141,27 +141,27 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 p-8 h-full flex flex-col">
-            <div className="text-4xl mb-6 text-white/90 group-hover:text-white transition-colors">
+          <div className="relative z-10 p-6 h-full flex flex-col">
+            <div className="text-3xl mb-3 text-white/90 group-hover:text-white transition-colors">
               {service.title.split(' ')[0]}
             </div>
             
-            <h3 className="text-2xl font-bold text-white mb-4 flex-grow">
+            <h3 className="text-xl font-bold text-white mb-2">
               {title}
             </h3>
             
-            <p className="text-white/80 mb-6 flex-grow">
+            <p className="text-white/80 mb-4 text-sm">
               {service.description}
             </p>
             
-            <ul className="space-y-3 flex-grow">
+            <ul className="space-y-1.5 mt-auto">
               {service.features.map((feature: string, i: number) => (
                 <motion.li 
                   key={i}
-                  className="flex items-start gap-3 text-white/70 group-hover:text-white/90 transition-colors"
+                  className="flex items-start gap-2 text-white/70 group-hover:text-white/90 transition-colors text-sm"
                   whileHover={{ x: 5 }}
                 >
-                  <span className="flex-shrink-0 text-blue-400">✔</span>
+                  <span className="flex-shrink-0 text-blue-400 mt-0.5">✔</span>
                   <span>{feature}</span>
                 </motion.li>
               ))}
@@ -209,7 +209,7 @@ export function Services() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayContent.items.map((service, idx) => (
             <ServiceCard key={idx} service={service} index={idx} />
           ))}

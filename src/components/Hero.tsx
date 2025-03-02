@@ -20,12 +20,12 @@ type HeroContent = {
 
 export function Hero() {
   const defaultContent: HeroContent = {
-    title: "Elevate your global presence with next-gen Websites",
-    subtitle: "At Tecxmate, we empower businesses with cutting-edge website design and development, with international technology consulting and solutions.",
-    cta: "Book a Call",
+    title: "以新一代網站提升您的全球形象",
+    subtitle: "在Tecxmate，我們透過尖端網站設計和開發，以及國際技術諮詢和解決方案，助您企業成長",
+    cta: "預約諮詢",
     services: [
       {
-        title: "Global Reach",
+        title: "全球據點",
         description: "With representatives in: San Francisco, Taipei, Hanoi, HCMC, Bangkok, Shenzhen, and more.",
         color: "from-blue-600 to-purple-600",
         image: "images/hero/global.jpg"
@@ -133,166 +133,126 @@ export function Hero() {
 
   return (
     <section 
+      className="relative min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-950 overflow-hidden" 
       id="hero"
-      className="relative min-h-[80vh] overflow-hidden bg-gradient-to-br from-blue-950 to-black pt-20">
-      {/* Background Elements */}
+      onMouseMove={handleMouseMove}
+    >
+      {/* Background Image */}
       <div className="absolute inset-0">
-        {/* Primary Gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-        
-        {/* Animated Gradient Orbs */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-[25%] -left-[25%] w-[150%] h-[150%] animate-slow-spin">
-            <div className="absolute top-[40%] left-[40%] w-[300px] h-[300px] rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl" />
-            <div className="absolute top-[45%] left-[45%] w-[250px] h-[250px] rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl" />
-          </div>
-        </div>
-        
-        {/* Noise Texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.02]" />
-        
-        {/* Glass Effect */}
-        <div className="absolute inset-0 backdrop-blur-3xl" />
+        <OptimizedImage
+          src="/images/hero/hero.png"
+          alt="Hero Background"
+          priority={true}
+          className="object-cover w-full h-full"
+          fill
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/80 via-black/50 to-blue-950/80" />
       </div>
-      
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-8">
-          {/* Left Side - Text */}
-          <div className="text-left max-w-2xl md:flex-1">
-            {/* Interactive Squares */}
-            <div className="flex gap-2 mb-6">
-              {displayContent.services.map((_, idx) => (
-                <motion.button
-                  key={idx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: idx * 0.1 }}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`w-6 h-6 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 ${
-                    currentIndex === idx ? 'bg-white/30' : 'bg-white/10'
-                  }`}
-                />
-              ))}
-            </div>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-sans"
-            >
-              {displayContent.title}
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="mt-4 text-lg md:text-xl text-white/80 max-w-xl font-sans"
-            >
-              {displayContent.subtitle}
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 flex gap-3"
-            >
-              <Link
-                href="#contact"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-black bg-white hover:bg-white/90 transition-colors select-none font-sans"
-              >
-                {displayContent.cta}
-              </Link>
-              <Link
-                href="#services"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors select-none font-sans"
-              >
-                {displayContent.services[0].title}
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Right Side - Floating Cards */}
-          <div 
-            className="relative h-[400px] md:h-[450px] mx-auto w-full max-w-lg md:max-w-md lg:max-w-lg"
-            onMouseMove={handleMouseMove}
+      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
+        <div className="max-w-3xl">
+          {/* Service Indicators */}
+          <motion.div 
+            className="flex space-x-3 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <AnimatePresence initial={false} custom={direction} mode="popLayout">
-              {displayContent.services.map((service, idx) => {
-                const isActive = idx === currentIndex;
-                const offset = (idx - currentIndex) * 30;
-                
-                return (
-                  <motion.div
-                    key={idx}
-                    style={{
-                      position: 'absolute',
-                      zIndex: isActive ? 2 : 1,
-                      rotateX: isActive ? rotateX : 0,
-                      rotateY: isActive ? rotateY : 0,
-                    }}
-                    initial={{ y: 40, opacity: 0, scale: 0.9 }}
-                    animate={{ 
-                      y: isActive ? 0 : offset,
-                      opacity: isActive ? 1 : 0.5,
-                      scale: isActive ? 1 : 0.9,
-                      transition: {
-                        duration: 0.6,
-                        ease: "easeInOut"
-                      }
-                    }}
-                    exit={{ y: -40, opacity: 0, scale: 0.9 }}
-                    onClick={() => {
-                      setDirection(idx > currentIndex ? 1 : -1);
-                      setCurrentIndex(idx);
-                    }}
-                    className="cursor-pointer absolute inset-x-4 md:inset-x-0 mx-auto h-[300px] md:h-[350px]"
-                  >
-                    <div className={`w-full h-full rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                      isActive ? 'border-white/30 shadow-2xl' : 'border-white/10'
-                    }`}>
-                      <div className="relative w-full h-full">
-                        {/* Background Image */}
-                        <OptimizedImage
-                          src={service.image}
-                          alt={service.title}
-                          priority={true}
-                          className="absolute inset-0 object-cover w-full h-full"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          fill
-                        />
-                        
-                        {/* Gradient Overlay - Reduced opacity */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-60`} />
-                        
-                        {/* Content */}
-                        <div className="absolute inset-0 p-6 flex flex-col justify-end bg-black/20">
-                          <h3 className="text-2xl font-bold text-white mb-3 font-sans">
-                            {service.title}
-                          </h3>
-                          <p className="text-base text-white/90 font-sans">
-                            {service.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
+            {displayContent.services.map((_, idx) => (
+              <motion.button
+                key={idx}
+                initial={{ scale: 0.8 }}
+                animate={{ 
+                  scale: currentIndex === idx ? 1 : 0.8,
+                  backgroundColor: currentIndex === idx ? '#6366f1' : '#1f2937'
+                }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setCurrentIndex(idx)}
+                className="w-3 h-3 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              />
+            ))}
+          </motion.div>
+
+          {/* Title */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+          >
+            {displayContent.title}
+          </motion.h1>
+          
+          {/* Subtitle */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
+          >
+            {displayContent.subtitle}
+          </motion.p>
+          
+          {/* CTA Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap gap-4"
+          >
+            <Link
+              href="#services"
+              className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-transparent border-2 border-indigo-500 rounded-lg overflow-hidden transition-all duration-300 hover:bg-indigo-500/10"
+            >
+              <span className="relative z-10">{displayContent.services[0].title}</span>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+            </Link>
+            <Link
+              href="#contact"
+              className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25"
+            >
+              <span className="relative z-10">{displayContent.cta}</span>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Link>
+          </motion.div>
         </div>
+
+        {/* Service Preview */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: "preserve-3d",
+            }}
+            className="absolute bottom-16 right-8 w-96 hidden lg:block"
+          >
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+              <h3 className="text-xl font-semibold text-white mb-2">
+                {displayContent.services[currentIndex].title}
+              </h3>
+              <p className="text-gray-300">
+                {displayContent.services[currentIndex].description}
+              </p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Decorative Elements */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent" />
+      <motion.div 
+        initial={{ height: 0 }}
+        animate={{ height: 64 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px bg-gradient-to-t from-white/20 to-transparent"
+      />
     </section>
-  )
-} 
+  );
+}

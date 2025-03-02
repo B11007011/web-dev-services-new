@@ -124,7 +124,7 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
           >
             <div className="relative w-10 h-10">
               <img 
-                src="/tecxmate chinese 皇貴科技.png"
+                src="/logo.png"
                 alt="TecXmate 皇貴科技"
                 className="w-full h-full object-contain"
               />
