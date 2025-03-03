@@ -54,7 +54,7 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
 
           <div className="grid md:grid-cols-2 h-full max-h-[90vh] overflow-auto">
             {/* Image Section */}
-            <div className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] bg-black/40">
+            <div className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] bg-black/40 flex items-center justify-center">
               {/* Loading Skeleton */}
               {isImageLoading && (
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-800/50 to-gray-700/50 animate-pulse" />
@@ -81,21 +81,23 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                   </div>
                 </div>
               ) : (
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-contain md:object-cover transition-opacity duration-300"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                  onLoadingComplete={() => setIsImageLoading(false)}
-                  onError={() => setImageError(true)}
-                  style={{
-                    opacity: isImageLoading ? 0 : 1
-                  }}
-                />
+                <div className="relative w-full h-full">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-contain transition-opacity duration-300"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                    onLoadingComplete={() => setIsImageLoading(false)}
+                    onError={() => setImageError(true)}
+                    style={{
+                      opacity: isImageLoading ? 0 : 1
+                    }}
+                  />
+                </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Content Section */}

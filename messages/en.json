@@ -393,30 +393,9 @@
           "link": "https://golf-p8hr.vercel.app/"
         }
       },
-      {
-        "id": "mobile-app",
-        "category": "mobile",
-        "title": "Mobile Application",
-        "description": "Cross-platform solution for iOS and Android",
-        "image": "/portfolio/mobile-app.png",
-        "details": {
-          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
-          "features": ["Push Notifications", "Offline Support", "Analytics", "App Store Optimization"],
-          "link": "https://tecxmate.com/portfolio/mindful"
-        }
-      },
-      {
-        "id": "ui-ux-design",
-        "category": "design",
-        "title": "UI/UX Design",
-        "description": "User-centered design that delivers results",
-        "image": "/portfolio/design.png",
-        "details": {
-          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
-          "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],
-          "link": "https://tecxmate.com/portfolio/design"
-        }
-      },
+      
+      
+      
       {
         "id": "chichi-vietnamese",
         "category": "website",
