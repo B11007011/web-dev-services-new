@@ -16,6 +16,7 @@ import { Analytics } from '@vercel/analytics/react'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ScrollToTopWrapper from '@/components/client/ScrollToTopWrapper'
 import { notFound } from 'next/navigation'
+import LocaleLayoutContent from '@/components/LocaleLayoutContent'
 
 export const dynamic = 'force-dynamic';
 
@@ -41,11 +42,6 @@ type Locale = (typeof locales)[number];
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
-}
-
-export interface LayoutProps {
-  children: ReactNode;
-  params: { locale: Locale };
 }
 
 async function getMetadataParams() {
@@ -85,10 +81,20 @@ const LANGUAGE_SUBDOMAINS = {
   'zh-TW': 'tw'
 };
 
-export async function generateMetadata(
-  { params }: LayoutProps
-): Promise<Metadata> {
+type PageParams = {
+  locale: Locale;
+};
+
+type Props = {
+  children: ReactNode;
+  params: PageParams;
+};
+
+export async function generateMetadata({
+  params
+}: Props): Promise<Metadata> {
   const locale = params.locale;
+  
   if (!locales.includes(locale)) {
     return {}; // Return empty metadata if locale is invalid
   }
@@ -204,71 +210,28 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-export default async function Layout({
+export default function RootLayout({
   children,
   params
-}: LayoutProps) {
+}: Props) {
   const locale = params.locale;
   
   if (!locales.includes(locale)) {
     notFound();
   }
 
-  const [metadataParams, content] = await Promise.all([
-    getMetadataParams(),
-    getLocalizedContent(locale)
-  ]);
-
-  const { host, isDev, protocol, baseUrl } = metadataParams;
-  
-  const currentUrl = `${baseUrl}/${locale}`;
-  
-  // Construct base domain for alternates
-  const domain = isDev 
-    ? `localhost:3000`
-    : host.includes('.') ? host.split('.').slice(1).join('.') : host;
-
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Tecxmate',
-    url: `${protocol}://${host}`,
-    description: 'Professional web development services',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Tecxmate',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${protocol}://${host}/logo.svg`
-      }
-    }
-  };
-
   return (
     <Providers>
       <TranslationsProvider>
         <LanguageHandler locale={locale} />
         <ViewportHandler />
-        <EnhancedStructuredData
-          organizationName={content.organizationName}
-          url={currentUrl}
-          logo={`${baseUrl}/logo.svg`}
-          siteTitle={content.title}
-          description={content.description}
-          breadcrumbs={[
-            {
-              name: 'Home',
-              item: currentUrl
-            }
-          ]}
-        />
+        <LocaleLayoutContent locale={locale} />
         <NavigationBar />
         {children}
         <Footer />
         <ScrollToTopWrapper />
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
         <Analytics />
-        <JsonLd data={structuredData} />
       </TranslationsProvider>
     </Providers>
   );
