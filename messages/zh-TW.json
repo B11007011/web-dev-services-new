@@ -510,7 +510,7 @@
         "category": "website",
         "title": "TecXmate 官方網站",
         "description": "現代科技公司網站，展示服務和團隊作品集",
-        "image": "/portfolio/tecxmate.png",
+        "image": "/portfolio/tecxmate.com.png",
         "details": {
           "technologies": [
             "Next.js 14",
@@ -647,6 +647,54 @@
             "視覺設計"
           ],
           "link": "https://tecxmate.com/portfolio/design"
+        }
+      },
+      {
+        "id": "chichi-vietnamese",
+        "category": "website",
+        "title": "芝芝越語",
+        "description": "專業越南語學習平台，具備線上預約系統和互動學習功能",
+        "image": "/portfolio/Zhizhiyueyu.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "i18n"
+          ],
+          "features": [
+            "多語言支援",
+            "線上預約系統",
+            "互動學習",
+            "課程管理",
+            "文化整合"
+          ],
+          "link": "https://chichi-rho.vercel.app/vi"
+        }
+      },
+      {
+        "id": "beauty-booking",
+        "category": "website",
+        "title": "美容預約系統",
+        "description": "專業美容沙龍預約平台，具備即時排程和服務管理功能",
+        "image": "/portfolio/booking service.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Prisma",
+            "PostgreSQL"
+          ],
+          "features": [
+            "即時預約",
+            "服務管理",
+            "員工排班",
+            "支付整合",
+            "客戶管理"
+          ],
+          "link": "https://beauty-booking-demo.vercel.app"
         }
       }
     ]

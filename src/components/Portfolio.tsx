@@ -92,8 +92,8 @@ const defaultPortfolio: PortfolioTranslations = {
       id: "tecxmate",
       category: 'website',
       title: "TecXmate Official Website",
-      description: "Modern tech company website with service showcase and team portfolio",
-      image: "/portfolio/tecxmate.png",
+      description: "Modern tech company website showcasing services and team portfolio",
+      image: "/portfolio/tecxmate.com.png",
       details: {
         technologies: [
           "Next.js 14",
@@ -107,153 +107,57 @@ const defaultPortfolio: PortfolioTranslations = {
           "Dark/Light Mode",
           "Service Showcase",
           "Team Portfolio",
-          "Contact Form"
+          "Contact Forms"
         ],
         link: "https://tecxmate.com"
+      },
+    },
+    {
+      id: "chichi-vietnamese",
+      category: 'website',
+      title: "ChiChi Vietnamese",
+      description: "Professional Vietnamese language learning platform with online booking system and interactive learning features",
+      image: "/portfolio/Zhizhiyueyu.png",
+      details: {
+        technologies: [
+          "Next.js 14",
+          "TypeScript",
+          "TailwindCSS",
+          "Framer Motion",
+          "i18n"
+        ],
+        features: [
+          "Multilingual Support",
+          "Online Booking System",
+          "Interactive Learning",
+          "Course Management",
+          "Cultural Integration"
+        ],
+        link: "https://chichi-rho.vercel.app/vi"
       }
     },
     {
-      id: "restaurant-pos",
+      id: "beauty-booking",
       category: 'website',
-      title: "Restaurant POS System",
-      description: "Full-featured restaurant management system with order processing and inventory management",
-      image: "/portfolio/restaurant.png",
+      title: "Beauty Booking System",
+      description: "Professional beauty salon booking platform with real-time scheduling and service management",
+      image: "/portfolio/booking service.png",
       details: {
         technologies: [
-          "Next.js",
+          "Next.js 14",
           "TypeScript",
+          "TailwindCSS",
           "Prisma",
-          "PostgreSQL",
-          "WebSocket"
+          "PostgreSQL"
         ],
         features: [
-          "Real-time Orders",
-          "Inventory Management",
-          "Staff Management",
-          "Analytics Dashboard",
-          "Kitchen Display"
+          "Real-time Booking",
+          "Service Management",
+          "Staff Scheduling",
+          "Payment Integration",
+          "Client Management"
         ],
-        link: "https://restaurant-pos.tecxmate.com"
-      }
-    },
-    {
-      id: "school-management",
-      category: 'website',
-      title: "School Management Platform",
-      description: "Comprehensive school management system for administrative tasks and student tracking",
-      image: "/portfolio/school.png",
-      details: {
-        technologies: [
-          "Next.js",
-          "React Query",
-          "MySQL",
-          "Redis",
-          "AWS"
-        ],
-        features: [
-          "Student Management",
-          "Grade Tracking",
-          "Attendance System",
-          "Parent Portal",
-          "Report Generation"
-        ],
-        link: "https://school-demo.tecxmate.com"
-      }
-    },
-    {
-      id: "mobile-app",
-      category: 'mobile',
-      title: "Mobile Application",
-      description: "Cross-platform solution for iOS and Android",
-      image: "/portfolio/annebeauty.png",
-      details: {
-        technologies: [
-          "React Native",
-          "TypeScript",
-          "Firebase",
-          "Push Notifications",
-          "Offline Support"
-        ],
-        features: [
-          "Cross Platform",
-          "Real-time Updates",
-          "Offline Mode",
-          "Push Notifications",
-          "Clean Design"
-        ],
-        link: "https://tecxmate.com/portfolio/mindful"
-      }
-    },
-    {
-      id: "ui-ux-design",
-      category: 'design',
-      title: "UI/UX Design",
-      description: "User-centered design that delivers results",
-      image: "/portfolio/annebeauty.png",
-      details: {
-        technologies: [
-          "Figma",
-          "Adobe XD",
-          "Sketch",
-          "User Research",
-          "Prototyping"
-        ],
-        features: [
-          "User Research",
-          "Wireframing",
-          "Prototyping",
-          "User Testing",
-          "Visual Design"
-        ],
-        link: "https://tecxmate.com/portfolio/design"
-      }
-    },
-    {
-      id: "brand-design",
-      category: 'design',
-      title: "Brand Design",
-      description: "Complete brand identity and design systems",
-      image: "/portfolio/annebeauty.png",
-      details: {
-        technologies: [
-          "Figma",
-          "Adobe Creative Suite",
-          "Brand Guidelines",
-          "Color Theory",
-          "Typography"
-        ],
-        features: [
-          "Logo Design",
-          "Brand Identity",
-          "Style Guides",
-          "Marketing Materials",
-          "Visual Systems"
-        ],
-        link: "https://tecxmate.com/portfolio/brand"
-      }
-    },
-    {
-      id: "e-commerce",
-      category: 'website',
-      title: "E-commerce Platform",
-      description: "Full-featured online shopping platform with secure payments",
-      image: "/portfolio/annebeauty.png",
-      details: {
-        technologies: [
-          "Next.js",
-          "Stripe",
-          "PostgreSQL",
-          "Redis",
-          "Docker"
-        ],
-        features: [
-          "Secure Payments",
-          "Inventory Management",
-          "User Authentication",
-          "Order Tracking",
-          "Analytics Dashboard"
-        ],
-        link: "https://tecxmate.com/portfolio/ecommerce"
+        link: "https://www.treatwell.de/availability?venueId=387209&proposedServices=%5B%7B%22menuItemId%22%3A%22TR2823983%22%2C%22optionIds%22%3A%5B%224715135%22%5D%7D%5D&date=2025-03-03&timeFrom=1600"
       }
     }
   ]

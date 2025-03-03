@@ -416,6 +416,78 @@
           "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],
           "link": "https://tecxmate.com/portfolio/design"
         }
+      },
+      {
+        "id": "chichi-vietnamese",
+        "category": "website",
+        "title": "ChiChi Vietnamese",
+        "description": "Professional Vietnamese language learning platform with online booking system and interactive learning features",
+        "image": "/portfolio/Zhizhiyueyu.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "i18n"
+          ],
+          "features": [
+            "Multilingual Support",
+            "Online Booking System",
+            "Interactive Learning",
+            "Course Management",
+            "Cultural Integration"
+          ],
+          "link": "https://chichi-rho.vercel.app/vi"
+        }
+      },
+      {
+        "id": "tecxmate",
+        "category": "website",
+        "title": "TecXmate Official Website",
+        "description": "Modern tech company website showcasing services and team portfolio",
+        "image": "/portfolio/tecxmate.com.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "i18n"
+          ],
+          "features": [
+            "Multilingual Support",
+            "Dark/Light Mode",
+            "Service Showcase",
+            "Team Portfolio",
+            "Contact Forms"
+          ],
+          "link": "https://tecxmate.com"
+        }
+      },
+      {
+        "id": "beauty-booking",
+        "category": "website",
+        "title": "Beauty Booking System",
+        "description": "Professional beauty salon booking platform with real-time scheduling and service management",
+        "image": "/portfolio/booking service.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Prisma",
+            "PostgreSQL"
+          ],
+          "features": [
+            "Real-time Booking",
+            "Service Management",
+            "Staff Scheduling",
+            "Payment Integration",
+            "Client Management"
+          ],
+          "link": "https://beauty-booking-demo.vercel.app"
+        }
       }
     ]
   },

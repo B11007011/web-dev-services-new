@@ -408,6 +408,78 @@
           ],
           "link": "https://golf-p8hr.vercel.app/"
         }
+      },
+      {
+        "id": "chichi-vietnamese",
+        "category": "website",
+        "title": "ChiChi Vietnamese",
+        "description": "Nền tảng học tiếng Việt chuyên nghiệp với hệ thống đặt lịch trực tuyến và tính năng học tập tương tác",
+        "image": "/portfolio/Zhizhiyueyu.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "i18n"
+          ],
+          "features": [
+            "Hỗ trợ đa ngôn ngữ",
+            "Hệ thống đặt lịch trực tuyến",
+            "Học tập tương tác",
+            "Quản lý khóa học",
+            "Tích hợp văn hóa"
+          ],
+          "link": "https://chichi-rho.vercel.app/vi"
+        }
+      },
+      {
+        "id": "tecxmate",
+        "category": "website",
+        "title": "Website Chính Thức TecXmate",
+        "description": "Website công ty công nghệ hiện đại trưng bày dịch vụ và danh mục dự án của đội ngũ",
+        "image": "/portfolio/tecxmate.com.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "i18n"
+          ],
+          "features": [
+            "Hỗ trợ đa ngôn ngữ",
+            "Chế độ sáng/tối",
+            "Trưng bày dịch vụ",
+            "Danh mục dự án",
+            "Biểu mẫu liên hệ"
+          ],
+          "link": "https://tecxmate.com"
+        }
+      },
+      {
+        "id": "beauty-booking",
+        "category": "website",
+        "title": "Hệ Thống Đặt Lịch Làm Đẹp",
+        "description": "Nền tảng đặt lịch salon làm đẹp chuyên nghiệp với lịch trình thời gian thực và quản lý dịch vụ",
+        "image": "/portfolio/booking service.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Prisma",
+            "PostgreSQL"
+          ],
+          "features": [
+            "Đặt lịch thời gian thực",
+            "Quản lý dịch vụ",
+            "Lịch trình nhân viên",
+            "Tích hợp thanh toán",
+            "Quản lý khách hàng"
+          ],
+          "link": "https://beauty-booking-demo.vercel.app"
+        }
       }
     ]
   },
