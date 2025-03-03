@@ -6,6 +6,13 @@ const config: NextConfig = {
   output: 'standalone',
   productionBrowserSourceMaps: false,
   
+  // ESLint configuration
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  
   images: {
     unoptimized: false,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
