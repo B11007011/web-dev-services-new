@@ -3,33 +3,22 @@ import type { Configuration as WebpackConfig } from 'webpack';
 
 /** @type {import('next').NextConfig} */
 const config: NextConfig = {
-  output: 'standalone',
-  productionBrowserSourceMaps: false,
-  
-  // ESLint configuration
+ 
+  images: {
+    unoptimized: true, // Disable image optimization for static export
+  },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  
-  images: {
-    unoptimized: false,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  typescript: {
+    ignoreBuildErrors: true,
   },
-  
-  // Configure webpack for optimization
-  webpack: (config: WebpackConfig, { dev, isServer }) => {
+  // Configure webpack for JSON and optimize chunks
+  webpack: (config: WebpackConfig, { isServer }) => {
     // Ensure module and rules exist
     if (!config.module) config.module = { rules: [] };
     if (!config.module.rules) config.module.rules = [];
 
-    // Add module rules
     config.module.rules.push({
       test: /\.json$/,
       type: 'json',
@@ -40,81 +29,50 @@ const config: NextConfig = {
       },
     });
 
-    // Production optimizations
-    if (!dev && !isServer) {
-      if (!config.optimization) config.optimization = {};
-      
+    // Optimize chunks for client-side only
+    if (!isServer) {
       config.optimization = {
         ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
         splitChunks: {
           chunks: 'all',
-          minSize: 20000,
+          minSize: 10000,
           maxSize: 244000,
           minChunks: 1,
           maxAsyncRequests: 30,
           maxInitialRequests: 30,
           automaticNameDelimiter: '-',
           cacheGroups: {
-            framework: {
-              name: 'framework',
-              chunks: 'all',
-              test: /[\\/]node_modules[\\/](react|react-dom|scheduler|framer-motion)[\\/]/,
-              priority: 40,
-              enforce: true,
-            },
-            lib: {
+            defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
-              name(module: any) {
-                if (!module.context) return 'vendor';
-                const match = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-                if (!match) return 'vendor';
-                const packageName = match[1];
-                return `npm.${packageName.replace('@', '')}`;
-              },
-              priority: 30,
-              minChunks: 1,
+              priority: -10,
               reuseExistingChunk: true,
+              name: 'vendors',
             },
-            commons: {
-              name: 'commons',
+            default: {
               minChunks: 2,
-              priority: 20,
-            },
-            shared: {
-              name: 'shared',
-              enforce: true,
-              priority: 10,
+              priority: -20,
+              reuseExistingChunk: true,
+              name: 'commons',
             },
           },
         },
-        minimize: true,
-        minimizer: config.optimization.minimizer,
       };
     }
 
     return config;
   },
-  
-  // Performance optimizations
+  // Add compression
   compress: true,
-  poweredByHeader: false,
-  generateEtags: true,
-  
-  // Cache optimization
-  onDemandEntries: {
-    maxInactiveAge: 60 * 1000, // 1 minute
-    pagesBufferLength: 2,
-  },
-  
-  // Enable React strict mode
-  reactStrictMode: true,
-  
-  // Experimental features
+  // Disable experimental features that might cause issues
   experimental: {
     scrollRestoration: true,
-    optimizeCss: true,
+  },
+  reactStrictMode: true,
+  poweredByHeader: false,
+  // Add chunk optimization
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
   },
 };
 

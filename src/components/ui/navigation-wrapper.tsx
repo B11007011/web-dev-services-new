@@ -92,43 +92,30 @@ export function NavigationBar() {
     scrollToSection('hero')
   }, [scrollToSection])
 
-  // Update active section on scroll with throttling
+  // Update active section on scroll
   useEffect(() => {
-    let ticking = false;
-    const sections = new Map();
-
-    // Cache section elements
-    document.querySelectorAll('section[id]').forEach((section) => {
-      sections.set(section.id, {
-        element: section,
-        offsetTop: (section as HTMLElement).offsetTop,
-        height: section.clientHeight
-      });
-    });
-
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollPosition = window.scrollY + window.innerHeight / 3;
+      requestAnimationFrame(() => {
+        const sections = document.querySelectorAll('section[id]')
+        const scrollPosition = window.scrollY + window.innerHeight / 3
 
-          for (const [id, section] of sections) {
-            const { offsetTop, height } = section;
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-              setActiveSection(id);
-              break;
-            }
+        sections.forEach((section) => {
+          const sectionTop = (section as HTMLElement).offsetTop
+          const sectionBottom = sectionTop + section.clientHeight
+          const sectionId = section.getAttribute('id') || ''
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(sectionId)
           }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+        })
+      })
+    }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial position
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check initial position
     
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navItems = [
     { name: translations.nav.home, url: '#hero', icon: Home },
