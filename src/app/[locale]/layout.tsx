@@ -44,7 +44,7 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-type Props = {
+type LayoutProps = {
   children: ReactNode;
   params: { locale: Locale };
 }
@@ -86,10 +86,10 @@ const LANGUAGE_SUBDOMAINS = {
   'zh-TW': 'tw'
 };
 
-export async function generateMetadata(
-  props: Props
-): Promise<Metadata> {
-  const locale = props.params.locale;
+export async function generateMetadata({
+  params
+}: LayoutProps): Promise<Metadata> {
+  const locale = params.locale;
   if (!locales.includes(locale)) {
     return {}; // Return empty metadata if locale is invalid
   }
@@ -99,8 +99,29 @@ export async function generateMetadata(
     getLocalizedContent(locale)
   ]);
 
-  const { baseUrl } = metadataParams;
-  const domain = baseUrl.split('://')[1];
+  const title = content.title;
+  const description = content.description;
+  const { host, isDev, protocol, baseUrl } = metadataParams;
+
+  const domain = isDev 
+    ? `localhost:3000`
+    : host.includes('.') ? host.split('.').slice(1).join('.') : host;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Tecxmate',
+    url: `${protocol}://${host}`,
+    description: 'Professional web development services',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tecxmate',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${protocol}://${host}/logo.svg`
+      }
+    }
+  };
 
   // Generate hreflang URLs for all supported languages with subdomains
   const hreflangUrls = {
@@ -117,10 +138,10 @@ export async function generateMetadata(
 
   return {
     title: {
-      default: content.title,
-      template: `%s | ${content.title}`
+      default: title,
+      template: `%s | ${title}`
     },
-    description: content.description,
+    description: description,
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: currentUrl,
@@ -134,25 +155,25 @@ export async function generateMetadata(
       }
     },
     openGraph: {
-      title: content.title,
-      description: content.description,
+      title: title,
+      description: description,
       locale: locale,
       alternateLocale: locales.filter(l => l !== locale),
       url: currentUrl,
-      siteName: content.title,
+      siteName: title,
       images: [
         {
           url: `${baseUrl}/og-image.jpg`,
           width: 1200,
           height: 630,
-          alt: content.title
+          alt: title
         }
       ]
     },
     twitter: {
       card: 'summary_large_image',
-      title: content.title,
-      description: content.description,
+      title: title,
+      description: description,
       images: [`${baseUrl}/og-image.jpg`],
     },
     icons: {
@@ -184,10 +205,11 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-export default async function LocaleLayout(
-  props: Props
-) {
-  const locale = props.params.locale;
+export default async function LocaleLayout({
+  children,
+  params
+}: LayoutProps) {
+  const locale = params.locale;
   
   if (!locales.includes(locale)) {
     notFound(); // This will show the 404 page
@@ -199,6 +221,7 @@ export default async function LocaleLayout(
   ]);
 
   const { host, isDev, protocol, baseUrl } = metadataParams;
+  
   const currentUrl = `${baseUrl}/${locale}`;
   
   // Construct base domain for alternates
@@ -241,7 +264,7 @@ export default async function LocaleLayout(
           ]}
         />
         <NavigationBar />
-        {props.children}
+        {children}
         <Footer />
         <ScrollToTopWrapper />
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
