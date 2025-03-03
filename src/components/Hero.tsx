@@ -145,10 +145,10 @@ export function Hero() {
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
             </Link>
             <Link
-              href="#contact"
+              href="#pricing"
               className="group relative inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25"
             >
-              <span className="relative z-10">{displayContent.cta}</span>
+              <span className="relative z-10">View Pricing</span>
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           </motion.div>
