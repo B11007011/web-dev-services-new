@@ -13,6 +13,7 @@ type PortfolioTranslations = {
   subtitle: string;
   viewProject: string;
   projects: Array<{
+    id: string;
     title: string;
     description: string;
     image: string;
@@ -25,73 +26,146 @@ type PortfolioTranslations = {
 }
 
 const defaultPortfolio: PortfolioTranslations = {
-  title: 'Our Portfolio',
-  subtitle: 'Showcasing our latest projects and success stories',
+  title: 'Our Projects',
+  subtitle: 'Explore our recent projects and success stories',
   viewProject: 'View Project',
   projects: [
     {
-      title: "Anne Beauty & Spa",
-      description: "Elegant beauty salon website featuring nail art services, online booking, and multilingual support (中文/EN). Clean, modern design with a focus on showcasing professional nail art and spa services.",
-      image: "/portfolio/annebeauty.site.png",
+      id: "tjgl-golf",
+      title: "Taiwan Junior Golf League",
+      description: "Professional golf tournament platform with player rankings, NCAA resources, and comprehensive tournament management",
+      image: "/portfolio/annebeauty.png",
       details: {
         technologies: [
-          "Next.js 13",
-          "i18n",
-          "TailwindCSS",
-          "Responsive Design",
-          "Booking System"
-        ],
-        features: [
-          "Multilingual Support",
-          "Online Booking",
-          "Service Catalog",
-          "Gallery",
-          "Contact Form"
-        ],
-        link: "https://annebeauty.site"
-      }
-    },
-    {
-      title: "Mindful Moments",
-      description: "A wellness tracking application featuring sleep monitoring, daily reflection questions, and mood tracking. Helps users maintain mental wellbeing through regular self-reflection and habit tracking.",
-      image: "/portfolio/mindful.png",
-      details: {
-        technologies: [
-          "React.js",
-          "TailwindCSS",
-          "User Authentication",
-          "Data Visualization",
-          "Progressive Web App"
-        ],
-        features: [
-          "Sleep Tracking",
-          "Mood Monitoring",
-          "Daily Reflections",
-          "Progress Analytics",
-          "Habit Formation"
-        ],
-        link: "https://poetic-nasturtium-dfa598.netlify.app/"
-      }
-    },
-    {
-      title: "Tecxmate Corporate",
-      description: "Modern multilingual corporate website with dynamic content management",
-      image: "/portfolio/tecxmate.jpg",
-      details: {
-        technologies: [
-          "React",
           "Next.js",
-          "i18n",
-          "TailwindCSS"
+          "TypeScript",
+          "TailwindCSS",
+          "Framer Motion",
+          "Vercel"
         ],
         features: [
-          "Multilingual Support",
-          "Dynamic Content",
-          "Modern UI/UX",
-          "Performance Optimized",
-          "SEO Ready"
+          "Tournament Management",
+          "Player Rankings",
+          "NCAA Resources",
+          "Membership System",
+          "Interactive UI"
         ],
-        link: "https://tecxmate.com"
+        link: "https://golf-p8hr.vercel.app/"
+      }
+    },
+    {
+      id: "anne-beauty",
+      title: "Anne Beauty",
+      description: "Professional nail salon website with modern design and booking system",
+      image: "/portfolio/annebeauty.png",
+      details: {
+        technologies: [
+          "Next.js",
+          "React",
+          "TailwindCSS",
+          "Node.js",
+          "MongoDB"
+        ],
+        features: [
+          "Responsive Design",
+          "SEO Optimization",
+          "Online Booking",
+          "Gallery Showcase",
+          "Modern UI"
+        ],
+        link: "https://annebeauty.site/"
+      }
+    },
+    {
+      id: "mobile-app",
+      title: "Mobile Application",
+      description: "Cross-platform solution for iOS and Android",
+      image: "/portfolio/annebeauty.png",
+      details: {
+        technologies: [
+          "React Native",
+          "TypeScript",
+          "Firebase",
+          "Push Notifications",
+          "Offline Support"
+        ],
+        features: [
+          "Cross Platform",
+          "Real-time Updates",
+          "Offline Mode",
+          "Push Notifications",
+          "Clean Design"
+        ],
+        link: "https://tecxmate.com/portfolio/mindful"
+      }
+    },
+    {
+      id: "ui-ux-design",
+      title: "UI/UX Design",
+      description: "User-centered design that delivers results",
+      image: "/portfolio/annebeauty.png",
+      details: {
+        technologies: [
+          "Figma",
+          "Adobe XD",
+          "Sketch",
+          "User Research",
+          "Prototyping"
+        ],
+        features: [
+          "User Research",
+          "Wireframing",
+          "Prototyping",
+          "User Testing",
+          "Visual Design"
+        ],
+        link: "https://tecxmate.com/portfolio/design"
+      }
+    },
+    {
+      id: "brand-design",
+      title: "Brand Design",
+      description: "Complete brand identity and design systems",
+      image: "/portfolio/annebeauty.png",
+      details: {
+        technologies: [
+          "Figma",
+          "Adobe Creative Suite",
+          "Brand Guidelines",
+          "Color Theory",
+          "Typography"
+        ],
+        features: [
+          "Logo Design",
+          "Brand Identity",
+          "Style Guides",
+          "Marketing Materials",
+          "Visual Systems"
+        ],
+        link: "https://tecxmate.com/portfolio/brand"
+      }
+    },
+    {
+      id: "e-commerce",
+      title: "E-commerce Platform",
+      description: "Full-featured online shopping platform with secure payments",
+      image: "/portfolio/annebeauty.png",
+      details: {
+        technologies: [
+          "Next.js",
+          "Stripe",
+          "PostgreSQL",
+          "Redis",
+          "Docker"
+        ],
+        features: [
+          "Secure Payments",
+          "Inventory Management",
+          "User Authentication",
+          "Order Tracking",
+          "Analytics Dashboard"
+        ],
+        link: "https://tecxmate.com/portfolio/ecommerce"
       }
     }
   ]
@@ -163,11 +237,11 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12"
         >
-          {projects.map((project, index: number) => (
+          {projects.slice(0, 4).map((project, index: number) => (
             <motion.div
-              key={project.title}
+              key={`${project.id}-${index}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

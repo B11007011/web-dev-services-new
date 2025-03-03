@@ -7,20 +7,20 @@
       {
         "title": "全球據點",
         "description": "代表處遍布：舊金山、台北、河內、胡志明市、曼谷、深圳等地。",
-        "color": "from-blue-600 to-purple-600",
-        "image": "/images/hero/global.jpg"
+        "color": "from-blue-600 to-purple-600"
+       
       },
       {
         "title": "客製化解決方案",
         "description": "符合您品牌定位的客製化設計和數位品牌，優化性能和安全性。",
-        "color": "from-purple-600 to-red-600",
-        "image": "/images/hero/Solutions.jpg"
+        "color": "from-purple-600 to-red-600"
+       
       },
       {
         "title": "全方位支援",
         "description": "從開發到維護、SEO優化，以及持續的技術支援。",
-        "color": "from-red-600 to-orange-600",
-        "image": "/images/hero/Support.jpg"
+        "color": "from-red-600 to-orange-600"
+      
       }
     ]
   },
@@ -454,7 +454,7 @@
       {
         "title": "網站開發",
         "description": "使用Next.js和React構建的現代網絡應用",
-        "image": "/portfolio/annebeauty.site.png",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
           "features": ["響應式設計", "SEO優化", "性能指標", "API整合"],
@@ -482,44 +482,7 @@
         }
       }
     ]
-  },
-  "team": {
-    "title": "認識我們的團隊",
-    "subtitle": "專業團隊致力於您的成功",
-    "members": [
-      {
-        "name": "John Smith",
-        "role": "執行長 & 首席開發者",
-        "image": "/placeholder-team1.jpg",
-        "bio": "擁有超過10年的網站開發和團隊領導經驗",
-        "social": {
-          "linkedin": "https://linkedin.com",
-          "github": "https://github.com",
-          "twitter": "https://twitter.com"
-        }
-      },
-      {
-        "name": "Sarah Johnson",
-        "role": "UI/UX 設計師",
-        "image": "/placeholder-team2.jpg",
-        "bio": "專精於創造美觀且實用的用戶體驗",
-        "social": {
-          "linkedin": "https://linkedin.com",
-          "github": "https://github.com",
-          "twitter": "https://twitter.com"
-        }
-      },
-      {
-        "name": "Michael Chen",
-        "role": "後端開發工程師",
-        "image": "/placeholder-team3.jpg",
-        "bio": "專注於可擴展的雲端架構和安全性",
-        "social": {
-          "linkedin": "https://linkedin.com",
-          "github": "https://github.com",
-          "twitter": "https://twitter.com"
-        }
-      }
-    ]
   }
+
+  
 } 

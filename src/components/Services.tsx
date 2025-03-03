@@ -112,9 +112,17 @@ const defaultServices = {
   ]
 };
 
+const defaultImage = "/images/hero/services/pexels-cottonbro-7013230.jpg";
+
 const ServiceCard = ({ service, index }: { service: any; index: number }) => {
   const title = service.title.split(' ').slice(1).join(' ');
-  const imagePath = serviceImages[title] || '';
+  const imagePath = serviceImages[title] || defaultImage;
+
+  // Only render if we have a valid image path
+  if (!imagePath) {
+    console.error(`No image path found for service: ${title}`);
+    return null;
+  }
 
   return (
     <motion.div

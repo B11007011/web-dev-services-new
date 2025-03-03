@@ -358,7 +358,7 @@
       {
         "title": "Phát Triển Web",
         "description": "Ứng dụng web hiện đại được xây dựng bằng Next.js và React",
-        "image": "/portfolio/annebeauty.site.png",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
           "features": ["Thiết Kế Responsive", "Tối Ưu SEO", "Đo Lường Hiệu Suất", "Tích Hợp API"],
@@ -368,7 +368,7 @@
       {
         "title": "Ứng Dụng Di Động",
         "description": "Giải pháp đa nền tảng cho iOS và Android",
-        "image": "/portfolio/mindful.png",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
           "features": ["Thông Báo Đẩy", "Hỗ Trợ Offline", "Phân Tích", "Tối Ưu App Store"],
@@ -378,7 +378,7 @@
       {
         "title": "Thiết Kế UI/UX",
         "description": "Thiết kế lấy người dùng làm trung tâm mang lại kết quả",
-        "image": "/portfolio/tecxmate.jpg",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
           "features": ["Nghiên Cứu Người Dùng", "Wireframing", "Hệ Thống Thiết Kế", "Kiểm Tra Khả Năng Sử Dụng"],

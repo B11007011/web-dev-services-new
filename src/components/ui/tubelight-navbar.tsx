@@ -30,10 +30,19 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
   const [isScrolled, setIsScrolled] = useState(false)
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false)
   const [menuVisible, setMenuVisible] = useState(isMenuOpen)
+  const [logoSrc, setLogoSrc] = useState("/logo/3.svg")
+  const [logoSize, setLogoSize] = useState({ width: 150, height: 50 })
 
   const handleResize = useCallback(() => {
     const mobile = window.innerWidth < 1024
     setIsMobile(mobile)
+    if (mobile) {
+      setLogoSrc("/logo/1.svg")
+      setLogoSize({ width: 40, height: 40 })
+    } else {
+      setLogoSrc("/logo/3.svg")
+      setLogoSize({ width: 150, height: 50 })
+    }
     if (!mobile && menuVisible) {
       onMenuToggle?.(false)
       setMenuVisible(false)
@@ -127,14 +136,16 @@ export function NavBar({ items, className, onItemClick, onLogoClick, activeSecti
               "relative",
               isMobile ? "w-[100px] h-[90px]" : "w-[269.7px] h-[250px]"
             )}>
-              <Image
-                src={isMobile ? "/logo/1.svg" : "/logo/3.svg"}
-                alt="Logo"
-                width={isMobile ? 40 : 150}
-                height={isMobile ? 40 : 50}
-                className="w-auto h-auto"
-                priority
-              />
+              {mounted && (
+                <Image
+                  src={logoSrc}
+                  alt="Logo"
+                  width={logoSize.width}
+                  height={logoSize.height}
+                  className="w-auto h-auto"
+                  priority
+                />
+              )}
             </div>
             <div className="flex flex-col">
               

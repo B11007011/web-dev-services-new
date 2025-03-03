@@ -342,31 +342,31 @@
       {
         "title": "Web Development",
         "description": "Modern web application built with Next.js and React",
-        "image": "/portfolio/annebeauty.site.png",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
           "features": ["Responsive Design", "SEO Optimization", "Performance Metrics", "API Integration"],
-          "link": "https://example.com/project1"
+          "link": "https://annebeauty.site/"
         }
       },
       {
         "title": "Mobile Application",
         "description": "Cross-platform solution for iOS and Android",
-        "image": "/portfolio/mindful.png",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
           "features": ["Push Notifications", "Offline Support", "Analytics", "App Store Optimization"],
-          "link": "https://example.com/project2"
+          "link": "https://tecxmate.com/portfolio/mindful"
         }
       },
       {
         "title": "UI/UX Design",
         "description": "User-centered design that delivers results",
-        "image": "/portfolio/tecxmate.jpg",
+        "image": "/portfolio/annebeauty.png",
         "details": {
           "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
           "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],
-          "link": "https://example.com/project3"
+          "link": "https://tecxmate.com/portfolio/design"
         }
       }
     ]

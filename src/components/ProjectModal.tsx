@@ -76,9 +76,9 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-3">Technologies</h3>
                   <div className="flex flex-wrap gap-2">
-                    {project.details.technologies.map((tech, index) => (
+                    {project.details.technologies.map((tech) => (
                       <span 
-                        key={index}
+                        key={tech}
                         className="px-3 py-1 text-sm bg-blue-500/10 text-blue-300 rounded-full border border-blue-500/20"
                       >
                         {tech}
@@ -91,9 +91,9 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-3">Key Features</h3>
                   <div className="flex flex-wrap gap-2">
-                    {project.details.features.map((feature, index) => (
+                    {project.details.features.map((feature) => (
                       <span 
-                        key={index}
+                        key={feature}
                         className="px-3 py-1 text-sm bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20"
                       >
                         {feature}

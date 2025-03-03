@@ -33,14 +33,17 @@ export function NavigationBar() {
       process: 'Process',
       portfolio: 'Portfolio',
       pricing: 'Pricing',
-     
     }
   });
 
   useEffect(() => {
     const loadTranslations = async () => {
-      const messages = await import(`../../../messages/${locale}.json`);
-      setTranslations(messages);
+      try {
+        const messages = await import(`../../../messages/${locale}.json`);
+        setTranslations(messages.default || messages);
+      } catch (error) {
+        console.error('Error loading translations:', error);
+      }
     };
     loadTranslations();
   }, [locale]);
@@ -118,12 +121,11 @@ export function NavigationBar() {
   }, [])
 
   const navItems = [
-    { name: translations.nav.home, url: '#hero', icon: Home },
-    { name: translations.nav.services, url: '#services', icon: Laptop },
-    { name: translations.nav.process, url: '#process', icon: Lightbulb },
-    { name: translations.nav.portfolio, url: '#portfolio', icon: Laptop },
-    { name: translations.nav.pricing, url: '#pricing', icon: Laptop },
-   
+    { name: translations?.nav?.home || 'Home', url: '#hero', icon: Home },
+    { name: translations?.nav?.services || 'Services', url: '#services', icon: Laptop },
+    { name: translations?.nav?.process || 'Process', url: '#process', icon: Lightbulb },
+    { name: translations?.nav?.portfolio || 'Portfolio', url: '#portfolio', icon: Laptop },
+    { name: translations?.nav?.pricing || 'Pricing', url: '#pricing', icon: Laptop },
   ]
 
   if (!mounted) return null

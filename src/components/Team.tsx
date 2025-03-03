@@ -32,7 +32,7 @@ const defaultTeam: TeamTranslations = {
 
 export default function Team() {
   const content = useTranslations<TeamTranslations>('team');
-  const displayContent = Object.keys(content).length === 0 ? defaultTeam : content;
+  const displayContent = content ? (Object.keys(content).length === 0 ? defaultTeam : content) : defaultTeam;
 
   // Add loading check
   if (!displayContent || !displayContent.members) {
