@@ -100,6 +100,26 @@ export default function Team() {
       contact: {
         email: 'brian.tecx@gmail.com'
       }
+    },
+    {
+      name: 'Jane Liu',
+      chineseName: '劉美娟',
+      role: 'Design Manager',
+      locations: [
+        'Taipei, Taiwan',
+        
+      ],
+      expertise: [
+        'UI/UX Design',
+        'Branding',
+        'Graphic Design',
+        'UX Research'
+      ],
+      imagePath: '/Team/Jane.png',
+      imagePosition: 'center center',
+      contact: {
+        email: 'mei.tecx@gmail.com'
+      }
     }
   ];
 
