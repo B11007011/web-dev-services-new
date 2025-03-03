@@ -8,6 +8,9 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   priority?: boolean;
+  fill?: boolean;
+  sizes?: string;
+  quality?: number;
 }
 
 export function OptimizedImage({
@@ -17,19 +20,22 @@ export function OptimizedImage({
   height,
   className,
   priority = false,
+  fill = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  quality = 90
 }: OptimizedImageProps) {
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn("relative", className)}>
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={!fill ? width : undefined}
+        height={!fill ? height : undefined}
+        fill={fill}
         priority={priority}
-        quality={90}
-        loading={priority ? 'eager' : 'lazy'}
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        quality={quality}
+        sizes={sizes}
+        className={cn("object-cover", className)}
       />
     </div>
   );

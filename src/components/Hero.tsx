@@ -3,8 +3,10 @@
 import { motion, AnimatePresence, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import { useTranslations } from '@/providers/TranslationsProvider'
-import { useState, useEffect } from 'react'
-import OptimizedImage from './OptimizedImage'
+import { useState, useEffect, useCallback, memo, useMemo } from 'react'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import { debounce } from 'lodash'
 
 type HeroContent = {
   title: string;
@@ -17,7 +19,43 @@ type HeroContent = {
   }>;
 }
 
-export function Hero() {
+// Lazy load OptimizedImage component
+const OptimizedImage = dynamic(() => import('@/components/ui/optimized-image').then(mod => mod.OptimizedImage), {
+  loading: () => <div className="animate-pulse bg-gray-800 w-full h-full" />,
+  ssr: false
+});
+
+// Optimize service preview component
+const ServicePreview = memo(({ service, style }: { service: any; style: any }) => (
+  <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/50">
+    <h3 className="text-lg font-semibold text-white mb-2">
+      {service.title}
+    </h3>
+    <p className="text-gray-300 text-sm">
+      {service.description}
+    </p>
+  </div>
+));
+
+ServicePreview.displayName = 'ServicePreview';
+
+// Optimize background component
+const Background = memo(({ src }: { src: string }) => (
+  <div className="absolute inset-0">
+    <OptimizedImage
+      src={src}
+      alt="Hero Background"
+      priority={true}
+      className="object-cover w-full h-full"
+      fill
+    />
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-950/80 via-black/50 to-blue-950/80" />
+  </div>
+));
+
+Background.displayName = 'Background';
+
+export const Hero = memo(function Hero() {
   const defaultContent: HeroContent = {
     title: "以新一代網站提升您的全球形象",
     subtitle: "在Tecxmate，我們透過尖端網站設計和開發，以及國際技術諮詢和解決方案，助您企業成長",
@@ -57,37 +95,55 @@ export function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
-  const springConfig = { damping: 15, stiffness: 150 };
+  const springConfig = useMemo(() => ({ damping: 15, stiffness: 150 }), []);
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
 
-  useEffect(() => {
-    // Validate content
-    if (!Array.isArray(displayContent.services) || displayContent.services.length === 0) {
-      console.error('Invalid services data:', displayContent.services);
-      return;
-    }
+  // Optimize mouse move handler
+  const handleMouseMove = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.currentTarget;
+    if (!target) return;
 
-    const timer = setInterval(() => {
+    requestAnimationFrame(() => {
+      try {
+        const rect = target.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        mouseX.set(x);
+        mouseY.set(y);
+      } catch (error) {
+        console.error('Error in mouse move handler:', error);
+      }
+    });
+  }, [mouseX, mouseY]);
+
+  // Optimize service rotation
+  useEffect(() => {
+    if (!Array.isArray(displayContent.services) || displayContent.services.length === 0) return;
+    
+    let timeoutId: number;
+    let isActive = true;
+
+    const updateIndex = () => {
+      if (!isActive) return;
+      
       setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % displayContent.services.length);
-    }, 5000);
-    return () => clearInterval(timer);
+      setCurrentIndex(prev => (prev + 1) % displayContent.services.length);
+      timeoutId = window.setTimeout(updateIndex, 5000);
+    };
+
+    timeoutId = window.setTimeout(updateIndex, 5000);
+    
+    return () => {
+      isActive = false;
+      window.clearTimeout(timeoutId);
+    };
   }, [displayContent.services]);
 
-  // Early return if no valid services
+  // Early return for invalid data
   if (!Array.isArray(displayContent.services) || displayContent.services.length === 0) {
-    console.error('No valid services data available');
     return null;
   }
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
 
   return (
     <section 
@@ -95,19 +151,7 @@ export function Hero() {
       id="hero"
       onMouseMove={handleMouseMove}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <OptimizedImage
-          src="/images/hero/hero.png"
-          alt="Hero Background"
-          priority={true}
-          loading="eager"
-          fetchPriority="high"
-          className="object-cover w-full h-full"
-          fill
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/80 via-black/50 to-blue-950/80" />
-      </div>
+      <Background src="/images/hero/hero.png" />
 
       {/* Main Content */}
       <div className="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
@@ -171,14 +215,10 @@ export function Hero() {
             }}
             className="absolute bottom-12 right-8 w-80 hidden lg:block"
           >
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/50">
-              <h3 className="text-lg font-semibold text-white mb-2">
-                {displayContent.services[currentIndex].title}
-              </h3>
-              <p className="text-gray-300 text-sm">
-                {displayContent.services[currentIndex].description}
-              </p>
-            </div>
+            <ServicePreview 
+              service={displayContent.services[currentIndex]}
+              style={{ rotateX, rotateY }}
+            />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -193,4 +233,4 @@ export function Hero() {
       />
     </section>
   );
-}
+});

@@ -3,24 +3,26 @@ import type { Configuration as WebpackConfig } from 'webpack';
 
 /** @type {import('next').NextConfig} */
 const config: NextConfig = {
- 
+  output: 'standalone',
+  productionBrowserSourceMaps: false,
+  
   images: {
-    unoptimized: true, // Disable image optimization for static export
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    unoptimized: false,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Configure webpack for JSON and optimize chunks
+  
+  // Configure webpack for optimization
   webpack: (config: WebpackConfig, { dev, isServer }) => {
     // Ensure module and rules exist
     if (!config.module) config.module = { rules: [] };
     if (!config.module.rules) config.module.rules = [];
 
+    // Add module rules
     config.module.rules.push({
       test: /\.json$/,
       type: 'json',
@@ -31,62 +33,83 @@ const config: NextConfig = {
       },
     });
 
-    if (!isServer && !dev) {
-      // Optimize CSS chunks
+    // Production optimizations
+    if (!dev && !isServer) {
+      if (!config.optimization) config.optimization = {};
+      
       config.optimization = {
         ...config.optimization,
+        moduleIds: 'deterministic',
+        runtimeChunk: 'single',
         splitChunks: {
           chunks: 'all',
-          minSize: 10000,
+          minSize: 20000,
           maxSize: 244000,
+          minChunks: 1,
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          automaticNameDelimiter: '-',
           cacheGroups: {
-            styles: {
-              name: 'styles',
-              test: /\.(css|scss)$/,
+            framework: {
+              name: 'framework',
               chunks: 'all',
+              test: /[\\/]node_modules[\\/](react|react-dom|scheduler|framer-motion)[\\/]/,
+              priority: 40,
               enforce: true,
+            },
+            lib: {
+              test: /[\\/]node_modules[\\/]/,
+              name(module: any) {
+                const packageName = module.context.match(
+                  /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                )[1];
+                return `npm.${packageName.replace('@', '')}`;
+              },
+              priority: 30,
+              minChunks: 1,
+              reuseExistingChunk: true,
+            },
+            commons: {
+              name: 'commons',
+              minChunks: 2,
               priority: 20,
             },
-            defaultVendors: {
-              test: /[\\/]node_modules[\\/]/,
-              priority: -10,
-              reuseExistingChunk: true,
-              name: 'vendors',
-            },
-            default: {
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true,
-              name: 'commons',
+            shared: {
+              name: 'shared',
+              enforce: true,
+              priority: 10,
             },
           },
         },
+        minimize: true,
+        minimizer: config.optimization.minimizer,
       };
     }
 
     return config;
   },
-  // Add compression
+  
+  // Performance optimizations
   compress: true,
-  // Disable experimental features that might cause issues
+  poweredByHeader: false,
+  generateEtags: true,
+  
+  // Cache optimization
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000, // 1 minute
+    pagesBufferLength: 2,
+  },
+  
+  // Enable React strict mode
+  reactStrictMode: true,
+  
+  // Experimental features
   experimental: {
     scrollRestoration: true,
     optimizeCss: true,
-    optimizePackageImports: ['@heroicons/react', '@radix-ui/react-*'],
-    // Add modern CSS optimization
-    modernBrowsers: true,
     legacyBrowsers: false,
+    browsersListForSwc: true,
   },
-  reactStrictMode: true,
-  poweredByHeader: false,
-  // Add chunk optimization
-  onDemandEntries: {
-    maxInactiveAge: 25 * 1000,
-    pagesBufferLength: 2,
-  },
-  generateEtags: true,
-  // Optimize page loading
-  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
 };
 
 export default config;
