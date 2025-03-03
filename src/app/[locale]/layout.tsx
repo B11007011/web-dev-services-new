@@ -25,8 +25,8 @@ const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   preload: true,
-  fallback: ['system-ui', 'arial'],
   variable: '--font-inter',
+  adjustFontFallback: false
 });
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -35,6 +35,7 @@ const beVietnamPro = Be_Vietnam_Pro({
   preload: true,
   weight: ['400', '500', '600', '700'],
   variable: '--font-be-vietnam-pro',
+  adjustFontFallback: false
 });
 
 const locales = ['en', 'vi', 'zh-TW'] as const;
@@ -182,6 +183,13 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  stylesheets: [
+    {
+      url: '/_next/static/css/app/layout.css',
+      media: 'all',
+      importance: 'high'
+    }
+  ]
 }
 
 export default async function LocaleLayout(

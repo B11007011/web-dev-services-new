@@ -1,10 +1,24 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, ReactNode } from 'react'
 import { Home, Laptop, Users, Phone, Newspaper, Code, Lightbulb, HelpCircle } from 'lucide-react'
 import { NavBar } from "./tubelight-navbar"
 import LanguageSwitcher from '../LanguageSwitcher'
 import { usePathname } from 'next/navigation'
+
+interface NavigationWrapperProps {
+  children: ReactNode;
+}
+
+const NavigationWrapper = ({ children }: NavigationWrapperProps) => {
+  return (
+    <div className="navigation-wrapper">
+      {children}
+    </div>
+  );
+};
+
+export default NavigationWrapper;
 
 export function NavigationBar() {
   const pathname = usePathname();

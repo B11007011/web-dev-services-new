@@ -14,7 +14,6 @@ type HeroContent = {
     title: string;
     description: string;
     color: string;
-    image: string;
   }>;
 }
 
@@ -27,20 +26,17 @@ export function Hero() {
       {
         title: "全球據點",
         description: "With representatives in: San Francisco, Taipei, Hanoi, HCMC, Bangkok, Shenzhen, and more.",
-        color: "from-blue-600 to-purple-600",
-        image: "images/hero/global.jpg"
+        color: "from-blue-600 to-purple-600"
       },
       {
         title: "Tailored Solutions",
         description: "Custom designs and digital branding that align with your brand's identity, optimized for performance and security.",
-        color: "from-purple-600 to-red-600",
-        image: "images/hero/Solutions.jpg"
+        color: "from-purple-600 to-red-600"
       },
       {
         title: "Full-Service Support",
         description: "From development to maintenance, SEO optimization, and ongoing technical support.",
-        color: "from-red-600 to-orange-600",
-        image: "images/hero/Support.jpg"
+        color: "from-red-600 to-orange-600"
       }
     ]
   };
@@ -52,16 +48,7 @@ export function Hero() {
   useEffect(() => {
     // Only update display content if we have valid translation content
     if (content && Object.keys(content).length > 0 && Array.isArray(content.services)) {
-      // Merge translations with default content, keeping default images
-      const validContent = {
-        ...content,
-        services: content.services.map((service, index) => ({
-          ...service,
-          // Always use default image paths
-          image: defaultContent.services[index].image
-        }))
-      };
-      setDisplayContent(validContent);
+      setDisplayContent(content);
     }
   }, [content]);
 
@@ -75,40 +62,11 @@ export function Hero() {
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
 
   useEffect(() => {
-    // Log the image paths and verify they exist
-    const images = displayContent.services.map(service => service.image);
-    console.log('Hero images to load:', images);
-    
     // Validate content
     if (!Array.isArray(displayContent.services) || displayContent.services.length === 0) {
       console.error('Invalid services data:', displayContent.services);
       return;
     }
-
-    // Preload images with proper path handling
-    const preloadPromises = images.map((src) => {
-      return new Promise((resolve, reject) => {
-        if (!src || typeof src !== 'string') {
-          console.error('Invalid image source:', src);
-          reject(new Error('Invalid image source'));
-          return;
-        }
-        const img = new Image();
-        img.onload = () => {
-          console.log('Successfully preloaded:', src);
-          resolve(src);
-        };
-        img.onerror = (e) => {
-          console.error('Failed to preload:', src, e);
-          reject(e);
-        };
-        img.src = `/${src}`; // Add leading slash for proper path resolution
-      });
-    });
-
-    Promise.all(preloadPromises)
-      .then(() => console.log('All images preloaded successfully'))
-      .catch(error => console.error('Error preloading images:', error));
 
     const timer = setInterval(() => {
       setDirection(1);
@@ -143,6 +101,8 @@ export function Hero() {
           src="/images/hero/hero.png"
           alt="Hero Background"
           priority={true}
+          loading="eager"
+          fetchPriority="high"
           className="object-cover w-full h-full"
           fill
         />
