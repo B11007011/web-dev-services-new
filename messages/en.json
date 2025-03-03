@@ -338,21 +338,67 @@
     "title": "Our Projects",
     "subtitle": "Explore our recent projects and success stories",
     "viewProject": "View Project",
+    "categories": {
+      "all": "All Projects",
+      "website": "Websites",
+      "mobile": "Mobile Apps",
+      "design": "Design"
+    },
     "projects": [
       {
-        "title": "Web Development",
-        "description": "Modern web application built with Next.js and React",
+        "id": "anne-beauty",
+        "category": "website",
+        "title": "Anne Beauty",
+        "description": "Professional nail salon website with modern design and booking system",
         "image": "/portfolio/annebeauty.png",
         "details": {
-          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-          "features": ["Responsive Design", "SEO Optimization", "Performance Metrics", "API Integration"],
+          "technologies": [
+            "Next.js",
+            "React",
+            "TailwindCSS",
+            "Node.js",
+            "MongoDB"
+          ],
+          "features": [
+            "Responsive Design",
+            "SEO Optimization",
+            "Online Booking",
+            "Gallery Showcase",
+            "Modern UI"
+          ],
           "link": "https://annebeauty.site/"
         }
       },
       {
+        "id": "tjgl-golf",
+        "category": "website",
+        "title": "Taiwan Junior Golf League",
+        "description": "Professional golf tournament platform with player rankings, NCAA resources, and comprehensive tournament management",
+        "image": "/portfolio/golf.png",
+        "details": {
+          "technologies": [
+            "Next.js",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "Vercel"
+          ],
+          "features": [
+            "Tournament Management",
+            "Player Rankings",
+            "NCAA Resources",
+            "Membership System",
+            "Interactive UI"
+          ],
+          "link": "https://golf-p8hr.vercel.app/"
+        }
+      },
+      {
+        "id": "mobile-app",
+        "category": "mobile",
         "title": "Mobile Application",
         "description": "Cross-platform solution for iOS and Android",
-        "image": "/portfolio/annebeauty.png",
+        "image": "/portfolio/mobile-app.png",
         "details": {
           "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
           "features": ["Push Notifications", "Offline Support", "Analytics", "App Store Optimization"],
@@ -360,9 +406,11 @@
         }
       },
       {
+        "id": "ui-ux-design",
+        "category": "design",
         "title": "UI/UX Design",
         "description": "User-centered design that delivers results",
-        "image": "/portfolio/annebeauty.png",
+        "image": "/portfolio/design.png",
         "details": {
           "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
           "features": ["User Research", "Wireframing", "Design Systems", "Usability Testing"],

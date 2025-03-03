@@ -12,8 +12,10 @@ type PortfolioTranslations = {
   title: string;
   subtitle: string;
   viewProject: string;
+  categories: Record<string, string>;
   projects: Array<{
     id: string;
+    category: string;
     title: string;
     description: string;
     image: string;
@@ -25,36 +27,22 @@ type PortfolioTranslations = {
   }>;
 }
 
+type ProjectCategory = 'all' | 'website' | 'mobile' | 'design';
+
 const defaultPortfolio: PortfolioTranslations = {
   title: 'Our Projects',
   subtitle: 'Explore our recent projects and success stories',
   viewProject: 'View Project',
+  categories: {
+    all: 'All Projects',
+    website: 'Websites',
+    mobile: 'Mobile Apps',
+    design: 'Design'
+  },
   projects: [
     {
-      id: "tjgl-golf",
-      title: "Taiwan Junior Golf League",
-      description: "Professional golf tournament platform with player rankings, NCAA resources, and comprehensive tournament management",
-      image: "/portfolio/annebeauty.png",
-      details: {
-        technologies: [
-          "Next.js",
-          "TypeScript",
-          "TailwindCSS",
-          "Framer Motion",
-          "Vercel"
-        ],
-        features: [
-          "Tournament Management",
-          "Player Rankings",
-          "NCAA Resources",
-          "Membership System",
-          "Interactive UI"
-        ],
-        link: "https://golf-p8hr.vercel.app/"
-      }
-    },
-    {
       id: "anne-beauty",
+      category: 'website',
       title: "Anne Beauty",
       description: "Professional nail salon website with modern design and booking system",
       image: "/portfolio/annebeauty.png",
@@ -77,7 +65,104 @@ const defaultPortfolio: PortfolioTranslations = {
       }
     },
     {
+      id: "tjgl-golf",
+      category: 'website',
+      title: "Taiwan Junior Golf League",
+      description: "Professional golf tournament platform with player rankings, NCAA resources, and comprehensive tournament management",
+      image: "/portfolio/golf.png",
+      details: {
+        technologies: [
+          "Next.js",
+          "TypeScript",
+          "TailwindCSS",
+          "Framer Motion",
+          "Vercel"
+        ],
+        features: [
+          "Tournament Management",
+          "Player Rankings",
+          "NCAA Resources",
+          "Membership System",
+          "Interactive UI"
+        ],
+        link: "https://golf-p8hr.vercel.app/"
+      }
+    },
+    {
+      id: "tecxmate",
+      category: 'website',
+      title: "TecXmate Official Website",
+      description: "Modern tech company website with service showcase and team portfolio",
+      image: "/portfolio/tecxmate.png",
+      details: {
+        technologies: [
+          "Next.js 14",
+          "TypeScript",
+          "TailwindCSS",
+          "Framer Motion",
+          "i18n"
+        ],
+        features: [
+          "Multilingual Support",
+          "Dark/Light Mode",
+          "Service Showcase",
+          "Team Portfolio",
+          "Contact Form"
+        ],
+        link: "https://tecxmate.com"
+      }
+    },
+    {
+      id: "restaurant-pos",
+      category: 'website',
+      title: "Restaurant POS System",
+      description: "Full-featured restaurant management system with order processing and inventory management",
+      image: "/portfolio/restaurant.png",
+      details: {
+        technologies: [
+          "Next.js",
+          "TypeScript",
+          "Prisma",
+          "PostgreSQL",
+          "WebSocket"
+        ],
+        features: [
+          "Real-time Orders",
+          "Inventory Management",
+          "Staff Management",
+          "Analytics Dashboard",
+          "Kitchen Display"
+        ],
+        link: "https://restaurant-pos.tecxmate.com"
+      }
+    },
+    {
+      id: "school-management",
+      category: 'website',
+      title: "School Management Platform",
+      description: "Comprehensive school management system for administrative tasks and student tracking",
+      image: "/portfolio/school.png",
+      details: {
+        technologies: [
+          "Next.js",
+          "React Query",
+          "MySQL",
+          "Redis",
+          "AWS"
+        ],
+        features: [
+          "Student Management",
+          "Grade Tracking",
+          "Attendance System",
+          "Parent Portal",
+          "Report Generation"
+        ],
+        link: "https://school-demo.tecxmate.com"
+      }
+    },
+    {
       id: "mobile-app",
+      category: 'mobile',
       title: "Mobile Application",
       description: "Cross-platform solution for iOS and Android",
       image: "/portfolio/annebeauty.png",
@@ -101,6 +186,7 @@ const defaultPortfolio: PortfolioTranslations = {
     },
     {
       id: "ui-ux-design",
+      category: 'design',
       title: "UI/UX Design",
       description: "User-centered design that delivers results",
       image: "/portfolio/annebeauty.png",
@@ -124,6 +210,7 @@ const defaultPortfolio: PortfolioTranslations = {
     },
     {
       id: "brand-design",
+      category: 'design',
       title: "Brand Design",
       description: "Complete brand identity and design systems",
       image: "/portfolio/annebeauty.png",
@@ -147,6 +234,7 @@ const defaultPortfolio: PortfolioTranslations = {
     },
     {
       id: "e-commerce",
+      category: 'website',
       title: "E-commerce Platform",
       description: "Full-featured online shopping platform with secure payments",
       image: "/portfolio/annebeauty.png",
@@ -191,16 +279,63 @@ const useOutsideClick = (ref: React.RefObject<HTMLDivElement>, callback: Functio
   }, [ref, callback])
 }
 
-const Portfolio = () => {
+export function Portfolio() {
   const content = useTranslations<PortfolioTranslations>('portfolio');
-  const displayContent = Object.keys(content).length === 0 ? defaultPortfolio : content;
+  
+  // Add debug logging
+  useEffect(() => {
+    console.log('Portfolio Translation Content:', {
+      hasContent: content && Object.keys(content).length > 0,
+      content,
+    });
+  }, [content]);
+
+  // Only use default if content is truly empty or undefined
+  const displayContent = (!content || Object.keys(content).length === 0) 
+    ? defaultPortfolio 
+    : content;
+
   const [selectedProject, setSelectedProject] = useState<typeof displayContent.projects[0] | null>(null);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('all');
 
   if (!displayContent || !displayContent.projects) {
+    console.error('No display content available:', displayContent);
     return null;
   }
 
-  const projects = displayContent.projects;
+  const categories = displayContent.categories || defaultPortfolio.categories;
+  
+  // Debug logging
+  console.log('Active Category:', activeCategory);
+  console.log('Available Categories:', categories);
+  console.log('All Projects:', displayContent.projects.map(p => ({ id: p.id, category: p.category })));
+  
+  const filteredProjects = displayContent.projects.filter(project => {
+    // Handle undefined category
+    if (!project.category) {
+      console.log(`Project ${project.id} has no category`);
+      return activeCategory === 'all';
+    }
+    
+    const projectCategory = project.category.toLowerCase();
+    const currentCategory = activeCategory.toLowerCase();
+    
+    const shouldInclude = activeCategory === 'all' || projectCategory === currentCategory;
+    console.log(`Project ${project.id}: category=${projectCategory}, activeCategory=${currentCategory}, included=${shouldInclude}`);
+    return shouldInclude;
+  });
+
+  const handleCategoryClick = (category: string) => {
+    console.log('Clicking category:', category);
+    setActiveCategory(category as ProjectCategory);
+  };
+  
+  console.log('Filtered Projects:', filteredProjects.map(p => p.id));
+
+  // Check if we have any projects in the current category
+  if (activeCategory !== 'all' && filteredProjects.length === 0) {
+    console.log('No projects found in category:', activeCategory);
+  }
 
   return (
     <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-950 via-black to-blue-950" id="portfolio">
@@ -230,6 +365,29 @@ const Portfolio = () => {
           >
             {displayContent.subtitle}
           </motion.p>
+
+          {/* Category Filter */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-4 mt-12"
+          >
+            {Object.entries(categories).map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => handleCategoryClick(key)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === key
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                    : 'bg-white/10 text-white/70 hover:bg-white/20'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </motion.div>
         </div>
 
         <motion.div 
@@ -237,9 +395,9 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
         >
-          {projects.slice(0, 4).map((project, index: number) => (
+          {filteredProjects.map((project, index: number) => (
             <motion.div
               key={`${project.id}-${index}`}
               initial={{ opacity: 0, y: 20 }}

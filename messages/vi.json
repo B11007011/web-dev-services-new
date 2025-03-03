@@ -354,35 +354,59 @@
     "title": "Dự Án Của Chúng Tôi",
     "subtitle": "Khám phá các dự án và câu chuyện thành công gần đây của chúng tôi",
     "viewProject": "Xem Dự Án",
+    "categories": {
+      "all": "Tất Cả Dự Án",
+      "website": "Website",
+      "mobile": "Ứng Dụng Di Động",
+      "design": "Thiết Kế"
+    },
     "projects": [
       {
-        "title": "Phát Triển Web",
-        "description": "Ứng dụng web hiện đại được xây dựng bằng Next.js và React",
+        "id": "anne-beauty",
+        "category": "website",
+        "title": "Anne Beauty",
+        "description": "Website tiệm nail chuyên nghiệp với thiết kế hiện đại và hệ thống đặt lịch",
         "image": "/portfolio/annebeauty.png",
         "details": {
-          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-          "features": ["Thiết Kế Responsive", "Tối Ưu SEO", "Đo Lường Hiệu Suất", "Tích Hợp API"],
-          "link": "https://example.com/project1"
+          "technologies": [
+            "Next.js",
+            "React",
+            "TailwindCSS",
+            "Node.js",
+            "MongoDB"
+          ],
+          "features": [
+            "Thiết kế tương thích",
+            "Tối ưu hóa SEO",
+            "Đặt lịch trực tuyến",
+            "Trưng bày bộ sưu tập",
+            "Giao diện hiện đại"
+          ],
+          "link": "https://annebeauty.site/"
         }
       },
       {
-        "title": "Ứng Dụng Di Động",
-        "description": "Giải pháp đa nền tảng cho iOS và Android",
-        "image": "/portfolio/annebeauty.png",
+        "id": "tjgl-golf",
+        "category": "website",
+        "title": "Taiwan Junior Golf League",
+        "description": "Nền tảng giải đấu golf chuyên nghiệp với bảng xếp hạng người chơi, tài nguyên NCAA và quản lý giải đấu toàn diện",
+        "image": "/portfolio/golf.png",
         "details": {
-          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
-          "features": ["Thông Báo Đẩy", "Hỗ Trợ Offline", "Phân Tích", "Tối Ưu App Store"],
-          "link": "https://example.com/project2"
-        }
-      },
-      {
-        "title": "Thiết Kế UI/UX",
-        "description": "Thiết kế lấy người dùng làm trung tâm mang lại kết quả",
-        "image": "/portfolio/annebeauty.png",
-        "details": {
-          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
-          "features": ["Nghiên Cứu Người Dùng", "Wireframing", "Hệ Thống Thiết Kế", "Kiểm Tra Khả Năng Sử Dụng"],
-          "link": "https://example.com/project3"
+          "technologies": [
+            "Next.js",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "Vercel"
+          ],
+          "features": [
+            "Quản lý giải đấu",
+            "Bảng xếp hạng người chơi",
+            "Tài nguyên NCAA",
+            "Hệ thống thành viên",
+            "Giao diện tương tác"
+          ],
+          "link": "https://golf-p8hr.vercel.app/"
         }
       }
     ]

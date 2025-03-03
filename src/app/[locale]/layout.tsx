@@ -17,6 +17,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ScrollToTopWrapper from '@/components/client/ScrollToTopWrapper'
 import { notFound } from 'next/navigation'
 import LocaleLayoutContent from '@/components/LocaleLayoutContent'
+import DebugLocale from '@/components/DebugLocale'
 
 export const dynamic = 'force-dynamic';
 
@@ -222,7 +223,8 @@ export default function RootLayout({
 
   return (
     <Providers>
-      <TranslationsProvider>
+      <TranslationsProvider locale={locale}>
+        <DebugLocale locale={locale} />
         <LanguageHandler locale={locale} />
         <ViewportHandler />
         <LocaleLayoutContent locale={locale} />

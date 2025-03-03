@@ -447,42 +447,208 @@
     "copyright": "© {year} 版權所有。"
   },
   "portfolio": {
-    "title": "我們的項目",
-    "subtitle": "探索我們最近的項目和成功案例",
-    "viewProject": "查看項目",
+    "title": "我們的專案",
+    "subtitle": "探索我們最近的專案和成功案例",
+    "viewProject": "查看專案",
+    "categories": {
+      "all": "所有專案",
+      "website": "網站",
+      "mobile": "行動應用",
+      "design": "設計"
+    },
     "projects": [
       {
-        "title": "網站開發",
-        "description": "使用Next.js和React構建的現代網絡應用",
+        "id": "anne-beauty",
+        "category": "website",
+        "title": "Anne Beauty",
+        "description": "專業美甲沙龍網站，具有現代設計和預約系統",
         "image": "/portfolio/annebeauty.png",
         "details": {
-          "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-          "features": ["響應式設計", "SEO優化", "性能指標", "API整合"],
-          "link": "https://example.com/project1"
+          "technologies": [
+            "Next.js",
+            "React",
+            "TailwindCSS",
+            "Node.js",
+            "MongoDB"
+          ],
+          "features": [
+            "響應式設計",
+            "SEO優化",
+            "線上預約",
+            "作品展示",
+            "現代化介面"
+          ],
+          "link": "https://annebeauty.site/"
         }
       },
       {
-        "title": "移動應用",
-        "description": "iOS和Android的跨平台解決方案",
-        "image": "/portfolio/mindful.png",
+        "id": "tjgl-golf",
+        "category": "website",
+        "title": "台灣青少年高爾夫聯盟",
+        "description": "專業高爾夫球賽平台，具備選手排名、NCAA資源和完整賽事管理",
+        "image": "/portfolio/golf.png",
         "details": {
-          "technologies": ["React Native", "TypeScript", "Redux", "Native APIs"],
-          "features": ["推送通知", "離線支持", "數據分析", "應用商店優化"],
-          "link": "https://example.com/project2"
+          "technologies": [
+            "Next.js",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "Vercel"
+          ],
+          "features": [
+            "賽事管理",
+            "選手排名",
+            "NCAA資源",
+            "會員系統",
+            "互動介面"
+          ],
+          "link": "https://golf-p8hr.vercel.app/"
         }
       },
       {
+        "id": "tecxmate",
+        "category": "website",
+        "title": "TecXmate 官方網站",
+        "description": "現代科技公司網站，展示服務和團隊作品集",
+        "image": "/portfolio/tecxmate.png",
+        "details": {
+          "technologies": [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "i18n"
+          ],
+          "features": [
+            "多語言支援",
+            "深色/淺色模式",
+            "服務展示",
+            "團隊作品集",
+            "聯絡表單"
+          ],
+          "link": "https://tecxmate.com"
+        }
+      },
+      {
+        "id": "restaurant-pos",
+        "category": "website",
+        "title": "餐廳POS系統",
+        "description": "全功能餐廳管理系統，具備訂單處理和庫存管理",
+        "image": "/portfolio/restaurant.png",
+        "details": {
+          "technologies": [
+            "Next.js",
+            "TypeScript",
+            "Prisma",
+            "PostgreSQL",
+            "WebSocket"
+          ],
+          "features": [
+            "即時訂單",
+            "庫存管理",
+            "員工管理",
+            "分析儀表板",
+            "廚房顯示"
+          ],
+          "link": "https://restaurant-pos.tecxmate.com"
+        }
+      },
+      {
+        "id": "school-management",
+        "category": "website",
+        "title": "學校管理平台",
+        "description": "全面的學校管理系統，用於行政任務和學生追蹤",
+        "image": "/portfolio/school.png",
+        "details": {
+          "technologies": [
+            "Next.js",
+            "React Query",
+            "MySQL",
+            "Redis",
+            "AWS"
+          ],
+          "features": [
+            "學生管理",
+            "成績追蹤",
+            "出勤系統",
+            "家長入口",
+            "報告生成"
+          ],
+          "link": "https://school-demo.tecxmate.com"
+        }
+      },
+      {
+        "id": "e-commerce",
+        "category": "website",
+        "title": "電子商務平台",
+        "description": "全功能線上購物平台，具備安全支付功能",
+        "image": "/portfolio/ecommerce.png",
+        "details": {
+          "technologies": [
+            "Next.js",
+            "Stripe",
+            "PostgreSQL",
+            "Redis",
+            "Docker"
+          ],
+          "features": [
+            "安全支付",
+            "庫存管理",
+            "用戶認證",
+            "訂單追蹤",
+            "分析儀表板"
+          ],
+          "link": "https://tecxmate.com/portfolio/ecommerce"
+        }
+      },
+      {
+        "id": "mobile-app",
+        "category": "mobile",
+        "title": "行動應用程式",
+        "description": "iOS和Android跨平台解決方案",
+        "image": "/portfolio/mobile-app.png",
+        "details": {
+          "technologies": [
+            "React Native",
+            "TypeScript",
+            "Firebase",
+            "推播通知",
+            "離線支援"
+          ],
+          "features": [
+            "跨平台",
+            "即時更新",
+            "離線模式",
+            "推播通知",
+            "簡潔設計"
+          ],
+          "link": "https://tecxmate.com/portfolio/mindful"
+        }
+      },
+      {
+        "id": "ui-ux-design",
+        "category": "design",
         "title": "UI/UX設計",
-        "description": "以用戶為中心的設計帶來成果",
-        "image": "/portfolio/tecxmate.jpg",
+        "description": "以使用者為中心的設計，帶來成果",
+        "image": "/portfolio/design.png",
         "details": {
-          "technologies": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
-          "features": ["用戶研究", "線框圖", "設計系統", "可用性測試"],
-          "link": "https://example.com/project3"
+          "technologies": [
+            "Figma",
+            "Adobe XD",
+            "Sketch",
+            "使用者研究",
+            "原型設計"
+          ],
+          "features": [
+            "使用者研究",
+            "線框圖",
+            "原型設計",
+            "使用者測試",
+            "視覺設計"
+          ],
+          "link": "https://tecxmate.com/portfolio/design"
         }
       }
     ]
   }
-
-  
 } 
