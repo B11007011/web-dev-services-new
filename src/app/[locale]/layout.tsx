@@ -6,7 +6,7 @@ import ViewportHandler from "@/components/ViewportHandler";
 import LanguageHandler from "@/components/LanguageHandler";
 import EnhancedStructuredData from "@/components/EnhancedStructuredData";
 import { ReactNode } from "react";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, Inter } from "next/font/google";
 import { cn } from '@/lib/utils'
 import { Providers } from '@/providers/Providers'
@@ -15,7 +15,6 @@ import JsonLd from '@/components/JsonLd'
 import { Analytics } from '@vercel/analytics/react'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ScrollToTopWrapper from '@/components/client/ScrollToTopWrapper'
-import { Viewport } from 'next'
 import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-dynamic';
@@ -44,7 +43,7 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-type LayoutProps = {
+export interface LayoutProps {
   children: ReactNode;
   params: { locale: Locale };
 }
@@ -86,9 +85,9 @@ const LANGUAGE_SUBDOMAINS = {
   'zh-TW': 'tw'
 };
 
-export async function generateMetadata({
-  params
-}: LayoutProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: LayoutProps
+): Promise<Metadata> {
   const locale = params.locale;
   if (!locales.includes(locale)) {
     return {}; // Return empty metadata if locale is invalid
@@ -205,14 +204,14 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-export default async function LocaleLayout({
+export default async function Layout({
   children,
   params
 }: LayoutProps) {
   const locale = params.locale;
   
   if (!locales.includes(locale)) {
-    notFound(); // This will show the 404 page
+    notFound();
   }
 
   const [metadataParams, content] = await Promise.all([
