@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      # Bind mount for source code (excludes node_modules)
+      - .:/app
+      # Named volume for node_modules
+      - node_modules:/app/node_modules
+      # Persist package.json state
+      - pkg-cache:/app/node_modules/.package.json
+    environment:
+      - NODE_ENV=development
+      # Enable Next.js hot reload
+      - WATCHPACK_POLLING=true
+    # Keep the container running
+    tty: true
+    # Enable interactive mode for development
+    stdin_open: true
+
+volumes:
+  node_modules:
+  pkg-cache: 
